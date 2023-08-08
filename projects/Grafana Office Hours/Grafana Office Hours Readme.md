@@ -14,6 +14,7 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 18/08: Break (Nicole on leave)
 - 25/08: [GOH 09 - Loki](GOH%2009%20-%20Loki.md) with Ward
 - 01/09: 
+- 08/09: GOH 11 - Huzaifa Bin Asif
 
 ## Future guest suggestions
 
@@ -36,3 +37,6 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - Golioth (tech resource TBD) -- telemetry (IoT)
 	- On k6 Office Hours but they also stream metrics and use Grafana as their visualization layer. (such as driving around and graphing car traffic)
 - Kris Nova on Hachyderm
+- Melori on Loki alerting
+- Matt Abrams on Grafana Play.
+- 
