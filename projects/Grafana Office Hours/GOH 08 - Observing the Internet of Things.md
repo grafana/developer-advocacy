@@ -1,12 +1,12 @@
 ---
-url:
-date: 
+url: 
+date: 2023-08-11
 ---
-# [[<% tp.file.title %>]]
+# [[GOH 08 - Observing the Internet of Things]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: 
+Guest:: Daniel Mangum from Golioth
 
 ## Checklist
 
