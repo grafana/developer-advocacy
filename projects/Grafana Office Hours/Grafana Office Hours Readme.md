@@ -2,6 +2,8 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 
 ## Episodes
 
+### Past
+
 - 16/06: [GOH 01 - Overview of Grafana 10 release with Mitch Seaman](https://youtube.com/live/uk7NoagbJ28)
 - 19/06: [GOH 02 - Scenes with Torkel](https://youtube.com/live/pJlWAD5SUYA)
 - 23/06: [GOH 03 - Changes to Grafana plugins in Grafana 10 with David Harris](https://youtube.com/live/MliUlT3UNdM)
@@ -12,8 +14,11 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 03/08: [GOH 07 - How to get started with Grafana and Docker](https://youtube.com/live/FlDfcMbSLXs) with Usman Ahmad
 - 11/08: [[GOH 08 - Observing the Internet of Things]] with Golioth
 - 18/08: Break (Nicole on leave)
-- 25/08: [GOH 09 - Loki](GOH%2009%20-%20Loki.md) with Ward
-- 01/09: 
+- 25/08: [GOH 09 - Getting started with Grafana Loki](GOH%2009%20-%20Getting%20started%20with%20Grafana%20Loki.md) with Ward
+
+### Upcoming
+
+- 01/09: Matt A on Grafana Play
 - 08/09: GOH 11 - Huzaifa Bin Asif
 
 ## Future guest suggestions

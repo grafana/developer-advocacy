@@ -1,29 +1,29 @@
 ---
-url: 
+url: https://youtube.com/live/OLebNPLIJMI
 date:
 ---
-# [[GOH 09 - Loki]]
+# [[GOH 09 - Getting started with Grafana Loki]]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 
 ## Checklist
 
-- [ ] Contact the guest and tell them about Office Hours.
+- [x] Contact the guest and tell them about Office Hours.
 	> At Grafana Labs, we do a weekly livestream called [Grafana Office Hours](https://www.youtube.com/watch?v=uk7NoagbJ28&list=PLDGkOdUX1Ujrrse-cdj20RRah9hyHdxBu), where we have guests on to talk about how to use Grafana, observability, or visualization. I saw your [blog post/video/post] on [source] and I think it would be great to have you on the show to share your experience about [topic].
 	Office Hours is an hour-long live conversation that is streamed to the [Grafana YouTube channel](https://youtube.com/@grafana). It's very casual, and you can also share your screen if you'd like to do a demo (not required). If you'd like to join, I'd love to have you! 
-- [ ] If the guest agrees, choose a date for the Office Hours session. Confirm the time: 15:00 UTC (17:00 CEST) on Friday. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
-- [ ] Invite them to the Grafana Office Hours calendar invite (choose "this instance only", not the whole series). Change the invite to include the episode number and their name, ie `Grafana Office Hours #01 with Mitch`. This is to save the date. Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours.
-- [ ] Create a thumbnail on [Canva](https://canva.com) using the Grafana Office Hours thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
-- [ ] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
-	- [ ] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`.
-	- [ ] Add the standard description as per previous Grafana Office Hours shows. Check the video description and add guests' contact details.
-- [ ] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
-- [ ] Get the YouTube link to the show. Put the link on this page, in the URL property above.
-- [ ] Create an event and announce it on the Grafana Meetup page.
+- [x] If the guest agrees, choose a date for the Office Hours session. Confirm the time: 15:00 UTC (17:00 CEST) on Friday. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
+- [x] Invite them to the Grafana Office Hours calendar invite (choose "this instance only", not the whole series). Change the invite to include the episode number and their name, ie `Grafana Office Hours #01 with Mitch`. This is to save the date. Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours.
+- [x] Create a thumbnail on [Canva](https://canva.com) using the Grafana Office Hours thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
+- [x] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
+	- [x] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`.
+	- [x] Add the standard description as per previous Grafana Office Hours shows. Check the video description and add guests' contact details.
+- [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
+- [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
+- [x] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Schedule a tweet just when the show begins to say "We're live now!"
-- [ ] Schedule a Slack message on the internal Grafana workspace (in `#community`).
-- [ ] Schedule a Slack message on the public Grafana Slack workspace (in `#grafana`)
+- [x] Schedule a Slack message on the internal Grafana workspace (in `#community`).
+- [x] Schedule a Slack message on the public Grafana Slack workspace (in `#grafana`)
 
 
 ## Talking points
@@ -35,11 +35,26 @@ date:
 - Announcements
 	- New project releases
 	- Recent content published
-- Introduce guest
+- Introduce guest: Ward Bekker
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
-- What is Loki? How do you install it? How is it different from Elastic?
+- What is a log and how is it different from metrics?
+- What are some issues regarding logs?
+- What is log aggregation? Why do logs need to be aggregated?
+- What is Loki? 
+	- What does Loki do?
+	- Why do we say Loki is "like Prometheus, but for logs?"
+	- How do you install it?
+	- Features
+		- ease of use
+		- 100% persistence to object storage-- what does this mean?
+		- works well with Grafana stack
+		- only indexes metadata rather than full text (faster, cheaper to run)
+		- collects logs using Promtail
+		- LogQL (like PromQL)
+		- alerting
+	- How is it different from Logstash?
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- 
