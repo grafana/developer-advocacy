@@ -35,44 +35,90 @@ date:
 - Announcements
 	- New project releases
 	- Recent content published
-- Introduce guest: Ward Bekker
+- Introduce Ward Bekker
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
 - What is a log and how is it different from metrics?
+	- You can usually start with a log, and then create metrics from it.
 - What are some issues regarding logs?
+	- Difficulty in parsing: Sometimes logs are unstructured. Sometimes they're structured. Mostly they're in text. Could be CSV, JSON
+	- Can be really verbose, filling up storage
+	- Distributed computing means distributed logs
+	- Ephemeral nature of pods means logs can also be ephemeral
 - What is log aggregation? Why do logs need to be aggregated?
 - What is Loki? 
 	- What does Loki do?
+		- Log aggregation
 	- Why do we say Loki is "like Prometheus, but for logs?"
 	- How do you install it?
+		- binary
+		- Helm chart - use this one: https://grafana.com/docs/loki/latest/installation/helm/install-scalable/
 	- Features
 		- ease of use
 		- 100% persistence to object storage-- what does this mean?
-		- works well with Grafana stack
 		- only indexes metadata rather than full text (faster, cheaper to run)
+			- way more performant
+			- log line is stored (and compressed) but not indexed.
+			- grepping workload is distributed - parallelized way
 		- collects logs using Promtail
+			- Promtail is the agent (out of the box)
+			- If there is something wrong, there is an exponential backoff so it doesn't hammer your server.
 		- LogQL (like PromQL)
 		- alerting
-	- How is it different from Logstash?
+		- horizontally scalable, multi-tenant: how do you scale Loki?
+			- Promtail
+			- load balancer
+			- three microservices:
+				- read
+				- write
+				- Loki cluster administrative microservice (`backend`)
+		- works well with Grafana stack, K8s
+		- object storage
+			- You can use Minio
+			- It's really important to benchmark this because it won't be
+		- Alerting - works with Prometheus Alert Manager
+			- You create a metric out of your logs with LogQL
+	- Alternatives
+		- Lucine
+		- Splunk
+		- How is it different from Logstash?
+			- Works well with Grafana and Prometheus
+			- Better for cloud native, which generates a huge amount of logs
 - Outro
-	- If people want to learn more about this topic, where should they go?
-	- 
+	- If people want to learn more about Loki, where should they go?
+	- https://www.youtube.com/playlist?list=PLDGkOdUX1UjqEzcxQrbROMy8DN7MZv_h4
 
 ### Just before the show
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
+- [x] How do you pronounce your name?
 - [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
-- [ ] We'll be streaming to YouTube.
-- [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
-- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] We'll be streaming to YouTube.
+- [x] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
+- [x] You can also use the private chat if you need to say something, but you can also just say it out loud.
 - [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
-- [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
-- [ ] Just in case I disconnect... stall for a minute and I'll be right back.
+- [x] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
+- [x] Just in case I disconnect... stall for a minute and I'll be right back.
+
+## Timestamps
+
+00:00:00 Introductions
+00:03:34 What is a log? How is it different from a metric?
+00:12:29 Why is it called Loki?
+00:14:58 What is Grafana Loki?
+00:20:50 How is Loki different from alternatives?
+00:27:20 How does Loki work?
+00:33:39 Cost, performance, scalability
+00:42:14 Q - What to use for object storage with Loki
+00:44:13 Q - Which Helm chart to use for Loki
+00:48:56 Q - How do you do alerting with Loki?
+00:52:29 Q - What is the backend component in the Loki Helm chart?
+00:53:33 Loki dashboard on Grafana Play
+00:56:36 5-minute summary
 
 ## After the show
 

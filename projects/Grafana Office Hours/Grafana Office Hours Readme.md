@@ -18,8 +18,10 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 
 ### Upcoming
 
-- 01/09: Matt A on Grafana Play
+- 01/09: [GOH 10 - Grafana Play](GOH%2010%20-%20Grafana%20Play.md) with Matt Abrams
 - 08/09: GOH 11 - Huzaifa Bin Asif
+- 15/09: 
+- 22/09: GOH 13 - Govable
 
 ## Future guest suggestions
 
