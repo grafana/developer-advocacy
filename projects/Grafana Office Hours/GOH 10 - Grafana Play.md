@@ -40,7 +40,17 @@ Guest:: Matt Abrams
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
+- Ways to troubleshoot Grafana dashboards
+	- JSON blob
+	- Grafana Cloud account + screenshots
+	- Grafana Play
+- Who is Grafana Play for?
+	- play.grafana.org
+	- Developers
+	- People who need to troubleshoot
+	- Beginners who just want to poke around
 - What is Grafana Play?
+	- a way to show the Grafana stack in action
 	- Dashboards and visualizations
 	- Data sources
 		- Graphite
@@ -48,10 +58,25 @@ Guest:: Matt Abrams
 		- Loki
 		- MySQL
 	- No account needed
-
-- Outro
-	- If people want to learn more about this topic, where should they go?
-	- 
+	- apps
+		- k6 stuff is feeding into it in a way: test.k6.io
+		- Grafana Kubernetes Monitoring
+		- k6 app is also on play.
+- Backend stuff
+	- Kubernetes cluster
+	- Who maintains it?
+	- How long should things be saved for?
+- Future plans
+	- What's not on Play?
+		- Machine Learning?
+		- Not all enterprise stuff.
+	- More educational
+	- Full LGTM stack that Paul and I are working on.
+- How do you contribute to Grafana Play?
+	- What sorts of things are we looking for?
+	- Who can contribute?
+	- Public domain data sets
+- Bonus: Doom
 
 ### Just before the show
 
