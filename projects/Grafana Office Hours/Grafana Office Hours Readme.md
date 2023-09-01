@@ -12,7 +12,7 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 21/07: Break (due to video offsite)
 - 28/07: [GOH 06 - OpenTelemetry demo app with Grafana, Tempo, Loki, and Prometheus](https://youtube.com/live/dXR8WNm5uos) with Blueswen Liu
 - 03/08: [GOH 07 - How to get started with Grafana and Docker](https://youtube.com/live/FlDfcMbSLXs) with Usman Ahmad
-- 11/08: [[GOH 08 - Observing the Internet of Things]] with Golioth
+- 11/08: [GOH 08 - Observing the Internet of Things](GOH%2008%20-%20Observing%20the%20Internet%20of%20Things.md) with Golioth
 - 18/08: Break (Nicole on leave)
 - 25/08: [GOH 09 - Getting started with Grafana Loki](GOH%2009%20-%20Getting%20started%20with%20Grafana%20Loki.md) with Ward
 
