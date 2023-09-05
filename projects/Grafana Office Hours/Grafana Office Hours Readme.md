@@ -15,11 +15,11 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 11/08: [GOH 08 - Observing the Internet of Things](GOH%2008%20-%20Observing%20the%20Internet%20of%20Things.md) with Golioth
 - 18/08: Break (Nicole on leave)
 - 25/08: [GOH 09 - Getting started with Grafana Loki](GOH%2009%20-%20Getting%20started%20with%20Grafana%20Loki.md) with Ward
+- 01/09: [GOH 10 - Grafana Play](GOH%2010%20-%20Grafana%20Play.md) with Matt Abrams
 
 ### Upcoming
 
-- 01/09: [GOH 10 - Grafana Play](GOH%2010%20-%20Grafana%20Play.md) with Matt Abrams
-- 08/09: GOH 11 - Huzaifa Bin Asif
+- 08/09: [GOH 11 - Huzaifa Bin Asif](GOH%2011%20-%20Huzaifa%20Bin%20Asif.md)
 - 15/09: 
 - 22/09: GOH 13 - Govable
 
