@@ -20,8 +20,11 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 ### Upcoming
 
 - 08/09: [GOH 11 - Huzaifa Bin Asif](GOH%2011%20-%20Huzaifa%20Bin%20Asif.md)
-- 15/09: 
-- 22/09: GOH 13 - Govable
+- 15/09: BREAK (Grafana Global Shutdown Day)
+- 22/09: GOH 12 - Govable
+- 29/09: (Paul and Nicole unavailable)
+- 06/10: (Paul and Nicole unavailable)
+- 
 
 ## Future guest suggestions
 
@@ -41,9 +44,7 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - Jason Davis:  Cisco ssh2influx
 	- A bit more niche, not as widely applicable
 	- Lots of networking hardware all over the world. Some legacy ones can only be accessed via a Grafana plugin they developed (only via command line)
-- Golioth (tech resource TBD) -- telemetry (IoT)
-	- On k6 Office Hours but they also stream metrics and use Grafana as their visualization layer. (such as driving around and graphing car traffic)
-- Kris Nova on Hachyderm
 - Melori on Loki alerting
-- Matt Abrams on Grafana Play.
-- 
+- Paul on our full OTel demo.
+- Faro team on Grafana Faro.
+- Edwin Onattu about agentless integration for Grafana Cloud ([Slack](https://raintank-corp.slack.com/archives/C01QDD2UBK4/p1693506679614689))
