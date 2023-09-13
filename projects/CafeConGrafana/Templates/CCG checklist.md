@@ -13,55 +13,60 @@ Invitado(s)::
 - [ ] Contactar al invitado(s) y mencionarles de Cafe con Grafana.
 	> En Grafana Labs, hacemos un show semanal en vivo llamado [Cafe con Grafana](https://www.youtube.com/watch?v=TBD), donde invitamos a genta a hablar sobre grafana y sus subproductos, observabilidad, o visualización. Te vi en [blog post/video/post] en [fuente] y creemos que seria genial tenerte en el show para traer tu experiencia y platicar de [tema].
 	Café Con Grafana es una conversacion de una hora transmitida en vivo al [Canal de Grafana en YouTube](https://youtube.com/@grafana). Es muy casual, se puede solo charlar, compartir pantalla, hacer demos, o lo que tu gustes. Si quisieras venir nos daria mucho gusto! 
-- [ ] If the guest agrees, choose a date for the Office Hours session. Confirm the time: 13:00 UTC (15:00 CEST) on Friday. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
-- [ ] Invite them to the Grafana Office Hours calendar invite (choose "this instance only", not the whole series). Change the invite to include the episode number and their name, ie `Grafana Office Hours #01 with Mitch`. This is to save the date. Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours.
-- [ ] Create a thumbnail on [Canva](https://canva.com) using the Grafana Office Hours thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
-- [ ] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
-	- [ ] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`.
-	- [ ] Add the standard description as per previous Grafana Office Hours shows. Check the video description and add guests' contact details.
-- [ ] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
-- [ ] Get the YouTube link to the show. Put the link on this page, in the URL property above.
-- [ ] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
-- [ ] Schedule a tweet just when the show begins to say "We're live now!"
-- [ ] Schedule a Slack message on the internal Grafana workspace (in `#community`).
-- [ ] Schedule a Slack message on the public Grafana Slack workspace (in `#grafana`)
+- [ ] Si el invitado acepta, mandar invitacion para la fecha del show. Se debe confirmar el momento, 13:00 UTC (15:00 CEST) en Jueves. Se debe solicitar una foto que se pueda usar para promocionar o de menos permiso para usar su foto de perfil en redes sociales.
+- [ ] Mandar una invitacion de calendario a la par del bloque de Cafe Con Grafana. Nombrar a la invitacion con el numero de episodio y su nombre. Ejemplo: `(In Spanish) Café con Grafana #10 con Pancho`. Esto para apartar la fecha en calendarios. La invitacion debe ser agendada 15 minutos antes del stream (para checar microfonos y demas) asi como 15 minutos despues (para permitir sacar cualquier información restante). Tiempo total de la invitacion 1.5 horas.
+- [ ] Crear imagen thumbnail en [Canva](https://canva.com) usando el formato de Café con Grafana. Usar [thumbsup.tv](https://thumbsup.tv) para revisar que el thumbnail se vea bien en diferentes dispositivos.
+- [ ] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
+	- [ ] Incluir en el titulo el numero de episodio, Ejemplo: `(In SPanish)Platicando Dashboards en Grafana? (Café con Grafana #11)`.
+	- [ ] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
+- [ ] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
+- [ ] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
+- [ ] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
+- [ ] Agendar un tweet para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
+- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
+- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#grafañol`).
+- [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
+- [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
 
 
-## Talking points
+## Puntos a hablar
 
-> Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
+> Listar los puntos que se hablarán en el episodio. Mantenerse solo en puntos breves para que el episodio sea una conversacion y fluya con naturaleza. Que no se siente scripteado.
 
 - Intro
-	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
-- Announcements
-	- New project releases
-	- Recent content published
-- Introduce guest
-	- Who are you?
-	- What do you do?
-	- How long have you been using Grafana/other project?
-- 
-- Outro
-	- If people want to learn more about this topic, where should they go?
+	- *Bienvenidos a la hora de echar un Cafe con Grafana. Soy `<nombre>`, `<posición>` en Grafana y hoy hablaremos de `<tema>`.*
+- Anuncios
+	- Nuevos releases
+	- Contenido reciente
+	- Eventos
+- Introducir invitado
+	- Quien eres?
+	- A que te dedicas?
+	- Cuanto llevas usando Grafana (o algun otro)?
+- Temas a hablar
+	- Tema 1
+	- Tema 2
+	- Tema ...
+- Cierre
+	- Donde puede la gente aprender mas de el tema?
+	- Donde te puede seguir/contactar la gente?
 	- 
 
 ### Just before the show
 
-> Here are some points to discuss with the guest in the 15 minutes before the stream begins.
+> Que hablar y arreglar con el invitado los 15 minutos antes de la transmision.
 
-- [ ] How do you pronounce your name?
-- [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
-- [ ] We'll be streaming to YouTube.
-- [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
-- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
-- [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
-- [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
-- [ ] Just in case I disconnect... stall for a minute and I'll be right back.
+- [ ] Que pronombres usas?
+- [ ] Avisar de los puntos a tratar y que son guia pero nada mas. Es una conversación libre.
+- [ ] Si alguien va a compartir pantalla, hay que hacerlo ahi. Para ver que funciona y arreglar cualquier detalle.
+- [ ] YAvisar que va a poder ver comentarios de YouTube, pero si necesita compartir algo o links, hay que pasarlos de una vez en el chat privado o durante el show.
+- [ ] Usa el chat privado si nos quieres decir algo, o dilo en el show en alto si lo deseas.
+- [ ] Si te sientes incomodo con algun tema, dilo abiertamente o en privado en el chat.
+- [ ] Al final vamos a despedirnos, pero quedate despues para platicar como estuvo el show.
+- [ ] Si algo pasa y pierdo conexion... mantente ahi por un momento y estaremos de regreso.
 
-## After the show
+## Despues de la transmision
 
-- [ ] Add timestamps to the video (at least four).
-- [ ] Add any links shared to the description of the video.
-- [ ] Add the video to video playlists that make sense (at the very least, the "Grafana Office Hours" one.)
+- [ ] Agregar timestamps al video (minimo 4).
+- [ ] Agregar los links compartidos en la descripcion del video.
+- [ ] Agregar el video a los playlists de contenido en español.
