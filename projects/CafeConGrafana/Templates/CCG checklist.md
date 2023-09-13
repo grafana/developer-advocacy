@@ -6,7 +6,7 @@ date:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Invitado(s):: 
+Invitado(s):
 
 ## Checklist
 
@@ -52,14 +52,14 @@ Invitado(s)::
 	- Donde te puede seguir/contactar la gente?
 	- 
 
-### Just before the show
+### 15 minutos antes
 
 > Que hablar y arreglar con el invitado los 15 minutos antes de la transmision.
 
 - [ ] Que pronombres usas?
 - [ ] Avisar de los puntos a tratar y que son guia pero nada mas. Es una conversación libre.
 - [ ] Si alguien va a compartir pantalla, hay que hacerlo ahi. Para ver que funciona y arreglar cualquier detalle.
-- [ ] YAvisar que va a poder ver comentarios de YouTube, pero si necesita compartir algo o links, hay que pasarlos de una vez en el chat privado o durante el show.
+- [ ] Avisar que va a poder ver comentarios de YouTube, pero si necesita compartir algo o links, hay que pasarlos de una vez en el chat privado o durante el show.
 - [ ] Usa el chat privado si nos quieres decir algo, o dilo en el show en alto si lo deseas.
 - [ ] Si te sientes incomodo con algun tema, dilo abiertamente o en privado en el chat.
 - [ ] Al final vamos a despedirnos, pero quedate despues para platicar como estuvo el show.
