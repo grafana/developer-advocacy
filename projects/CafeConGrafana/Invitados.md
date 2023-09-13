@@ -13,6 +13,7 @@ Agregar aqui cualquier persona interesante a tener en el show, asi como los dato
 - Vicente Ortega Torres. Slack Interno -> @Vincent - k6 Senior SW Engineer k6&tempo
 - Juan Cabanas. Slack interno -> @Juani - Sr SW Engineer Grafana
 - Pablo Chacin. Slack interno -> @pablo.chacin - Caos Eng k6
+- Matias Chomicki. Slack interno -> @Matias Chomicki - Grafana Observability Logs (Loki + Elasticsearch data sources)
 - 
 
 ## Agendados
