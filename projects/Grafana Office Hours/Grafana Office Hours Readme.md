@@ -16,15 +16,16 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 18/08: Break (Nicole on leave)
 - 25/08: [GOH 09 - Getting started with Grafana Loki](GOH%2009%20-%20Getting%20started%20with%20Grafana%20Loki.md) with Ward
 - 01/09: [GOH 10 - Grafana Play](GOH%2010%20-%20Grafana%20Play.md) with Matt Abrams
+- 08/09: [GOH 11 - Huzaifa Bin Asif](GOH%2011%20-%20Huzaifa%20Bin%20Asif.md)
+- 15/09: BREAK (Grafana Global Shutdown Day)
 
 ### Upcoming
 
-- 08/09: [GOH 11 - Huzaifa Bin Asif](GOH%2011%20-%20Huzaifa%20Bin%20Asif.md)
-- 15/09: BREAK (Grafana Global Shutdown Day)
-- 22/09: GOH 12 - Govable
+- 22/09: [GOH 12 - Govable](GOH%2012%20-%20Govable.md)
 - 29/09: (Paul and Nicole unavailable)
 - 06/10: (Paul and Nicole unavailable)
-- 
+- 13/10: Edwin Onattu/Matt Nolf about agentless integration for Grafana Cloud ([Slack](https://raintank-corp.slack.com/archives/C01QDD2UBK4/p1693506679614689))
+- 20/10: [Melori on Loki alerting](Melori%20on%20Loki%20alerting.md)?
 
 ## Future guest suggestions
 
@@ -44,7 +45,9 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - Jason Davis:  Cisco ssh2influx
 	- A bit more niche, not as widely applicable
 	- Lots of networking hardware all over the world. Some legacy ones can only be accessed via a Grafana plugin they developed (only via command line)
-- Melori on Loki alerting
+- [[Melori on Loki alerting]]
 - Paul on our full OTel demo.
 - Faro team on Grafana Faro.
-- Edwin Onattu about agentless integration for Grafana Cloud ([Slack](https://raintank-corp.slack.com/archives/C01QDD2UBK4/p1693506679614689))
+- Marcelo Magallón about Synthetic Monitoring and k6.
+- Ivan Szkiba on xk6-dashboard
+- Vicente/Łukasz on k6 x Tempo integration

@@ -33,26 +33,28 @@ Guest::
 
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
-- Intro
-	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
-- Announcements
-	- New project releases
-	- Recent content published
 - Introduce guest: Huzaifa Asif
 	- Who are you?
 	- What do you do?
+		- 20M messages at Respond.io and they didn't do performance testing
 	- How long have you been using Grafana/k6? 
 	- Why did you choose k6 as a testing tool?
 - Purposes of k6
+	- Regression testing
 	- Frontend and backend performance testing (including load, but also database tuning, etc.)
 	- Fault injection
 	- Contract testing
 	- Infrastructure testing: auto-scaling and auto-recovery
 - WebSockets case study
 	- HTTP is the popular use case, but today we're talking about WebSockets
+	- Lots of tools don't support WebSockets.
 	- What are WebSockets?
 	- [Huzaifa's case study](https://huzaifa-asif.notion.site/Performance-Assessment-of-Echo-Server-s-Horizontal-Scalability-using-K6-07e9c5904d844684a7e0620a5b788116?pvs=4)
 		- integrated Redis with sockets and wanted to check the impact on Redis
+		- They have 1 giant websocket server for 20M+ messages. They can't scale that server more.
+		- Implemented Redis adapter with 4-5 WEbSocket servers and one client server.
+		- How to find out which type of Redis to use?
+		- They tested with 10,000 VUs and there was only a 2-3% change in the CPU utilization in the server. They realised they don't need to worry about the type of Redis server to use. He thought the medium instance would not handle it well, but surprisingly, it did! Still working fine now!
 - Infrastructure testing
 	- What is infrastructure testing?
 	- Issues and concerns regarding infrastructure testing
@@ -77,15 +79,15 @@ Guest::
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
-- [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
-- [ ] We'll be streaming to YouTube.
-- [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
-- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
-- [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
-- [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
+- [x] How do you pronounce your name?
+- [x] What are your pronouns?
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] We'll be streaming to YouTube.
+- [x] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
+- [x] You can also use the private chat if you need to say something, but you can also just say it out loud.
+- [x] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
+- [x] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
 - [ ] Just in case I disconnect... stall for a minute and I'll be right back.
 
 ## After the show
