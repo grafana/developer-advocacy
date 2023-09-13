@@ -51,3 +51,5 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - Marcelo Magallón about Synthetic Monitoring and k6.
 - Ivan Szkiba on xk6-dashboard
 - Vicente/Łukasz on k6 x Tempo integration
+- Pyroscope
+- Grafana Beyla

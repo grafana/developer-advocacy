@@ -2,13 +2,12 @@
 
 ## Main page
 
-- [ ] Create video playlists by product and sort all existing videos into those buckets.
-- [ ] Create a Getting started playlist.
+- [x] Create video playlists by product and sort all existing videos into those buckets.
 - [ ] Change recommended video
 	- [ ] Create channel trailer (10 mins): something that talks about all Grafana Labs projects in simple terms
 	- [ ] For returning viewers: existing GrafanaCON video
-- [ ] Change link to "Official Grafana Videos page" to grafana.com, docs, repos.
-
+- [x] Change link to "Official Grafana Videos page" to grafana.com, docs, repos.
+- [ ] Update "About" section, to mention new projects like Pyroscope.
 
 ## Videos
 
