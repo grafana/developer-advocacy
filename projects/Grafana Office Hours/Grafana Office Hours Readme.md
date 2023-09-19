@@ -22,8 +22,8 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 ### Upcoming
 
 - 22/09: [GOH 12 - Govable](GOH%2012%20-%20Govable.md)
-- 29/09: (Paul and Nicole unavailable)
-- 06/10: (Paul and Nicole unavailable)
+- 29/09: (Paul and Nicole unavailable, Marie to take over)
+- 06/10: (Paul unavailable) [GOH 14 - Distributed tracing with Grafana Cloud k6](GOH%2014%20-%20Distributed%20tracing%20with%20Grafana%20Cloud%20k6.md)
 - 13/10: Edwin Onattu/Matt Nolf about agentless integration for Grafana Cloud ([Slack](https://raintank-corp.slack.com/archives/C01QDD2UBK4/p1693506679614689))
 - 20/10: [Melori on Loki alerting](Melori%20on%20Loki%20alerting.md)?
 
