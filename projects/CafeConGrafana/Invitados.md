@@ -21,6 +21,8 @@ Agregar aqui cualquier persona interesante a tener en el show, asi como los dato
   - integraciones con IdPs, RBAC y Service Accounts
 - Roberto Santalla. Slack Interno -> @ro - Grafana k6 Chaos engineering
   - fault injection, homelabs, self-hosting, o en general "anything kubernetes"\
+- Wenceslao Castillo. k6 Slack externo -> @Wen - k6 Champion
+  - aprendiendo k6 y dashboards?
 - 
 
 ## Agendados
