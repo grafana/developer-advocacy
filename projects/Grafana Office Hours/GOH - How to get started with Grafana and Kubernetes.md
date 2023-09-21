@@ -52,8 +52,9 @@ Guest::
 		- vanilla Kubernetes
 		- managed Kubernetes (what are distributions?)
 	- Other k8s-related tools
-- How is it different from Docker?
-- How does Kubernetes run within Docker?
+	- k8s and Docker
+		- How is it different from Docker?
+		- How does Kubernetes run within Docker?
 - How to install Grafana on Kubernetes: 
 - Outro
 	- If people want to learn more about this topic, where should they go?
