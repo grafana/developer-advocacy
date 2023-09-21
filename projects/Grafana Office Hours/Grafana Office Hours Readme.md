@@ -18,10 +18,11 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 01/09: [GOH 10 - Grafana Play](GOH%2010%20-%20Grafana%20Play.md) with Matt Abrams
 - 08/09: [GOH 11 - Huzaifa Bin Asif](GOH%2011%20-%20Huzaifa%20Bin%20Asif.md)
 - 15/09: BREAK (Grafana Global Shutdown Day)
+- 22/09: [GOH 12 - Govable](GOH%2012%20-%20Govable.md)
+- [GOH - How to get started with Grafana and Kubernetes](GOH%20-%20How%20to%20get%20started%20with%20Grafana%20and%20Kubernetes.md) with Usman Ahmad
 
 ### Upcoming
 
-- 22/09: [GOH 12 - Govable](GOH%2012%20-%20Govable.md)
 - 29/09: (Paul and Nicole unavailable, Marie to take over)
 - 06/10: (Paul unavailable) [GOH 14 - Distributed tracing with Grafana Cloud k6](GOH%2014%20-%20Distributed%20tracing%20with%20Grafana%20Cloud%20k6.md)
 - 13/10: Edwin Onattu/Matt Nolf about agentless integration for Grafana Cloud ([Slack](https://raintank-corp.slack.com/archives/C01QDD2UBK4/p1693506679614689))
@@ -53,3 +54,4 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - Vicente/Łukasz on k6 x Tempo integration
 - Pyroscope
 - Grafana Beyla
+
