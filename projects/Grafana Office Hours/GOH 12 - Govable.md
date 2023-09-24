@@ -34,8 +34,8 @@ Guest:: "[[Andrii Kovalov]], [[Ari Herschowitz]]"
 - Intro
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
-	- New project releases
-	- Recent content published
+	- ObsCON registration for Nov 14-15
+	- Distributed tracing with Grafana Cloud k6
 - Introductions: Ari and Andrii
 	- Who are you?
 	- What do you do?
@@ -56,6 +56,7 @@ Guest:: "[[Andrii Kovalov]], [[Ari Herschowitz]]"
 		- What were your requirements?
 			- Searchable
 			- Reliable
+			- Accurate
 			- Performant
 			- Easy to set up
 			- Shareable dashboards
@@ -72,6 +73,9 @@ Guest:: "[[Andrii Kovalov]], [[Ari Herschowitz]]"
 		- Having a button you can click to reprocess data.
 		- Better permissions: having some dashboards that are publicly viewable, and others that are private.
 	- How could Grafana be better for you?
+		- Full provisioning with dockerized setup
+		- Better ENV vars list and description
+		- Better search in docs
 - Outro
 	- If people want to learn more about Govable, where should they go?
 	- 
@@ -82,8 +86,8 @@ Guest:: "[[Andrii Kovalov]], [[Ari Herschowitz]]"
 
 - [ ] How do you pronounce your name?
 - [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
 - [ ] We'll be streaming to YouTube.
 - [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
 - [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
