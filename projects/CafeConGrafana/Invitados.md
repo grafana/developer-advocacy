@@ -21,6 +21,12 @@ Agregar aqui cualquier persona interesante a tener en el show, asi como los dato
   - integraciones con IdPs, RBAC y Service Accounts
 - Roberto Santalla. Slack Interno -> @ro - Grafana k6 Chaos engineering
   - fault injection, homelabs, self-hosting, o en general "anything kubernetes"\
+- Wenceslao Castillo. k6 Slack externo -> @Wen - k6 Champion
+  - aprendiendo k6 y dashboards?
+- Eddu Melendez. Linkedin -> https://www.linkedin.com/in/eddumelendez/ - TestContainers expert at AtomicJar
+  - showcasing how you can spin up locally an LGTM stack, and pre-load your team dashboards to facilitate developers working locally when they need to check o11y, using TestContainers.
+- Manu de la Peña. Linkedin -> https://www.linkedin.com/in/mdelapenya/ - TestContainers expert at AtomicJar
+  - Testing Cloud Native applications with k6 and TestContainers
 - 
 
 ## Agendados
