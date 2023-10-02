@@ -27,6 +27,8 @@ Agregar aqui cualquier persona interesante a tener en el show, asi como los dato
   - showcasing how you can spin up locally an LGTM stack, and pre-load your team dashboards to facilitate developers working locally when they need to check o11y, using TestContainers.
 - Manu de la Peña. Linkedin -> https://www.linkedin.com/in/mdelapenya/ - TestContainers expert at AtomicJar
   - Testing Cloud Native applications with k6 and TestContainers
+- Xavier Escudero. Linkedin -> https://www.linkedin.com/in/xavier-escudero-sabadell/ - SW Test Architect Roche
+  - k6 API testing fro VLC Testing Conf
 - 
 
 ## Agendados
