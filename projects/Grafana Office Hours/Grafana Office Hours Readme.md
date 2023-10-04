@@ -56,4 +56,5 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - Vicente/Łukasz on k6 x Tempo integration
 - Pyroscope
 - Grafana Beyla
+- k6 browser on Grafana Cloud k6
 
