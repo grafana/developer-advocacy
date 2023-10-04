@@ -24,7 +24,7 @@ Guest::
 - [ ] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Schedule a tweet just when the show begins to say "We're live now!"
 - [ ] Schedule a Slack message on the internal Grafana workspace (in `#community`).
-- [ ] Schedule a Slack message on the public Grafana Slack workspace (in `#grafana`)
+- [ ] Schedule a Slack message on the public Grafana Slack workspace (in `#announcements`)
 
 
 ## Talking points
