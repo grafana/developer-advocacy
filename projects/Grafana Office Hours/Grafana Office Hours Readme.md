@@ -28,7 +28,8 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 	- In our docs, we say we shouldn't do agentless config because we want a man in the middle so that we can change the routing if we want to. Agentless is awesome if you can make it work. When should we not do this? Convenience vs functionality. What about being able to transform metrics through Agent too? Filter things out from Agent to avoid cost.
 - 20/10: [Melori on Loki alerting](Melori%20on%20Loki%20alerting.md)?
 - 27/10: Frontend observability with the Faro team [Marie to coordinate]
-- 03/11: GOH 18 - OTel demo with Paul
+- 03/11: Automated performance modeling with NASA Open MCT, Grafana Cloud, and k6 with John Hill
+- 10/11: GOH 18 - OTel demo with Paul
 
 ## Future guest suggestions
 
