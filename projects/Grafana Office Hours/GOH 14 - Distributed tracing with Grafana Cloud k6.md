@@ -10,16 +10,16 @@ Guest:: [[Łukasz Gut]]
 
 ## Checklist
 
-- [ ] Contact the guest and tell them about Office Hours.
+- [x] Contact the guest and tell them about Office Hours.
 	> At Grafana Labs, we do a weekly livestream called [Grafana Office Hours](https://www.youtube.com/watch?v=uk7NoagbJ28&list=PLDGkOdUX1Ujrrse-cdj20RRah9hyHdxBu), where we have guests on to talk about how to use Grafana, observability, or visualization. I saw your [blog post/video/post] on [source] and I think it would be great to have you on the show to share your experience about [topic].
 	Office Hours is an hour-long live conversation that is streamed to the [Grafana YouTube channel](https://youtube.com/@grafana). It's very casual, and you can also share your screen if you'd like to do a demo (not required). If you'd like to join, I'd love to have you! 
-- [ ] If the guest agrees, choose a date for the Office Hours session. Confirm the time: 13:00 UTC (15:00 CEST) on Friday. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
-- [ ] Invite them to the Grafana Office Hours calendar invite (choose "this instance only", not the whole series). Change the invite to include the episode number and their name, ie `Grafana Office Hours #01 with Mitch`. This is to save the date. Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours.
-- [ ] Create a thumbnail on [Canva](https://canva.com) using the Grafana Office Hours thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
-- [ ] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
-	- [ ] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`.
-	- [ ] Add the standard description as per previous Grafana Office Hours shows. Check the video description and add guests' contact details.
-- [ ] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
+- [x] If the guest agrees, choose a date for the Office Hours session. Confirm the time: 13:00 UTC (15:00 CEST) on Friday. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
+- [x] Invite them to the Grafana Office Hours calendar invite (choose "this instance only", not the whole series). Change the invite to include the episode number and their name, ie `Grafana Office Hours #01 with Mitch`. This is to save the date. Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours.
+- [x] Create a thumbnail on [Canva](https://canva.com) using the Grafana Office Hours thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
+- [x] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
+	- [x] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`.
+	- [x] Add the standard description as per previous Grafana Office Hours shows. Check the video description and add guests' contact details.
+- [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
 - [ ] Get the YouTube link to the show. Put the link on this page, in the URL property above.
 - [ ] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Schedule a tweet just when the show begins to say "We're live now!"
@@ -31,19 +31,36 @@ Guest:: [[Łukasz Gut]]
 
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
-- Intro
-	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
-- Announcements
-	- New project releases
-	- Recent content published
-- Introduce guest
+- Introduce Łukasz
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
-- 
+- What is distributed tracing?
+	- What is a trace?
+	- Terminology: span, header, propagator, exporter
+	- What do traces give us that logs and metrics don't?
+- What is Tempo?
+- What is Distributed Tracing with Grafana Cloud k6? (Demo)
+	- History
+		- this started as a hackathon project after we joined Grafana
+		- CrocoSpans, now Insights
+		- What is the lay of the land in tracing? What other tools existed? What was missing?
+	- How does it work?
+	- What do you have to do to make it work?
+		- Instrumentation (w3c, jaeger, b4, ot)
+		- Modify k6 script
+		- Run test
+	- Using it on Grafana Cloud k6 + using it without Grafana Cloud-- what's free and not free?
+- Why is this cool?
+	- Black box testing and its limitations
+	- What are the advantages of having a testing tool that can instrument headers?
+	- What does testing have to do with observability?
+	- Who is this for? (Testers/developers/devops?)
+- What are some plans for the future of Insights?
 - Outro
+	- How can people use this today?
 	- If people want to learn more about this topic, where should they go?
-	- 
+
 
 ### Just before the show
 
@@ -65,3 +82,10 @@ Guest:: [[Łukasz Gut]]
 - [ ] Add timestamps to the video (at least four).
 - [ ] Add any links shared to the description of the video.
 - [ ] Add the video to video playlists that make sense (at the very least, the "Grafana Office Hours" one.)
+
+
+## Links
+
+Quick video on distributed tracing: https://www.youtube.com/watch?v=62ci4xi39Rw
+The k6 and Tempo integration (k6 Office Hours): https://www.youtube.com/watch?v=g9xU_pFr-Vc
+More on distributed tracing for testing using Tracetest (Grafana Office Hours): https://www.youtube.com/watch?v=oJ0wdneD8Po
