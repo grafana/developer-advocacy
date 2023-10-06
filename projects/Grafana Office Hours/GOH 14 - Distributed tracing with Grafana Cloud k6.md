@@ -20,8 +20,8 @@ Guest:: [[Łukasz Gut]]
 	- [x] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`.
 	- [x] Add the standard description as per previous Grafana Office Hours shows. Check the video description and add guests' contact details.
 - [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
-- [ ] Get the YouTube link to the show. Put the link on this page, in the URL property above.
-- [ ] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
+- [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
+- [x] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Schedule a tweet just when the show begins to say "We're live now!"
 - [ ] Schedule a Slack message on the internal Grafana workspace (in `#community`).
 - [ ] Schedule a Slack message on the public Grafana Slack workspace (in `#announcements`)
@@ -39,13 +39,16 @@ Guest:: [[Łukasz Gut]]
 	- What is a trace?
 	- Terminology: span, header, propagator, exporter
 	- What do traces give us that logs and metrics don't?
+	- Why is distributed tracing particularly useful for microservices-based architectures?
 - What is Tempo?
 - What is Distributed Tracing with Grafana Cloud k6? (Demo)
 	- History
 		- this started as a hackathon project after we joined Grafana
 		- CrocoSpans, now Insights
+		- xk6-distributed tracing vs k6-tracing
 		- What is the lay of the land in tracing? What other tools existed? What was missing?
 	- How does it work?
+		- Show diagram [here](https://docs.google.com/presentation/d/1rC8kifF6X1ZSH8jgh-yUp6NfgK_UaLiOG8TWLa5dQBQ/edit#slide=id.g21da9c1008c_0_932) and ask Łukasz if that's still accurate
 	- What do you have to do to make it work?
 		- Instrumentation (w3c, jaeger, b4, ot)
 		- Modify k6 script
@@ -56,11 +59,15 @@ Guest:: [[Łukasz Gut]]
 	- What are the advantages of having a testing tool that can instrument headers?
 	- What does testing have to do with observability?
 	- Who is this for? (Testers/developers/devops?)
+- What are some gotchas?
+	- Is Tempo performant enough to be able to handle thousands of requests that might occur in a load test?
+	- Should every test have Traces enabled?
 - What are some plans for the future of Insights?
+	- Can requests through k6 browser be instrumented as well?
 - Outro
 	- How can people use this today?
 	- If people want to learn more about this topic, where should they go?
-
+	- Next week: agentless monitoring for Prometheus in Grafana Cloud, with one of the engineers who worked on that feature, Matt Nolf
 
 ### Just before the show
 

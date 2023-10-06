@@ -24,8 +24,7 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 ### Upcoming
 
 - 06/10: (Paul unavailable, Nicole and Marie) [GOH 14 - Distributed tracing with Grafana Cloud k6](GOH%2014%20-%20Distributed%20tracing%20with%20Grafana%20Cloud%20k6.md)
-- 13/10: Edwin Onattu/Matt Nolf about agentless integration for Grafana Cloud ([Slack](https://raintank-corp.slack.com/archives/C01QDD2UBK4/p1693506679614689))
-	- In our docs, we say we shouldn't do agentless config because we want a man in the middle so that we can change the routing if we want to. Agentless is awesome if you can make it work. When should we not do this? Convenience vs functionality. What about being able to transform metrics through Agent too? Filter things out from Agent to avoid cost.
+- 13/10: [[GOH 15 - Agentless integration]]
 - 20/10: [Melori on Loki alerting](Melori%20on%20Loki%20alerting.md)?
 - 27/10: Frontend observability with the Faro team [Marie to coordinate]
 - 03/11: Automated performance modeling with NASA Open MCT, Grafana Cloud, and k6 with John Hill
