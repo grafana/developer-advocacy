@@ -31,6 +31,7 @@ Guest:: [[Łukasz Gut]]
 
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
+- ObsCON
 - Introduce Łukasz
 	- Who are you?
 	- What do you do?
@@ -76,7 +77,7 @@ Guest:: [[Łukasz Gut]]
 - [ ] How do you pronounce your name?
 - [ ] What are your pronouns?
 - [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
 - [ ] We'll be streaming to YouTube.
 - [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
 - [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
@@ -96,3 +97,5 @@ Guest:: [[Łukasz Gut]]
 Quick video on distributed tracing: https://www.youtube.com/watch?v=62ci4xi39Rw
 The k6 and Tempo integration (k6 Office Hours): https://www.youtube.com/watch?v=g9xU_pFr-Vc
 More on distributed tracing for testing using Tracetest (Grafana Office Hours): https://www.youtube.com/watch?v=oJ0wdneD8Po
+Docs https://grafana.com/docs/grafana-cloud/k6/analyze-results/integration-with-grafana-cloud-traces
+Blog: https://grafana.com/blog/2023/09/19/troubleshoot-failed-performance-tests-faster-with-distributed-tracing-in-grafana-cloud-k6/
