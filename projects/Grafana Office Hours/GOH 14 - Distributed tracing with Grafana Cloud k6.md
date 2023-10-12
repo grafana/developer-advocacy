@@ -87,7 +87,7 @@ Guest:: [[Łukasz Gut]]
 
 ## After the show
 
-- [ ] Add timestamps to the video (at least four).
+- [x] Add timestamps to the video (at least four).
 - [ ] Add any links shared to the description of the video.
 - [ ] Add the video to video playlists that make sense (at the very least, the "Grafana Office Hours" one.)
 
