@@ -45,9 +45,10 @@ Guest::
 	- What do you do?
 	- How long have you been working at Grafana Labs?
 - Monitoring and instrumentation
-	- What is meant by "instrumentation"?
+	- What is instrumentation?
 	- Is instrumentation always necessary for monitoring?
 	- What is an agent?
+	- How do you collect data?
 	- How are agents related to instrumentation?
 	- What is Grafana Agent? How does it work?
 	- Advantages of agent-based monitoring
