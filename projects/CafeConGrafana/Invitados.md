@@ -29,6 +29,8 @@ Agregar aqui cualquier persona interesante a tener en el show, asi como los dato
   - Testing Cloud Native applications with k6 and TestContainers
 - Xavier Escudero. Linkedin -> https://www.linkedin.com/in/xavier-escudero-sabadell/ - SW Test Architect Roche
   - k6 API testing fro VLC Testing Conf
+- Israel Blancas. Linkedin -> https://www.linkedin.com/in/iblancasa/ - Grafana champion
+  - Tempo enthusiast
 - 
 
 ## Agendados
