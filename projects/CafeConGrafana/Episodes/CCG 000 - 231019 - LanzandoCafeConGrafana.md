@@ -14,8 +14,8 @@ Invitado(s): Nicole V. y Antonio C.
 	> En Grafana Labs, hacemos un show semanal en vivo llamado [Cafe con Grafana](https://www.youtube.com/watch?v=fodMyzisa6s), donde invitamos a genta a hablar sobre grafana y sus subproductos, observabilidad, o visualización. Te vi en [blog post/video/post] en un blogpost de k6 y creemos que seria genial tenerte en el show para traer tu experiencia y platicar de k6.
 	Café Con Grafana es una conversacion de una hora transmitida en vivo al [Canal de Grafana en YouTube](https://youtube.com/@grafana). Es muy casual, se puede solo charlar, compartir pantalla, hacer demos, o lo que tu gustes. Si quisieras venir nos daria mucho gusto! 
 - [x] Si el invitado acepta, mandar invitacion para la fecha del show. Se debe confirmar el momento, 13:00 UTC (15:00 CEST) en Jueves. Se debe solicitar una foto que se pueda usar para promocionar o de menos permiso para usar su foto de perfil en redes sociales.
-- [ ] Mandar una invitacion de calendario a la par del bloque de Cafe Con Grafana. Nombrar a la invitacion con el numero de episodio y su nombre. Ejemplo: `Café con Grafana #10 con Pepe Pancho`. Esto para apartar la fecha en calendarios. La invitacion debe ser agendada 15 minutos antes del stream (para checar microfonos y demas) asi como 15 minutos despues (para permitir sacar cualquier información restante). Tiempo total de la invitacion 1.5 horas.
-- [ ] Crear imagen thumbnail en [Canva](https://canva.com) usando el formato de Café con Grafana. Usar [thumbsup.tv](https://thumbsup.tv) para revisar que el thumbnail se vea bien en diferentes dispositivos.
+- [x] Mandar una invitacion de calendario a la par del bloque de Cafe Con Grafana. Nombrar a la invitacion con el numero de episodio y su nombre. Ejemplo: `Café con Grafana #10 con Pepe Pancho`. Esto para apartar la fecha en calendarios. La invitacion debe ser agendada 15 minutos antes del stream (para checar microfonos y demas) asi como 15 minutos despues (para permitir sacar cualquier información restante). Tiempo total de la invitacion 1.5 horas.
+- [x] Crear imagen thumbnail en [Canva](https://canva.com) usando el formato de Café con Grafana. Usar [thumbsup.tv](https://thumbsup.tv) para revisar que el thumbnail se vea bien en diferentes dispositivos.
 - [ ] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
 	- [ ] Incluir en el titulo el numero de episodio, Ejemplo: `(In SPanish) Platicando Dashboards en Grafana? (Café con Grafana #11)`.
 	- [ ] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
@@ -34,28 +34,23 @@ Invitado(s): Nicole V. y Antonio C.
 > Listar los puntos que se hablarán en el episodio. Mantenerse solo en puntos breves para que el episodio sea una conversacion y fluya con naturaleza. Que no se siente scripteado.
 
 - Intro
-	- *Bienvenidos a la hora de echar un Cafe con Grafana. Soy Leandro, Dev Advocate en Grafana y hoy hablaremos de k6 y dashboards.*
+	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio, Leandro, y Nicole Dev Advocates en Grafana y hoy lanzaremos Cafe con Grafana. De que se va atratar esto?*
 - Anuncios
-	- Ya salio el nuevo k6 OSS 1.99
-	- Viene conferencia en Bolivia con testing y visualizacion
-	- No se pierdan Grafana News grabado desde el estudio en 30 Rockefeller en NY
-	- Proximamente la GrafanaCon en Ciudad de Mexico, con mas de 5mil asistentes!
-- Introducir invitado
-	- Quien eres?
-	- A que te dedicas?
-	- Cuanto llevas usando Grafana (o algun otro)?
+	- Hay anuncios?
+- Introducir hosts
+	- Quien es (alfabeticamente):
+		- Antonio
+		- Leandro
+		- Nicole
 - Temas a hablar
-	- Como te enamoraste de k6?
-	- Interacciones de k6 con Grafana
-	- Tu primer dashboard como fue?
-	- Que debe aprender la gente del operador de k6?
-	- Como empezaste en YouTube
-	- El canal de YouTube de Pepe y sus miles de seguidores
-	- A quien quieres mas de tus hijos?
+	- De que se va a tratar Café con Grafana?
+	- Que es Grafana?
+	- Que modulos y productos hay con Grafana?
+	- Mas puntos?
 - Cierre
 	- Donde puede la gente aprender mas de el tema?
 	- Donde te puede seguir/contactar la gente?
-	- Algun anuncio para tu abuelita o mamá o hijos?
+	- Algun otro anuncio?
 
 ### 15 minutos antes
 
