@@ -44,6 +44,7 @@ Invitado(s): Nicole V. y Antonio C.
 		- Nicole
 - Temas a hablar
 	- De que se va a tratar Café con Grafana?
+ 	- Quienes mas van a venir al show? 
 	- Que es Grafana?
 	- Que modulos y productos hay con Grafana?
 	- Mas puntos?
