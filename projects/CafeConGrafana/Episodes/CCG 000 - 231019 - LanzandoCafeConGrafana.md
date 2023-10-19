@@ -36,7 +36,7 @@ Invitado(s): Nicole V. y Antonio C.
 - Intro
 	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio, Leandro, y Nicole Dev Advocates en Grafana y hoy lanzaremos Cafe con Grafana. De que se va atratar esto?*
 - Anuncios
-	- Hay anuncios?
+	- [ObservabilityCON 2023](https://grafana.com/about/events/observabilitycon/2023/?pg=blog&plcmt=body-txt#register) ya está agotado pero hay un waitlist, y pueden ver el keynote live.
 - Introducir hosts
 	- Quien es (alfabeticamente):
 		- Antonio
@@ -44,16 +44,28 @@ Invitado(s): Nicole V. y Antonio C.
 		- Nicole
 - Temas a hablar
 	- De que se va a tratar Café con Grafana?
- 	- Quienes mas van a venir al show? 
+	- Quienes mas van a venir al show? 
 	- Que es Grafana?
-	- Que modulos y productos hay con Grafana?
+	- Que modulos y productos hay con Grafana? https://grafana.com/oss/
+		- Core
+			- Loki
+			- Grafana
+			- Tempo
+			- Mimir
+		- Otras
+			- TSDBs
+			- Observabilidad
+			- Platform engineering/Ops
 	- Soporte de Grafana OSS ([foro](https://community.grafana.com/), [GitHub issues](https://github.com/grafana/grafana/issues))
-   	- [Grafana Champions](https://grafana.com/community/champions/) 	
+- [Grafana Champions](https://grafana.com/community/champions/)
 	- Mas puntos?
 - Cierre
 	- Donde puede la gente aprender mas de el tema?
 	- Donde te puede seguir/contactar la gente?
 	- Algun otro anuncio?
+		- [GOH 16 - Grafana Agent with Paschalis Tsilias](GOH%2016%20-%20Grafana%20Agent%20with%20Paschalis%20Tsilias.md) sobre Agent mañana
+		- [GOH 17 - Frontend observability with Faro](GOH%2017%20-%20Frontend%20observability%20with%20Faro.md) sobre Faro la próxima semana
+		- Nicole estará en [TestCon Europe](https://events.pinetool.ai/3078/#sessions/100686?referrer%5Bpathname%5D=%2Fsessions&referrer%5Bsearch%5D=&referrer%5Btitle%5D=Sessions) hablando de *Emergent load testing*.
 
 ### 15 minutos antes
 
