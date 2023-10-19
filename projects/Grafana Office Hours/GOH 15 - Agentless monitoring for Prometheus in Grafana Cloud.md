@@ -50,11 +50,14 @@ Guest::
 	- What is an agent?
 	- How do you collect data?
 	- How are agents related to instrumentation?
+		- Agents require instrumentation
 	- What is Grafana Agent? How does it work?
 	- Advantages of agent-based monitoring
 	- Disadvantages of agent-based monitoring
 - What is agentless monitoring?
 	- How does it work?
+		- We run hosted Grafana Agents
+		- Not Prometheus Service Discovery - it's just a URL. It doesn't crawl other services.
 	- Is agentless monitoring the same as scraping?
 	- Does agentless monitoring still require instrumentation?
 	- How does it address the disadvantages of agent-based monitoring?
@@ -87,10 +90,13 @@ Guest::
 				- transforming or filtering out metrics (for example, to avoid cost)
 				- changing routing
 - Future plans for Metrics Endpoint
+	- scraping at intervals
+	- 
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- Docs: https://grafana.com/docs/grafana-cloud/monitor-infrastructure/integrations/integration-reference/integration-metrics-endpoint/
 	- Blog post: https://grafana.com/blog/2023/09/21/introducing-agentless-monitoring-for-prometheus-in-grafana-cloud/
+	- Grafana Agent
 
 - In our docs, we say we shouldn't do agentless config because we want a man in the middle so that we can change the routing if we want to. Agentless is awesome if you can make it work. When should we not do this? Convenience vs functionality. What about being able to transform metrics through Agent too? Filter things out from Agent to avoid cost.
 
@@ -98,11 +104,11 @@ Guest::
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
-- [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] How do you pronounce your name?
+- [x] What are your pronouns?
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
 - [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
-- [ ] We'll be streaming to YouTube.
+- [x] We'll be streaming to YouTube.
 - [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
 - [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
 - [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
