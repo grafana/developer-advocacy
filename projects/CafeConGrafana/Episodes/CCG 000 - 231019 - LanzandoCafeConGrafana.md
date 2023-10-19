@@ -47,6 +47,8 @@ Invitado(s): Nicole V. y Antonio C.
  	- Quienes mas van a venir al show? 
 	- Que es Grafana?
 	- Que modulos y productos hay con Grafana?
+	- Soporte de Grafana OSS ([foro](https://community.grafana.com/), [GitHub issues](https://github.com/grafana/grafana/issues))
+   	- [Grafana Champions](https://grafana.com/community/champions/) 	
 	- Mas puntos?
 - Cierre
 	- Donde puede la gente aprender mas de el tema?
