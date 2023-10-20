@@ -32,19 +32,18 @@ Guest:: Paschalis Tsilias
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
 - Intro
+- Introduce Paschalis
+	- Who are you?
+	- What do you do?
+	- How long have you been working at Grafana?
+	- How long have you been working on Grafana Agent?
 - Announcements
-	- New project releases
 	- Café con Grafana 000 yesterday: https://youtube.com/live/Kdgu2gutp7o
 	- [ObservabilityCON 2023](https://grafana.com/about/events/observabilitycon/2023/?pg=blog&plcmt=body-txt#register) is sold out, but there's a waitlist and you can also stream the keynote live.
 	- Sign up for the Grafana Cloud newsletter - October version is coming out soon
 		- GOH 04 - Private Datasource Connect
 		- [GOH 15 - Agentless monitoring for Prometheus in Grafana Cloud](GOH%2015%20-%20Agentless%20monitoring%20for%20Prometheus%20in%20Grafana%20Cloud.md)
 		- Grafana Agent - Feature parity between static and flow mode, easier migration
-- Introduce Paschalis
-	- Who are you?
-	- What do you do?
-	- How long have you been working at Grafana?
-	- How long have you been working on Grafana Agent?
 - What is Grafana Agent?
 	- vendor neutral telemetry collector
 	- What's telemetry?: metrics, logs, traces, profiles
@@ -55,17 +54,34 @@ Guest:: Paschalis Tsilias
 	- What is a telemetry collector?
 	- Why do you need telemetry collectors?
 	- "batteries included": what does this mean
+		- bundles in Prometheus exporters so you don't have to do it yourself. Prometheus metrics are exposed
 	- For the sake of completeness, what are other telemetry collectors that are available?
 		- Many that cater to one or two types of telemetry (example: Jaeger for tracing, FluentD/FluentBit for logs, Telegraf for metrics)
 		- OTel Collector (aims to be for metrics, traces, logs). How does this differ from Grafana Agent?
+	- If you couldn't use Grafana Agent, what would you do?
+		- Instrument application to send telemetry directly
+		- Use OTel collector or something else
 - How do you get started with Grafana Agent?
 	- Flow mode vs static mode (high level only - Matt will cover this in a future episode)
+		- Flow is a rebuild of Grafana Agent - more modular, reusable components that can be reused in pipelines, connected by expressions.
+			- What controls this pipeline?
+				- Each component has a set of arguments that dictate what it should do and also outputs that other components can reference.
+				- Flow dynamically reevaluation of all the components so that if one thing changes, all downstream components change as well.
+		- Inspired by HCL (language called River)
 		- Just hit feature parity
+		- Example of where flow mode shines: send from promtail to Kafka topic
+			- Take promtail logs, convert them, and then send them to Kafka using an exporter
+		- Flow also has cluster mode which is awesome
 	- Installation options
 		- Static mode: Docker, Kubernetes, choose your operating system, standalone binary
 		- Static mode Kubernetes operator (Helm chart: https://grafana.github.io/helm-charts, `grafana-agent-operator`)
 		- Flow mode
+			- Paschalis recommends doing this
 - How does Grafana Agent scale?
+	- Either Grafana Agent cluster mode: https://grafana.com/docs/agent/latest/flow/concepts/clustering/
+	- or hashmod sharding (same as Prometheus)
+	- Performance
+		- They haven't reinvented the wheel - dogfooding
 - Metrics Endpoint integration for Grafana Cloud ("agentless" integration)
 	- In what cases is the agentless integration not enough? When would you still need Grafana Agent?
 		- When you need more than just Prometheus metrics
@@ -73,10 +89,16 @@ Guest:: Paschalis Tsilias
 		- Transforming or filtering out metrics
 		- Changing routing
 - Recent changes in Grafana Agent
+	- flow mode feature parity
 	- Continuous profiling support via Pyroscope
+		- eBPF-based profiling
 - Future of Grafana Agent
-	- Become an OTel Collector itself - what does this mean?
-	- Ability to convert one type of signal to another (Prometheus to Loki for example)
+	- Get people to use Flow and not static
+	- better UI, better scaling,
+	- play even better with OTel ecosystem
+		- Become an OTel Collector itself - what does this mean?
+			- distribution of OTel Collector - like a flavour. Be a drop-in replacement for OTel collector.
+	- Ability to convert one type of signal to another (Prometheus to Loki for example) - some OTel collectors already do this
 	- Auto-instrumentation?
 - Outro
 	- If people want to learn more about this topic, where should they go?
@@ -86,15 +108,15 @@ Guest:: Paschalis Tsilias
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
+- [x] How do you pronounce your name?
 - [ ] What are your pronouns?
 - [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
-- [ ] We'll be streaming to YouTube.
-- [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
-- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] We'll be streaming to YouTube.
+- [x] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
+- [x] You can also use the private chat if you need to say something, but you can also just say it out loud.
 - [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
-- [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
+- [x] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
 - [ ] Just in case I disconnect... stall for a minute and I'll be right back.
 
 ## After the show

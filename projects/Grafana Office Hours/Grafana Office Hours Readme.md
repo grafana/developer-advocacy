@@ -27,11 +27,11 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 
 - 20/10: [GOH 16 - Grafana Agent with Paschalis Tsilias](GOH%2016%20-%20Grafana%20Agent%20with%20Paschalis%20Tsilias.md)
 - 27/10: [GOH 17 - Frontend observability with Faro](GOH%2017%20-%20Frontend%20observability%20with%20Faro.md) [Marie to coordinate]
-- 03/11: GOH 18 - Automated performance modeling with NASA Open MCT, Grafana Cloud, and k6 with John Hill
-- 10/11: GOH 19 - PLZv2 with Olha and Daniel?
+- 03/11: [[GOH 18 - Automated performance modeling with NASA Open MCT, Grafana Cloud, and k6 with John Hill]]
+- 10/11: [[GOH 19 - PLZv2 with Olha and Daniel]]
 - 17/11: GOH 20 - OTel demo with Paul?
-- 24/11: GOH 21 - Joseph Elliot on Grafana Tempo?
-- 01/12: 
+- 24/11: Shutdown day
+- 01/12: [[GOH 21 - Joseph Elliot on Grafana Tempo]]
 - 08/12: 
 - 15/12: 
 - 22/12: 
@@ -40,6 +40,7 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 
 - Juraci Paixāo Kröhling: [OpenTelemetry](https://raintank-corp.slack.com/archives/CKF4X4H1D/p1688643512830799)
 	- 101 level "how do I instrument an app I have using opentelemetry and see traces inside of grafana" (suggested by David Allen)
+	- Goutham
 - Lisa Jung: Week of Grafana (maybe for both of us?)
 - SLOs: Ryan Kehoe, Joe Bluebaugh, or Bob Cotton - ask in `#gops-slos`
 	- Nadine - created Pira, on Prometheus SLOs with her partner Matthias
@@ -57,6 +58,6 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - Marcelo Magallón about Synthetic Monitoring and k6.
 - Ivan Szkiba on xk6-dashboard
 - Pyroscope
-- Grafana Beyla
+- Grafana Beyla - Nicola
 - 
 
