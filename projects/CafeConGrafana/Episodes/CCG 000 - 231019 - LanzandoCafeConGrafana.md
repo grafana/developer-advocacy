@@ -71,17 +71,18 @@ Invitado(s): Nicole V. y Antonio C.
 
 > Que hablar y arreglar con el invitado los 15 minutos antes de la transmision.
 
-- [ ] Que pronombres usas?
-- [ ] Avisar de los puntos a tratar y que son guia pero nada mas. Es una conversación libre.
-- [ ] Si alguien va a compartir pantalla, hay que hacerlo ahi. Para ver que funciona y arreglar cualquier detalle.
-- [ ] Avisar que va a poder ver comentarios de YouTube, pero si necesita compartir algo o links, hay que pasarlos de una vez en el chat privado o durante el show.
-- [ ] Usa el chat privado si nos quieres decir algo, o dilo en el show en alto si lo deseas.
-- [ ] Si te sientes incomodo con algun tema, dilo abiertamente o en privado en el chat.
-- [ ] Al final vamos a despedirnos, pero quedate despues para platicar como estuvo el show.
-- [ ] Si algo pasa y pierdo conexion... mantente ahi por un momento y estaremos de regreso.
+- [x] Que pronombres usas?
+- [x] Avisar de los puntos a tratar y que son guia pero nada mas. Es una conversación libre.
+- [x] Si alguien va a compartir pantalla, hay que hacerlo ahi. Para ver que funciona y arreglar cualquier detalle.
+- [x] Avisar que va a poder ver comentarios de YouTube, pero si necesita compartir algo o links, hay que pasarlos de una vez en el chat privado o durante el show.
+- [x] Usa el chat privado si nos quieres decir algo, o dilo en el show en alto si lo deseas.
+- [x] Si te sientes incomodo con algun tema, dilo abiertamente o en privado en el chat.
+- [x] Al final vamos a despedirnos, pero quedate despues para platicar como estuvo el show.
+- [x] Si algo pasa y pierdo conexion... mantente ahi por un momento y estaremos de regreso.
 
 ## Despues de la transmision
 
-- [ ] Agregar timestamps al video (minimo 4).
-- [ ] Agregar los links compartidos en la descripcion del video.
-- [ ] Agregar el video a los playlists de contenido en español.
+- [x] Agregar timestamps al video (minimo 4).
+- [x] Agregar los links compartidos en la descripcion del video.
+- [x] Agregar el video a los playlists de contenido en español.
+- [x] Agregar endscreens al video
