@@ -81,7 +81,8 @@ Guest:: Paschalis Tsilias
 	- Either Grafana Agent cluster mode: https://grafana.com/docs/agent/latest/flow/concepts/clustering/
 	- or hashmod sharding (same as Prometheus)
 	- Performance
-		- They haven't reinvented the wheel - dogfooding
+		- They haven't reinvented the wheel - they use battle-tested techniques from Prometheus and OTel Collector
+		- dogfooding
 - Metrics Endpoint integration for Grafana Cloud ("agentless" integration)
 	- In what cases is the agentless integration not enough? When would you still need Grafana Agent?
 		- When you need more than just Prometheus metrics
@@ -124,3 +125,25 @@ Guest:: Paschalis Tsilias
 - [ ] Add timestamps to the video (at least four).
 - [ ] Add any links shared to the description of the video.
 - [ ] Add the video to video playlists that make sense (at the very least, the "Grafana Office Hours" one.)
+
+
+## Timestamps
+
+00:00:00 Introductions and announcements
+00:04:04 What is Grafana Agent?
+00:07:20 What is a telemetry collector?
+00:09:53 Question: Is Agent a specialized version of the OTel collector?
+00:11:54 Difference between Agent and other telemetry collectors
+00:16:08 Alternatives to using Agent
+00:18:53 Question: How can you forward messages from Promtail logs to Kafka?
+00:21:39 Flow mode vs. static mode - what's the difference?
+00:28:40 Directed Acyclic Graph of components from Agent
+00:34:09 Installation options for Grafana Agent
+00:35:49 Question: When will the cluster mode for Grafana Agent be production ready?
+00:37:54 Other options to scale Grafana Agent horizontally
+00:39:36 How to get the DAG UI from Agent
+00:41:56 Performance considerations for Grafana Agent
+00:43:16 Metrics Endpoint on Grafana Cloud vs. local Grafana Agent
+00:47:17 Continuous profiling support via Pyroscope in Grafana Agent
+00:50:10 The future of Grafana Agent
+00:55:04 Five-minute summary of everything in this episode

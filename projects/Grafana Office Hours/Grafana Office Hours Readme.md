@@ -32,15 +32,13 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 17/11: GOH 20 - OTel demo with Paul?
 - 24/11: Shutdown day
 - 01/12: [[GOH 21 - Joseph Elliot on Grafana Tempo]]
-- 08/12: 
+- 08/12: [[GOH 22 - Juraci Paixāo Kröhling on OpenTelemetry]]
+	- 101 level "how do I instrument an app I have using opentelemetry and see traces inside of grafana" (suggested by David Allen)
 - 15/12: 
 - 22/12: 
 
 ## Future guest suggestions
 
-- Juraci Paixāo Kröhling: [OpenTelemetry](https://raintank-corp.slack.com/archives/CKF4X4H1D/p1688643512830799)
-	- 101 level "how do I instrument an app I have using opentelemetry and see traces inside of grafana" (suggested by David Allen)
-	- Goutham
 - Lisa Jung: Week of Grafana (maybe for both of us?)
 - SLOs: Ryan Kehoe, Joe Bluebaugh, or Bob Cotton - ask in `#gops-slos`
 	- Nadine - created Pira, on Prometheus SLOs with her partner Matthias
@@ -59,5 +57,6 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - Ivan Szkiba on xk6-dashboard
 - Pyroscope
 - Grafana Beyla - Nicola
+- Marie - psychology of waiting/reliability
 - 
 
