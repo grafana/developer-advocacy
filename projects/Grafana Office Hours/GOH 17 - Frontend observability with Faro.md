@@ -35,6 +35,7 @@ Guest:: Marco Schaefer and Kostas Pelelis
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
 	- New project releases
+		- [Grafana 10.2 release](https://grafana.com/blog/2023/10/24/grafana-10.2-release-grafana-panel-title-generator-interactive-visualizations-and-more/)
 		- [Grafana k6 version 0.47.0](https://grafana.com/blog/2023/10/19/new-in-grafana-k6-the-latest-oss-features-in-v0.47.0-and-more-efficient-performance-testing-in-grafana-cloud-k6/) now out 
 		- [ObservabilityCON 2023](https://grafana.com/about/events/observabilitycon/2023/)
 	- Recent content published
