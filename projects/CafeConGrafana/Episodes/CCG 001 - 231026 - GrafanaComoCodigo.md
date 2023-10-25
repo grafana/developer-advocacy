@@ -1,5 +1,5 @@
 ---
-url: [https://www.youtube.com/watch?v=TBD](https://www.youtube.com/watch?v=OqGFN22dvhQ)
+url: https://www.youtube.com/watch?v=OqGFN22dvhQ
 date: 2023-10-26
 ---
 # CCG 001 - Grafana como código con Joan Lopez
