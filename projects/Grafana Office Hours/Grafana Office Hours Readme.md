@@ -22,12 +22,11 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 29/09: [GOH 13 - How to deploy Grafana on Kubernetes](GOH%2013%20-%20How%20to%20deploy%20Grafana%20on%20Kubernetes.md) with Usman Ahmad
 - 06/10: [GOH 14 - Distributed tracing with Grafana Cloud k6](GOH%2014%20-%20Distributed%20tracing%20with%20Grafana%20Cloud%20k6.md)
 - 13/10: [[GOH 15 - Agentless monitoring for Prometheus in Grafana Cloud]]
-- 20/10: [GOH 16 - Grafana Agent with Paschalis Tsilias](GOH%2016%20-%20Grafana%20Agent%20with%20Paschalis%20Tsilias.
-md)
+- 20/10: [GOH 16 - Grafana Agent with Paschalis Tsilias](GOH%2016%20-%20Grafana%20Agent%20with%20Paschalis%20Tsilias)
 - 27/10: [GOH 17 - Frontend observability with Faro](GOH%2017%20-%20Frontend%20observability%20with%20Faro.md) 
 
 ### Upcoming
-- 03/11: [[GOH 18 - Automated performance modeling with NASA Open MCT, Grafana Cloud, and k6 with John Hill]]
+- 03/11: [GOH 18 - Automated performance modeling with NASA Open MCT, Grafana Cloud, and k6 with John Hill](GOH%2018%20-%20Automated%20performance%20modeling%20with%20NASA%20Open%20MCT,%20Grafana%20Cloud,%20and%20k6%20with%20John%20Hill)
 - 10/11: [[GOH 19 - PLZv2 with Olha and Daniel]]
 - 17/11: GOH 20 - OTel demo with Paul?
 - 24/11: Shutdown day
