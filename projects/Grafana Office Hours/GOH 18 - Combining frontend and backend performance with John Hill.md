@@ -21,10 +21,10 @@ Guest:: John Hill
 	- [x] Add the standard description as per previous Grafana Office Hours shows. Check the video description and add guests' contact details.
 - [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
 - [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
-- [ ] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
+- [x] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Schedule a tweet just when the show begins to say "We're live now!"
-- [ ] Schedule a Slack message on the internal Grafana workspace (in `#community`).
-- [ ] Schedule a Slack message on the public Grafana Slack workspace (in `#announcements`)
+- [x] Schedule a Slack message on the internal Grafana workspace (in `#community`).
+- [x] Schedule a Slack message on the public Grafana Slack workspace (in `#announcements`)
 
 
 ## Talking points
@@ -83,4 +83,4 @@ Guest:: John Hill
 
 - [ ] Add timestamps to the video (at least four).
 - [ ] Add any links shared to the description of the video.
-- [ ] Add the video to video playlists that make sense (at the very least, the "Grafana Office Hours" one.)
+- [x] Add the video to video playlists that make sense (at the very least, the "Grafana Office Hours" one.)
