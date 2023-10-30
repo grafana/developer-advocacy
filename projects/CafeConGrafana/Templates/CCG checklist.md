@@ -24,14 +24,14 @@ Invitado(s):
 - [ ] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Agendar un tweet para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
 - [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
-- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#grafañol`).
+- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
 - [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
 - [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
 
 
 ## Puntos a hablar
 
-> Listar los puntos que se hablarán en el episodio. Mantenerse solo en puntos breves para que el episodio sea una conversacion y fluya con naturaleza. Que no se siente scripteado.
+> Listar los puntos que se hablarán en el episodio. Mantenerse solo en puntos breves para que el episodio sea una conversacion y fluya con naturaleza. Que no se sienta scripteado.
 
 - Intro
 	- *Bienvenidos a la hora de echar un Cafe con Grafana. Soy `<nombre>`, `<posición>` en Grafana y hoy hablaremos de `<tema>`.*

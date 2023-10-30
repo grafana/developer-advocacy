@@ -1,10 +1,10 @@
 ---
-url: https://www.youtube.com/watch?v=TBD
+url: https://www.youtube.com/watch?v=2eA93JHQD3U
 date: 2023-10-26
 ---
 # CCG 002 - Observando Bitacoras (Logs) con Matias Chomicki
 
-<iframe width="560" height="315" src="[https://www.youtube.com/watch?v=TBD](https://www.youtube.com/watch?v=TBD)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="[https://www.youtube.com/watch?v=2eA93JHQD3U](https://www.youtube.com/watch?v=2eA93JHQD3U)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Invitado(s): Matias Chomicki
 
@@ -19,49 +19,50 @@ Invitado(s): Matias Chomicki
 - [x] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
 	- [x] Incluir en el titulo el numero de episodio, Ejemplo: `(In Spanish) Observando Bitacoras (Logs) (Café con Grafana #002)`.
 	- [x] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
-- [] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
-- [] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
+- [x] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
+- [x] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
 - [ ] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Agendar un tweet para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
 - [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
-- [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#grafañol`).
+- [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
 - [x] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
 - [x] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
 
 
 ## Puntos a hablar
 
-> Listar los puntos que se hablarán en el episodio. Mantenerse solo en puntos breves para que el episodio sea una conversacion y fluya con naturaleza. Que no se siente scripteado.
+> Listar los puntos que se hablarán en el episodio. Mantenerse solo en puntos breves para que el episodio sea una conversacion y fluya con naturaleza. Que no se sienta scripteado.
 
 - Intro
 	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio, Leandro, y Nicole, Dev Advocates en Grafana y hoy hablaremos de Grafana y dashboards.*
 - Anuncios
-	- Lanzamos Café con Grafana! Su dosis semanal de Grafeina?
- 	- [ObservabilityCON 2023](https://grafana.com/about/events/observabilitycon/2023/?pg=blog&plcmt=body-txt#register) ya está agotado pero hay un waitlist, y pueden ver el keynote live.
-	- Salió k6 OSS 0.47 https://github.com/grafana/k6/releases/tag/v0.47.0 Proximamente KSIX News
+	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
+ 	- Falta menos para la [ObservabilityCON 2023](https://grafana.com/about/events/observabilitycon/2023/?pg=blog&plcmt=body-txt#register) ya está agotado pero hay un waitlist, y pueden ver el keynote live.
+	- No se pierdan KSN 47
 - Introducir invitado
 	- Quien eres?
 	- A que te dedicas?
 	- Cuanto llevas usando Grafana (o algun otro)?
 - Temas a hablar
-	- Que es Grafana?
-		- Herramienta de visualización
-		- Mucho más: alertas, incidentes, on call, etc
-	- Grafana como código
-		- Que es?
-		- Por que usarlo? Cuando?
-		- ¿Problemas con versiones?
-	- Control de versiones: 
-		- Demo 1: Grizzly
-	- Dashboards como código: 
-		- Demo 2: Grafonnet
-	- De código a UI y viceversa:
-		- Demo 3: VSCode extension
+	- Que es Grafana para ti?
+	- Bitacoras(Logs)
+		- Que son?
+		- Que diferencias con Metricas y Trazas
+		- Para/por que se usan?
+	- Donde se guardan?
+		- Loki
+		- Sistema
+		- Otros
+	- Como se visaualizan en Grafana? 
+		- Demo ?
+	- Utilidad de logs en Grafana
+	- <<Algun otro tema? @nicole @antonio @matyax>>
 	- Que más se viene?
 - Cierre
 	- Donde puede la gente aprender mas de el tema?
 	- Donde te puede seguir/contactar la gente?
 	- Algun anuncio para tu abuelita o mamá o hijos?
+	- Mas anuncios de cierre
 
 ### 15 minutos antes
 
