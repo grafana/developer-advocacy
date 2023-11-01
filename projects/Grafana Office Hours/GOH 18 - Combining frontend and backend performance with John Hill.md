@@ -59,6 +59,7 @@ Guest:: John Hill
            - Contract-based UI testing approach (keeping your tests in sync with the development)
            - Synthetic user monitoring (how can you use k6 browser for this?)
                 - Using the same tooling
+        - What use cases or scenarios can you think of where k6 browser is not a good fit?
 - Demo?
 	- openmct-performance and k6
 	- Recording a browser test with playwright 
