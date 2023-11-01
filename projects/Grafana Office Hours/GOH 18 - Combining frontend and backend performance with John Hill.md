@@ -41,24 +41,30 @@ Guest:: John Hill
 	- What do you do?
 	- How long have you been using Grafana/other project?
 - What is Open MCT?
-	- Is it using Grafana and k6?
-	- How are you combining Grafana, k6, and Open MCT to test the frontend and backend performance of your application?
-- What are some performance problems you encountered in your project?
-	- Frontend application sending too much requests to the backend
+- Why is performance important?
+- What makes Open MCT performance different (openmct-performance)?
+  - Why does it exist?
+  - Is it using Grafana and k6?
+- What are some general performance problems you see?
+	- Frontend application sending too many requests to the backend (Open MCT can take the blame for backend problems)
 	- Siloes that can happen if frontend and backend teams are not communicating
 	- Synthetic monitoring is fragile and owned by the wrong team
+- What's been your history in using performance tools before k6?
+- How are you combining Grafana and k6 to test the frontend and backend performance of your application?
 - Why k6 browser?
-	- Was it received well by your team?
-	- Any limitations you faced?
+	- Already using k6 on protocol-level
+        - Recommended practices you've shared with the community
+   	   - Working closely with developers (selector example)
+   	   - Hybrid testing
+           - Contract-based UI testing approach (keeping your tests in sync with the development)
+           - Synthetic user monitoring (how can you use k6 browser for this?)
+                - Using the same tooling
 - Demo?
 	- openmct-performance and k6
 	- Recording a browser test with playwright 
 	- Record and convert har files using har-to-k6 plugin
 	- Hybrid performance test?
 	- Exporting data to Prometheus and Visualizing results to Grafana
-- Recommended practices
-	- How can you keep k6-browser tests in sync with development?
-	- Do developers write the k6-browser tests?
 - Outro
 	- What future plans do you have to expand k6 and k6-browser usage to your projects?
 	- If people want to learn more about this topic, where should they go?
