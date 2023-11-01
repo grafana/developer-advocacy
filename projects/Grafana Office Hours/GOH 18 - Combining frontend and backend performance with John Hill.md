@@ -66,8 +66,8 @@ Guest:: John Hill
 	- Hybrid performance test?
 	- Exporting data to Prometheus and Visualizing results to Grafana
 - Outro
-	- What future plans do you have to expand k6 and k6-browser usage to your projects?
 	- If people want to learn more about this topic, where should they go?
+        - Contributors wanted! (Open e2e Test Initiative)
 	- Next week: PLZv2 with Olha and Daniel
 
 ### Just before the show
