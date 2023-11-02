@@ -26,14 +26,14 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 27/10: [GOH 17 - Frontend observability with Faro](GOH%2017%20-%20Frontend%20observability%20with%20Faro.md) 
 
 ### Upcoming
-- 03/11: [GOH 18 - Automated performance modeling with NASA Open MCT, Grafana Cloud, and k6 with John Hill](GOH%2018%20-%20Automated%20performance%20modeling%20with%20NASA%20Open%20MCT,%20Grafana%20Cloud,%20and%20k6%20with%20John%20Hill)
+- 03/11: [GOH 18 - Combining frontend and backend performance with John Hill](GOH%2018%20-%20Combining%20frontend%20and%20backend%20performance%20with%20John%20Hill.md)
 - 10/11: [[GOH 19 - PLZv2 with Olha and Daniel]]
 - 17/11: GOH 20 - OTel demo with Paul?
 - 24/11: Shutdown day
 - 01/12: [[GOH 21 - Joseph Elliot on Grafana Tempo]]
 - 08/12: [[GOH 22 - Juraci Paixāo Kröhling on OpenTelemetry]]
 	- 101 level "how do I instrument an app I have using opentelemetry and see traces inside of grafana" (suggested by David Allen)
-- 15/12: 
+- 15/12: GOH 23 - Theia Scientific
 - 22/12: 
 
 ## Future guest suggestions
