@@ -6,7 +6,7 @@
 | --- | --- | --- | --- | ---|
 | YYYYMMDD | 00 [Titulo] | [Hosts] | [Invitados] | [Notas] |
 | 20231214 | 08 TBD | Leandro, Nicole, Antonio | <Invitados> | Ultimo del año |
-| 20231207 | 07 TBD | Leandro, Nicole, Antonio | <Invitados> | |
+| 20231207 | 07 TBD | Leandro, Nicole, Antonio | Carlos Gauto | |
 | 20231130 | 06 TBD | Leandro, Nicole, Antonio | Raúl Marín | |
 | 20231123 | 05 TBD | Leandro, Nicole, Antonio | Almudena Vivanco | Leandro regresa |
 | 20231116 | 04 Entendiendo los Sinteticos | Nicole, Antonio | Marcelo Magallon | Leandro fuera x Boda, Company All hands, skip? |
