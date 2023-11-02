@@ -37,8 +37,9 @@ Invitado(s): Matias Chomicki
 	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio, Leandro, y Nicole, Dev Advocates en Grafana y hoy hablaremos de Grafana y dashboards.*
 - Anuncios
 	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
- 	- Falta menos para la [ObservabilityCON 2023](https://grafana.com/about/events/observabilitycon/2023/?pg=blog&plcmt=body-txt#register) ya está agotado pero hay un waitlist, y pueden ver el keynote live.
+	- Falta menos para la [ObservabilityCON 2023](https://grafana.com/about/events/observabilitycon/2023/?pg=blog&plcmt=body-txt#register) ya está agotado pero hay un waitlist, y pueden ver el keynote live.
 	- No se pierdan KSN 47
+	- Qué es observabilidad?, un video y serie de Lisa Jung: https://youtu.be/TQur9GJHIIQ
 - Introducir invitado
 	- Quien eres?
 	- A que te dedicas?
