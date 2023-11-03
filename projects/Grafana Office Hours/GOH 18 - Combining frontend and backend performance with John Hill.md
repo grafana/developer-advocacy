@@ -36,17 +36,25 @@ Guest:: John Hill
 - Announcements
 	- New project releases
 	- Recent content published
-          - [Grafana for Beginner series!](https://www.youtube.com/watch?v=TQur9GJHIIQ) 
+		- [Grafana for Beginner series!](https://www.youtube.com/watch?v=TQur9GJHIIQ) 
 - Introduce John
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
+- The stack
 - What is Open MCT?
+	- k6
+	- k6 browser
+	- Prometheus
+		- because YAMS (backend that provides a native Prometheus endpoint)
+	- Grafana
 - Why is performance important?
 - What makes Open MCT performance different (openmct-performance)?
   - Why does it exist?
   - Is it using Grafana and k6?
 - What are some general performance problems you see?
+	- Performance tuning: what can you do with limited time to improve performance?
+	- How to have gentle conversations with architects to tell them what's not working
 	- Frontend application sending too many requests to the backend (Open MCT can take the blame for backend problems)
 	- Siloes that can happen if frontend and backend teams are not communicating
 	- Synthetic monitoring is fragile and owned by the wrong team
@@ -54,12 +62,20 @@ Guest:: John Hill
 - How are you combining Grafana and k6 to test the frontend and backend performance of your application?
 - Why k6 browser?
 	- Already using k6 on protocol-level
-        - Recommended practices you've shared with the community
-   	   - Working closely with developers (selector example)
-   	   - Hybrid testing
-           - Contract-based UI testing approach (keeping your tests in sync with the development)
-           - Synthetic user monitoring (how can you use k6 browser for this?)
-                - Using the same tooling
+	- Recommended practices you've shared with the community
+		- Do everything you can to actually demonstrate what a user is going to do
+			- Add think time
+		- Use consistent locator logic
+			- Aria locators use screenreader locators
+			- Talk to developers
+			- Make locator changes yourself to make your tests more resilient
+			- "Self-healing"
+        - It's easy to export data to different data sources
+        - Working closely with developers (selector example)
+        - Hybrid testing
+	        - Contract-based UI testing approach (keeping your tests in sync with the development)
+	        - Synthetic user monitoring (how can you use k6 browser for this?)
+	        - Using the same tooling
         - What use cases or scenarios can you think of where k6 browser is not a good fit?
 - Demo?
 	- openmct-performance and k6
@@ -76,10 +92,10 @@ Guest:: John Hill
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
-- [ ] What are your pronouns?
+- [x] How do you pronounce your name?
+- [x] What are your pronouns?
 - [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
 - [ ] We'll be streaming to YouTube.
 - [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
 - [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
