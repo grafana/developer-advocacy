@@ -36,6 +36,7 @@ Guest:: John Hill
 - Announcements
 	- New project releases
 	- Recent content published
+          - [Grafana for Beginner series!](https://www.youtube.com/watch?v=TQur9GJHIIQ) 
 - Introduce John
 	- Who are you?
 	- What do you do?
