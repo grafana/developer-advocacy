@@ -2,11 +2,11 @@
 url: https://www.youtube.com/watch?v=TBD
 date: 2023-11-09
 ---
-# CCG 003 - Todo sobre k6 con Daniel Lopes
+# CCG 003 - Todo sobre k6 con Daniel Gonzalez Lopes
 
 <iframe width="560" height="315" src="[https://www.youtube.com/watch?v=TBD](https://www.youtube.com/watch?v=TBD)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Invitado(s): [Daniel Lopes](https://www.linkedin.com/in/danielgonzalezlopes/)
+Invitado(s): [Daniel Gonzalez Lopes](https://www.linkedin.com/in/danielgonzalezlopes/)
 
 ## Checklist
 
