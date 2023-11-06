@@ -1,10 +1,11 @@
 ---
-url: https://www.youtube.com/watch?v=TBD
+url: https://youtube.com/live/NF2R-Zk9iek
 date: 2023-11-09
 ---
 # CCG 003 - Todo sobre k6 con Daniel Gonzalez Lopes
 
-<iframe width="560" height="315" src="[https://www.youtube.com/watch?v=TBD](https://www.youtube.com/watch?v=TBD)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NF2R-Zk9iek" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 Invitado(s): [Daniel Gonzalez Lopes](https://www.linkedin.com/in/danielgonzalezlopes/)
 
@@ -16,17 +17,17 @@ Invitado(s): [Daniel Gonzalez Lopes](https://www.linkedin.com/in/danielgonzalezl
 - [x] Si el invitado acepta, mandar invitacion para la fecha del show. Se debe confirmar el momento, 13:00 UTC (15:00 CEST) en Jueves. Se debe solicitar una foto que se pueda usar para promocionar o de menos permiso para usar su foto de perfil en redes sociales.
 - [x] Mandar una invitacion de calendario a la par del bloque de Cafe Con Grafana. Nombrar a la invitacion con el numero de episodio y su nombre. Ejemplo: `Café con Grafana #010 con Pepe Pancho`. Esto para apartar la fecha en calendarios. La invitacion debe ser agendada 15 minutos antes del stream (para checar microfonos y demas) asi como 15 minutos despues (para permitir sacar cualquier información restante). Tiempo total de la invitacion 1.5 horas.
 - [x] Crear imagen thumbnail en [Canva](https://canva.com) usando el formato de Café con Grafana. Usar [thumbsup.tv](https://thumbsup.tv) para revisar que el thumbnail se vea bien en diferentes dispositivos. LA IMAGEN YA ESTÁ EN LA CARPETA DE CANVA https://www.canva.com/folder/FAFuWGuLXes
-- [] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
-	- [] Incluir en el titulo el numero de episodio, Ejemplo: `(In Spanish) Todo sobre k6 (Café con Grafana #003)`.
-	- [] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
-- [] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
-- [] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
-- [] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
+- [x] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
+	- [x] Incluir en el titulo el numero de episodio, Ejemplo: `(In Spanish) Todo sobre k6 (Café con Grafana #003)`.
+	- [x] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
+- [ ] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
+- [ ] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
+- [ ] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Agendar un tweet para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
-- [] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
-- [] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
-- [] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
-- [] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
+- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
+- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
+- [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
+- [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
 
 
 ## Puntos a hablar
@@ -34,32 +35,55 @@ Invitado(s): [Daniel Gonzalez Lopes](https://www.linkedin.com/in/danielgonzalezl
 > Listar los puntos que se hablarán en el episodio. Mantenerse solo en puntos breves para que el episodio sea una conversacion y fluya con naturaleza. Que no se sienta scripteado.
 
 - Intro
-	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio y Nicole, Dev Advocates en Grafana y hoy hablaremos de Grafana y dashboards.*
+	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio y Nicole, Dev Advocates en Grafana y hoy hablaremos de k6: qué es, cómo usarlo, y todo. Después de este episodio, ustedes podrán lanzar pruebas de carga usando k6.*
 - Anuncios
-	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
-	- Falta menos para la [ObservabilityCON 2023](https://grafana.com/about/events/observabilitycon/2023/?pg=blog&plcmt=body-txt#register) el 14 y 15 de Noviembre. Ya está agotado pero hay un waitlist, y pueden ver el keynote live.
-	- Qué es observabilidad?, un video y serie de Lisa Jung: https://youtu.be/TQur9GJHIIQ
-	- Mas anuncios @nicolevanderhoeven ?
-- Introducir invitado
+	- Leandro no está aquí, pero tiene una razón muy buena...
+- Introducir invitado: Daniel
 	- Quien eres?
 	- A que te dedicas?
 	- Cuanto llevas usando Grafana (o algun otro)?
 	- Cuanto llevas usando k6?
-- Temas a hablar
-	- Que es Grafana para ti?
-	- Revisar temas con @dgzlopes
-	- Que es k6?
-	- Extensiones?
-	- Operador?
-	- Cloud? (Nube)
-	- Como conecta k6 en Grafana
-	- <<Algun otro tema? @nicolevanderhoeven @antonio @dgzlopes>>
-	- Que más se viene?
+- Qué es k6?
+	- open source
+	- Go + JavaScript
+	- Es solo para performance testing?
+	- Instalación + Scripting
+		- (Demo - Daniel) QuickPizza y cómo instalar y comenzar con k6
+	- Modos de ejecución
+		- `k6 run test.js`
+		- `k6 run test.js -o cloud`, `-o csv=resultados.csv`
+		- `k6 cloud test.js`
+		- Cuál es la diferencia entre k6 Cloud y Grafana Cloud?
+	- Analisis de resultados
+		- k6 dashboard
+		- Grafana Cloud k6
+		- Prometheus Remote Write
+- Extensiones de k6
+	- Maneras de extender k6, con ejemplos de los más populares/nuestros favoritos
+		- JavaScript (jslib)
+		- Go (xk6)
+			- [xk6-dashboard](https://github.com/grafana/xk6-dashboard)
+			- [xk6-disruptor](https://github.com/grafana/xk6-disruptor)
+			- [xk6-kubernetes](https://github.com/grafana/xk6-kubernetes)
+			- [k6-operator](https://github.com/grafana/k6-operator)
+			- [k6x](https://github.com/szkiba/k6x)
+		- módulos experimentales
+			- [k6 redis](https://k6.io/docs/javascript-api/k6-experimental/redis/)
+			- [k6 websockets](https://k6.io/docs/javascript-api/k6-experimental/websockets/)
+			- [k6 timers](https://k6.io/docs/javascript-api/k6-experimental/timers/)
+			- [k6 tracing](https://k6.io/docs/javascript-api/k6-experimental/tracing/)
+			- [k6 browser](https://k6.io/docs/javascript-api/k6-browser/)
+- Integraciones entre k6 y el ecosistema Grafana
+	- Grafana
+	- Prometheus
+	- Loki
+	- Tempo
+	- Faro
+	- Cuál es la relación entre pruebas y observabilidad?
 - Cierre
-	- Donde puede la gente aprender mas de el tema?
-	- Donde te puede seguir/contactar la gente?
-	- Algun anuncio para tu abuelita o mamá o hijos?
-	- Mas anuncios de cierre
+	- Dónde puede la gente aprender más de k6?
+	- Dónde te puede seguir/contactar la gente?
+	- Este viernes en Grafana Office Hours tenemos a Daniel y nuestra otra colega, Olha Yevtushenko. Vamos a hablar de k6, pero en particular el uso de k6-operator y private load zones para hacer pruebas distribuidas con k6 en Kubernetes.
 
 ### 15 minutos antes
 
