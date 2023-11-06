@@ -34,16 +34,21 @@ Guest::
   - Marie will also be at AutomationSTAR after
 - Introduce guest
   - How do we know Jenna?
-    - Marie first saw Jenna when she was hosting for TestBash conference (virtual)
+    - Marie first saw Jenna when they were hosting for TestBash conference (virtual)
     - First met Jenna in person at Agile Testing Days 2022 in Germany
-	- Who is Jenna? Where is she based? What does she do for work and for fun?
+	- Who is Jenna? Where are they based? What do they do for work and for fun?
   - What's your adobo? (a food, item, activity that reminds you of home)
 - Jenna's career in tech story
-	- From BA to testing to product, and now to developer advocacy!
+	- From being a little wild tester -> tester/trainer -> product -> DevAdvocate 
 	- Career progression doesn't have to be linear
 - You're also studying for your masters degree in Experience Design
 	- Tell us about experience design
 	- The intersection of design thinking, human-computer interaction, and user experience
+	- What are you focusing on at the moment?
+		- Service design
+	- What researches are you focusing at the moment?
+		- Current research is on job titles for testers and how it impacts testers feelings of esteem and belonging within their organizations (I-O psych stuff)
+		- Longer term thesis will use that research + symbolic convergence theory research to understand and develop shared identity for testers
 	- What principles can we apply from experience design that can help us become better testers?
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
