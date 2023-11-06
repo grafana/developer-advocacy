@@ -1,10 +1,10 @@
 ---
-url:
+url: https://www.youtube.com/watch?v=aooYirC-meo
 date: 2023-11-08
 ---
 # [[Learning about experience design with Jenna Charlton]]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aooYirC-meo?si=OC82NzmE40VoT97j" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 Guest:: 
 
@@ -16,12 +16,12 @@ Guest::
 	> Adobo and Avocados is an hour-long live conversation that is streamed to the [Adobo and Avocados YouTube channel](https://youtube.com//@adoboandavocados). It's very casual, and you can share unique experiences working in tech! 
 - [x] If the guest agrees, choose a date for the Office Hours session. Confirm the time and ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
 - [x] Invite them to the Adobo and Avocados calendar invite (choose "this instance only", not the whole series). Change the invite to include the episode number and their name, ie `Adobo and Avocados #01 with Rafaela`. This is to save the date. Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours.
-- [ ] Create a thumbnail on [Canva](https://canva.com) using the Adobo and Avocados thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
-- [ ] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Adobo and Avocados YouTube channel as the destination.
-	- [ ] In the title, include the instance of Adobo and Avocados, i.e. `Getting started in testing with Rafaela Azevedo (A&A #2)`.
-	- [ ] Add the standard description as per previous Adobo and Avocados shows. Check the video description and add guests' contact details.
-- [ ] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
-- [ ] Get the YouTube link to the show. Put the link on this page, in the URL property above.
+- [x] Create a thumbnail on [Canva](https://canva.com) using the Adobo and Avocados thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
+- [x] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Adobo and Avocados YouTube channel as the destination.
+	- [x] In the title, include the instance of Adobo and Avocados, i.e. `Getting started in testing with Rafaela Azevedo (A&A #2)`.
+	- [x] Add the standard description as per previous Adobo and Avocados shows. Check the video description and add guests' contact details.
+- [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
+- [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
 
 ## Talking points
 
