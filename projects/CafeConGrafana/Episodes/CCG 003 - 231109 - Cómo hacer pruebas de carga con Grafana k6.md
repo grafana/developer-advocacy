@@ -20,14 +20,14 @@ Invitado(s): [Daniel Gonzalez Lopes](https://www.linkedin.com/in/danielgonzalezl
 - [x] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
 	- [x] Incluir en el titulo el numero de episodio, Ejemplo: `(In Spanish) Todo sobre k6 (Café con Grafana #003)`.
 	- [x] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
-- [ ] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
-- [ ] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
-- [ ] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
+- [x] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
+- [x] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
+- [x] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana en español](https://www.meetup.com/grafana-friends-virtual-en-espanol/).
 - [ ] Agendar un tweet para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
-- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
-- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
-- [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
-- [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
+- [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
+- [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
+- [x] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
+- [x] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
 
 
 ## Puntos a hablar

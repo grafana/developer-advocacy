@@ -16,17 +16,17 @@ Invitado(s): [Marcelo Magallon](https://www.linkedin.com/in/marcelomagallon/)
 - [x] Si el invitado acepta, mandar invitacion para la fecha del show. Se debe confirmar el momento, 13:00 UTC (15:00 CEST) en Jueves. Se debe solicitar una foto que se pueda usar para promocionar o de menos permiso para usar su foto de perfil en redes sociales.
 - [x] Mandar una invitacion de calendario a la par del bloque de Cafe Con Grafana. Nombrar a la invitacion con el numero de episodio y su nombre. Ejemplo: `Café con Grafana #010 con Pepe Pancho`. Esto para apartar la fecha en calendarios. La invitacion debe ser agendada 15 minutos antes del stream (para checar microfonos y demas) asi como 15 minutos despues (para permitir sacar cualquier información restante). Tiempo total de la invitacion 1.5 horas.
 - [x] Crear imagen thumbnail en [Canva](https://canva.com) usando el formato de Café con Grafana. Usar [thumbsup.tv](https://thumbsup.tv) para revisar que el thumbnail se vea bien en diferentes dispositivos. LA IMAGEN YA ESTÁ EN LA CARPETA DE CANVA https://www.canva.com/folder/FAFuWGuLXes
-- [] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
-	- [] Incluir en el titulo el numero de episodio, Ejemplo: `(In Spanish) Entendiendo los Sintéticos (Café con Grafana #004)`.
-	- [] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
-- [] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
-- [] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
-- [] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
+- [ ] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
+	- [ ] Incluir en el titulo el numero de episodio, Ejemplo: `(In Spanish) Entendiendo los Sintéticos (Café con Grafana #004)`.
+	- [ ] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
+- [ ] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
+- [ ] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
+- [ ] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Agendar un tweet para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
-- [] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
-- [] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
-- [] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
-- [] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
+- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
+- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
+- [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
+- [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
 
 
 ## Puntos a hablar
