@@ -1,6 +1,6 @@
 ---
-url:
-date: 
+url: https://youtube.com/live/RXLavQT58YA
+date: 2023-11-10
 ---
 # [[GOH 19 - PLZv2 with Olha and Daniel]]
 
@@ -20,11 +20,11 @@ Guest:: Olha Yevtushenko, Daniel González Lopes
 	- [x] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`.
 	- [x] Add the standard description as per previous Grafana Office Hours shows. Check the video description and add guests' contact details.
 - [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
-- [ ] Get the YouTube link to the show. Put the link on this page, in the URL property above.
-- [ ] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
+- [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
+- [x] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Schedule a tweet just when the show begins to say "We're live now!"
-- [ ] Schedule a Slack message on the internal Grafana workspace (in `#community`).
-- [ ] Schedule a Slack message on the public Grafana Slack workspace (in `#announcements`)
+- [x] Schedule a Slack message on the internal Grafana workspace (in `#community`).
+- [x] Schedule a Slack message on the public Grafana Slack workspace (in `#announcements`)
 
 ## Description
 
