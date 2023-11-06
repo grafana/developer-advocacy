@@ -32,7 +32,7 @@ Guest::
 - Introduce guest
 	- Who are you?
 	- What do you do?
-	- What is your adobo?
+	- What's your adobo? (a food, item, activity that reminds you of home)
 - 
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
