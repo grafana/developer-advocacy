@@ -64,6 +64,8 @@ Guest::
 		- What is Symbolic Convergence Theory (SCT)?
 		- Jung: archetypes, symbols as a universal language
 	- What principles can we apply from experience design that can help us become better testers?
+		- Systems thinking
+		- Emergence
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
 
