@@ -49,15 +49,17 @@ Invitado(s): [Daniel Gonzalez Lopes](https://www.linkedin.com/in/danielgonzalezl
 	- Es solo para performance testing?
 	- Instalación + Scripting
 		- (Demo - Daniel) QuickPizza y cómo instalar y comenzar con k6
+			- Usare ejemplos en de el folder fundamentals the k6 en quickpizza
 	- Modos de ejecución
 		- `k6 run test.js`
-		- `k6 run test.js -o cloud`, `-o csv=resultados.csv`
+- Analisis de resultados
+	- k6 dashboard
+	- Prometheus Remote Write // Prometheus + Grafana
+- Qué es GCk6?
+	- Cuál es la diferencia entre k6 Cloud y Grafana Cloud?
+	- Como se integran?
+		- `k6 run test.js -o cloud`
 		- `k6 cloud test.js`
-		- Cuál es la diferencia entre k6 Cloud y Grafana Cloud?
-	- Analisis de resultados
-		- k6 dashboard
-		- Grafana Cloud k6
-		- Prometheus Remote Write
 - Extensiones de k6
 	- Maneras de extender k6, con ejemplos de los más populares/nuestros favoritos
 		- JavaScript (jslib)
