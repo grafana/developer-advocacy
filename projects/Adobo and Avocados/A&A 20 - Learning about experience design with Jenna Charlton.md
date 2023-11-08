@@ -11,9 +11,10 @@ Guest::
 ## Checklist
 
 - [x] Contact the guest and tell them about Adobo and Avocados.
-	> Hi <guest>! How are you doing? I wanted to ask if you'd be interested in being our future guest in our podcast/livestream called Adobo and Avocados? You can find our past episodes [here](https://www.youtube.com/@adoboandavocados/streams). Our aim is to have a platform where we feature amazing people in tech as well as those from underrepresented groups. We can talk about your career in tech or, if you have other important topics in mind, we can also discuss those.
 
-	> Adobo and Avocados is an hour-long live conversation that is streamed to the [Adobo and Avocados YouTube channel](https://youtube.com//@adoboandavocados). It's very casual, and you can share unique experiences working in tech! 
+> Hi `<guest>`! How are you doing? I wanted to ask if you'd be interested in being our future guest in our podcast/livestream called Adobo and Avocados? You can find our past episodes [here](https://www.youtube.com/@adoboandavocados/streams). Our aim is to have a platform where we feature amazing people in tech as well as those from underrepresented groups. We can talk about your career in tech or, if you have other important topics in mind, we can also discuss those.
+> Adobo and Avocados is an hour-long live conversation that is streamed to the [Adobo and Avocados YouTube channel](https://youtube.com//@adoboandavocados). It's very casual, and you can share unique experiences working in tech! 
+
 - [x] If the guest agrees, choose a date for the Office Hours session. Confirm the time and ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
 - [x] Invite them to the Adobo and Avocados calendar invite (choose "this instance only", not the whole series). Change the invite to include the episode number and their name, ie `Adobo and Avocados #01 with Rafaela`. This is to save the date. Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours.
 - [x] Create a thumbnail on [Canva](https://canva.com) using the Adobo and Avocados thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
@@ -22,7 +23,6 @@ Guest::
 	- [x] Add the standard description as per previous Adobo and Avocados shows. Check the video description and add guests' contact details.
 - [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
 - [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
-
 ## Talking points
 
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
@@ -42,13 +42,27 @@ Guest::
 	- From being a little wild tester -> tester/trainer -> product -> DevAdvocate 
 	- Career progression doesn't have to be linear
 - You're also studying for your masters degree in Experience Design
-	- Tell us about experience design
+	- Tell us about experience design (XD)
 	- The intersection of design thinking, human-computer interaction, and user experience
+		- What's the relationship between testing and design?
+			- Vojin Popović's talk at TestCon Europe a couple weeks ago: *Embracing shift-left testing: strategies for enhancing quality and agility in modern software development*: the furthermost that you can shift-left testing is design thinking.
+			- Similarities
+				- User-centric
+				- Touchpoint consistency
+				- Sustainability and inclusivity
+				- Interdisciplinary
+				- Iterative, collaborative
+			- TDD/BDD and D3
+		- What is design thinking?
+		- What about interaction design? What's the difference between experience design and interaction design?
+			- Experience design includes points of interaction, but goes beyond that to also include other aspects like content, visuals, architecture, and performance.
 	- What are you focusing on at the moment?
 		- Service design
 	- What researches are you focusing at the moment?
 		- Current research is on job titles for testers and how it impacts testers feelings of esteem and belonging within their organizations (I-O psych stuff)
 		- Longer term thesis will use that research + symbolic convergence theory research to understand and develop shared identity for testers
+		- What is Symbolic Convergence Theory (SCT)?
+		- Jung: archetypes, symbols as a universal language
 	- What principles can we apply from experience design that can help us become better testers?
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?

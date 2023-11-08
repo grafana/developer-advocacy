@@ -99,6 +99,11 @@ Repo: https://github.com/grafana/grafana
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- How can people reach you?
+	- Announcements
+		- We're hiring! https://grafana.com/about/careers/open-positions/
+			- [k6 core team](https://boards.greenhouse.io/grafanalabs/jobs/5007589004)
+			- Developer Advocate
+			- Community Manager
 	- Next week: Paul is doing something Kubernetes related?
 
 ### Just before the show
