@@ -1,3 +1,7 @@
+## Presentation
+
+- [Intersectionality in tech and DevRel](https://www.canva.com/design/DAFzmIZBsAM/vuZZ7KE4fHxczHYdwZTvmw/view?utm_content=DAFzmIZBsAM&utm_campaign=designshare&utm_medium=link&utm_source=editor)
+
 ## Talking points
 
 - Introduction (2 mins)
@@ -21,12 +25,12 @@
 - How is it related to tech? (5 mins)
     - Intersection of systems thinking and tech (Nicole)
     - Intersection of testing, empathy, and inclusivity (Marie)
-- How is it related to Developer Advocacy? (5 mins)
+- How is it related to Developer Advocacy? (5)
     - What is DevRel? (Nicole)
     - Intersection of developer advocacy and diversity (connecting to different communities) (Marie)
-        - We become diverse representatives (Nicole)
         - We model the change we want to see (Marie)
             - Lack of role models when we were starting out
+        - We become diverse representatives (Nicole)
 - What can you do to help? (3 mins)
     - As a member of a minority group, support other groups. (Marie)
     - Be curious (Nicole)
