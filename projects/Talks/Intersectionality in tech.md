@@ -21,7 +21,6 @@
         - Nationalities and ethnicities (Nicole)
         - Religion, upbringing, and personal circumstances (Marie)
         - Religion, Gender, and sexual orientation (Nicole)
-        - Personal circumstances and (dis)abilities (Marie)
 - How is it related to tech? (5 mins)
     - Intersection of systems thinking and tech (Nicole)
     - Intersection of testing, empathy, and inclusivity (Marie)
