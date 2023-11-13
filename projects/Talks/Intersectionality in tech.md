@@ -11,11 +11,11 @@
     - How we met?
 - Explain adobo (Nicole) (1 min)
     - Intersection of different ingredients
-- Disclaimer and question (2 mins)   
+- Disclaimer and question (Marie)  (2 mins) 
     - *Disclaimer: This isn't a talk about testing recommended practices or a test automation tool.* 
     - *Question: Describe yourself in one word only*
 - What is intersectionality? (7 mins)
-    - History of intersectionality (Kimberle Crenshaw)
+    - History of intersectionality (Kimberle Crenshaw) (Nicole)
     - Different types of identities
         - Gender and race (Marie)
         - Nationalities and ethnicities (Nicole)
