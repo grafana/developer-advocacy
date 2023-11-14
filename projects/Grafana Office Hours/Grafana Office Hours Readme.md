@@ -28,7 +28,7 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 ### Upcoming
 
 - 10/11: [GOH 19 - PLZv2 with Olha and Daniel](GOH%2019%20-%20PLZv2%20with%20Olha%20and%20Daniel.md)
-- 17/11: GOH 20 - OTel demo with Paul? Marie and Nicole at Agile Testing Days
+- 17/11: [[GOH 20 - Testcontainers with AtomicJar]]
 - 24/11: Shutdown day
 - 01/12: [[GOH 21 - Joseph Elliot on Grafana Tempo]]
 - 08/12: [[GOH 22 - Juraci Paixāo Kröhling on OpenTelemetry]]

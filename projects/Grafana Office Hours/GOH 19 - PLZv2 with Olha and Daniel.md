@@ -66,8 +66,8 @@ Repo: https://github.com/grafana/grafana
 		- Private Load Zones, a Grafana Cloud k6 feature that uses k6 operator to let you run load tests on private infrastructure-- good for getting past firewalls.
 	- Introductions all around: who are you, and what do you do?
 - But first: Announcements
-	- Paul will be at KubeCon North America at the Grafana Labs booth!
 	- Catch me and Marie Cruz at Agile Testing Days on November 16th (*Adobo & Avocados: Intersectionality in Tech and DevRel*): https://agiletestingdays.com/2023/session/adobo-and-avocados-intersectionality-in-tech-and-devrel/
+	- [ObservabilityCON 2023](https://grafana.com/blog/2023/11/02/observabilitycon-2023-a-sneak-peek-at-the-opening-keynote/)is coming up! Next Tuesday, November 14 at 13:30 GMT, the keynote will be streamed live. If you sign up for it (for free), you'll also be noticed when other on-demand sessions are made available.
 - What is k6?
 - What is k6-operator?: https://github.com/grafana/k6-operator
 	- Previous k6 Office Hours episode on this: https://youtu.be/5d5zxsGz8L4
@@ -90,11 +90,10 @@ Repo: https://github.com/grafana/grafana
 	- How do you set it up? (demo)
 	- We're no longer promoting v1 - why?
 	- What are the limitations of PLZv2?
-		- Limitations from v1:
-			- Lack of thresholds
-			- Difficult to choose geographical zones
-			- No threshold calculation or stop when threshold is reached
-			- No native results aggregation
+		- Being able to use multiple private load zones. Only one per cluster.
+		- No environment variable support.
+		- Browser tests not supported yet.
+		- Logs not yet exposed to the cloud.
 	- Is this only on Grafana Cloud k6?
 - Outro
 	- If people want to learn more about this topic, where should they go?
@@ -102,22 +101,21 @@ Repo: https://github.com/grafana/grafana
 	- Announcements
 		- We're hiring! https://grafana.com/about/careers/open-positions/
 			- [k6 core team](https://boards.greenhouse.io/grafanalabs/jobs/5007589004)
-			- Developer Advocate
-			- Community Manager
-	- Next week: Paul is doing something Kubernetes related?
+			- Synthetic monitoring
+	- Next week: AtomicJar - TestContainers
 
 ### Just before the show
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
+- [x] How do you pronounce your name?
 - [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
-- [ ] We'll be streaming to YouTube.
-- [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
-- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
-- [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] We'll be streaming to YouTube.
+- [x] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
+- [x] You can also use the private chat if you need to say something, but you can also just say it out loud.
+- [x] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
 - [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
 - [ ] Just in case I disconnect... stall for a minute and I'll be right back.
 
