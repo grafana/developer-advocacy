@@ -63,7 +63,30 @@ Repo: https://github.com/grafana/grafana
 
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
-TODO
+- Intro
+	- Introductions all around: who are you, and what do you do?
+- But first: Announcements
+	- Nicole and Marie Cruz have been at Agile Testing Days (*Adobo & Avocados: Intersectionality in Tech and DevRel*): https://agiletestingdays.com/2023/session/adobo-and-avocados-intersectionality-in-tech-and-devrel/
+	- [ObservabilityCON 2023](https://grafana.com/blog/2023/11/02/observabilitycon-2023-a-sneak-peek-at-the-opening-keynote/) happened this week where there were some major announcements
+		- [Application Observability](https://grafana.com/blog/2023/11/14/announcing-application-observability-in-grafana-cloud-with-native-support-for-opentelemetry-and-prometheus/)
+		- [Grafana Beyla](https://grafana.com/blog/2023/11/14/grafana-beyla-1.0-release-zero-code-instrumentation-for-application-telemetry-using-ebpf/)
+		- Acquisition of [Asserts.ai](https://grafana.com/blog/2023/11/14/grafana-labs-acquires-asserts/)
+		- [Sift](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/sift/) for response management
+- Feature discussion
+	- Introduction to Testcontainers (Manu)
+	- How we are using TC in k6 for e2e tests  (Pablo and Manu)
+	- K3s module
+	- k6 module
+	- Demo (Pablo)
+	- Looking for more contributions?
+- Outro
+	- If people want to learn more about this topic, where should they go?
+	- How can people reach you?
+	- Announcements
+		- We're hiring! https://grafana.com/about/careers/open-positions/
+			- [k6 core team](https://boards.greenhouse.io/grafanalabs/jobs/5007589004)
+			- Synthetic monitoring
+	- Next week: we're off for Thanksgiving in the US and Grafana shutdown day
 
 ### Just before the show
 
