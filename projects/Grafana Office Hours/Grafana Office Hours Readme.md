@@ -25,10 +25,11 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 20/10: [GOH 16 - Grafana Agent with Paschalis Tsilias](GOH%2016%20-%20Grafana%20Agent%20with%20Paschalis%20Tsilias)
 - 27/10: [GOH 17 - Frontend observability with Faro](GOH%2017%20-%20Frontend%20observability%20with%20Faro.md) 
 - 03/11: [GOH 18 - Combining frontend and backend performance with John Hill](GOH%2018%20-%20Combining%20frontend%20and%20backend%20performance%20with%20John%20Hill.md)
+- 10/11: [GOH 19 - PLZv2 with Olha and Daniel](GOH%2019%20-%20PLZv2%20with%20Olha%20and%20Daniel.md)
+- 17/11: [[GOH 20 - Testcontainers with Manuel de la Pena]]
+
 ### Upcoming
 
-- 10/11: [GOH 19 - PLZv2 with Olha and Daniel](GOH%2019%20-%20PLZv2%20with%20Olha%20and%20Daniel.md)
-- 17/11: [[GOH 20 - Testcontainers with AtomicJar]]
 - 24/11: Shutdown day
 - 01/12: [[GOH 21 - Joseph Elliot on Grafana Tempo]]
 - 08/12: [[GOH 22 - Juraci Paixāo Kröhling on OpenTelemetry]]
