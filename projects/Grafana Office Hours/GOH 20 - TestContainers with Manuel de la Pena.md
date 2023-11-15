@@ -86,7 +86,9 @@ Repo: https://github.com/grafana/grafana
 		- We're hiring! https://grafana.com/about/careers/open-positions/
 			- [k6 core team](https://boards.greenhouse.io/grafanalabs/jobs/5007589004)
 			- Synthetic monitoring
-	- Next week: we're off for Thanksgiving in the US and Grafana shutdown day
+			- Developer Advocate
+			- Community Manager
+	- Next week: we're off for Thanksgiving in the US and Grafana shutdown day, so we'll be streaming a recorded episode about Grafana Agent's Flow mode.
 
 ### Just before the show
 
