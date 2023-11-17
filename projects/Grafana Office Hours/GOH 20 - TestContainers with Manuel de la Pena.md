@@ -67,18 +67,24 @@ Repo: https://github.com/grafana/grafana
 	- Introductions all around: who are you, and what do you do?
 - But first: Announcements
 	- Nicole and Marie Cruz have been at Agile Testing Days (*Adobo & Avocados: Intersectionality in Tech and DevRel*): https://agiletestingdays.com/2023/session/adobo-and-avocados-intersectionality-in-tech-and-devrel/
-	- [ObservabilityCON 2023](https://grafana.com/blog/2023/11/02/observabilitycon-2023-a-sneak-peek-at-the-opening-keynote/) happened this week where there were some major announcements
+		- We shall see what happens as the lunatic(s) run the asylum!
+	- [ObservabilityCON 2023](https://grafana.com/about/events/observabilitycon/2023/opening-keynote-event/) happened this week where there were some major announcements
 		- [Application Observability](https://grafana.com/blog/2023/11/14/announcing-application-observability-in-grafana-cloud-with-native-support-for-opentelemetry-and-prometheus/)
 		- [Grafana Beyla](https://grafana.com/blog/2023/11/14/grafana-beyla-1.0-release-zero-code-instrumentation-for-application-telemetry-using-ebpf/)
 		- Acquisition of [Asserts.ai](https://grafana.com/blog/2023/11/14/grafana-labs-acquires-asserts/)
 		- [Sift](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/sift/) for response management
 - Feature discussion
 	- Introduction to Testcontainers (Manu)
+		- Who is AtomicJar?
 	- How we are using TC in k6 for e2e tests  (Pablo and Manu)
+		- Was this "scratching an itch" for a project?
 	- K3s module
+		- I'll be trying this out!
 	- k6 module
+		- Noticed this is missing for Java implementation...I may have to dust off my IDE and take a look
 	- Demo (Pablo)
 	- Looking for more contributions?
+		- Are specific modules needed or in progress?
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- How can people reach you?
