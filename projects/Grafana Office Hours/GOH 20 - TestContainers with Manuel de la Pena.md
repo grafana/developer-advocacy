@@ -74,6 +74,7 @@ Repo: https://github.com/grafana/grafana
 		- Acquisition of [Asserts.ai](https://grafana.com/blog/2023/11/14/grafana-labs-acquires-asserts/)
 		- [Sift](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/sift/) for response management
 - Feature discussion
+	- This _WAS_ originally going to be on Cafe Con Grafana since everyone is a spanish speaker
 	- Introduction to Testcontainers (Manu)
 		- Who is AtomicJar?
 	- How we are using TC in k6 for e2e tests  (Pablo and Manu)
