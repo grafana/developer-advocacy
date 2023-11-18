@@ -73,12 +73,22 @@ Repo: https://github.com/grafana/grafana
 		- [Grafana Beyla](https://grafana.com/blog/2023/11/14/grafana-beyla-1.0-release-zero-code-instrumentation-for-application-telemetry-using-ebpf/)
 		- Acquisition of [Asserts.ai](https://grafana.com/blog/2023/11/14/grafana-labs-acquires-asserts/)
 		- [Sift](https://grafana.com/docs/grafana-cloud/alerting-and-irm/machine-learning/sift/) for response management
+		- What is Devops?: https://www.youtube.com/watch?v=gmrbHD6UbAE
 - Feature discussion
 	- This _WAS_ originally going to be on Cafe Con Grafana since everyone is a spanish speaker
 	- Introduction to Testcontainers (Manu)
-		- Who is AtomicJar?
+		- Testcontainers
+			- set of Java, .NET, Golang, Node.js, Scala, Rust, Elixir libraries (but mostly Java) that exposes HTTP endpoints to interact with Docker and spin up images within the script.
+			- Lets you expose ports, use conditional logic
+		- Who is AtomicJar? - created testcontainers
+			- Hires maintainers (Node.js, java, Go)
+		- Is this for integration tests or unit tests?
+			- Whatever works for you
+			- Breaks down silos between dev, test, ops
+			- Semantics of "unit" vs "integration" vs "e2e" lose meaning when you can do e2e in application code.
 	- How we are using TC in k6 for e2e tests  (Pablo and Manu)
 		- Was this "scratching an itch" for a project?
+		- Running k6 image within the code using Testcontainers
 	- K3s module
 		- I'll be trying this out!
 	- k6 module
