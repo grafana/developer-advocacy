@@ -17,7 +17,7 @@ Invitado(s): [Almudena Vivanco](https://www.linkedin.com/in/almudenavivanco/)
 - [x] Mandar una invitacion de calendario a la par del bloque de Cafe Con Grafana. Nombrar a la invitacion con el numero de episodio y su nombre. Ejemplo: `Café con Grafana #010 con Pepe Pancho`. Esto para apartar la fecha en calendarios. La invitacion debe ser agendada 15 minutos antes del stream (para checar microfonos y demas) asi como 15 minutos despues (para permitir sacar cualquier información restante). Tiempo total de la invitacion 1.5 horas.
 - [x] Crear imagen thumbnail en [Canva](https://canva.com) usando el formato de Café con Grafana. Usar [thumbsup.tv](https://thumbsup.tv) para revisar que el thumbnail se vea bien en diferentes dispositivos. LA IMAGEN YA ESTÁ EN LA CARPETA DE CANVA https://www.canva.com/folder/FAFuWGuLXes
 - [x] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
-	- [x] Incluir en el titulo el numero de episodio, Ejemplo: `(Spanish) Entendiendo los Sintéticos (Café con Grafana #004)`.
+	- [x] Incluir en el titulo el numero de episodio, Ejemplo: `(Spanish) Dimensionando el Grafana Suite (Café con Grafana #004)`.
 	- [x] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
 	'''
 	Almudena Vivanco viene a platicarnos de todos los experimentos y pruebas a las que someten a toda la suite de Grafana. Desde Mimir hasta k6 ella pone al limite todos los elementos constantemente. 
@@ -49,13 +49,12 @@ Invitado(s): [Almudena Vivanco](https://www.linkedin.com/in/almudenavivanco/)
 https://streamyard.com/xyxgk9k4xf
 - [x] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
 https://www.youtube.com/watch?v=O9tAkdKMvDg
-- [ ] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
-- [ ] Agendar un tweet para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
-- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
-- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
-- [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
-- [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
-- [ ] Agendar anuncio en Grafana Community
+- [x] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
+- [x] Agendar mensajes para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
+	- [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
+	- [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
+	- [x] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
+	- [x] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
 
 
 ## Puntos a hablar
@@ -74,19 +73,20 @@ https://www.youtube.com/watch?v=O9tAkdKMvDg
 	- A que te dedicas?
 	- Cuanto llevas usando Grafana?
 - Temas a hablar
-	- Que es Grafana para ti?
-	- Que usos le das?
-	- A que te refieres con dimensionar?
-	- Como le hicieron?
-	- Que hubi de interesante?
-	- 
-	- <<Algun otro tema? @nicolevanderhoeven @antonio @MrsDaehin>>
-	- Que más quiere compartir Almu?
+    - Que es Grafana para ti? Para mí el stack más potente para centralizar la observabilidad. 
+    - Que usos le das a Grafana?  Usamos Grafana como pilar de observabilidad. 
+	- Y bueno Observabilidad pero de donde vienen sus Metricas? Todas nuestras métricas independientemente de la fuente ( ya sea prometheus, azure insights, firebase ... )  acaban visualizándose en nuestro Grafana. Del Stack usamos Mimir, Loki y Tempo. 
+	- Y del resto del stack que usan? K6 obviamente y estamos intentando implementar Synthetic monitoring con BlackBox Exporter ( due time: Febrero )
+    - A que te refieres con dimensionar?  Cuando implementamos Opentelemetry en nuestro stack tecnológico necesitamos tener una forma de visbilizar esa trazabilidad. Ya usábamos Grafana como front end ( con origen de datos prometheus y azure insights básicamente ).  Con el volumen de datos que manejamos teníamos que tomar una decisión: Un grafana Stack enterprise manejado de forma interna, el stack enterprise manejado por el grupo schwarz en alemania, Grafana Cloud o un reseller. 
+    - Como le hicieron?  Creamos una API tonta que enviaba SPANS a tempo y a mimir para simular el volumen total que tenemos en la aplicación. Así pudimos dimensionar el exporter y el collector y las instancias del stack. Además hicimos queries simulando un cliente con un dashboard genérico para ver la velocidad del front end. 
+    - Que hubo de interesante? Pues nos decantamos por tener el stack en nuestro equipo. Vimos que era la forma más eficiente y escalable. El reseller fue un no rotundo y grafana cloud lo tenemos para proyectos privados o más pequeños. 
+    - Que más quiere compartir Almu? La herramienta de Mimir tool para ver el uso de métricas es algo que he descubierto hace poco y me está siendo muy útil :D Porque es fácil pasarse enviando métricas -.-
 - Cierre
-	- Donde puede la gente aprender mas de el tema?
-	- Donde te puede seguir/contactar la gente?
-	- Algun anuncio para tu abuelita o mamá o hijos?
-	- Mas anuncios de cierre
+    - Donde puede la gente aprender mas de el tema?
+    - Donde te puede seguir/contactar la gente?
+    - Algun anuncio? Conferencia? Evento?
+    - Mas anuncios de cierre
+		- No se pierdan mas videos de Lisa y el Keynot de ObservabilityCon
 
 ### 15 minutos antes
 
