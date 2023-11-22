@@ -101,9 +101,11 @@ Note we also have static -> river converters that cover most use cases.
 * Limitations of Flow
 - Future of Flow
 	- Go over our future plans.
+	- Feature parity already between flow and static
+	- When is static mode going away?
 - Outro
 	- If people want to learn more about this topic, where should they go?
-	- 
+	- Next week, we're talking to Joseph Elliot all about Grafana Tempo.
 
 ### Just before the show
 
