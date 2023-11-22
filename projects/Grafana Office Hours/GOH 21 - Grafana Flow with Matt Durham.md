@@ -32,16 +32,21 @@ Guest::
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
 - Intro
-	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
+	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about Grafana Agent Flow mode: what it is, how it's different from static mode, and how to use it.*
 - Announcements
-	- New project releases
-	- Recent content published
-- Introduce guest
+	- What is Devops?: https://www.youtube.com/watch?v=gmrbHD6UbAE
+	- Grafana k6 for beginners: Why observability needs testing https://www.youtube.com/watch?v=1mtYVDA2_iQ
+	- Observability survey: https://docs.google.com/forms/d/e/1FAIpQLSfEDVCT0Wax4CdZxy2t4Z_P2lg8JPZDCeW3BlcEJPeOz4e-aw/viewform
+		- tools you're using
+		- whether or not you're using AI, and how
+		- what are you excited about
+		- your observability strategy
+		- Last year's results: https://grafana.com/observability-survey-2023/?pg=blog&plcmt=body-txt#quantifiable-impact-of-observability
+- Introduce guest: Matt Durham
 	- Who are you?
 	- What do you do?
-	- How long have you been using Grafana/other project?
 - What is Grafana Agent?
-	- Grafana Agent is a vendor nuetral signal collector. See Paschalis office hours session for a great dive into what the Agent is.
+	- Grafana Agent is a vendor nuetral signal collector. See Paschalis office hours session for a great dive into what the Agent is: https://youtube.com/live/i0mA0w_MCPQ
 - What is Flow?
 	- Flow is our new mode of the Agent Collector that is all about building telemetry pipelines. The previous iteration Static was built in a very prometheus way. The original concept was that the Agent was a lightweight version of Prometheus for moving metrics. The ability to chain together components to make telemetry pipelines is key. Very much like a traditional ETL pipeline.
 	- Short History
