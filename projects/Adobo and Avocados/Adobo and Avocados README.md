@@ -47,7 +47,7 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - [Jenny Bramble](https://www.linkedin.com/in/jennybramble/) (being queer, women in tech, hiring for diversity as a director of engineering)
 - [Richard Bradshaw](https://www.linkedin.com/in/friendlytester/) (mental health, creating a community, career changes)
 - Lisa Jung
-- [Heather Reid](https://www.linkedin.com/in/heather-reid-21198a69/) (being a community boss at MoT, how she uses her maths background in testing, using data to build models of user behaviours)
+- [Heather Reid](https://www.linkedin.com/in/heather-reid-21198a69/) (being a community boss at MoT, how she uses her maths background in testing, using data to build models of user behaviours, MVP vs Minimum Shippable Risk)
 - Avery Schneider, IT Operations Security Engineer at Grafana (being trans)
 - 
 
