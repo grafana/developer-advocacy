@@ -47,6 +47,14 @@ Guest::
 	- What do you do?
 - What is Grafana Agent?
 	- Grafana Agent is a vendor nuetral signal collector. See Paschalis office hours session for a great dive into what the Agent is: https://youtube.com/live/i0mA0w_MCPQ
+- What is static mode?
+	- What does it look like?
+	- What are the things that are not so good about it?
+		- Data pipelines are hard to do in YAML. What are data pipelines and why are they important?
+		- What things were hard to do in static mode?
+			- writing to multiple Prometheus Remote Write endpoints
+			- converting Prometheus metrics
+			- secret management
 - What is Flow?
 	- Flow is our new mode of the Agent Collector that is all about building telemetry pipelines. The previous iteration Static was built in a very prometheus way. The original concept was that the Agent was a lightweight version of Prometheus for moving metrics. The ability to chain together components to make telemetry pipelines is key. Very much like a traditional ETL pipeline.
 	- Short History
@@ -90,6 +98,7 @@ Note we also have static -> river converters that cover most use cases.
 	* Clustering
 	* OTLP support
 	* Promtail to Agent transition
+* Limitations of Flow
 - Future of Flow
 	- Go over our future plans.
 - Outro
