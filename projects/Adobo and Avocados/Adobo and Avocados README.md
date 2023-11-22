@@ -23,11 +23,11 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 18/10: [A&A 17 - Having a coaching mindset with Kulas Angeles](https://www.youtube.com/watch?v=K9jQ7HEo5bw)
 - 23/10: [A&A 18 - Inspiring others and fuelling your passion with Jonah Andersson](https://www.youtube.com/watch?v=bO67fbpFRJM)
 - 01/11: [A&A 19 - Becoming an accessibility advocate with Erin Crise](https://www.youtube.com/watch?v=ZCr_z9ii4Io)
+- 08/11: [A&A 20 - Learning about experience design with Jenna Charlton](A&A%2020%20-%20Learning%20about%20experience%20design%20with%20Jenna%20Charlton.md)
+- 15/11: [A&A 21 - Minimalism in software testing with Lina Zubyte](A&A%2021%20-%20Minimalism%20in%20software%20testing%20with%20Lina%20Zubyte.md)
 
 ## Upcoming
 
-- 08/11: [A&A 20 - Learning about experience design with Jenna Charlton](A&A%2020%20-%20Learning%20about%20experience%20design%20with%20Jenna%20Charlton.md)
-- 15/11: [A&A 21 - Minimalism in software testing with Lina Zubyte](A&A%2021%20-%20Minimalism%20in%20software%20testing%20with%20Lina%20Zubyte.md)
 - 22/11: Lisa Crispin
 - 28/11: Renata Andrade
 - 06/12: Skipped? Marie at TestJS Summit
@@ -41,5 +41,14 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 
 - Gift Egwuenu
 - Elmira Jamalian (encouraging people from underrepresented groups to speak up)
+- [Sowmya Sridharamurthy](https://www.linkedin.com/in/sowmyasridharamurthy/) (encouraging/hiring for diversity as a QEM)
+- [Karen (Gochnauer) Todd](https://www.linkedin.com/in/karentestsstuff/) (mental health and ADHD as a superpower)
+- [Linda van de Vooren](https://www.linkedin.com/in/lindavandevooren/) (non-traditional route into tech, neurodivergence, impostor syndrome)
+- [Jenny Bramble](https://www.linkedin.com/in/jennybramble/) (being queer, women in tech, hiring for diversity as a director of engineering)
+- [Richard Bradshaw](https://www.linkedin.com/in/friendlytester/) (mental health, creating a community, career changes)
+- Lisa Jung
+- [Heather Reid](https://www.linkedin.com/in/heather-reid-21198a69/) (being a community boss at MoT, how she uses her maths background in testing, using data to build models of user behaviours)
+- Avery Schneider, IT Operations Security Engineer at Grafana (being trans)
+- 
 
 
