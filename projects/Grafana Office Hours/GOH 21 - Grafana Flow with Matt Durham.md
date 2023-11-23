@@ -10,11 +10,11 @@ Guest::
 
 ## Checklist
 
-- [ ] Contact the guest and tell them about Office Hours.
+- [x] Contact the guest and tell them about Office Hours.
 	> At Grafana Labs, we do a weekly livestream called [Grafana Office Hours](https://www.youtube.com/watch?v=uk7NoagbJ28&list=PLDGkOdUX1Ujrrse-cdj20RRah9hyHdxBu), where we have guests on to talk about how to use Grafana, observability, or visualization. I saw your [blog post/video/post] on [source] and I think it would be great to have you on the show to share your experience about [topic].
 	Office Hours is an hour-long live conversation that is streamed to the [Grafana YouTube channel](https://youtube.com/@grafana). It's very casual, and you can also share your screen if you'd like to do a demo (not required). If you'd like to join, I'd love to have you! 
-- [ ] If the guest agrees, choose a date for the Office Hours session. Confirm the time: 13:00 UTC (15:00 CEST) on Friday. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
-- [ ] Invite them to the Grafana Office Hours calendar invite (choose "this instance only", not the whole series). Change the invite to include the episode number and their name, ie `Grafana Office Hours #01 with Mitch`. This is to save the date. Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours.
+- [x] If the guest agrees, choose a date for the Office Hours session. Confirm the time: 13:00 UTC (15:00 CEST) on Friday. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
+- [x] Invite them to the Grafana Office Hours calendar invite (choose "this instance only", not the whole series). Change the invite to include the episode number and their name, ie `Grafana Office Hours #01 with Mitch`. This is to save the date. Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours.
 - [ ] Create a thumbnail on [Canva](https://canva.com) using the Grafana Office Hours thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
 - [ ] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
 	- [ ] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`.
@@ -51,27 +51,14 @@ Guest::
 	- What does it look like?
 	- What are the things that are not so good about it?
 		- Data pipelines are hard to do in YAML. What are data pipelines and why are they important?
-		- What things were hard to do in static mode?
-			- writing to multiple Prometheus Remote Write endpoints
-			- converting Prometheus metrics
-			- secret management
+		- Flow is OTel native, more big tent than static (which is only Prometheus)
 - What is Flow?
 	- Flow is our new mode of the Agent Collector that is all about building telemetry pipelines. The previous iteration Static was built in a very prometheus way. The original concept was that the Agent was a lightweight version of Prometheus for moving metrics. The ability to chain together components to make telemetry pipelines is key. Very much like a traditional ETL pipeline.
 	- Short History
 		- Discussions started almost 2 years ago between Robert Fratto and myself on how to improve the Agent.
-- Why Flow?
-	- Static mode hid complexity
-		- Static mode was very easy to do simple things and impossible to do hard things. There was a lot of magic on how remote writes and integrations worked from both a user perspective and developer perspective.
-	- Drive more contributions
-		- Adding new features to static mode was difficult for developers since how the individual items iteracted. In Flow components are driven by inputs and outputs, so a developer can create a component that accepts an input and exports an output without caring how it works in the bigger picture.
-	- Allow more use cases beyond telemetry
-		- Ingesting of rules from kubernetes crds is our first example but we imagine it will grow as time increases. The black box nature of components allows quick creation.
-	- Documentation
-		- Static mode is a collection of other projects rolled into one, and in most of those cases the team reused the available YAML config and exposed that config directly. This could create a drift between the documentation the team documented versus what was available. This also led to documentation being linked to external sources. Now all config is documented in a very standard way. This reference documentation is pretty high quality and standardized. Task based documentation is coming.
-	- Better support and integration for advanced features
-		- **Clustering** has allowed the team to reduce Agent costs by 50%, previously we used hashmod which duplicates metrics to ensure high availability. Clustering allows us to ensure metrics are only read by one source. Each component can implement clustering as the component sees fit which allows smaller more focused changes compared to static. 
 - What is River?
-	- River is a language we created based on HCL. Its based around the idea of expressions.
+	- River is a language we created based on HCL. Its based around the idea of *expressions*.
+	- 
 
 ```
 remote.secret_store "secret" {
@@ -91,18 +78,59 @@ component.test "t1" {
 Note we also have static -> river converters that cover most use cases.
 
 - Why did we invent our own language?
+	- Flow is constantly being re-evaluated. HCL is a one-time runtime configuration. 
+	- HCL was not as performant.
 	- There is a lot of discussion in our github repository on this. The team iterated on several examples to see how the system would look and feel. The fact we wanted to create relationships and use expressions made this difficult and difficult to use.  Referencing other components and expressions would have led us to create our own parser for that and it ended up being very dense and error prone. This allows much better error messages to be sent to the user. *show this in demo*
+- Why Flow?
+	- What things were hard to do in static mode?
+		- writing to multiple Prometheus Remote Write endpoints
+		- converting Prometheus metrics
+		- secret management
+	- Better at error messages
+	- Static mode hid complexity
+		- Static mode was very easy to do simple things and impossible to do hard things. There was a lot of magic on how remote writes and integrations worked from both a user perspective and developer perspective.
+	- Drive more contributions
+		- Adding new features to static mode was difficult for developers since how the individual items iteracted. In Flow components are driven by inputs and outputs, so a developer can create a component that accepts an input and exports an output without caring how it works in the bigger picture.
+	- Allow more use cases beyond telemetry
+		- Ingesting of rules from kubernetes crds is our first example but we imagine it will grow as time increases. The black box nature of components allows quick creation.
+	- Documentation
+		- Static mode is a collection of other projects rolled into one, and in most of those cases the team reused the available YAML config and exposed that config directly. This could create a drift between the documentation the team documented versus what was available. This also led to documentation being linked to external sources. Now all config is documented in a very standard way. This reference documentation is pretty high quality and standardized. Task based documentation is coming.
+	- Better support and integration for advanced features
+		- **Clustering** has allowed the team to reduce Agent costs by 50%, previously we used hashmod which duplicates metrics to ensure high availability. Clustering allows us to ensure metrics are only read by one source. Each component can implement clustering as the component sees fit which allows smaller more focused changes compared to static. 
+- Performance of flow is within 1-2% of static mode. HCL had worse performance.
 - Demo Flow and its interesting use cases
 	- Conversion of prometheus metrics and logs to otlp.
 - Unique features to flow
 	* Clustering
+		* vs hashmod sharding
+			- write the data twice to ensure high availability (very expensive to do)
+			- you have to know how many nodes you're running beforehand
+			- you hash the metric name and get a number. If you have five shards, the number would be 0-4. Specify the shard and if it matches, keep it. Otherwise drop it. This is scalability but not availability.
+			- flow is more flexible: you can add or remove a mode
 	* OTLP support
-	* Promtail to Agent transition
+		* static mode: Tempo (OTel)
+		* flow mode: all OTel
+	* config conversions available for Prometheus and static mode to flow (in most cases)
+		* Promtail to Agent transition
+	* more than just telemetry: you can do rules (alerting from CRD in k8s to Mimir cluster)
+	* better community contributions
+	* Continuous profiling support via Pyroscope
+		- eBPF-based profiling
+	- built-in UI
+* Installation changes
+	* Helm chart
+	* rpm and deb for Linux
+	* any Agent executable can run flow
 * Limitations of Flow
 - Future of Flow
 	- Go over our future plans.
 	- Feature parity already between flow and static
 	- When is static mode going away?
+		- A long time in the future, yes
+	- "modules"
+		- groups of components that solve a particular problem
+		- listing of prepackaged solutions
+	- share config
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- Next week, we're talking to Joseph Elliot all about Grafana Tempo.
@@ -111,16 +139,16 @@ Note we also have static -> river converters that cover most use cases.
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
-- [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] How do you pronounce your name?
+- [x] What are your pronouns?
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
 - [ ] We'll be streaming to YouTube.
 - [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
 - [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
-- [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
+- [x] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
 - [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
-- [ ] Just in case I disconnect... stall for a minute and I'll be right back.
+- [x] Just in case I disconnect... stall for a minute and I'll be right back.
 
 ## After the show
 

@@ -80,9 +80,9 @@ Guest:: Paschalis Tsilias
 - How does Grafana Agent scale?
 	- Either Grafana Agent cluster mode: https://grafana.com/docs/agent/latest/flow/concepts/clustering/
 	- or hashmod sharding (same as Prometheus)
-	- Performance
-		- They haven't reinvented the wheel - they use battle-tested techniques from Prometheus and OTel Collector
-		- dogfooding
+- Performance
+	- They haven't reinvented the wheel - they use battle-tested techniques from Prometheus and OTel Collector
+	- dogfooding
 - Metrics Endpoint integration for Grafana Cloud ("agentless" integration)
 	- In what cases is the agentless integration not enough? When would you still need Grafana Agent?
 		- When you need more than just Prometheus metrics

@@ -66,9 +66,11 @@ https://www.youtube.com/watch?v=O9tAkdKMvDg
 - Anuncios
 	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
 	- Lisa Jung sigue con mas videos introductorios, ahora explicando que es DevOps: https://youtu.be/gmrbHD6UbAE
+	- Grafana k6 for beginners: Why observability needs testing https://www.youtube.com/watch?v=1mtYVDA2_iQ
+	- Observability survey: https://docs.google.com/forms/d/e/1FAIpQLSfEDVCT0Wax4CdZxy2t4Z_P2lg8JPZDCeW3BlcEJPeOz4e-aw/viewform
 	- Ya fue ObservabilityCon. Vean el Keynote. https://youtube.com/live/ydlv_V3dyXk?feature=share
  	- Grafana Office Hours de Nicole Mañana
-	- Mas anuncios @nicolevanderhoeven ?
+	- Grafana Agent: qué es Flow mode, cuál es la diferencia entre flow y static mode, y cómo usar flow mode
 - Introducir invitado
 	- Quien eres?
 	- A que te dedicas?
