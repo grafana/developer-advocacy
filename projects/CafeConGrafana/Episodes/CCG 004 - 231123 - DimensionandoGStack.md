@@ -67,6 +67,7 @@ https://www.youtube.com/watch?v=O9tAkdKMvDg
 	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
 	- Lisa Jung sigue con mas videos introductorios, ahora explicando que es DevOps: https://youtu.be/gmrbHD6UbAE
 	- Ya fue ObservabilityCon. Vean el Keynote. https://youtube.com/live/ydlv_V3dyXk?feature=share
+ 	- Grafana Office Hours de Nicole Mañana
 	- Mas anuncios @nicolevanderhoeven ?
 - Introducir invitado
 	- Quien eres?
@@ -80,7 +81,7 @@ https://www.youtube.com/watch?v=O9tAkdKMvDg
     - A que te refieres con dimensionar?  Cuando implementamos Opentelemetry en nuestro stack tecnológico necesitamos tener una forma de visbilizar esa trazabilidad. Ya usábamos Grafana como front end ( con origen de datos prometheus y azure insights básicamente ).  Con el volumen de datos que manejamos teníamos que tomar una decisión: Un grafana Stack enterprise manejado de forma interna, el stack enterprise manejado por el grupo schwarz en alemania, Grafana Cloud o un reseller. 
     - Como le hicieron?  Creamos una API tonta que enviaba SPANS a tempo y a mimir para simular el volumen total que tenemos en la aplicación. Así pudimos dimensionar el exporter y el collector y las instancias del stack. Además hicimos queries simulando un cliente con un dashboard genérico para ver la velocidad del front end. 
     - Que hubo de interesante? Pues nos decantamos por tener el stack en nuestro equipo. Vimos que era la forma más eficiente y escalable. El reseller fue un no rotundo y grafana cloud lo tenemos para proyectos privados o más pequeños. 
-    - Que más quiere compartir Almu? La herramienta de Mimir tool para ver el uso de métricas es algo que he descubierto hace poco y me está siendo muy útil :D Porque es fácil pasarse enviando métricas -.-
+    - Que más quiere compartir Almu? La herramienta de Mimir y Open Telemetry tool para ver el uso de métricas es algo que he descubierto hace poco y me está siendo muy útil :D Porque es fácil pasarse enviando métricas -.-
 - Cierre
     - Donde puede la gente aprender mas de el tema?
     - Donde te puede seguir/contactar la gente?
