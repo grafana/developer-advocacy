@@ -25,11 +25,11 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 01/11: [A&A 19 - Becoming an accessibility advocate with Erin Crise](https://www.youtube.com/watch?v=ZCr_z9ii4Io)
 - 08/11: [A&A 20 - Learning about experience design with Jenna Charlton](A&A%2020%20-%20Learning%20about%20experience%20design%20with%20Jenna%20Charlton.md)
 - 15/11: [A&A 21 - Minimalism in software testing with Lina Zubyte](A&A%2021%20-%20Minimalism%20in%20software%20testing%20with%20Lina%20Zubyte.md)
+- 22/11: Skipped
+- 28/11: [A&A 22 - Navigating through unemployment with Renata Andrade](A&A%2022%20-%20Navigating%20through%20unemployment%20with%20Renata%20Andrade.md)
 
 ## Upcoming
 
-- 22/11: Lisa Crispin
-- 28/11: Renata Andrade
 - 06/12: Skipped? Marie at TestJS Summit
 - 12/12: Maria Kedemo
 - 20/12: Vernon Richards
@@ -40,7 +40,7 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 ## Future guest suggestions
 
 - Gift Egwuenu
-- Elmira Jamalian (encouraging people from underrepresented groups to speak up)
+- [Emy Jamalian](https://www.linkedin.com/in/emyjamalian/) (encouraging people from underrepresented groups to speak up)
 - [Sowmya Sridharamurthy](https://www.linkedin.com/in/sowmyasridharamurthy/) (encouraging/hiring for diversity as a QEM)
 - [Karen (Gochnauer) Todd](https://www.linkedin.com/in/karentestsstuff/) (mental health and ADHD as a superpower)
 - [Linda van de Vooren](https://www.linkedin.com/in/lindavandevooren/) (non-traditional route into tech, neurodivergence, impostor syndrome)
