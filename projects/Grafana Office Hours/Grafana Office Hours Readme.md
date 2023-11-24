@@ -27,10 +27,10 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 03/11: [GOH 18 - Combining frontend and backend performance with John Hill](GOH%2018%20-%20Combining%20frontend%20and%20backend%20performance%20with%20John%20Hill.md)
 - 10/11: [GOH 19 - PLZv2 with Olha and Daniel](GOH%2019%20-%20PLZv2%20with%20Olha%20and%20Daniel.md)
 - 17/11: [[GOH 20 - Testcontainers with Manuel de la Pena]]
+- 24/11: [GOH 21 - How to use flow mode for Grafana Agent with Matt Durham](GOH%2021%20-%20How%20to%20use%20flow%20mode%20for%20Grafana%20Agent%20with%20Matt%20Durham.md)
 
 ### Upcoming
 
-- 24/11: [GOH 21 - Grafana Flow with Matt Durham](GOH%2021%20-%20Grafana%20Flow%20with%20Matt%20Durham.md)
 - 01/12: [[GOH 22 - Joseph Elliot on Grafana Tempo]]
 - 08/12: [[GOH 23 - Juraci Paixāo Kröhling on OpenTelemetry]]
 	- 101 level "how do I instrument an app I have using opentelemetry and see traces inside of grafana" (suggested by David Allen)
