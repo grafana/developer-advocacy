@@ -1,12 +1,12 @@
 ---
-url:
-date: 
+url: https://youtube.com/live/-_SsFLoJvoc
+date: 2023-11-24
 ---
 # [[GOH 21 - How to use flow mode for Grafana Agent with Matt Durham]]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-_SsFLoJvoc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: 
+Guest:: Matt Durham
 
 ## Checklist
 
@@ -15,16 +15,16 @@ Guest::
 	Office Hours is an hour-long live conversation that is streamed to the [Grafana YouTube channel](https://youtube.com/@grafana). It's very casual, and you can also share your screen if you'd like to do a demo (not required). If you'd like to join, I'd love to have you! 
 - [x] If the guest agrees, choose a date for the Office Hours session. Confirm the time: 13:00 UTC (15:00 CEST) on Friday. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
 - [x] Invite them to the Grafana Office Hours calendar invite (choose "this instance only", not the whole series). Change the invite to include the episode number and their name, ie `Grafana Office Hours #01 with Mitch`. This is to save the date. Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours.
-- [ ] Create a thumbnail on [Canva](https://canva.com) using the Grafana Office Hours thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
-- [ ] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
-	- [ ] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`.
-	- [ ] Add the standard description as per previous Grafana Office Hours shows. Check the video description and add guests' contact details.
-- [ ] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
-- [ ] Get the YouTube link to the show. Put the link on this page, in the URL property above.
+- [x] Create a thumbnail on [Canva](https://canva.com) using the Grafana Office Hours thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
+- [x] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
+	- [x] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`.
+	- [x] Add the standard description as per previous Grafana Office Hours shows. Check the video description and add guests' contact details.
+- [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
+- [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
 - [ ] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Schedule a tweet just when the show begins to say "We're live now!"
-- [ ] Schedule a Slack message on the internal Grafana workspace (in `#community`).
-- [ ] Schedule a Slack message on the public Grafana Slack workspace (in `#announcements`)
+- [x] Schedule a Slack message on the internal Grafana workspace (in `#community`).
+- [x] Schedule a Slack message on the public Grafana Slack workspace (in `#announcements`)
 
 
 ## Talking points
@@ -97,6 +97,9 @@ Note we also have static -> river converters that cover most use cases.
 		- Static mode is a collection of other projects rolled into one, and in most of those cases the team reused the available YAML config and exposed that config directly. This could create a drift between the documentation the team documented versus what was available. This also led to documentation being linked to external sources. Now all config is documented in a very standard way. This reference documentation is pretty high quality and standardized. Task based documentation is coming.
 	- Better support and integration for advanced features
 		- **Clustering** has allowed the team to reduce Agent costs by 50%, previously we used hashmod which duplicates metrics to ensure high availability. Clustering allows us to ensure metrics are only read by one source. Each component can implement clustering as the component sees fit which allows smaller more focused changes compared to static. 
+	- UI
+		- DAG of all the entire data pipeline, all the inputs and outputs
+		- Shows dependencies
 - Performance of flow is within 1-2% of static mode. HCL had worse performance.
 - Demo Flow and its interesting use cases
 	- Conversion of prometheus metrics and logs to otlp.
