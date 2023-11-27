@@ -54,7 +54,11 @@ DevOps Toolkit: You MUST instrument your code with OpenTelemetry (video): https:
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
-- 
+- Why was OTel needed? What did we have before?
+- History of OTel
+	- OpenTracing + OpenCensus
+- What is OTel?
+- How do I instrument an app I have using OpenTelemetry and see traces inside of Grafana?
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- 
