@@ -31,10 +31,10 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 
 ### Upcoming
 
-- 01/12: [[GOH 22 - Joseph Elliot on Grafana Tempo]]
-- 08/12: [[GOH 23 - Juraci Paixāo Kröhling on OpenTelemetry]]
+- 01/12: [GOH 22 - Joseph Elliot on Grafana Tempo](GOH%2022%20-%20Joseph%20Elliot%20on%20Grafana%20Tempo.md)
+- 08/12: [GOH 23 - Juraci Paixāo Kröhling on OpenTelemetry](GOH%2023%20-%20Juraci%20Paixāo%20Kröhling%20on%20OpenTelemetry.md)
 	- 101 level "how do I instrument an app I have using opentelemetry and see traces inside of grafana" (suggested by David Allen)
-- 15/12: GOH 24 - Theia Scientific
+- 15/12: [[GOH 24 - Theia Scientific]]
 - 22/12: GOH 25 - Jev Forsberg on Navigating Diversity in a Remote World?
 - 29/12: GOH 26 - Roundup of everything that happened in Grafana Labs projects this year.
 
