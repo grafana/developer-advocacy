@@ -30,7 +30,7 @@ Guest:: Matt Durham
 ## Talking points
 
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
-
+  
 - Intro
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about Grafana Agent Flow mode: what it is, how it's different from static mode, and how to use it.*
 - Announcements

@@ -52,13 +52,40 @@ Distributed tracing with Grafana Cloud k6 (Grafana Office Hours video): https://
 - Announcements
 	- New project releases
 	- Recent content published
-- Introduce guest
+- Introduce guest: Joe Elliot
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
-- 
+- What is distributed tracing?
+	- Why should we do distributed tracing?
+	- How is it different from metrics and logs?
+		- What don't metrics and logs cover that traces do?
+		- Lag indicators vs. lead indicators
+		- Known problems vs. issues with unknown causes
+	- The more distributed an application is, the more unpredictable its failure modes become.
+	- What does tracing have to do with OpenTelemetry?
+	- What is instrumentation? Why do applications need to be instrumented?
+	- Basic tracing concepts
+		- Define: trace, span, context propagation
+		- How does tracing work?
+- What is Tempo?
+	- History of Tempo
+	- How is Tempo different from other tracing backends? (Key features)
+		- scalability
+		- integration with other tools in the Grafana Labs stack
+	- What is TraceQL?
+- Walk us through it: we have an application. How do we start seeing traces with Tempo? (demo?)
+	- Client instrumentation (automatic or manual)
+	- (Optional) Set up tracing pipeline (ex: Agent)
+	- Deploy and configure Tempo: Docker Compose, Helm, Tanka
+	- Visualize (ex: Grafana)
+	- Alerting
+- Best practices for setting up distributed tracing
+- Relationship between distributed tracing and performance testing
+	- Grafana Cloud k6 Tempo integration
 - Outro
 	- If people want to learn more about this topic, where should they go?
+	- Grafana Office Hours next week: [GOH 23 - Juraci Paixāo Kröhling on OpenTelemetry](GOH%2023%20-%20Juraci%20Paixāo%20Kröhling%20on%20OpenTelemetry.md)
 	- 
 
 ### Just before the show
