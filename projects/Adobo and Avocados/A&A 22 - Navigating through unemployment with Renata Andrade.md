@@ -41,6 +41,7 @@ Guest:: [Renata Andrade](https://www.linkedin.com/in/raptatinha/)
   - Emotional challenges you experienced
     - Acknowledging range of emotions transparently
     - Feeling of self doubt and that you're not good enough
+  - How do you seek/advocate for transparency in a company?
   - What steps did you take to bounce back?
     - Importance of networking?
     - Updating CV/Resume
