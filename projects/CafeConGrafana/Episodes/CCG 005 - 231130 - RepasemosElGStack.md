@@ -1,10 +1,10 @@
 ---
-url: https://www.youtube.com/watch?v=TBD
+url: https://www.youtube.com/watch?v=irUr96JV-Sg
 date: 2023-11-30
 ---
 # CCG 005 - Repasemos el G-Stack con Raul Marin
 
-<iframe width="560" height="315" src="[https://www.youtube.com/watch?v=TBD](https://www.youtube.com/watch?v=TBD)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="[https://www.youtube.com/watch?v=irUr96JV-Sg](https://www.youtube.com/watch?v=irUr96JV-Sg)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Invitado(s): [Raul Marin](https://www.linkedin.com/in/raulmarinperez/)
 
@@ -16,9 +16,9 @@ Invitado(s): [Raul Marin](https://www.linkedin.com/in/raulmarinperez/)
 - [x] Si el invitado acepta, mandar invitacion para la fecha del show. Se debe confirmar el momento, 14:00 UTC (16:00 CEST) en Jueves. Se debe solicitar una foto que se pueda usar para promocionar o de menos permiso para usar su foto de perfil en redes sociales.
 - [x] Mandar una invitacion de calendario a la par del bloque de Cafe Con Grafana. Nombrar a la invitacion con el numero de episodio y su nombre. Ejemplo: `Café con Grafana #010 con Pepe Pancho`. Esto para apartar la fecha en calendarios. La invitacion debe ser agendada 15 minutos antes del stream (para checar microfonos y demas) asi como 15 minutos despues (para permitir sacar cualquier información restante). Tiempo total de la invitacion 1.5 horas.
 - [x] Crear imagen thumbnail en [Canva](https://canva.com) usando el formato de Café con Grafana. Usar [thumbsup.tv](https://thumbsup.tv) para revisar que el thumbnail se vea bien en diferentes dispositivos. LA IMAGEN YA ESTÁ EN LA CARPETA DE CANVA https://www.canva.com/folder/FAFuWGuLXes
-- [] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
-	- [] Incluir en el titulo el numero de episodio, Ejemplo: `(Spanish) Dimensionando el Grafana Suite (Café con Grafana #004)`.
-	- [] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
+- [x] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
+	- [x] Incluir en el titulo el numero de episodio, Ejemplo: `(Spanish) Repasemos el G-Stack (Café con Grafana #005)`.
+	- [x] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
 	'''
 	En este episodio de Café con Grafana tenemos a Raul Marin, Solutions Engineer (Ingeniero de soluciones?) quien viene a darnos una repasada completisima de todo el stack de Grafana. TODO! Pues hay muchos que no conocen todas las herramientas, caracteristicas y posibilidades que Grafana Labs viene a ofrecer.
 
@@ -43,16 +43,16 @@ Invitado(s): [Raul Marin](https://www.linkedin.com/in/raulmarinperez/)
 	Website: https://grafana.com
 	Repo: https://github.com/grafana/grafana
 	'''
-- [] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
-https://streamyard.com/xyxgk9k4xf
-- [] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
-https://www.youtube.com/watch?v=TBD
-- [] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
-- [] Agendar mensajes para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
-	- [] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
-	- [] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
-	- [] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
-	- [] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
+- [x] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
+https://streamyard.com/v56yt9b6ry
+- [x] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
+https://www.youtube.com/watch?v=irUr96JV-Sg
+- [x] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
+- [x] Agendar mensajes para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
+	- [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
+	- [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
+	- [x] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
+	- [x] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
 
 
 ## Puntos a hablar
