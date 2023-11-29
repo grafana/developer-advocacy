@@ -6,7 +6,7 @@
 | --- | --- | --- | --- | ---|
 | YYYYMMDD | 00 [Titulo] | [Hosts] | [Invitados] | [Notas] |
 | 20231214 | 07 TBD | Leandro, Nicole, Antonio | [Anisbert Suarez](https://www.linkedin.com/in/anisbert/) | Ultimo del año |
-| 20231207 | 06 TBD | Leandro, Nicole, Antonio | [Carlos Gauto](https://www.linkedin.com/in/gautocarlos/) | |
+| 20231207 | 06 Campeones en el WOPR | Leandro, Nicole, Antonio | [Carlos Gauto](https://www.linkedin.com/in/gautocarlos/) | |
 | 20231130 | 05 Repasando el stack de Grafana | Leandro, Nicole, Antonio | [Raúl Marín](https://www.linkedin.com/in/raulmarinperez/) | |
 | 20231123 | 04 Dimensionando el G-Stack | Leandro, Nicole, Antonio | [Almudena Vivanco](https://www.linkedin.com/in/almudenavivanco/) | Leandro regresa |
 | 20xxxxxx | xx Entendiendo los Sinteticos | Nicole, Antonio | [Marcelo Magallon](https://www.linkedin.com/in/marcelomagallon/) | Leandro fuera x Boda, Company All hands, skipped se regaenda |
