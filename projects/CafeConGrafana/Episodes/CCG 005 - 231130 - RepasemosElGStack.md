@@ -63,7 +63,7 @@ https://www.youtube.com/watch?v=irUr96JV-Sg
 	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio, Leandro y Nicole, Dev Advocates en Grafana y hoy hablaremos de como dimensionar toda la suite de Grafana.*
 - Anuncios
 	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
-	- 
+	- Video de Lisa (en inglés): *Grafana, Observability, & DevOps*: https://youtu.be/4-z1-eEHhvs
 - Introducir invitado
 	- Quien eres?
 	- A que te dedicas?

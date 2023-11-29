@@ -24,6 +24,11 @@ Guest:: Richard Bradshaw
 
 ## Reference links
 
+LinkedIn: https://www.linkedin.com/in/friendlytester/
+Site: https://thefriendlytester.co.uk/
+Courses: https://automationintesting.com/
+BetterHelp: https://www.betterhelp.com/
+
 
 ## Timestamps
 

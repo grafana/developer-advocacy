@@ -50,8 +50,8 @@ Distributed tracing with Grafana Cloud k6 (Grafana Office Hours video): https://
 - Intro
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
-	- New project releases
-	- Recent content published
+	- Lisa's video on *Grafana, Observability, & DevOps*: https://youtu.be/4-z1-eEHhvs
+	- Café con Grafana yesterday with Raúl Marin (in spanish): https://www.youtube.com/watch?v=irUr96JV-Sg
 - Introduce guest: Joe Elliot
 	- Who are you?
 	- What do you do?
