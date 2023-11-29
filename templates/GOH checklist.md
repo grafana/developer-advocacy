@@ -30,6 +30,10 @@ Guest::
 
 
 
+## Timestamps
+
+
+
 ## Talking points
 
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.

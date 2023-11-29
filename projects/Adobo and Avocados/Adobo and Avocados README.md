@@ -30,9 +30,9 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 
 ## Upcoming
 
-- 06/12: Skipped? Marie at TestJS Summit
-- 12/12: Maria Kedemo
-- 20/12: Vernon Richards
+- 04/12: [A&A 23 - Mental health in tech with Richard Bradshaw](A&A%2023%20-%20Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)
+- 12/12: [[A&A 24 - Maria Kedemo]]
+- 20/12: [[A&A 25 - Vernon Richards]]
 - 27/12: 
 - 03/01:
 - 10/01: Tara Walton

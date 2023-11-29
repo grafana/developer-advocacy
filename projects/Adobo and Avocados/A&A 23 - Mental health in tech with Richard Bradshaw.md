@@ -1,12 +1,12 @@
 ---
-url:
-date: 
+url: https://www.youtube.com/watch?v=nZxGIZlCB6s
+date: 2023-12-04
 ---
-# [[<% tp.file.title %>]]
+# [[A&A 23 - Mental health in tech with Richard Bradshaw]]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+![](https://www.youtube.com/watch?v=nZxGIZlCB6s)
 
-Guest:: 
+Guest:: Richard Bradshaw
 
 ## Checklist
 
