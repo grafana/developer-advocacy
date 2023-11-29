@@ -73,6 +73,10 @@ https://www.youtube.com/watch?v=irUr96JV-Sg
     - Que hace un solutions engineer en Grafana? 
 	- Slides?
 	- Entorno demo (Que nos vas a mostrar)
+   	- [Antonio}: No estamos acostumbrados a hablar o 'platicar' como diria Leandro, sobre Grafana en español. ¿Has tenido clientes de habla hispana? ¿Como fue la cosa?
+   	- [Antonio}: Los clientes que vengan de usar otras plataformas de observabilidad, ¿que buscan en Grafana que no tegan en las demas?
+  	- [Antonio}: Alerting, por su complejidad, es una herramienta con una curva de aprendizaje larga. ¿Notas esto en tu trabajo? ¿Como seria una demo sobre Alerting para los clientes?
+  	
     - Mas temas a tratar @raulmarinperez ?
 - Cierre
     - Donde puede la gente aprender mas?
