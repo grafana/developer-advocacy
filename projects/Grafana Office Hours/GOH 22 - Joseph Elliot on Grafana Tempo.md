@@ -57,19 +57,24 @@ Distributed tracing with Grafana Cloud k6 (Grafana Office Hours video): https://
 	- What do you do?
 	- How long have you been using Grafana/other project?
 - What is distributed tracing?
-	- Why should we do distributed tracing?
-	- How is it different from metrics and logs?
-		- What don't metrics and logs cover that traces do?
-		- Lag indicators vs. lead indicators
-		- Known problems vs. issues with unknown causes
-	- The more distributed an application is, the more unpredictable its failure modes become.
-	- What does tracing have to do with OpenTelemetry?
-	- What is instrumentation? Why do applications need to be instrumented?
 	- Basic tracing concepts
 		- Define: trace, span, context propagation
 		- How does tracing work?
+	- Why should we do distributed tracing?
+	- How is it different from metrics and logs?
+		- What don't metrics and logs cover that traces do?
+			- Metrics: good for aggregations, bad for fine-grained information
+			- Logs: good for revealing what happened sequentially in one application or across applications, but bad at showing how a single request behaves inside a service
+		- Known problems vs. issues with unknown causes
+	- How is it different from continuous profiling?
+		- Tracing is done at a high level but about one specific transaction
+		- Continuous profiling is sampled over time, aggregated over many transactions
+	- The more distributed an application is, the more unpredictable its failure modes become.
+	- What does tracing have to do with OpenTelemetry?
+	- What is instrumentation? Why do applications need to be instrumented?
 - What is Tempo?
 	- History of Tempo
+		- Goal: Sample 100% of read path, scale Cassandra and Elastic
 	- How is Tempo different from other tracing backends? (Key features)
 		- scalability
 		- integration with other tools in the Grafana Labs stack

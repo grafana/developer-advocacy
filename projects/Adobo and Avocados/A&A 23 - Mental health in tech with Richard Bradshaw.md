@@ -45,7 +45,8 @@ BetterHelp: https://www.betterhelp.com/
 	- Who are you?
 	- What do you do?
 	- What's your adobo? (a food, item, activity that reminds you of home)
-- 
+- Work load. Community pressure. Work life balance. Being seen as a leader. Support available. Burn out. Industry needs to do more. Power of talking. Let people in. Let folk help.
+- Believe. Acceptance
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
 	- 
