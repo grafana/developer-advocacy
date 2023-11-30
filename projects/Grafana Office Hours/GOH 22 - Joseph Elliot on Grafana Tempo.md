@@ -88,6 +88,8 @@ Distributed tracing with Grafana Cloud k6 (Grafana Office Hours video): https://
 - Best practices for setting up distributed tracing
 - Relationship between distributed tracing and performance testing
 	- Grafana Cloud k6 Tempo integration
+- Plans for the future
+	- distributed tracing for frontend?
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- Grafana Office Hours next week: [GOH 23 - Juraci Paixāo Kröhling on OpenTelemetry](GOH%2023%20-%20Juraci%20Paixāo%20Kröhling%20on%20OpenTelemetry.md)
