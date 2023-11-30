@@ -63,8 +63,7 @@ https://www.youtube.com/watch?v=irUr96JV-Sg
 	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio, Leandro y Nicole, Dev Advocates en Grafana y hoy hablaremos de como dimensionar toda la suite de Grafana.*
 - Anuncios
 	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
-	- Video de Lisa (en inglés): *Grafana, Observability, & DevOps*: https://youtu.be/4-z1-eEHhvs
-	- Mas Office Hours! Intro a trazas distribuidas con Joe Elliott: https://youtube.com/live/zDrA7Ly3ovU
+	- 
 - Introducir invitado
 	- Quien eres?
 	- A que te dedicas?
@@ -77,19 +76,14 @@ https://www.youtube.com/watch?v=irUr96JV-Sg
    	- [Antonio}: No estamos acostumbrados a hablar o 'platicar' como diria Leandro, sobre Grafana en español. ¿Has tenido clientes de habla hispana? ¿Como fue la cosa?
    	- [Antonio}: Los clientes que vengan de usar otras plataformas de observabilidad, ¿que buscan en Grafana que no tegan en las demas?
   	- [Antonio}: Alerting, por su complejidad, es una herramienta con una curva de aprendizaje larga. ¿Notas esto en tu trabajo? ¿Como seria una demo sobre Alerting para los clientes?
+  	
+    - Mas temas a tratar @raulmarinperez ?
 - Cierre
     - Donde puede la gente aprender mas?
-		- Webinars en español: https://grafana.com/videos/?plcmt=learn-nav&language=es&type=on-demand
-		- Grafana & Friends Madrid: https://www.meetup.com/es-ES/grafana-friends-madrid-democratize-observability/
-		- Grafana & Friends Barcelona: https://www.meetup.com/es-ES/grafana-friends-barcelona-democratize-observability/
-		- Grafana & Friends Baleares: https://www.meetup.com/es-ES/grafana-and-friends-baleares/
-		- Grafana & Friends Málaga: https://www.meetup.com/es-ES/grafana-and-friends-malaga/
     - Donde te puede seguir/contactar la gente?
     - Algun anuncio? Conferencia? Evento?
     - Mas anuncios de cierre
-		- No se pierdan mas videos de Lisa
-		- Office Hours hablando de trazas!
-		- Siguiente semana Carlos Gauto k6 champion!
+		- No se pierdan mas videos de Lisa y el Keynot de ObservabilityCon
 
 ### 15 minutos antes
 

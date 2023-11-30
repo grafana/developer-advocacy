@@ -1,12 +1,12 @@
 ---
-url: https://www.youtube.com/watch?v=irUr96JV-Sg
-date: 2023-11-30
+url: https://www.youtube.com/watch?v=TBD
+date: 2023-12-07
 ---
-# CCG 005 - Repasemos el G-Stack con Raul Marin
+# CCG 006 - Campeones en el WOPR
 
-<iframe width="560" height="315" src="[https://www.youtube.com/watch?v=irUr96JV-Sg](https://www.youtube.com/watch?v=irUr96JV-Sg)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="[https://www.youtube.com/watch?v=TBD](https://www.youtube.com/watch?v=TBD)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Invitado(s): [Raul Marin](https://www.linkedin.com/in/raulmarinperez/)
+Invitado(s): [Carlos Gauto](https://www.linkedin.com/in/gautocarlos/)
 
 ## Checklist
 
@@ -16,15 +16,20 @@ Invitado(s): [Raul Marin](https://www.linkedin.com/in/raulmarinperez/)
 - [x] Si el invitado acepta, mandar invitacion para la fecha del show. Se debe confirmar el momento, 14:00 UTC (16:00 CEST) en Jueves. Se debe solicitar una foto que se pueda usar para promocionar o de menos permiso para usar su foto de perfil en redes sociales.
 - [x] Mandar una invitacion de calendario a la par del bloque de Cafe Con Grafana. Nombrar a la invitacion con el numero de episodio y su nombre. Ejemplo: `Café con Grafana #010 con Pepe Pancho`. Esto para apartar la fecha en calendarios. La invitacion debe ser agendada 15 minutos antes del stream (para checar microfonos y demas) asi como 15 minutos despues (para permitir sacar cualquier información restante). Tiempo total de la invitacion 1.5 horas.
 - [x] Crear imagen thumbnail en [Canva](https://canva.com) usando el formato de Café con Grafana. Usar [thumbsup.tv](https://thumbsup.tv) para revisar que el thumbnail se vea bien en diferentes dispositivos. LA IMAGEN YA ESTÁ EN LA CARPETA DE CANVA https://www.canva.com/folder/FAFuWGuLXes
-- [x] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
-	- [x] Incluir en el titulo el numero de episodio, Ejemplo: `(Spanish) Repasemos el G-Stack (Café con Grafana #005)`.
-	- [x] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
+- [] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
+	- [] Incluir en el titulo el numero de episodio, Ejemplo: `(Spanish) Campeón de k6 en el WOPR (Café con Grafana #006)`.
+	- [] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
 	'''
-	En este episodio de Café con Grafana tenemos a Raul Marin, Solutions Engineer (Ingeniero de soluciones?) quien viene a darnos una repasada completisima de todo el stack de Grafana. TODO! Pues hay muchos que no conocen todas las herramientas, caracteristicas y posibilidades que Grafana Labs viene a ofrecer.
+	En este episodio de Café con Grafana tenemos a Carlos Gauto, campeón de k6 y crack del performance y testing popular en todo LatAm y paises que hablan Español.
+	Él os viene a platicar de sus experiencias en el WOPR - Workshop On Performance and Reliability, así como la evolucion del performance y los retos que tiene Latama en las áreas de tecnología.
 
-	Contacto Raul:
-	LinkedIn: https://www.linkedin.com/in/raulmarinperez/
-	GitHub: https://github.com/raulmarinperez
+	Contacto Carlos:
+	LinkedIn: https://www.linkedin.com/in/gautocarlos/
+	GitHub: https://github.com/charlyautomatiza/
+	X (twitter): https://twitter.com/char_automatiza
+	Twitch: https://www.twitch.tv/charlyautomatiza
+	YouTube: https://www.youtube.com/c/CharlyAutomatiza
+
 
 	Contacto Nicole:
 	Mastodon: https://pkm.social/@nicole
@@ -43,16 +48,16 @@ Invitado(s): [Raul Marin](https://www.linkedin.com/in/raulmarinperez/)
 	Website: https://grafana.com
 	Repo: https://github.com/grafana/grafana
 	'''
-- [x] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
+- [] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
 https://streamyard.com/v56yt9b6ry
-- [x] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
-https://www.youtube.com/watch?v=irUr96JV-Sg
-- [x] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
-- [x] Agendar mensajes para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
-	- [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
-	- [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
-	- [x] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
-	- [x] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
+- [] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
+https://www.youtube.com/watch?v=TBD
+- [] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
+- [] Agendar mensajes para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
+	- [] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
+	- [] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
+	- [] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
+	- [] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
 
 
 ## Puntos a hablar
@@ -63,33 +68,31 @@ https://www.youtube.com/watch?v=irUr96JV-Sg
 	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio, Leandro y Nicole, Dev Advocates en Grafana y hoy hablaremos de como dimensionar toda la suite de Grafana.*
 - Anuncios
 	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
-	- Video de Lisa (en inglés): *Grafana, Observability, & DevOps*: https://youtu.be/4-z1-eEHhvs
-	- Mas Office Hours! Intro a trazas distribuidas con Joe Elliott: https://youtube.com/live/zDrA7Ly3ovU
+	- Nuevo Video de Lisa!
+	- Office Hours! Todo de OTel con Juraci Paixao!
 - Introducir invitado
 	- Quien eres?
 	- A que te dedicas?
-	- Cuanto llevas usando Grafana?
+	- Cuanto llevas usado k6?
+	- Usas Grafana? Cuanto?
 - Temas a hablar
+	- Que es k6 para ti?
     - Que es Grafana para ti?
-    - Que hace un solutions engineer en Grafana? 
-	- Slides?
-	- Entorno demo (Que nos vas a mostrar)
-   	- [Antonio}: No estamos acostumbrados a hablar o 'platicar' como diria Leandro, sobre Grafana en español. ¿Has tenido clientes de habla hispana? ¿Como fue la cosa?
-   	- [Antonio}: Los clientes que vengan de usar otras plataformas de observabilidad, ¿que buscan en Grafana que no tegan en las demas?
-  	- [Antonio}: Alerting, por su complejidad, es una herramienta con una curva de aprendizaje larga. ¿Notas esto en tu trabajo? ¿Como seria una demo sobre Alerting para los clientes?
+    - Que es el WOPR
+	- Que presentaste?
+	- Que cosas o aprendizajes te impresionaron de los demas ponentes?
+	- Tambien hubo QSConf, que presentaste?
+   	- Como ves los desafios en LatAm en cuanto a tecnologia?
+   	- Y como va el performance en LatAm?  	
+    - Mas temas a tratar @charlyautomatiza ?
 - Cierre
     - Donde puede la gente aprender mas?
-		- Webinars en español: https://grafana.com/videos/?plcmt=learn-nav&language=es&type=on-demand
-		- Grafana & Friends Madrid: https://www.meetup.com/es-ES/grafana-friends-madrid-democratize-observability/
-		- Grafana & Friends Barcelona: https://www.meetup.com/es-ES/grafana-friends-barcelona-democratize-observability/
-		- Grafana & Friends Baleares: https://www.meetup.com/es-ES/grafana-and-friends-baleares/
-		- Grafana & Friends Málaga: https://www.meetup.com/es-ES/grafana-and-friends-malaga/
     - Donde te puede seguir/contactar la gente?
     - Algun anuncio? Conferencia? Evento?
     - Mas anuncios de cierre
 		- No se pierdan mas videos de Lisa
-		- Office Hours hablando de trazas!
-		- Siguiente semana Carlos Gauto k6 champion!
+		- Office Hours! Todo de OTel con Juraci Paixao!
+		- Fin del café por 2023, nos vemos Enero 2024!
 
 ### 15 minutos antes
 
