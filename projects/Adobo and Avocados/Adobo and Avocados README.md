@@ -30,12 +30,13 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 
 ## Upcoming
 
-- 04/12: [A&A 23 - Mental health in tech with Richard Bradshaw](A&A%2023%20-%20Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)
+- 04/12: [A&A 23 - How to create a personal brand](A&A%2023%20-%20How%20to%20create%20a%20personal%20brand.md)
 - 12/12: [[A&A 24 - Maria Kedemo]]
 - 20/12: [[A&A 25 - Vernon Richards]]
 - 27/12: 
-- 03/01:
+- 03/01: 
 - 10/01: Tara Walton
+- 17/01: [Mental health in tech with Richard Bradshaw](Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)? Confirm with Richard.
 
 ## Future guest suggestions
 

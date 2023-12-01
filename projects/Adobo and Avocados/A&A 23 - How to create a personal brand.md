@@ -1,12 +1,12 @@
 ---
-url: https://www.youtube.com/watch?v=nZxGIZlCB6s
-date: 2023-12-04
+url:
+date: 
 ---
-# [[A&A 23 - Mental health in tech with Richard Bradshaw]]
+# [[A&A 23 - How to create a personal brand]]
 
-![](https://www.youtube.com/watch?v=nZxGIZlCB6s)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: Richard Bradshaw
+Guest:: 
 
 ## Checklist
 
@@ -24,11 +24,6 @@ Guest:: Richard Bradshaw
 
 ## Reference links
 
-LinkedIn: https://www.linkedin.com/in/friendlytester/
-Site: https://thefriendlytester.co.uk/
-Courses: https://automationintesting.com/
-BetterHelp: https://www.betterhelp.com/
-
 
 ## Timestamps
 
@@ -45,8 +40,7 @@ BetterHelp: https://www.betterhelp.com/
 	- Who are you?
 	- What do you do?
 	- What's your adobo? (a food, item, activity that reminds you of home)
-- Work load. Community pressure. Work life balance. Being seen as a leader. Support available. Burn out. Industry needs to do more. Power of talking. Let people in. Let folk help.
-- Believe. Acceptance
+- 
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
 	- 
