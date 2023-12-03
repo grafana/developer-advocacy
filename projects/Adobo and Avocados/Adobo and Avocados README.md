@@ -30,7 +30,7 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 
 ## Upcoming
 
-- 04/12: [A&A 23 - How to create a personal brand](A&A%2023%20-%20How%20to%20create%20a%20personal%20brand.md)
+- 04/12: [A&A 23 - Personal branding for engineers](A&A%2023%20-%20Personal%20branding%20for%20engineers.md)
 - 12/12: [[A&A 24 - Maria Kedemo]]
 - 20/12: [[A&A 25 - Vernon Richards]]
 - 27/12: 
