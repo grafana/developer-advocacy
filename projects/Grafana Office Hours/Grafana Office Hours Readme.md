@@ -28,35 +28,33 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 10/11: [GOH 19 - PLZv2 with Olha and Daniel](GOH%2019%20-%20PLZv2%20with%20Olha%20and%20Daniel.md)
 - 17/11: [[GOH 20 - Testcontainers with Manuel de la Pena]]
 - 24/11: [GOH 21 - How to use flow mode for Grafana Agent with Matt Durham](GOH%2021%20-%20How%20to%20use%20flow%20mode%20for%20Grafana%20Agent%20with%20Matt%20Durham.md)
+- 01/12: [GOH 22 - Joseph Elliot on Grafana Tempo](GOH%2022%20-%20Joseph%20Elliot%20on%20Grafana%20Tempo.md)
 
 ### Upcoming
 
-- 01/12: [GOH 22 - Joseph Elliot on Grafana Tempo](GOH%2022%20-%20Joseph%20Elliot%20on%20Grafana%20Tempo.md)
 - 08/12: [GOH 23 - Juraci Paixāo Kröhling on OpenTelemetry](GOH%2023%20-%20Juraci%20Paixāo%20Kröhling%20on%20OpenTelemetry.md)
 - 15/12: [[GOH 24 - Theia Scientific]]
-- 22/12: GOH 25 - Jev Forsberg on Navigating Diversity in a Remote World?
+- 22/12: [GOH 25 - Jev Forsberg on Navigating Diversity in a Remote World](GOH%2025%20-%20Jev%20Forsberg%20on%20Navigating%20Diversity%20in%20a%20Remote%20World.md)
 - 29/12: GOH 26 - Roundup of everything that happened in Grafana Labs projects this year.
+- 05/01: GOH 27 - Beyla with Nikola Grcevski
+- 12/01: GOH 28
+- 19/01: GOH 29
+- 26/01: GOH 30
 
 ## Future guest suggestions
 
-- Lisa Jung: Week of Grafana (maybe for both of us?)
 - SLOs: Ryan Kehoe, Joe Bluebaugh, or Bob Cotton - ask in `#gops-slos`
 	- Nadine - created Pira, on Prometheus SLOs with her partner Matthias
 		- Joining community of OSS SLO tools
 	- [I] Joe, Ryan, Nadine
 - Grafana As Code: Fabrizia Rossano
 - Friend of Dougal Matthews from Supabase: Kevin Brolly. He's the head of success. They're giving users access to Prometheus and want to direct users to Grafana to visualize stuff. I have a conversation open with him on LinkedIn.
-- Dominik Suss -- Grafana Agent Auto-configurator
-	- Makes Grafana Cloud experience better through engineering
-	- Auto-generation of config for Grafana Agent. Demo of this and what is Grafana Agent. Flow mode vs. standard mode.
-	- Grafana Agent is not well documented.
 - Jason Davis:  Cisco ssh2influx
 	- A bit more niche, not as widely applicable
 	- Lots of networking hardware all over the world. Some legacy ones can only be accessed via a Grafana plugin they developed (only via command line)
 - Marcelo Magallón about Synthetic Monitoring and k6.
 - Ivan Szkiba on xk6-dashboard
 - Pyroscope
-- Grafana Beyla - Nikola Grcevski
 - Marie - psychology of waiting/reliability
 - 
 

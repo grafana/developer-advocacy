@@ -57,39 +57,76 @@ Distributed tracing with Grafana Cloud k6 (Grafana Office Hours video): https://
 	- What do you do?
 	- How long have you been using Grafana/other project?
 - What is distributed tracing?
+	- Tracing is an observability signal that tracks a series of events throughout your system
+	- History of tracing
+		- Google published a photo on Dapr
+		- Zipkin - b3 (Big Brother Bird)
+		- Jaeger (Uber)
+			- Baggage, and existed in OpenTelemetry
+		- Tempo
 	- Basic tracing concepts
 		- Define: trace, span, context propagation
 		- How does tracing work?
 	- Why should we do distributed tracing?
+	- One of the misses in open source tracing: focused on looking at a single trace instead of looking at how things are connected
 	- How is it different from metrics and logs?
 		- What don't metrics and logs cover that traces do?
-			- Metrics: good for aggregations, bad for fine-grained information
+			- Metrics: good for aggregations, bad for fine-grained information - correlative information
 			- Logs: good for revealing what happened sequentially in one application or across applications, but bad at showing how a single request behaves inside a service
+			- Traces: causative relationship/information
 		- Known problems vs. issues with unknown causes
 	- How is it different from continuous profiling?
 		- Tracing is done at a high level but about one specific transaction
 		- Continuous profiling is sampled over time, aggregated over many transactions
 	- The more distributed an application is, the more unpredictable its failure modes become.
 	- What does tracing have to do with OpenTelemetry?
+		- There are intrinsic fields in a span, and one of them is "error/ok/unset". (Also `kind`)
 	- What is instrumentation? Why do applications need to be instrumented?
 - What is Tempo?
 	- History of Tempo
+		- Tom Wilkie asked Joe to determine if we could do hosted Jaeger. We wanted a distributed tracing thing
+		- He decided that Jaeger wasn't the right path, so he made a large key value store that stored OTel traces.
+		- After a year, it was extremely cheap to run but it didn't do enough. Integration with logs and exemplars didn't quite work.
+		- Added Parquet? backend, added TraceQL
 		- Goal: Sample 100% of read path, scale Cassandra and Elastic
 	- How is Tempo different from other tracing backends? (Key features)
 		- scalability
 		- integration with other tools in the Grafana Labs stack
 	- What is TraceQL?
+		- Prometheus is based around the concept of streams. They're all strings, all key value pairs. Loki is the same.
+			- This is not sufficient to support a trace query.
+		- OTel supports numbers, strings, arrays, maps, maps of arrays of maps of strings
+		- More pipe-based than PromQL
 - Walk us through it: we have an application. How do we start seeing traces with Tempo? (demo?)
 	- Client instrumentation (automatic or manual)
-	- (Optional) Set up tracing pipeline (ex: Agent)
+		- Easiest: OpenTelemetry
+			- Jaeger deprecated their own clients and told people to use OTel too
+		- Depends on language - Java: jar file. .NET he thinks is similar. Go has less magic
+		- Reason why tracing is harder than the other signals: all components need to be instrumented. Really needs everything instrumented before it can provide value.
+		- Traditionally ebPF can't do tracing
+			- Context propagation has to happen from the application layer
+	- (Optional) Set up tracing pipeline (ex: Agent) / collector
+		- OTel collector is more generic and more extensible
+		- Agent is more opinionated
 	- Deploy and configure Tempo: Docker Compose, Helm, Tanka
 	- Visualize (ex: Grafana)
 	- Alerting
+- Cool feature: remote sampling
+	- Most people do head sampling: Give me 5% of my traces
+		- Make a choice at the start of tracing
+		- Simplest form of sampling
+	- Tail sampling: create the entire trace and then choose whether to drop it or not
+		- Cost: memory and CPU because it's all in the buffer.
+		- Commonly used for traces that take >10 seconds
+		- Another disadvantage: the backend would then contain a skewed or biased version of traces
+	- Remote sampling (OTel and Jaeger both do it, Zipkin doesn't): centrally control a JSON document that says for every endpoint, sample them at these rates
+		- more unbiased than tail sampling
 - Best practices for setting up distributed tracing
 - Relationship between distributed tracing and performance testing
 	- Grafana Cloud k6 Tempo integration
 - Plans for the future
 	- distributed tracing for frontend?
+	- Adding metrics to traces?
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- Grafana Office Hours next week: [GOH 23 - Juraci Paixāo Kröhling on OpenTelemetry](GOH%2023%20-%20Juraci%20Paixāo%20Kröhling%20on%20OpenTelemetry.md)
@@ -99,19 +136,34 @@ Distributed tracing with Grafana Cloud k6 (Grafana Office Hours video): https://
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
+- [x] How do you pronounce your name?
 - [ ] What are your pronouns?
 - [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
 - [ ] We'll be streaming to YouTube.
 - [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
 - [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
 - [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
 - [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
-- [ ] Just in case I disconnect... stall for a minute and I'll be right back.
+- [x] Just in case I disconnect... stall for a minute and I'll be right back.
 
 ## After the show
 
 - [ ] Add timestamps to the video (at least four).
 - [ ] Add any links shared to the description of the video.
 - [ ] Add the video to video playlists that make sense (at the very least, the "Grafana Office Hours" one.)
+
+## Timestamps
+
+00:00:00 Introductions
+00:05:53 What is distributed tracing?
+00:12:58 Distributed tracing in real life
+00:16:00 Why should we do distributed tracing?
+00:20:29 Querying traces and showing causal relationships
+00:28:14 History of Tempo
+00:32:22 TraceQL vs. PromQL vs. LogQL
+00:36:44 How to see distributed tracing on Tempo from scratch
+00:45:46 Q - Cool features of TraceQL
+00:49:19 Head, tail, and remote sampling
+00:54:07 Q - Grafana Cloud k6 Tempo integration
+00:58:09 5-minute summary of Tempo
