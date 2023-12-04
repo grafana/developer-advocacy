@@ -1,8 +1,8 @@
 ---
-url: 
+url: https://youtube.com/live/BgRd-RAFMEE
 date: 2023-12-15
 ---
-# [[GOH 24 - Theia Scientific]]
+# [[GOH 24 - AI microscopy with Grafana, Theia Scientific, and Volkov Labs]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -28,6 +28,9 @@ Guest::
 
 ## Reference links
 
+How Theia Scientific and Volkov Labs use Grafana and AI to analyze scientific images (blog): https://grafana.com/blog/2022/04/29/how-theia-scientific-and-volkov-labs-use-grafana-and-ai-to-analyze-scientific-images/
+Using Grafana and machine learning for real time microscopy image analysis (video of talk at GrafanaCONline 2022): https://www.youtube.com/watch?v=WRPnTFBX4rg
+How to create an ideal Grafana dashboard for science and engineering (blog): https://grafana.com/blog/2023/08/04/how-to-create-an-ideal-grafana-dashboard-for-science-and-engineering/
 
 
 ## Timestamps

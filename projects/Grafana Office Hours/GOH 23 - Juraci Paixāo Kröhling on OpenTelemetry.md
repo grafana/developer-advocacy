@@ -49,7 +49,7 @@ DevOps Toolkit: You MUST instrument your code with OpenTelemetry (video): https:
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
 	- New project releases
-	- Recent content published
+	- Grafana documentary ep. 1
 - Introduce guest
 	- Who are you?
 	- What do you do?

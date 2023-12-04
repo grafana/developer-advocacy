@@ -33,7 +33,7 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 ### Upcoming
 
 - 08/12: [GOH 23 - Juraci Paixāo Kröhling on OpenTelemetry](GOH%2023%20-%20Juraci%20Paixāo%20Kröhling%20on%20OpenTelemetry.md)
-- 15/12: [GOH 24 - Theia Scientific](GOH%2024%20-%20Theia%20Scientific.md)
+- 15/12: [GOH 24 - AI microscopy with Grafana, Theia Scientific, and Volkov Labs](GOH%2024%20-%20AI%20microscopy%20with%20Grafana,%20Theia%20Scientific,%20and%20Volkov%20Labs.md)
 - 22/12: [GOH 25 - Navigating Diversity in a Remote World with Jev Forsberg](GOH%2025%20-%20Navigating%20Diversity%20in%20a%20Remote%20World%20with%20Jev%20Forsberg.md)
 - 29/12: GOH 26 - Roundup of everything that happened in Grafana Labs projects this year.
 - 05/01: GOH 27 - Beyla with Nikola Grcevski
