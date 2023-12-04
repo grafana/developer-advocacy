@@ -4,7 +4,7 @@ date: 2023-12-01
 ---
 # [[GOH 22 - Joseph Elliot on Grafana Tempo]]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zDrA7Ly3ovU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Guest:: Joseph (Joe) Elliot
 
