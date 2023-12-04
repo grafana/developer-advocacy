@@ -1,12 +1,12 @@
 ---
-url:
-date: 
+url: 
+date: 2023-12-15
 ---
-# [[GOH 25 - Jev Forsberg on Navigating Diversity in a Remote World]]
+# [[GOH 24 - Theia Scientific]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: Jev Forsberg
+Guest:: 
 
 ## Checklist
 
@@ -43,24 +43,12 @@ Guest:: Jev Forsberg
 - Announcements
 	- New project releases
 	- Recent content published
+	- Marie Cruz will be at the TestJS Summit conference in Berlin, talking about holistic web performance with Grafana and k6: https://testjssummit.com/
 - Introduce guest
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
-- Geographically diverse teams
-	- Romanian, Hungarian, Swede, Irishman, American
-	- Makes communication and connecting difficult
-- Challenges of communicating remotely
-- Three challenges
-	- Varying working hours
-	- Communication styles
-	- Cultural differences
-- Solutions that keep them sane
-	- robust async communication tools (Slack, Google Meet)
-	- Open and inclusive communication
-	- Emphasis on team building
-- Personal narratives
-	- How he broke production his first week
+- 
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- 
