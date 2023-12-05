@@ -17,11 +17,11 @@ Invitado(s): [Carlos Gauto](https://www.linkedin.com/in/gautocarlos/)
 - [x] Mandar una invitacion de calendario a la par del bloque de Cafe Con Grafana. Nombrar a la invitacion con el numero de episodio y su nombre. Ejemplo: `Café con Grafana #010 con Pepe Pancho`. Esto para apartar la fecha en calendarios. La invitacion debe ser agendada 15 minutos antes del stream (para checar microfonos y demas) asi como 15 minutos despues (para permitir sacar cualquier información restante). Tiempo total de la invitacion 1.5 horas.
 - [x] Crear imagen thumbnail en [Canva](https://canva.com) usando el formato de Café con Grafana. Usar [thumbsup.tv](https://thumbsup.tv) para revisar que el thumbnail se vea bien en diferentes dispositivos. LA IMAGEN YA ESTÁ EN LA CARPETA DE CANVA https://www.canva.com/folder/FAFuWGuLXes
 - [] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
-	- [] Incluir en el titulo el numero de episodio, Ejemplo: `(Spanish) Campeón de k6 en el WOPR (Café con Grafana #006)`.
+	- [x] Incluir en el titulo el numero de episodio, Ejemplo: `(Spanish) Campeón de k6 en el WOPR (Café con Grafana #006)`.
 	- [] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
 	'''
-	En este episodio de Café con Grafana tenemos a Carlos Gauto, campeón de k6 y crack del performance y testing popular en todo LatAm y paises que hablan Español.
-	Él os viene a platicar de sus experiencias en el WOPR - Workshop On Performance and Reliability, así como la evolucion del performance y los retos que tiene Latama en las áreas de tecnología.
+	En este episodio de Café con Grafana tenemos a Carlos Gauto, campeón de k6 y crack del performance, un tester popular en todo LatAm y paises que hablan Español.
+	Él nos viene a platicar de sus experiencias en el WOPR - Workshop On Performance and Reliability, así como la evolucion del performance y los retos que tiene LatAm en las áreas de tecnología.
 
 	Contacto Carlos:
 	LinkedIn: https://www.linkedin.com/in/gautocarlos/
@@ -31,13 +31,9 @@ Invitado(s): [Carlos Gauto](https://www.linkedin.com/in/gautocarlos/)
 	YouTube: https://www.youtube.com/c/CharlyAutomatiza
 
 
-	Contacto Nicole:
-	Mastodon: https://pkm.social/@nicole
-	GitHub: https://github.com/nicolevanderhoeven
-	Site: https://nicolevanderhoeven.com
-
-	Contacto Antonio:
-	LinkedIn: https://www.linkedin.com/in/antonio-cm/
+	Contacto Pepe:
+	LinkedIn: https://www.linkedin.com/in/ppcano/
+	GitHub: https://github.com/ppcano
 
 	Contacto Leandro:
 	Linkedin: https://www.linkedin.com/in/leandromelendez/
@@ -58,6 +54,7 @@ https://www.youtube.com/watch?v=TBD
 	- [] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
 	- [] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
 	- [] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
+- [] Hacer posts en redes sociales para promocionar el episodio
 
 
 ## Puntos a hablar
