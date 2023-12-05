@@ -19,7 +19,7 @@ Invitado(s): [Anisbert Suarez](https://www.linkedin.com/in/anisbert/)
 - [] Agendar transmisión en [Streamyard](https://streamyard.com), y seleccionar el canal de Grafana en YouTube como destino.
 	- [] Incluir en el titulo el numero de episodio, Ejemplo: `(Spanish) Optimizando el desempeño (Café con Grafana #007)`.
 	- [] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
-	'''
+'''
 	En este episodio de Café con Grafana viene Anisbert Suarez, otra campeona de k6 lista para contarnos como en la empresa que trabajan (PedidosYa) han implementado muchas tecnicas modernas para las pruebas de rendimiento usando k6 y algunos elementos del stack de Grafana.
 	Ademas de contarnos algunos detalles sobre sus experiencias como campeona de k6.
 
@@ -45,7 +45,7 @@ Invitado(s): [Anisbert Suarez](https://www.linkedin.com/in/anisbert/)
 	Mas acerca de Grafana Labs:
 	Website: https://grafana.com
 	Repo: https://github.com/grafana/grafana
-	'''
+'''
 - [] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
 https://streamyard.com/v56yt9b6ry
 - [] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
