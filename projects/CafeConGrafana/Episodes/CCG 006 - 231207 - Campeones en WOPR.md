@@ -66,12 +66,15 @@ https://www.youtube.com/watch?v=DSdIsqNvd0k
 	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio, Leandro y Nicole, Dev Advocates en Grafana y hoy hablaremos de como dimensionar toda la suite de Grafana.*
 - Anuncios
 	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
+	- jcd España 2023- https://x.com/kcdspain/status/1731721380364796299?s=46&t=qf40Qc3xG-gn5alrp2Jnpw
+		- Pablo Chacin y Roberto Santalla presentan xk6-disruptor
 	- Nuevo Video de Lisa!
 	- Office Hours! Todo de OTel con Juraci Paixao!
 - Introducir invitado
 	- Quien eres?
 	- A que te dedicas?
 	- Cuanto llevas usado k6?
+	- Como ha sido ser un campeón (champion)
 	- Usas Grafana? Cuanto?
 - Temas a hablar
 	- Que es k6 para ti?
