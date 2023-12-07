@@ -47,7 +47,7 @@ Invitado(s): [Anisbert Suarez](https://www.linkedin.com/in/anisbert/)
 	Repo: https://github.com/grafana/grafana
 '''
 - [] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
-https://streamyard.com/v56yt9b6ry
+https://streamyard.com/XXX
 - [] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
 https://www.youtube.com/watch?v=TBD
 - [] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
@@ -67,9 +67,6 @@ https://www.youtube.com/watch?v=TBD
 
 - Intro
 	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio, Leandro y Nicole, Dev Advocates en Grafana y hoy hablaremos de como dimensionar toda la suite de Grafana.*
-- Anuncios
-	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
-	- 
 - Introducir invitado
 	- Quien eres?
 	- A que te dedicas?
@@ -88,8 +85,8 @@ https://www.youtube.com/watch?v=TBD
     - Algun anuncio? Conferencia? Evento? Que viene con Anisbert?
     - Mas anuncios de cierre
 		- No se pierdan mas videos de Lisa
-		- Office Hours! 
-		- Proximo Cafe con otro campeon Anisbert Suarez!
+		- Office Hours! Plataforma Theiascope c/ Christopher Field y Mikhail Volkov
+		- Nos vemos 2024 11-Ene con Marcelo Magallon!
 
 ### 15 minutos antes
 
