@@ -63,7 +63,7 @@ https://www.youtube.com/watch?v=DSdIsqNvd0k
 > Listar los puntos que se hablarán en el episodio. Mantenerse solo en puntos breves para que el episodio sea una conversacion y fluya con naturaleza. Que no se sienta scripteado.
 
 - Intro
-	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio, Leandro y Nicole, Dev Advocates en Grafana y hoy hablaremos de como dimensionar toda la suite de Grafana.*
+	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Pepe, y Leandro, Dev Advocates en Grafana y hoy hablaremos de como es ser un campeón de k6.*
 - Anuncios
 	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
 	- jcd España 2023- https://x.com/kcdspain/status/1731721380364796299?s=46&t=qf40Qc3xG-gn5alrp2Jnpw
