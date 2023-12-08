@@ -61,6 +61,7 @@ DevOps Toolkit: You MUST instrument your code with OpenTelemetry (video): https:
 	- Relationship with CNCF
 - What is OTel?
 	- Anything beyond Logs, Metrics, and Traces?
+	- OTel in DevOps pipelines?
 - What are some of the key goals for the Otel community?
 - How do I instrument an app I have using OpenTelemetry and see traces inside of Grafana?
 	- Shall we show the OTel Demo?
