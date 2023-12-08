@@ -54,11 +54,21 @@ DevOps Toolkit: You MUST instrument your code with OpenTelemetry (video): https:
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
+	- Mention about being a CNCF Ambassador
 - Why was OTel needed? What did we have before?
 - History of OTel
 	- OpenTracing + OpenCensus
+	- Relationship with CNCF
 - What is OTel?
+	- Anything beyond Logs, Metrics, and Traces?
+- What are some of the key goals for the Otel community?
 - How do I instrument an app I have using OpenTelemetry and see traces inside of Grafana?
+	- Shall we show the OTel Demo?
+- What changes/additions are in store for the future?
+- How can others get more involved with the community process?
+	- CNCF?
+	- Mention ObservabilityCon and other o11y-focused conferences and meetups
+	- Look for a CNCF Community Group in your area and attend the events (https://community.cncf.io/) to get involved
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- 
