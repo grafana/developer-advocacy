@@ -28,10 +28,10 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 22/11: Skipped
 - 28/11: [A&A 22 - Navigating through unemployment with Renata Andrade](A&A%2022%20-%20Navigating%20through%20unemployment%20with%20Renata%20Andrade.md)
 - 04/12: [A&A 23 - Personal branding for engineers](A&A%2023%20-%20Personal%20branding%20for%20engineers.md)
+- 12/12: Skipped
 
 ## Upcoming
 
-- 12/12: [[A&A 24 - Maria Kedemo]]
 - 20/12: [[A&A 25 - Vernon Richards]]
 - 27/12: 
 - 03/01: 
