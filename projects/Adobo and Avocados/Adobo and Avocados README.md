@@ -28,11 +28,11 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 22/11: Skipped
 - 28/11: [A&A 22 - Navigating through unemployment with Renata Andrade](A&A%2022%20-%20Navigating%20through%20unemployment%20with%20Renata%20Andrade.md)
 - 04/12: [A&A 23 - Personal branding for engineers](A&A%2023%20-%20Personal%20branding%20for%20engineers.md)
-- 12/12: Skipped
+- 15/12: [A&A 24 - DevOps culture from a tester's perspective](A&A%2024%20-%20DevOps%20culture%20from%20a%20tester's%20perspective.md)
 
 ## Upcoming
 
-- 20/12: [[A&A 25 - Vernon Richards]]
+- 20/12: [A&A 25 - Glue work, quiet quitting, and quality engineering with Vernon Richards](A&A%2025%20-%20Learning%20about%20glue%20work%20and%20quiet%20quitting%20with%20Vernon%20Richards.md)
 - 27/12: 
 - 03/01: 
 - 10/01: Tara Walton

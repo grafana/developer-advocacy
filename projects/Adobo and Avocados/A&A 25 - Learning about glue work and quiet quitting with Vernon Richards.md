@@ -1,12 +1,12 @@
 ---
-url:
-date: 
+url: https://www.youtube.com/watch?v=0Wqf-NZQNkY
+date: 2023-12-20
 ---
-# [[<% tp.file.title %>]]
+# [[A&A 25 - Learning about glue work and quiet quitting with Vernon Richards]]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0Wqf-NZQNkY?si=bPyCzvpfNnIUT_zv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-Guest:: 
+Guest:: Vernon Richards
 
 ## Checklist
 
@@ -16,11 +16,11 @@ Guest::
 - [x] If the guest agrees, choose a date for the Office Hours session. Confirm the time and ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
 - [x] Invite them to the Adobo and Avocados calendar invite (choose "this instance only", not the whole series). Change the invite to include the episode number and their name, ie `Adobo and Avocados #01 with Rafaela`. This is to save the date. Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours.
 - [x] Create a thumbnail on [Canva](https://canva.com) using the Adobo and Avocados thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
-- [ ] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Adobo and Avocados YouTube channel as the destination.
-	- [ ] In the title, include the instance of Adobo and Avocados, i.e. `Getting started in testing with Rafaela Azevedo (A&A #2)`.
-	- [ ] Add the standard description as per previous Adobo and Avocados shows. Check the video description and add guests' contact details.
-- [ ] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
-- [ ] Get the YouTube link to the show. Put the link on this page, in the URL property above.
+- [x] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Adobo and Avocados YouTube channel as the destination.
+	- [x] In the title, include the instance of Adobo and Avocados, i.e. `Getting started in testing with Rafaela Azevedo (A&A #2)`.
+	- [x] Add the standard description as per previous Adobo and Avocados shows. Check the video description and add guests' contact details.
+- [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
+- [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
 
 ## Reference links
 
@@ -38,21 +38,32 @@ Guest::
 	- *Hello and welcome to Adobo and Avocados. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Introduce guest
 	- Who are you?
-	- What do you do? What do you like to do for fun? 
-    - Tell us about your donkeys! :D
+	- What do you do? What do you like to do for fun?
 	- What's your adobo? (a food, item, activity that reminds you of home)
-- Career background
-  - How did you start your career in tech?
-  - Can you tell us a bit more about The Agile Testing Fellowship?
-  - You are seen as a leader in the software testing space, how does this make you feel?
-    - Does this trigger imposter syndrome?
-    - What motivates you to continue to contribute to the community?
-  - What are your philosophies when it comes to testing?
-- DevOps culture from a tester's mindset
-  - What is DevOps?
-  - From a tester's perspective, how can they get comfortable with understanding DevOps culture?
-  - You and Janet Gregory have also coined 'Holistic testing', what is this about?
-    - How is this different from shift-left, shift-right, or continuous testing?
+- Glue work
+	- What is it?
+		- Doing work that is no one's specific responsibility but is essential to the team's success
+		- Great resource from [Tanya Reilly](https://noidea.dog/glue)
+	- What are some examples of glue work?
+		- Nicole and I can also share examples of glue work from our roles as Developer Advocates
+			- e.g. Product DNA
+	- Division and responsibility of glue work
+		- Do women do more of the glue work? Do people with junior titles?
+	- Dangers of glue work if not handled properly
+		- Pushing people out of tech
+		- Can be seen as "less technical" or "less glamorous"
+		- Can lead to quiet quitting
+- What is quiet quitting?
+	- Are we seeing a lot of people from testing background experiencing this?
+	- The dangers of quiet quitting
+	- Is there a good reason to quiet quitting?
+- Implications of glue work to quality engineering
+	- Tehnical work vs. "non-technical" work
+	- Identifying quality problems on a broader scope instead of doing the cool stuff
+	- Spotting quality initiatives but who gets the merit at the end?
+- How should glue work be handled properly?
+	- Leadership advice
+	- Team advice
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
 	- 
