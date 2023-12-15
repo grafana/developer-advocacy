@@ -42,7 +42,8 @@ Guest:: Jev Forsberg
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
 	- This is a pre-recorded and scheduled video because it's a company-wide Shutdown Day leading up to the holidays, but we still wanted to talk about this topic.
-	- Lisa's video, the latest in her "Grafana for Beginners" series.
+	- Lisa's video, the latest in her "Grafana for Beginners" series: https://www.youtube.com/watch?v=4-z1-eEHhvs
+	- The Story of Grafana | Episode 1: Democratize Metrics: https://www.youtube.com/watch?v=k3RQVyeYdO8
 - Introduce guest: Jev Forsberg
 	- Who are you?
 	- What do you do?
