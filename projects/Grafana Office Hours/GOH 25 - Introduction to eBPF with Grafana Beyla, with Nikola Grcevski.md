@@ -1,12 +1,12 @@
 ---
-url: https://youtube.com/live/BgRd-RAFMEE
-date: 2023-12-15
+url: https://youtube.com/live/ZEUzucqXUnQ
+date: 2024-01-05
 ---
-# [[GOH 24 - AI microscopy with Grafana, Theia Scientific, and Volkov Labs]]
+# [[GOH 25 - Introduction to eBPF with Grafana Beyla, with Nikola Grcevski]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: 
+Guest:: Nikola Grcevski
 
 ## Checklist
 
@@ -28,10 +28,9 @@ Guest::
 
 ## Reference links
 
-How Theia Scientific and Volkov Labs use Grafana and AI to analyze scientific images (blog): https://grafana.com/blog/2022/04/29/how-theia-scientific-and-volkov-labs-use-grafana-and-ai-to-analyze-scientific-images/
-Using Grafana and machine learning for real time microscopy image analysis (video of talk at GrafanaCONline 2022): https://www.youtube.com/watch?v=WRPnTFBX4rg
-How to create an ideal Grafana dashboard for science and engineering (blog): https://grafana.com/blog/2023/08/04/how-to-create-an-ideal-grafana-dashboard-for-science-and-engineering/
-
+Grafana Beyla repo: https://github.com/grafana/beyla
+Grafana Beyla docs: https://grafana.com/docs/grafana-cloud/monitor-applications/beyla/
+Application Observability docs: https://grafana.com/docs/grafana-cloud/monitor-applications/application-observability/
 
 ## Timestamps
 
@@ -42,39 +41,43 @@ How to create an ideal Grafana dashboard for science and engineering (blog): htt
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
 - Intro
-	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and on this show, we often talk about observability of computer systems. Today, though, we're talking about observability of a different nature. Our guests today have built a platform called Theiascope that uses Grafana, among other things, to collect and analyse images from microscopes.*
-- But first, some announcements!
-	- Releases
-		- Grafana Agent v0.38: https://grafana.com/blog/2023/11/29/grafana-agent-v0.38-release-new-opentelemetry-components-configuration-improvements-and-more/
-			- new OTel components for Flow mode
-		- k6 v0.48: https://grafana.com/blog/2023/12/14/new-in-grafana-k6-the-latest-oss-features-in-v0.48.0-and-user-defined-project-limits-in-grafana-cloud-k6/
-			- `k6 new`, performance insights for browser
-	- The Story of Grafana: Community: https://youtu.be/lbBQk_QPnEs
-	- Grafana for Beginners series: How to download and run Grafana on macOS: https://www.youtube.com/watch?v=T51Qa7eE3W8
-- Introduce guests
-	- Christopher Field: Co-Founder/President/Principal Investigator
-		- What is Theia Scientific?
-			- experts in edge computing architectures for scientific instrumentation, data analysis, AI model development
-			- originally a hobby project
-	- Mikhail Volkov: Founder/CEO
-		- What is Volkov Labs?
-			- agency that develops custom plugins for Grafana
-		- When did you first start using Grafana?
-- Walk us through the process of manual analysis
-	- What is microscopy?
-	- What are you analysing? : black dots on white backgrounds
-	- The problem with microscopy
-		- abundance of data! How do you analyse it?
-		- needs to be real-time
-	- How can AI help? What are the problems associated with AI?
-- What is the Theiascope?
-	- What does your stack look like?: Grafana, Prometheus, (eventually) Loki, live streaming, PostgreSQL/Timescale, Docker
-	- What issues did you encounter when adapting Grafana for your needs?
-	- What plugins did Mikhail create, and are they opensourced?
-- End result with Grafana: 80% improvement in time and cost over manual post-acquisition image analysis
-- What do you wish were better?
+	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `application auto-instrumentation with eBPF and Grafana Beyla, and pretty much what all those words mean`.
+- Introduce Nikola
+	- Who are you?
+	- What do you do?
+	- How long have you worked at Grafana/on Beyla?
+	- What did you do previously?
+		- compiler engineer, worked on Java SDK
+		- Elasticsearch DB
+- The problems with instrumentation
+	- Types of instrumentation
+		- Source instrumentation
+		- Binary instrumentation - including eBPF
+	- Issues
+		- multiple agents collecting different signals
+		- agents don't exist for every language
+		- proliferation of exporters
+	- The dream: automagically observe everything with little to no effort
+- What is eBPF?
+	- What is auto-instrumentation? How close is it to the automagical dream?
+	- How does it try to solve the issues with instrumentation?
+	- Do you eventually see it as a replacement for manual instrumentation?
+- What is Grafana Beyla?
+	- Demo of how to set it up on Kubernetes
+	- What languages does it support?
+		- Distributed tracing on Go - what's the status of this?
+- What is Application 011y? (demo)
+- Partnership with Isovalent
+	- What is Cilium and how does it compare to Beyla?
+	- Cilium libraries are also used in Beyla
+	- What protocols does Beyla do that Cilium can't?
+- What is a service mesh? How is Beyla different from a service mesh like Istio or Linkerd?
+	- Service mesh is on network level
+	- Beyla can get more information than a service mesh
+	- Differences in protocols supported?
 - Outro
-	- If people want to learn more about the Theiascope or your work at Theia Scientific or Volkov Labs, where should they go?
+	- If people want to learn more about this topic, where should they go?
+	- 
 
 ### Just before the show
 
@@ -82,9 +85,9 @@ How to create an ideal Grafana dashboard for science and engineering (blog): htt
 
 - [ ] How do you pronounce your name?
 - [ ] What are your pronouns?
-- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
-- [x] We'll be streaming to YouTube.
+- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [ ] We'll be streaming to YouTube.
 - [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
 - [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
 - [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.

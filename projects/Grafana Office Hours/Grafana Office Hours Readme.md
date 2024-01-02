@@ -30,16 +30,15 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 24/11: [GOH 21 - How to use flow mode for Grafana Agent with Matt Durham](GOH%2021%20-%20How%20to%20use%20flow%20mode%20for%20Grafana%20Agent%20with%20Matt%20Durham.md)
 - 01/12: [GOH 22 - Joseph Elliot on Grafana Tempo](GOH%2022%20-%20Joseph%20Elliot%20on%20Grafana%20Tempo.md)
 - 08/12: [GOH 23 - Juraci Paixāo Kröhling on OpenTelemetry](GOH%2023%20-%20Juraci%20Paixāo%20Kröhling%20on%20OpenTelemetry.md)
-
+- 15/12: [GOH 24 - AI microscopy with Grafana, Theia Scientific, and Volkov Labs](GOH%2024%20-%20AI%20microscopy%20with%20Grafana,%20Theia%20Scientific,%20and%20Volkov%20Labs.md)
+- 22/12: [GOH - Navigating Diversity in a Remote World with Jev Forsberg](GOH%20-%20Navigating%20Diversity%20in%20a%20Remote%20World%20with%20Jev%20Forsberg.md)
+- 29/12: break
 ### Upcoming
 
-- 15/12: [GOH 24 - AI microscopy with Grafana, Theia Scientific, and Volkov Labs](GOH%2024%20-%20AI%20microscopy%20with%20Grafana,%20Theia%20Scientific,%20and%20Volkov%20Labs.md)
-- 22/12: [GOH 25 - Navigating Diversity in a Remote World with Jev Forsberg](GOH%2025%20-%20Navigating%20Diversity%20in%20a%20Remote%20World%20with%20Jev%20Forsberg.md)
-- 29/12: GOH 26 - Roundup of everything that happened in Grafana Labs projects this year.
-- 05/01: GOH 27 - Beyla with Nikola Grcevski
-- 12/01: GOH 28
-- 19/01: GOH 29
-- 26/01: GOH 30
+- 05/01: [GOH 25 - Introduction to eBPF with Grafana Beyla, with Nikola Grcevski](GOH%2025%20-%20Introduction%20to%20eBPF%20with%20Grafana%20Beyla,%20with%20Nikola%20Grcevski.md)
+- 12/01: GOH 26 - Roundup of everything that happened in Grafana Labs projects this year.
+- 19/01: GOH 27
+- 26/01: GOH 28
 
 ## Future guest suggestions
 

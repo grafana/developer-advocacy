@@ -2,7 +2,7 @@
 url:
 date: 
 ---
-# [[GOH 25 - Navigating Diversity in a Remote World with Jev Forsberg]]
+# [[GOH - Navigating Diversity in a Remote World with Jev Forsberg]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
