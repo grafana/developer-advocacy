@@ -29,21 +29,21 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 28/11: [A&A 22 - Navigating through unemployment with Renata Andrade](A&A%2022%20-%20Navigating%20through%20unemployment%20with%20Renata%20Andrade.md)
 - 04/12: [A&A 23 - Personal branding for engineers](A&A%2023%20-%20Personal%20branding%20for%20engineers.md)
 - 15/12: [A&A 24 - DevOps culture from a tester's perspective](A&A%2024%20-%20DevOps%20culture%20from%20a%20tester's%20perspective.md)
+- 20/12: [A&A 25 - Glue work, quiet quitting, and quality engineering with Vernon Richards](A&A%2025%20-%20Learning%20about%20glue%20work%20and%20quiet%20quitting%20with%20Vernon%20Richards.md)
+- 27/12: Skipped
+- 03/01: Skipped
 
 ## Upcoming
 
-- 20/12: [A&A 25 - Glue work, quiet quitting, and quality engineering with Vernon Richards](A&A%2025%20-%20Learning%20about%20glue%20work%20and%20quiet%20quitting%20with%20Vernon%20Richards.md)
-- 27/12: 
-- 03/01: 
 - 10/01: Tara Walton
 - 17/01: [Mental health in tech with Richard Bradshaw](Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)? Confirm with Richard.
+- 24/01: Mental health and ADHD as a superpower with Karen Todd
 
 ## Future guest suggestions
 
 - Gift Egwuenu
 - [Emy Jamalian](https://www.linkedin.com/in/emyjamalian/) (encouraging people from underrepresented groups to speak up)
 - [Sowmya Sridharamurthy](https://www.linkedin.com/in/sowmyasridharamurthy/) (encouraging/hiring for diversity as a QEM)
-- [Karen (Gochnauer) Todd](https://www.linkedin.com/in/karentestsstuff/) (mental health and ADHD as a superpower)
 - [Linda van de Vooren](https://www.linkedin.com/in/lindavandevooren/) (non-traditional route into tech, neurodivergence, impostor syndrome)
 - [Jenny Bramble](https://www.linkedin.com/in/jennybramble/) (being queer, women in tech, hiring for diversity as a director of engineering)
 - Lisa Jung
