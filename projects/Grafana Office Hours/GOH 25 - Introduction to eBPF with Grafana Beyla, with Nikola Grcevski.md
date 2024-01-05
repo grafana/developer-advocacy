@@ -50,30 +50,54 @@ Application Observability docs: https://grafana.com/docs/grafana-cloud/monitor-a
 		- compiler engineer, worked on Java SDK
 		- Elasticsearch DB
 - The problems with instrumentation
+	- Sometimes when you see a problem, it's too late - the issue has occurred and you didn't have it already instrumented.
 	- Types of instrumentation
 		- Source instrumentation
-		- Binary instrumentation - including eBPF
+		- Binary instrumentation
+		- External instrumentation - including eBPF
 	- Issues
 		- multiple agents collecting different signals
 		- agents don't exist for every language
 		- proliferation of exporters
 	- The dream: automagically observe everything with little to no effort
 - What is eBPF?
+	- Only works on Linux kernel (eBPF on Windows is being worked on but it's not operational yet)
 	- What is auto-instrumentation? How close is it to the automagical dream?
 	- How does it try to solve the issues with instrumentation?
+	- eBPF used to be just bPF (Berkley Packet Filter) - you can extend the kernel with additional logic (modules). Making the kernel programmable.
+		- eBPF (with the e) can also extend the kernel but it's different. We have a virtual machine on the kernel (just like the JVM) that can execute instructions.
+		- VMs are better than modules because they're safer, doesn't break the kernel, and it's isolated.
 	- Do you eventually see it as a replacement for manual instrumentation?
+	- eBPF can be used for other purposes: security, load balancing (circuit breaker pattern)
+	- eBPF:
+		- kernel side: written in C
+		- user space side: written in Go (or other language)
 - What is Grafana Beyla?
+	- Initial goal: tool that captures signals for application monitoring, not infrastructure monitoring
+		- HTTP and gRPC
 	- One of the requirements of Beyla is that "eBPF is enabled in the host". What does that entail?
 	- Demo of how to set it up on Kubernetes
 	- What languages does it support?
 		- Distributed tracing on Go - what's the status of this?
+	- Beyla automatically reduces the cardinality of URL paths by collapsing paths so that when you send this to Prometheus, you don't get charged more because of a cardinality explosion.
+	- Beyla tells you not just the response time but also the time it took *before* the goroutine picks up and actions a request. This can only be seen at the kernel level
 - What is Application 011y? (demo)
 	- Can Beyla only be run on Grafana Cloud?
-- Partnership with Isovalent
+- Is it possible to do distributed tracing with Beyla/eBPF?
+	- It IS, but it's not been released yet. They have an implementation for Go. 
+	- Trace IDs are generated and tracked through the Go runtime as Goroutines start the flow within the Go application. They can tie when a incoming and outgoing requests are made.
+	- In the process of doing this for gRPC.
+- Partnership with Isovalent (now Cisco)
 	- What is Cilium and how does it compare to Beyla?
+		- Cilium captures things at the network level. There are some limitations to that - it's a different approach. We believe that instrumenting at the application level rather than the network level can give us richer information. For example, for GO, we can get information about the runtime. It's easier to track things at the protocol level, like SQL calls in Go, at the application level.
+		- At some level, some of the information can also be extracted by both. But we think Beyla can add extra value
 	- Cilium libraries are also used in Beyla
+		- Beyla is built with Cilium Go
 	- What protocols does Beyla do that Cilium can't?
+		- HTTPS implementation in Beyla doesn't require certificates unlike Cilium
+	- How does the Cisco acquisition affect us, if at all?
 - What is a service mesh? How is Beyla different from a service mesh like Istio or Linkerd?
+	- This is similar to Cilium - they can extract some info about Level 7 HTTP events. But how do you do gRPC? How do you do Layer 2? That's going to be more chalelnging.
 	- Service mesh is on network level
 	- Beyla can get more information than a service mesh
 	- Differences in protocols supported?
@@ -85,16 +109,16 @@ Application Observability docs: https://grafana.com/docs/grafana-cloud/monitor-a
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
+- [x] How do you pronounce your name?
 - [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
-- [ ] We'll be streaming to YouTube.
-- [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
-- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
-- [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
-- [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
-- [ ] Just in case I disconnect... stall for a minute and I'll be right back.
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] We'll be streaming to YouTube.
+- [x] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
+- [x] You can also use the private chat if you need to say something, but you can also just say it out loud.
+- [x] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
+- [x] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
+- [x] Just in case I disconnect... stall for a minute and I'll be right back.
 
 ## After the show
 
