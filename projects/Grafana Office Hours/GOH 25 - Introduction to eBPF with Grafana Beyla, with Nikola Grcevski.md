@@ -63,10 +63,12 @@ Application Observability docs: https://grafana.com/docs/grafana-cloud/monitor-a
 	- How does it try to solve the issues with instrumentation?
 	- Do you eventually see it as a replacement for manual instrumentation?
 - What is Grafana Beyla?
+	- One of the requirements of Beyla is that "eBPF is enabled in the host". What does that entail?
 	- Demo of how to set it up on Kubernetes
 	- What languages does it support?
 		- Distributed tracing on Go - what's the status of this?
 - What is Application 011y? (demo)
+	- Can Beyla only be run on Grafana Cloud?
 - Partnership with Isovalent
 	- What is Cilium and how does it compare to Beyla?
 	- Cilium libraries are also used in Beyla
