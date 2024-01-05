@@ -35,12 +35,13 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 
 ## Upcoming
 
-- 10/01: Tara Walton
-- 17/01: [Mental health in tech with Richard Bradshaw](Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)? Confirm with Richard.
+- 10/01: [A&A 26 - The power of community with Tara Walton](A&A%2026%20-%20The%20power%20of%20community%20with%20Tara%20Walton.md)
+- 17/01: Maria Kedemo
 - 24/01: Mental health and ADHD as a superpower with Karen Todd
 
 ## Future guest suggestions
 
+- [Mental health in tech with Richard Bradshaw](Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)? Confirm with Richard.
 - Gift Egwuenu
 - [Emy Jamalian](https://www.linkedin.com/in/emyjamalian/) (encouraging people from underrepresented groups to speak up)
 - [Sowmya Sridharamurthy](https://www.linkedin.com/in/sowmyasridharamurthy/) (encouraging/hiring for diversity as a QEM)
