@@ -2,11 +2,11 @@
 url:
 date: 
 ---
-# [[<% tp.file.title %>]]
+# [[GOH - Navigating Diversity in a Remote World with Jev Forsberg]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: 
+Guest:: Jev Forsberg
 
 ## Checklist
 
@@ -41,16 +41,32 @@ Guest::
 - Intro
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
-	- New project releases
-	- Recent content published
-- Introduce guest
+	- This is a pre-recorded and scheduled video because it's a company-wide Shutdown Day leading up to the holidays, but we still wanted to talk about this topic.
+	- Lisa's video, the latest in her "Grafana for Beginners" series: https://www.youtube.com/watch?v=4-z1-eEHhvs
+	- The Story of Grafana | Episode 1: Democratize Metrics: https://www.youtube.com/watch?v=k3RQVyeYdO8
+- Introduce guest: Jev Forsberg
 	- Who are you?
 	- What do you do?
-	- How long have you been using Grafana/other project?
-- 
+	- How long have you been working at Grafana?
+- What were our first impressions of working at Grafana?
+- Geographically diverse teams
+	- Romanian, Hungarian, Swede, Irishman, American
+	- Makes communication and connecting difficult
+- Challenges of communicating remotely
+- Three challenges
+	- Varying working hours
+	- Communication styles
+	- Cultural differences
+		- Culture Map
+- Solutions that keep them sane
+	- robust async communication tools (Slack, Google Meet)
+	- Open and inclusive communication
+	- Emphasis on team building
+- Personal narratives
+	- How he broke production his first week
 - Outro
-	- If people want to learn more about this topic, where should they go?
-	- 
+	- If people want to reach out to you, where should they go?
+	- We're hiring!
 
 ### Just before the show
 

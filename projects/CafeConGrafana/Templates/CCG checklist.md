@@ -2,7 +2,7 @@
 url:
 date: 
 ---
-# [[<% tp.file.title %>]]
+# [[Ejemplo CCG 11 - 230910 - Dashboardeandro]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -21,17 +21,17 @@ Invitado(s):
 	- [ ] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
 - [ ] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
 - [ ] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
-- [ ] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
+- [ ] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana en español](https://www.meetup.com/grafana-friends-virtual-en-espanol/).
 - [ ] Agendar un tweet para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
 - [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
-- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#grafañol`).
+- [ ] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
 - [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
 - [ ] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
 
 
 ## Puntos a hablar
 
-> Listar los puntos que se hablarán en el episodio. Mantenerse solo en puntos breves para que el episodio sea una conversacion y fluya con naturaleza. Que no se siente scripteado.
+> Listar los puntos que se hablarán en el episodio. Mantenerse solo en puntos breves para que el episodio sea una conversacion y fluya con naturaleza. Que no se sienta scripteado.
 
 - Intro
 	- *Bienvenidos a la hora de echar un Cafe con Grafana. Soy `<nombre>`, `<posición>` en Grafana y hoy hablaremos de `<tema>`.*

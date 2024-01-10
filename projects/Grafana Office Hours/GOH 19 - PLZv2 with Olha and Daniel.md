@@ -1,12 +1,12 @@
 ---
-url: https://youtube.com/live/_V81Xm22l_c
-date: 2023-09-08
+url: https://youtube.com/live/RXLavQT58YA
+date: 2023-11-10
 ---
-# [[GOH 11 - Huzaifa Bin Asif]]
+# [[GOH 19 - PLZv2 with Olha and Daniel]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: 
+Guest:: Olha Yevtushenko, Daniel González Lopes
 
 ## Checklist
 
@@ -24,70 +24,99 @@ Guest::
 - [x] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Schedule a tweet just when the show begins to say "We're live now!"
 - [x] Schedule a Slack message on the internal Grafana workspace (in `#community`).
-- [x] Schedule a Slack message on the public Grafana Slack workspace (in `#grafana`)
+- [x] Schedule a Slack message on the public Grafana Slack workspace (in `#announcements`)
 
+## Description
+
+```
+This week, we're talking about how you can do load testing on Kubernetes with k6 Private Load Zones, a new feature on Grafana Cloud k6 that leverages the k6 Kubernetes operator to allow you to run distributed load tests against applications behind a firewall. Here to discuss this new feature are Senior Software Engineer Olha Yevtushenko, Product Manager Daniel González Lopes, Developer Advocate Paul Balogh, and Senior Developer Advocate Nicole van der Hoeven.
+
+The Grafana k6 repo: https://github.com/grafana/k6
+k6 operator repo: https://github.com/grafana/k6-operator
+Docs on Private Load Zones in Grafana Cloud k6: https://grafana.com/docs/grafana-cloud/k6/author-run/private-load-zone-v2/
+
+---
+Contact Daniel:
+LinkedIn: https://www.linkedin.com/in/danielgonzalezlopes/
+GitHub: https://github.com/dgzlopes
+X: https://twitter.com/dgzlopes
+
+Contact Nicole:
+Mastodon: https://pkm.social/@nicole
+GitHub: https://github.com/nicolevanderhoeven
+Site: https://nicolevanderhoeven.com
+
+Contact Paul:
+X: https://twitter.com/javaducky
+GitHub: https://github.com/javaducky
+Site: https://javaducky.com/
+
+Learn more about Grafana Labs:
+Website: https://grafana.com
+Repo: https://github.com/grafana/grafana
+```
 
 ## Talking points
 
-[Huzaifa's agenda](https://docs.google.com/document/d/1KG9fkuxaO0OsH4_li-fj0YRJ1SvtqC_c1rU9a0-pJP0/edit#heading=h.5j9oouyj0zox)
-
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
-- Introduce guest: Huzaifa Asif
-	- Who are you?
-	- What do you do?
-		- 20M messages at Respond.io and they didn't do performance testing
-	- How long have you been using Grafana/k6? 
-	- Why did you choose k6 as a testing tool?
-- Purposes of k6
-	- Regression testing
-	- Frontend and backend performance testing (including load, but also database tuning, etc.)
-	- Fault injection
-	- Contract testing
-	- Infrastructure testing: auto-scaling and auto-recovery
-- WebSockets case study
-	- HTTP is the popular use case, but today we're talking about WebSockets
-	- Lots of tools don't support WebSockets.
-	- What are WebSockets?
-	- [Huzaifa's case study](https://huzaifa-asif.notion.site/Performance-Assessment-of-Echo-Server-s-Horizontal-Scalability-using-K6-07e9c5904d844684a7e0620a5b788116?pvs=4)
-		- integrated Redis with sockets and wanted to check the impact on Redis
-		- They have 1 giant websocket server for 20M+ messages. They can't scale that server more.
-		- Implemented Redis adapter with 4-5 WEbSocket servers and one client server.
-		- How to find out which type of Redis to use?
-		- They tested with 10,000 VUs and there was only a 2-3% change in the CPU utilization in the server. They realised they don't need to worry about the type of Redis server to use. He thought the medium instance would not handle it well, but surprisingly, it did! Still working fine now!
-- Infrastructure testing
-	- What is infrastructure testing?
-	- Issues and concerns regarding infrastructure testing
-	- Autoscaling
-		- Screenshare: Huzaifa (how the application auto scales when we run load testing, this helps us test the auto-scaling configuration of infrastructure)
-	- Application auto-recovery
-		- Screenshare: Huzaifa (Run the k6 script of the application without auto-scaling so that the application crashes. Then we verify how the system recovers when it crashes. Does the application need manual intervention or it auto recover?)
-	- Using k6 to Decide Infrastructure Capacity Based on Expected Concurrent Users.
-		- Simulate expected peak concurrent users with k6's constant-vus executor. Monitor system performance and adjust infrastructure based on response times and resource utilization. Iterate until the system reliably handles the anticipated load
-	- Security testing: Distributed test case to mimic DDoS attack
-		- Deploy multiple k6 instances as pods within a Kubernetes cluster to distribute and scale the testing load. This approach leverages Kubernetes' orchestration capabilities, allowing for simulating massive concurrent users from different nodes, and ensuring comprehensive stress testing across distributed systems and regions. Utilize Kubernetes' native services for efficient load balancing, pod management, and monitoring.
-- How does k6 fit into the overall observability picture?
-	- Integrations with the Grafana Labs stack: Grafana, Prometheus, Tempo, Faro
-	- Screenshare: Huzaifa - k6 Integration with Local Grafana & InfluxDB
-		- https://github.com/Huzaifa-Asif/K6-Local-Testing-With-Grafana-InfluxDB
+- Intro
+	- Today we're going to talk about two things:
+		- k6 operator, a Kubernetes operator for k6 that lets you run distributed load tests from within your Kubernetes cluster
+		- Private Load Zones, a Grafana Cloud k6 feature that uses k6 operator to let you run load tests on private infrastructure-- good for getting past firewalls.
+	- Introductions all around: who are you, and what do you do?
+- But first: Announcements
+	- Catch me and Marie Cruz at Agile Testing Days on November 16th (*Adobo & Avocados: Intersectionality in Tech and DevRel*): https://agiletestingdays.com/2023/session/adobo-and-avocados-intersectionality-in-tech-and-devrel/
+	- [ObservabilityCON 2023](https://grafana.com/blog/2023/11/02/observabilitycon-2023-a-sneak-peek-at-the-opening-keynote/)is coming up! Next Tuesday, November 14 at 13:30 GMT, the keynote will be streamed live. If you sign up for it (for free), you'll also be noticed when other on-demand sessions are made available.
+- What is k6?
+- What is k6-operator?: https://github.com/grafana/k6-operator
+	- Previous k6 Office Hours episode on this: https://youtu.be/5d5zxsGz8L4
+	- Why would someone run distributed load tests?
+	- How do you install k6 operator?
+		- Previously: `make deploy`
+		- Now: bundle deployment and Helm chart are probably the way to go.
+	- What is a CRD?
+	- What is a Kubernetes operator?
+	- (Demo) What does the config look like for the k6 operator?
+	- This can be used for free distributed load testing with k6
+- What is Private Load Zones?
+	- What is a load zone?
+	- Why might you want to use a private load zone?
+		- When you want to run a load test *from* your own infrastructure
+		- When you want to run a load test *against* an application on private infrastructure (not publicly exposed)
+	- Previously covered on k6 Office Hours: https://youtu.be/sqKc95zdXyI
+	- What did v1 look like?
+	- What's changed in v2?
+	- How do you set it up? (demo)
+	- We're no longer promoting v1 - why?
+	- What are the limitations of PLZv2?
+		- Being able to use multiple private load zones. Only one per cluster.
+		- No environment variable support.
+		- Browser tests not supported yet.
+		- Logs not yet exposed to the cloud.
+	- Is this only on Grafana Cloud k6?
 - Outro
 	- If people want to learn more about this topic, where should they go?
-	- Next week, we have a global shutdown day, which means no Grafana Office Hours.
-	- Coming up in an hour: stay tuned for the 100th episode of k6 Office Hours, in which we'll be talking about our favourite features of k6 as well as the our favourite moments during that livestream series. Paul and I will be there, joined by our other DevRel colleagues, Marie Cruz and Leandro Melendez.
+	- How can people reach you?
+	- Announcements
+		- We're hiring! https://grafana.com/about/careers/open-positions/
+			- [k6 core team](https://boards.greenhouse.io/grafanalabs/jobs/5007589004)
+			- Synthetic monitoring
+	- Next week: AtomicJar - TestContainers
 
 ### Just before the show
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
 - [x] How do you pronounce your name?
-- [x] What are your pronouns?
+- [ ] What are your pronouns?
 - [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
 - [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
 - [x] We'll be streaming to YouTube.
 - [x] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
 - [x] You can also use the private chat if you need to say something, but you can also just say it out loud.
 - [x] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
-- [x] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
+- [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
 - [ ] Just in case I disconnect... stall for a minute and I'll be right back.
 
 ## After the show

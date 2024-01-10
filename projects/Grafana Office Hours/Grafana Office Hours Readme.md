@@ -16,35 +16,44 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 18/08: Break (Nicole on leave)
 - 25/08: [GOH 09 - Getting started with Grafana Loki](GOH%2009%20-%20Getting%20started%20with%20Grafana%20Loki.md) with Ward
 - 01/09: [GOH 10 - Grafana Play](GOH%2010%20-%20Grafana%20Play.md) with Matt Abrams
-
-### Upcoming
-
 - 08/09: [GOH 11 - Huzaifa Bin Asif](GOH%2011%20-%20Huzaifa%20Bin%20Asif.md)
 - 15/09: BREAK (Grafana Global Shutdown Day)
-- 22/09: GOH 12 - Govable
-- 29/09: (Paul and Nicole unavailable)
-- 06/10: (Paul and Nicole unavailable)
-- 
+- 22/09: [GOH 12 - Govable](GOH%2012%20-%20Govable.md)
+- 29/09: [GOH 13 - How to deploy Grafana on Kubernetes](GOH%2013%20-%20How%20to%20deploy%20Grafana%20on%20Kubernetes.md) with Usman Ahmad
+- 06/10: [GOH 14 - Distributed tracing with Grafana Cloud k6](GOH%2014%20-%20Distributed%20tracing%20with%20Grafana%20Cloud%20k6.md)
+- 13/10: [[GOH 15 - Agentless monitoring for Prometheus in Grafana Cloud]]
+- 20/10: [GOH 16 - Grafana Agent with Paschalis Tsilias](GOH%2016%20-%20Grafana%20Agent%20with%20Paschalis%20Tsilias)
+- 27/10: [GOH 17 - Frontend observability with Faro](GOH%2017%20-%20Frontend%20observability%20with%20Faro.md) 
+- 03/11: [GOH 18 - Combining frontend and backend performance with John Hill](GOH%2018%20-%20Combining%20frontend%20and%20backend%20performance%20with%20John%20Hill.md)
+- 10/11: [GOH 19 - PLZv2 with Olha and Daniel](GOH%2019%20-%20PLZv2%20with%20Olha%20and%20Daniel.md)
+- 17/11: [[GOH 20 - Testcontainers with Manuel de la Pena]]
+- 24/11: [GOH 21 - How to use flow mode for Grafana Agent with Matt Durham](GOH%2021%20-%20How%20to%20use%20flow%20mode%20for%20Grafana%20Agent%20with%20Matt%20Durham.md)
+- 01/12: [GOH 22 - Joseph Elliot on Grafana Tempo](GOH%2022%20-%20Joseph%20Elliot%20on%20Grafana%20Tempo.md)
+- 08/12: [GOH 23 - Juraci Paixāo Kröhling on OpenTelemetry](GOH%2023%20-%20Juraci%20Paixāo%20Kröhling%20on%20OpenTelemetry.md)
+- 15/12: [GOH 24 - AI microscopy with Grafana, Theia Scientific, and Volkov Labs](GOH%2024%20-%20AI%20microscopy%20with%20Grafana,%20Theia%20Scientific,%20and%20Volkov%20Labs.md)
+- 22/12: [GOH - Navigating Diversity in a Remote World with Jev Forsberg](GOH%20-%20Navigating%20Diversity%20in%20a%20Remote%20World%20with%20Jev%20Forsberg.md)
+- 29/12: break
+### Upcoming
+
+- 05/01: [GOH 25 - Introduction to eBPF with Grafana Beyla, with Nikola Grcevski](GOH%2025%20-%20Introduction%20to%20eBPF%20with%20Grafana%20Beyla,%20with%20Nikola%20Grcevski.md)
+- 12/01: GOH 26 - Roundup of everything that happened in Grafana Labs projects this year.
+- 19/01: GOH 27
+- 26/01: GOH 28
 
 ## Future guest suggestions
 
-- Juraci Paixāo Kröhling: [OpenTelemetry](https://raintank-corp.slack.com/archives/CKF4X4H1D/p1688643512830799)
-	- 101 level "how do I instrument an app I have using opentelemetry and see traces inside of grafana" (suggested by David Allen)
-- Lisa Jung: Week of Grafana (maybe for both of us?)
 - SLOs: Ryan Kehoe, Joe Bluebaugh, or Bob Cotton - ask in `#gops-slos`
 	- Nadine - created Pira, on Prometheus SLOs with her partner Matthias
 		- Joining community of OSS SLO tools
 	- [I] Joe, Ryan, Nadine
 - Grafana As Code: Fabrizia Rossano
 - Friend of Dougal Matthews from Supabase: Kevin Brolly. He's the head of success. They're giving users access to Prometheus and want to direct users to Grafana to visualize stuff. I have a conversation open with him on LinkedIn.
-- Dominik Suss -- Grafana Agent Auto-configurator
-	- Makes Grafana Cloud experience better through engineering
-	- Auto-generation of config for Grafana Agent. Demo of this and what is Grafana Agent. Flow mode vs. standard mode.
-	- Grafana Agent is not well documented.
 - Jason Davis:  Cisco ssh2influx
 	- A bit more niche, not as widely applicable
 	- Lots of networking hardware all over the world. Some legacy ones can only be accessed via a Grafana plugin they developed (only via command line)
-- Melori on Loki alerting
-- Paul on our full OTel demo.
-- Faro team on Grafana Faro.
-- Edwin Onattu about agentless integration for Grafana Cloud ([Slack](https://raintank-corp.slack.com/archives/C01QDD2UBK4/p1693506679614689))
+- Marcelo Magallón about Synthetic Monitoring and k6.
+- Ivan Szkiba on xk6-dashboard
+- Pyroscope
+- Marie - psychology of waiting/reliability
+- 
+
