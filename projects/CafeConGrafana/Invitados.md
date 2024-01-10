@@ -3,7 +3,7 @@ Anotar aqui cualquier prospecto a ser invitado del show. Una vez que ya han sido
 ## Prospectos
 Agregar aqui cualquier persona interesante a tener en el show, asi como los datos de contacto y el tema o area de interés.
 - José Luis Latorre. TW -> @joslat - k6 Champion
-- Leandro Inkel. Slack Interno -> @inkel - Grafana SRE
+- Leandro "inkel" López. Slack Interno -> @inkel - Grafana SRE
 - Andrey Slotin. Slack Interno -> @andrey - Enginerring Mgr k6
 - Vicente Ortega Torres. Slack Interno -> @Vincent - k6 Senior SW Engineer
   - k6&tempo
