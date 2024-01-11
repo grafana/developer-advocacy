@@ -62,10 +62,6 @@ Invitado(s): [Marcelo Magallon](https://www.linkedin.com/in/marcelomagallon/)
 
 - Intro
 	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio y Nicole, Dev Advocates en Grafana y hoy hablaremos de Grafana y dashboards.*
-- Anuncios
-	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
-	- Qué es observabilidad?, un video y serie de Lisa Jung: https://youtu.be/TQur9GJHIIQ
-	- Mas anuncios @nicolevanderhoeven ?
 - Introducir invitado
 	- Quien eres?
 	- A que te dedicas?
@@ -79,6 +75,11 @@ Invitado(s): [Marcelo Magallon](https://www.linkedin.com/in/marcelomagallon/)
 	- Que diferencia tiene sintetico con una utomatizacion?
 	- <<Algun otro tema? @nicolevanderhoeven @antonio @mem>>
 	- Que más se viene?
+- Anuncios
+	- Pendientes con la ObservabilityCon de Grafana
+ 	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
+	- Qué es observabilidad?, un video y serie de Lisa Jung: https://youtu.be/TQur9GJHIIQ
+	- [Observability sessions madrid](https://grafana.com/about/events/obsessions/2024/madrid/)
 - Cierre
 	- Donde puede la gente aprender mas de el tema?
 	- Donde te puede seguir/contactar la gente?
