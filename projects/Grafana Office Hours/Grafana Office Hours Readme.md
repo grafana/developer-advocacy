@@ -33,12 +33,13 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 15/12: [GOH 24 - AI microscopy with Grafana, Theia Scientific, and Volkov Labs](GOH%2024%20-%20AI%20microscopy%20with%20Grafana,%20Theia%20Scientific,%20and%20Volkov%20Labs.md)
 - 22/12: [GOH - Navigating Diversity in a Remote World with Jev Forsberg](GOH%20-%20Navigating%20Diversity%20in%20a%20Remote%20World%20with%20Jev%20Forsberg.md)
 - 29/12: break
+- 05/01: [GOH 25 - Introduction to eBPF with Grafana Beyla, with Nikola Grcevski](GOH%2025%20-%20Introduction%20to%20eBPF%20with%20Grafana%20Beyla,%20with%20Nikola%20Grcevski.md)
+
 ### Upcoming
 
-- 05/01: [GOH 25 - Introduction to eBPF with Grafana Beyla, with Nikola Grcevski](GOH%2025%20-%20Introduction%20to%20eBPF%20with%20Grafana%20Beyla,%20with%20Nikola%20Grcevski.md)
-- 12/01: GOH 26 - Roundup of everything that happened in Grafana Labs projects this year.
-- 19/01: GOH 27
-- 26/01: GOH 28
+- 12/01
+- 19/01: GOH 26 - Roundup of everything that happened in Grafana Labs projects this year.
+- 26/01: GOH 27
 
 ## Future guest suggestions
 
@@ -53,7 +54,7 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 	- Lots of networking hardware all over the world. Some legacy ones can only be accessed via a Grafana plugin they developed (only via command line)
 - Marcelo Magallón about Synthetic Monitoring and k6.
 - Ivan Szkiba on xk6-dashboard
-- Pyroscope
+- Pyroscope - asked Ryan Perry.
 - Marie - psychology of waiting/reliability
 - 
 
