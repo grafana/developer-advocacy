@@ -55,14 +55,14 @@ Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/jorge-turrado-ferrero/)
 '''
 - [x] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
 - [x] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
-- [] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
-- [] Agendar mensajes para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
-	- [] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
-	- [] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
-	- [] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
-	- [] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
-- [] Hacer posts en redes sociales para promocionar el episodio
-- [] Agregar episodio e información a los calendarios "Grafana Community" y "Grafana Labs Events"
+- [x] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
+- [x] Agendar mensajes para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
+	- [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
+	- [x] Agendar un mensaje similar en el Slack interno de Grafana  (en `#social-grafañol`).
+	- [x] Agendar un mensaje similar en el Slack público de Grafana  (en `#grafañol`)
+	- [x] Agendar un mensaje similar en el Slack público de Grafana  (en `#announcements`)
+- [x] Hacer posts en redes sociales para promocionar el episodio
+- [x] Agregar episodio e información a los calendarios "Grafana Community" y "Grafana Labs Events"
 
 
 ## Puntos a hablar
