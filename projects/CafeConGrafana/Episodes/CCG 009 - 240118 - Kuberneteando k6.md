@@ -1,10 +1,10 @@
 ---
-url: https://www.youtube.com/watch?v=TBD
+url: https://www.youtube.com/watch?v=GCQHZR_cgHo
 date: 2024-01-18
 ---
 # CCG 009 - Kuberneteando k6 con Jorge Turrado
 
-<iframe width="560" height="315" src="[https://www.youtube.com/watch?v=TBD](https://www.youtube.com/watch?v=TBD)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="[https://www.youtube.com/watch?v=GCQHZR_cgHo](https://www.youtube.com/watch?v=GCQHZR_cgHo)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/jorge-turrado-ferrero/)
 
@@ -53,8 +53,8 @@ Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/jorge-turrado-ferrero/)
 	Website: https://grafana.com
 	Repo: https://github.com/grafana/grafana
 '''
-- [x] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado. https://streamyard.com/2gfsccdwaa
-- [] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
+- [x] Obtener el link de invitacion a Streamyard y con él actualizar la ubicación en la invitación de calendario enviada al invitado.
+- [x] Obtener el link de Youtube del show. Agregarlo a esta pagina en la URL del inicio.
 - [] Crear el evento y anunciarlo [en la pagina de Meetup de Grafana](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [] Agendar mensajes para el momento del inicio del show diciendo "(In Spanish) Cafe con Grafana empieza transmisión!"
 	- [] Agendar un mensaje similar en el Slack interno de Grafana  (en `#community`).
@@ -70,25 +70,24 @@ Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/jorge-turrado-ferrero/)
 > Listar los puntos que se hablarán en el episodio. Mantenerse solo en puntos breves para que el episodio sea una conversacion y fluya con naturaleza. Que no se sienta scripteado.
 
 - Intro
-	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio y Nicole, Dev Advocates en Grafana y hoy hablaremos de Grafana y dashboards.*
+	- *Bienvenidos a la hora de echar un Cafe con Grafana. Somos Antonio, Imma y Leandro, Dev Advocates en Grafana y hoy hablaremos de k6 y kubernetes y para ello traemos a Jorge Turrado.*
 - Introducir invitado
 	- Quien eres?
 	- A que te dedicas?
-	- Cuanto llevas usando Grafana?
+	- Cuanto llevas usando productios de Grafana?
 - Temas a hablar
-	- Que es Grafana para ti?
-	- Revisar temas con @mem
-	- Que es un sintetico?
-	- Para que sirve un sintético?
-	- Hay variedades de sinteticos?
-	- Que diferencia tiene sintetico con una utomatizacion?
-	- <<Algun otro tema? @nicolevanderhoeven @antonio @mem>>
-	- Que más se viene?
+	- Platicanos un poco de lo que haces en tu dia a dia?
+	- Que es Kubernetes?
+	- Que es KEDA? y que es SCRM?
+	- Que es lo que han implementado?
+	- Como que componentes usan/han creado?
+	- Muestranos que se logra?
+	- <<Algun otro tema? @nicolevanderhoeven @antonio @JorTurFer>>
+	- Que otras cosas has hecho?
 - Anuncios
-	- Pendientes con la ObservabilityCon de Grafana
+	- ObservabilityCon de Grafana manden CFPs e inscribanse!
  	- Tenemos Meetup.com en español! Estén al dia con este show y mas https://www.meetup.com/grafana-friends-virtual-en-espanol/
-	- Qué es observabilidad?, un video y serie de Lisa Jung: https://youtu.be/TQur9GJHIIQ
-	- [Observability sessions madrid](https://grafana.com/about/events/obsessions/2024/madrid/)
+	- Nuev video y serie de Lisa Jung: https://youtu.be/TQur9GJHIIQ
 - Cierre
 	- Donde puede la gente aprender mas de el tema?
 	- Donde te puede seguir/contactar la gente?
