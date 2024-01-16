@@ -21,7 +21,7 @@ Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/jorge-turrado-ferrero/)
 	- [x] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
 
 '''
-	Hoy vamos a echar un café con Jorge Turrado, un SRE en Lidl International Hub, MVP de Microsoft por 4 años, y Embajador de CNCF entre otras cosas.
+	Hoy vamos a echar un café con Jorge Turrado, un SRE en Lidl International Hub, MVP de Microsoft por 5 años, y Embajador de CNCF entre otras cosas.
 	El nos viene a platicar como exprime los recursos y provee una plataforma para que los developers puedan hacer sus test de carga de manera sencilla. Para esto se apoya mucho en k6 operator pero también componentes propios de Kubernetes para los que hacen operadores.
 	Ademas nos contará de las mezclas que usan imitando KEDA usando abstracciones de helm, configMaps, Persistent Volumes y mucho mas!
 	Una mezcla loca de experiencias y detalles que no se pueden perder!
@@ -78,10 +78,11 @@ Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/jorge-turrado-ferrero/)
 - Temas a hablar
 	- Platicanos un poco de lo que haces en tu dia a dia?
 	- Que es Kubernetes?
-	- Que es KEDA? y que es SCRM?
-	- Que es lo que han implementado?
-	- Como que componentes usan/han creado?
-	- Muestranos que se logra?
+	- Que es KEDA?
+	- Que es lo que han implementado? 
+	- ~Muestranos que se logra?~ (Tarda >1 hora, así que no vamos a ver demo, solo como lo organizamos)
+ 	- Y en el mundo real (nuesto caso en KEDA es bastante especialito), como usais esto en SCRM?
+	- Demo time! (es casi lo mismo que KEDA, así que no vamos a tener problema y HTTP es más rápido para ver la idea)
 	- <<Algun otro tema? @nicolevanderhoeven @antonio @JorTurFer>>
 	- Que otras cosas has hecho?
 - Anuncios
