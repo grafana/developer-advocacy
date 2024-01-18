@@ -84,6 +84,9 @@ Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/jorge-turrado-ferrero/)
  	- Y en el mundo real (nuesto caso en KEDA es bastante especialito), como usais esto en SCRM?
 	- Demo time! (es casi lo mismo que KEDA, así que no vamos a tener problema y HTTP es más rápido para ver la idea)
 	- <<Algun otro tema? @nicolevanderhoeven @antonio @JorTurFer>>
+   	- {antonio] Cuentanos sobre algun caso en el que hayas utilizado k6 para pruebas de rendimiento.¿Qué dificultades tuviste y cómo las resolviste?
+   	- {antonio]¿Qué estrategias empleas para garantizar que las pruebas de rendimiento sigan siendo eficaces a medida que evoluciona vuestra aplicación?
+   	- {antonio] ¿Cómo te mantienes al día de los avances en metodologías y herramientas de pruebas de rendimiento, incluidas las actualizaciones de k6?
 	- Que otras cosas has hecho?
 - Anuncios
 	- ObservabilityCon de Grafana manden CFPs e inscribanse!
