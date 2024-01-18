@@ -43,6 +43,7 @@ Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/jorge-turrado-ferrero/)
 
 	Contacto Antonio:
 	LinkedIn: https://www.linkedin.com/in/antonio-cm/
+	GitHub: https://github.com/tonypowa
 
 	Contacto Leandro:
 	Linkedin: https://www.linkedin.com/in/leandromelendez/
