@@ -38,8 +38,8 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 ### Upcoming
 
 - 12/01
-- 19/01: GOH 26 - Roundup of everything that happened in Grafana Labs projects this year.
-- 26/01: GOH 27
+- 19/01: [GOH 26 - How to do continuous profiling right, with Grafana Pyroscope & Ryan Perry](GOH%2026%20-%20How%20to%20do%20continuous%20profiling%20right,%20with%20Grafana%20Pyroscope%20&%20Ryan%20Perry.md)
+- 26/01: GOH 27 - Roundup of everything that happened in Grafana Labs projects this year.
 
 ## Future guest suggestions
 
