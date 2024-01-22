@@ -21,12 +21,12 @@ Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/inkel/)
 	- [] Agregar la descripcion de estandar de episodio. Agregar los contactos de los invitados.
 	
 '''
-	En este episodio de Café con Grafana les traemos a Marcelo Magallón, experto en monitoreo sintético, quien viene precisamente a contarnos que es en sí un sisntético.
-	Él nos va a mostrar algunos ejemplos, casos de uso y mucha mas diversión!
+	En este episodio de Café con Grafana les traemos a Leandro "inkel" López, TBD
 
-	Contacto Marcelo:
+	Contacto Leandro "inkel":
 	LinkedIn: https://www.linkedin.com/in/inkel/
-	GitHub: https://github.com/mem
+	GitHub: https://github.com/inkel
+    X: https://twitter.com/inkel
 
 	Contacto Nicole:
 	Mastodon: https://pkm.social/@nicole
@@ -70,12 +70,12 @@ Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/inkel/)
 	- Cuanto llevas usando Grafana?
 - Temas a hablar
 	- Que es Grafana para ti?
-	- Revisar temas con @mem
+	- Revisar temas con @inkel
 	- Que es un sintetico?
 	- Para que sirve un sintético?
 	- Hay variedades de sinteticos?
 	- Que diferencia tiene sintetico con una utomatizacion?
-	- <<Algun otro tema? @nicolevanderhoeven @antonio @mem>>
+	- <<Algun otro tema? @nicolevanderhoeven @antonio @inkel>>
 	- Que más se viene?
 - Anuncios
 	- Pendientes con la ObservabilityCon de Grafana
