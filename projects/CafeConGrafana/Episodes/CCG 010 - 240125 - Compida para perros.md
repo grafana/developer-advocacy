@@ -25,7 +25,7 @@ Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/inkel/)
 	A esta practica se le llama comida para perros (DogFooding) que se basa en usar tus mismos productos para probar o desarrollar tus mismos productos.
 	inkel nos va a platicar de como usan el agente de Grafana cuando crean clusters de kubernetes con Grafana, y ponen las alertas y OnCall para estar al dia con todo y muchas cosas mas!
 
-	Contacto inkel:
+	Contacto Leandro "inkel":
 	LinkedIn: https://www.linkedin.com/in/inkel/
 	GitHub: https://github.com/inkel
 	X: https://twitter.com/inkel
@@ -72,6 +72,7 @@ Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/inkel/)
 	- A que te dedicas?
 	- Cuanto llevas usando Grafana?
 - Temas a hablar
+	- Que es Grafana para ti?
 	- Que es la comida para perros?
 	- Conoces algunos ejemplos publicos? (no grafana)
 	- Como se aplica eso en Grafana?
