@@ -5,12 +5,12 @@
 | Fecha | Titulo | Hosts | Invitados| Notas |
 | --- | --- | --- | --- | ---|
 | YYYYMMDD | 00 [Titulo] | [Hosts] | [Invitados] | [Notas] |
-| 20240229 | 00 [Titulo] | [Hosts] | [Invitados] | [Notas] |
-| 20240122 | 13 [Titulo] | Antonio, Leandro, Nicole | Israel Blancas y Ruben Vargas | [Notas] |
-| 20240215 | 12 [Titulo] | [Hosts] | [Invitados] | [Notas] |
-| 20240208 | 11 [Titulo] | [Hosts] | [Invitados] | [Notas] |
-| 20240201 | N/A  | N/A | N/A | Equipo en Fosdem |
-| 20240125 | 10 [Titulo] | [Hosts] | [Invitados] | [Notas] |
+| 20240229 | 12 [Titulo] | Antonio, Leandro, Nicole | Israel Blancas y Ruben Vargas | [Notas] |
+| 20240122 | N/A [Titulo] | [Hosts] | [Invitados] | [Notas] |
+| 20240215 | 11 [Titulo] | [Hosts] | [Invitados] | [Notas] |
+| 20240208 | N/A | N/A | N/A | Break de Fosdem |
+| 20240201 | N/A | N/A | N/A | Equipo en Fosdem |
+| 20240125 | 10 Comida Para Perros | Leandro y Antonio | Leandro "inkel" López | Nicole no puede asistir |
 | 20240118 | 09 Kuberneteando con k6 | Antonio, Imma, Leandro | [Jorge Turrado](https://www.linkedin.com/in/jorge-turrado-ferrero/) | Nicole no pudo asistir. |
 | 20240111 | 08 Entendiendo los Sinteticos | Nicole, Antonio | [Marcelo Magallon](https://www.linkedin.com/in/marcelomagallon/) | Primero de 2024 |
 
