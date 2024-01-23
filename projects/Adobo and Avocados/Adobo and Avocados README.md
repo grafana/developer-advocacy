@@ -33,12 +33,11 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 27/12: Skipped
 - 03/01: Skipped
 - 10/01: [A&A 26 - The power of community with Tara Walton](A&A%2026%20-%20The%20power%20of%20community%20with%20Tara%20Walton.md)
+- 18/01: [A&A 27 - Why people leave software testing with Maria Kedemo](A&A%2027%20-%20Why%20people%20leave%20software%20testing%20with%20Maria%20Kedemo.md)
 
 ## Upcoming
-
-- 18/01: [A&A 27 - Why people leave software testing with Maria Kedemo](A&A%2027%20-%20Why%20people%20leave%20software%20testing%20with%20Maria%20Kedemo.md)
-- 24/01: Mental health and ADHD as a superpower with Karen Todd
-- 31/01:
+- 24/01: [A&A #28 - Mental health and ADHD as a superpower with Karen Todd](A&A%2028%20-%20Mental%20health%20and%20ADHD%20as%20a%20superpower%20with%20Karen%20Todd.md)
+- 31/01: [Gertrude Chilufya Westrin](https://www.linkedin.com/in/gertrude-chilufya/) (diversity in tech, developer advocacy)
 - 07/02: Tristan Lombard
 - 16/02: [Mental health in tech with Richard Bradshaw](Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)
 - 21/02: [Heather Reid](https://www.linkedin.com/in/heather-reid-21198a69/) (being a community boss at MoT, how she uses her maths background in testing, using data to build models of user behaviours, MVP vs Minimum Shippable Risk)
@@ -54,6 +53,5 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - [Heather Reid](https://www.linkedin.com/in/heather-reid-21198a69/) (being a community boss at MoT, how she uses her maths background in testing, using data to build models of user behaviours, MVP vs Minimum Shippable Risk)
 - Avery (being trans)
 - Ida Fürjesová from Grafana - giving underrepresented groups a voice
-- [Gertrude Chilufya Westrin](https://www.linkedin.com/in/gertrude-chilufya/) (diversity in tech, developer advocacy)
 
 

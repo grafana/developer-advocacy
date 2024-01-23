@@ -1,12 +1,12 @@
 ---
-url: https://www.youtube.com/watch?v=s-tv51fMRXo
-date: 2024-01-18
+url: https://www.youtube.com/watch?v=X0dQY-gxPYg
+date: 2024-01-23
 ---
-# [[A&A 27 - Why people leave software testing with Maria Kedemo]]
+# [[Mental health and ADHD as a superpower with Karen Todd]]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/s-tv51fMRXo?si=kpYQyohUmo87S42F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: Maria Kedemo
+Guest:: 
 
 ## Checklist
 
@@ -17,8 +17,8 @@ Guest:: Maria Kedemo
 - [x] Invite them to the Adobo and Avocados calendar invite (choose "this instance only", not the whole series). Change the invite to include the episode number and their name, ie `Adobo and Avocados #01 with Rafaela`. This is to save the date. Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours.
 - [x] Create a thumbnail on [Canva](https://canva.com) using the Adobo and Avocados thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices.
 - [x] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Adobo and Avocados YouTube channel as the destination.
-	- [x] In the title, include the instance of Adobo and Avocados, i.e. `Getting started in testing with Rafaela Azevedo (A&A #2)`.
-	- [x] Add the standard description as per previous Adobo and Avocados shows. Check the video description and add guests' contact details.
+- [x] In the title, include the instance of Adobo and Avocados, i.e. `Getting started in testing with Rafaela Azevedo (A&A #2)`.
+- [x] Add the standard description as per previous Adobo and Avocados shows. Check the video description and add guests' contact details.
 - [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
 - [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
 
@@ -40,19 +40,27 @@ Guest:: Maria Kedemo
 	- Who are you?
 	- What do you do?
 	- What's your adobo? (a food, item, activity that reminds you of home)
-- Maria's career background
-- Let's get right to the topic!
-  - Why did you leave the software testing industry?
-    - What challenges did you face?
-    - What was the impact?
-  - Why do people leave the software testing industry?
-    - Belief that testing skills are inferior
-    - Belief that everything should be automated
-    - "I am not technical enough" mindset
-    - Glue work
-  - Career paths people have taken after being a software tester
-  - How can we make the industry more inclusive and welcoming?
-  - What made you decide to come back to software testing?
+- Career background
+  - How did you start your career in tech?
+- Neurodivergence
+  - What does it mean to be neurodivergent?
+  - What are some mental health conditions that fall under neurodivergence?
+    - ADHD
+    - Dyslexia
+    - Asperger's
+    - Autism spectrum disorder
+  - Impact on mental health and ways to cope
+  - Framing neurodivergence positively
+    - Opportunity for us to learn about people whose brain works differently
+    - Encourages us to look outside the box
+    - Encourages us to embrace diversity
+  - How has neurodivergence boosts your testing?
+    - Deeper sense of curiosity
+    - Empathy (accessibility)
+    - Better exploratory testing
+    - Wider scope for user personas
+  - How can we support neurodivergent people better?
+  - Promote your self! 😊 (any upcoming talks, conference, etc, your YouTube channel)
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
 	- 
@@ -61,19 +69,19 @@ Guest:: Maria Kedemo
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [x] How do you pronounce your name?
+- [ ] How do you pronounce your name?
 - [ ] What are your pronouns?
-- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
 - [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
-- [x] We'll be streaming to YouTube.
-- [x] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
-- [x] You can also use the private chat if you need to say something, but you can also just say it out loud.
-- [x] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
-- [x] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
-- [x] Just in case I disconnect... stall for a minute and I'll be right back.
+- [ ] We'll be streaming to YouTube.
+- [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
+- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
+- [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
+- [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
+- [ ] Just in case I disconnect... stall for a minute and I'll be right back.
 
 ## After the show
 
-- [x] Add timestamps to the video (at least four).
+- [ ] Add timestamps to the video (at least four).
 - [ ] Add any links shared to the description of the video.
-- [x] Add the video to Adobo and Avocados playlist
+- [ ] Add the video to Adobo and Avocados playlist
