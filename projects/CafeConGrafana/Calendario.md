@@ -10,7 +10,7 @@
 | 20240215 | N/A | N/A | N/A | VKO ocurriendo al mismo tiempo |
 | 20240208 | TBD [Titulo] | [Hosts] | [Invitados] | Aun post Fosdem? |
 | 20240201 | N/A | N/A | N/A | Equipo en Fosdem |
-| 20240125 | 10 Comida Para Perros | Leandro y Antonio | Leandro "inkel" López | Nicole no puede asistir |
+| 20240125 | 10 Comida Para Perros | Leandro y Antonio | [Leandro "inkel" López](https://www.linkedin.com/in/inkel/) | Nicole no puede asistir |
 | 20240118 | 09 Kuberneteando con k6 | Antonio, Imma, Leandro | [Jorge Turrado](https://www.linkedin.com/in/jorge-turrado-ferrero/) | Nicole no pudo asistir. |
 | 20240111 | 08 Entendiendo los Sinteticos | Nicole, Antonio | [Marcelo Magallon](https://www.linkedin.com/in/marcelomagallon/) | Primero de 2024 |
 
