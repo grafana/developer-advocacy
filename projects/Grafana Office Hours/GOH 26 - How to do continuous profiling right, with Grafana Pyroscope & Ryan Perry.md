@@ -44,6 +44,7 @@ Guest:: Ryan Perry
 	- Who are you?
 	- What do you do?
 	- How long have you been working on Pyroscope? What caused you to work on continuous profiling?
+	- Joining Grafana
 - What is continuous profiling?
 	- Why do we need it?
 	- How was continuous profiling being done before and why was that an absolute pain?
@@ -57,7 +58,7 @@ Guest:: Ryan Perry
 	- Features
 		- Ingest profiles from Pyroscope agent AND other agents
 		- Can also ingest ad hoc profiles
-		- Exports metrics to Prometheus (when )
+		- Exports metrics to Prometheus (when should we do this?)
 		- Pyroscope Agents
 	- What do you need to use Pyroscope?
 		- Instrumentation

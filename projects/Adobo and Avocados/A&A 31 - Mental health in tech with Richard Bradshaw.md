@@ -2,7 +2,7 @@
 url: https://www.youtube.com/watch?v=nZxGIZlCB6s
 date: 2023-12-04
 ---
-# [[Mental health in tech with Richard Bradshaw]]
+# [[A&A 31 - Mental health in tech with Richard Bradshaw]]
 
 ![](https://www.youtube.com/watch?v=nZxGIZlCB6s)
 
