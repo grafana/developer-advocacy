@@ -80,6 +80,8 @@ Invitado(s): [Jorge Turrado](https://www.linkedin.com/in/inkel/)
 	- Que otras cosas interesante estan trabajando? (Utilidad de discos)
 	- En que otras cosas interesantes estan trabajando?
 	- <<Algun otro tema? @inkel @antonio>>
+ 	- [Antonio] Beneficios (e.g. identificar bugs temprano, mejorar producto), y retos (e.g.  prejuicios) del dogfooding.
+  	- [Antonio] Estrategias para su implementacion (e.g. balance entre feedback interno vs externo).
 - Anuncios
 	- Pendientes con la GrafanaCon (https://grafana.com/blog/2024/01/11/grafanacon-2024-in-april-in-amsterdam-and-in-person/)
 	- Qué es observabilidad?, un video y serie de Lisa Jung: https://youtu.be/TQur9GJHIIQ
