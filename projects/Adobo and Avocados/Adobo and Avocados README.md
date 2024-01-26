@@ -54,6 +54,5 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - [Jenny Bramble](https://www.linkedin.com/in/jennybramble/) (being queer, women in tech, hiring for diversity as a director of engineering)
 - Avery (being trans)
 - Ida Fürjesová from Grafana - giving underrepresented groups a voice
-- Steve Upton about ritual dissent (Nicole is talking to him)
 
 

@@ -40,13 +40,23 @@ BetterHelp: https://www.betterhelp.com/
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
 - Intro
-	- *Hello and welcome to Adobo and Avocados. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
-- Introduce guest
+- Introduce Richard
 	- Who are you?
 	- What do you do?
 	- What's your adobo? (a food, item, activity that reminds you of home)
-- Work load. Community pressure. Work life balance. Being seen as a leader. Support available. Burn out. Industry needs to do more. Power of talking. Let people in. Let folk help.
-- Believe. Acceptance
+- Work load in tech
+	- Work-life balance
+- The difficulties in being an "influencer"
+	- Community pressure
+	- Being seen as a leader
+- Burnout and overwork
+- Industry needs to do more
+	- Support available
+	- Power of talking
+	- Let people in. Let folk help.
+- What can we do?
+	- Believe
+	- Acceptance
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
 	- 
