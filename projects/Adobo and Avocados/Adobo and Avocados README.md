@@ -42,6 +42,8 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 07/02: A&A 30 Tristan Lombard
 - 16/02: [A&A 31 - Mental health in tech with Richard Bradshaw](A&A%2031%20-%20Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)
 - 21/02: A&A 32 - [Heather Reid](https://www.linkedin.com/in/heather-reid-21198a69/) (being a community boss at MoT, how she uses her maths background in testing, using data to build models of user behaviours, MVP vs Minimum Shippable Risk)
+- 01/03: [A&A 33 - Facilitation techniques in tech with Steve Upton](A&A%2033%20-%20Facilitation%20techniques%20in%20tech%20with%20Steve%20Upton.md)
+- 
 
 ## Future guest suggestions
 
