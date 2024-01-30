@@ -64,6 +64,7 @@ Guest::
     - Can be unstructured (but can easily be structured)
     - Creativity rut
   - Recommendations on how to do well as a developer advocate
+  - Importance of diversity and representation when it comes to being a developer advocate
   - What's the career progression like in developer advocacy
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
