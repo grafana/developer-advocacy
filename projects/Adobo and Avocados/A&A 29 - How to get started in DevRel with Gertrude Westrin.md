@@ -21,7 +21,7 @@ Guest::
 	- [x] Add the standard description as per previous Adobo and Avocados shows. Check the video description and add guests' contact details.
 - [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
 - [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
-- [ ] Schedule posts on socials just when the show begins to say "We're live now!"
+- [x] Schedule posts on socials just when the show begins to say "We're live now!"
 
 ## Reference links
 
