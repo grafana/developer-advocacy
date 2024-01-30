@@ -34,16 +34,21 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 22/12: [GOH - Navigating Diversity in a Remote World with Jev Forsberg](GOH%20-%20Navigating%20Diversity%20in%20a%20Remote%20World%20with%20Jev%20Forsberg.md)
 - 29/12: break
 - 05/01: [GOH 25 - Introduction to eBPF with Grafana Beyla, with Nikola Grcevski](GOH%2025%20-%20Introduction%20to%20eBPF%20with%20Grafana%20Beyla,%20with%20Nikola%20Grcevski.md)
+- 12/01: break
+- 19/01: [GOH 26 - How to do continuous profiling right, with Grafana Pyroscope & Ryan Perry](GOH%2026%20-%20How%20to%20do%20continuous%20profiling%20right,%20with%20Grafana%20Pyroscope%20&%20Ryan%20Perry.md)
+- 26/01: break
+- 02/02: break
 
 ### Upcoming
 
-- 12/01
-- 19/01: [GOH 26 - How to do continuous profiling right, with Grafana Pyroscope & Ryan Perry](GOH%2026%20-%20How%20to%20do%20continuous%20profiling%20right,%20with%20Grafana%20Pyroscope%20&%20Ryan%20Perry.md)
-- 26/01: GOH 27 - Roundup of everything that happened in Grafana Labs projects this year.
-- 02/02
-- 09/02
-- 16/02
-- 23/02
+- 09/02: GOH 27 - Roundup of everything that happened in Grafana Labs projects this year.
+- 16/02: break
+- 23/02: GOH 28
+- 01/03: break
+- 08/03: GOH 29
+- 15/03: break
+- 22/03: GOH 30
+- 29/03: breakl
 
 ## Future guest suggestions
 
@@ -58,7 +63,6 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 	- Lots of networking hardware all over the world. Some legacy ones can only be accessed via a Grafana plugin they developed (only via command line)
 - Marcelo Magallón about Synthetic Monitoring and k6.
 - Ivan Szkiba on xk6-dashboard
-- Pyroscope - asked Ryan Perry.
 - Marie - psychology of waiting/reliability
 - 
 
