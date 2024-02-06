@@ -45,15 +45,19 @@ Guest:: Tristan Lombard
   - Path to being a 'stage mom' 💜
 - Building a personal brand
   - Why should we have one?
-  - How can we build an authentic brand?
   - Taking that leap into making your first contribution
-  - Using social media effectively
-    - Recommended practices
-    - What *NOT* to do?
-  - Extending your personal brand/influence outside
-    - Collaboration with other members of the community
-    - Being a community builder
-    - Recognising other's efforts and championing others
+- Building a brand of value
+  - How does building a brand of value differ in your opinion? 
+  - What are the components of building a brand of value?
+  - Why is building an authentic brand more important than ever in this genAI era? 
+  - Why do you believe that building a brand of value is important for rising engineers and developers that may be more averse to social media? 
+- Using social media effectively
+  - Recommended practices
+  - What *NOT* to do?
+- Extending your brand/influence outside
+  - Collaboration with other members of the community
+  - Being a community builder
+  - Recognising other's efforts and championing others
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
 	- 
