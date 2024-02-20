@@ -36,16 +36,16 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 18/01: [A&A 27 - Why people leave software testing with Maria Kedemo](A&A%2027%20-%20Why%20people%20leave%20software%20testing%20with%20Maria%20Kedemo.md)
 - 24/01: [A&A 28 - Mental health as a superpower with Karen Todd](A&A%2028%20-%20Mental%20health%20as%20a%20superpower%20with%20Karen%20Todd.md)
 - 31/01: [A&A 29 - How to get started in DevRel with Gertrude Westrin](A&A%2029%20-%20How%20to%20get%20started%20in%20DevRel%20with%20Gertrude%20Westrin.md)
+- 07/02: [A&A 30 - How to build an authentic brand with Tristan Lombard](A&A%2030%20-%20How%20to%20build%20an%20authentic%20brand%20with%20Tristan%20Lombard.md)
+- 16/02: Skipped
 
 ## Upcoming
-- 07/02: [A&A 30 - How to build an authentic brand with Tristan Lombard](A&A%2030%20-%20How%20to%20build%20an%20authentic%20brand%20with%20Tristan%20Lombard.md)
-- 16/02: [A&A 31 - Mental health in tech with Richard Bradshaw](A&A%2031%20-%20Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)
 - 21/02: A&A 32 - [Heather Reid](https://www.linkedin.com/in/heather-reid-21198a69/) (being a community boss at MoT, how she uses her maths background in testing, using data to build models of user behaviours, MVP vs Minimum Shippable Risk)
 - 01/03: [A&A 33 - Facilitation techniques in tech with Steve Upton](A&A%2033%20-%20Facilitation%20techniques%20in%20tech%20with%20Steve%20Upton.md)
-- 
 
 ## Future guest suggestions
 
+- [Mental health in tech with Richard Bradshaw](A&A%2031%20-%20Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)
 - Gift Egwuenu (Nicole is talking to her)
 - [Emy Jamalian](https://www.linkedin.com/in/emyjamalian/) (encouraging people from underrepresented groups to speak up)
 - [Sowmya Sridharamurthy](https://www.linkedin.com/in/sowmyasridharamurthy/) (encouraging/hiring for diversity as a QEM)

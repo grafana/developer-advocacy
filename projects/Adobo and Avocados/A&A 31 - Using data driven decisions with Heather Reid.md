@@ -1,12 +1,12 @@
 ---
-url: https://www.youtube.com/watch?v=fKWsPeZD7dE
-date: 2024-02-07
+url: https://www.youtube.com/watch?v=cN0koXoHlYI
+date: 2024-02-21
 ---
-# [[How to build an authentic brand with Tristan Lombard]]
+# [[ Using data-driven decisions with Heather Reid]]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/fKWsPeZD7dE?si=iFgNe10yEFImIi4N" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cN0koXoHlYI?si=IslrThTBjb9vZOtP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-Guest:: Tristan Lombard
+Guest:: Heather Reid
 
 ## Checklist
 
@@ -42,22 +42,27 @@ Guest:: Tristan Lombard
 	- What do you do?
 	- What's your adobo? (a food, item, activity that reminds you of home)
 - Career background
-  - Path to being a 'stage mom' 💜
-- Building a personal brand
-  - Why should we have one?
-  - Taking that leap into making your first contribution
-- Building a brand of value
-  - How does building a brand of value differ in your opinion? 
-  - What are the components of building a brand of value?
-  - Why is building an authentic brand more important than ever in this genAI era? 
-  - Why do you believe that building a brand of value is important for rising engineers and developers that may be more averse to social media? 
-- Using social media effectively
-  - Recommended practices
-  - What *NOT* to do?
-- Extending your brand/influence outside
-  - Collaboration with other members of the community
-  - Being a community builder
-  - Recognising other's efforts and championing others
+  - Tell us how you got into tech
+  - Mathematician > Developer > Community Manager > Tester
+  - Why did you decide to go back to being a tester?
+  - Career change - share your news! 😊
+- Community BossBoss
+  - How did you end up being a community manager for one of the biggest testing community in the world?
+  - What's the experience like?
+  - Lessons learned from being a community manager
+  - What were you most proud of during your time as MoT's community manager?
+- How do you use your maths background in testing? (should tie in nicely with the main topic of data-driven testing)
+- Data-driven testing
+  - What is it?
+  - How is this different from other testing approaches? Can we use it conjunction with other testing approaches?
+  - How can someone get started?
+    - The 'what' of data driven decisions (https://heatherreiduff.com/posts/2023/what-of-data-driven-decisions/)
+    - The 'where'
+    - The 'why'
+    - The 'who'
+    - The 'when'
+    - The 'how'
+  - What tools can people use?
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
 	- 
