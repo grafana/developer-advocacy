@@ -25,6 +25,8 @@ Guest:: Heather Reid
 
 ## Reference links
 
+https://agiletestingdays.com/blog/agiletd-costume-winners-announced/ 
+https://heatherreiduff.com/posts/2023/what-of-data-driven-decisions/
 
 ## Timestamps
 
