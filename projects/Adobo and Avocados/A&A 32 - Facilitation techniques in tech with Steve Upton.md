@@ -1,12 +1,12 @@
 ---
-url: 
+url: https://www.youtube.com/watch?v=rFnrI-iKKwg
 date: 2024-03-01
 ---
-# [[A&A 33 - Facilitation techniques in tech with Steve Upton]]
+# [[A&A 32 - Facilitation techniques in tech with Steve Upton]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: 
+Guest:: Steve Upton
 
 ## Checklist
 
@@ -24,6 +24,13 @@ Guest::
 
 ## Reference links
 
+(course) Workshop Facilitation by Andy Polaine: https://courses.polaine.com/workshop-facilitation
+(book) Open Space Technology: A User's Guide: https://amzn.to/48DhzMF
+(book) Good Talk: How to design conversations that matter: https://amzn.to/49xGG4S
+(book) Gamestorming: https://amzn.to/3TiO3r6
+(site) Liberating Structures: https://www.liberatingstructures.com/ls/
+(book) The Rules We Break: https://amzn.to/431Ketr
+(blog) Asking questions to improve quality: https://www.thoughtworks.com/insights/blog/asking-questions-improve-quality
 
 ## Timestamps
 
@@ -36,16 +43,47 @@ Guest::
 
 - Intro
 	- *Hello and welcome to Adobo and Avocados. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
-- Introduce guest
+- Introduce Lina and Steve
 	- Who are you?
 	- What do you do?
 	- What's your adobo? (a food, item, activity that reminds you of home)
 - What is facilitation?
+	- What's the difference between facilitating and leading a meeting?
+		- Top-down vs bottom-up?
+	- Complexity facilitation
+		- If people are complex systems, then we need to have a certain amount of unpredictability. We can't make deterministic statements, but we can make probabilistic statements.
+		- Managing the process, not the people
+	- What is the purpose of facilitation? What are we trying to do?
+		- Andy's course on Workshop Facilitation: Generation, Alignment, Evaluation
+	- What's the difference between facilitating a workshop and facilitating a meeting?
+		- Structure
+		- Clear intent
+		- Time: Duration is often longer, not recurring
+- How can facilitation be important in tech? What are some examples of instances when you needed to facilitate a workshop?
+	- Setting up definitions of done or definitions of ready (active)
+		- Co-creation rather than top down
+	- Idea of quality
+- The role of the facilitator: what is it and what makes it difficult?
+	- Reading the room
+	- Inviting and uninviting
+	- Maintaining boundaries of space and time
+	- Setting, maintaining, breaking cadence
+	- Manage the process, not the end result
+- How do you facilitate a workshop?
 - Facilitation techniques
-- Ritual dissent
+	- Future backwards: start with current state. Ask them to imagine an impossibly bad an impossibly good future state.
+	- When people have different ideas and you must get them on the same page, separate them and give them the same task. Then ask them what was the same, what was different
+	- Open Space Technology / Unconference
+		- pattern entrainment
+	- Ritual dissent
+	- Games
+		- Gamestorming book
+			- Opening (Divergent)
+			- Exploring (Emergent)
+			- Closing (Convergent)
+		- TTRPGs and other games
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
-	- 
 
 ### Just before the show
 
@@ -55,7 +93,7 @@ Guest::
 - [ ] What are your pronouns?
 - [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
 - [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
-- [ ] We'll be streaming to YouTube.
+- [x] We'll be streaming to YouTube.
 - [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
 - [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
 - [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
