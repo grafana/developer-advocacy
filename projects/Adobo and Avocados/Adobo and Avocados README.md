@@ -39,22 +39,23 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 07/02: [A&A 30 - How to build an authentic brand with Tristan Lombard](A&A%2030%20-%20How%20to%20build%20an%20authentic%20brand%20with%20Tristan%20Lombard.md)
 - 16/02: Skipped
 - 21/02: [A&A 31 - Using data driven decisions with Heather Reid](A&A%2031%20-%20Using%20data%20driven%20decisions%20with%20Heather%20Reid.md)
-
-## Upcoming
 - 01/03: [A&A 32 - Facilitation techniques in tech with Steve Upton](A&A%2032%20-%20Facilitation%20techniques%20in%20tech%20with%20Steve%20Upton.md)
 - 06/03: Skipped (Marie on leave)
+
+## Upcoming
 - 13/03: [Lina Deatherage](https://www.linkedin.com/in/lina-deatherage-393035112/)
 - 20/03: Skipped (Nicole on KubeCon)
 - 27/03: [Abby Bangser](https://www.linkedin.com/in/abbybangser/)
 - 05/04: [Niki Manoledaki](https://www.linkedin.com/in/niki-manoledaki-9b505111b/)
 - 10/04: [Gift Egwuenu](https://www.linkedin.com/in/egwuenugift/)
+- 17/04: [Linda van de Vooren](https://www.linkedin.com/in/lindavandevooren/)
+- 24/04: [Alex Schladebeck](https://www.linkedin.com/in/alexandraschladebeck/)
 
 ## Future guest suggestions
 
 - [Mental health in tech with Richard Bradshaw](A&A%2031%20-%20Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)
 - [Emy Jamalian](https://www.linkedin.com/in/emyjamalian/) (encouraging people from underrepresented groups to speak up)
 - [Sowmya Sridharamurthy](https://www.linkedin.com/in/sowmyasridharamurthy/) (encouraging/hiring for diversity as a QEM)
-- [Linda van de Vooren](https://www.linkedin.com/in/lindavandevooren/) (non-traditional route into tech, neurodivergence, impostor syndrome)
 - [Jenny Bramble](https://www.linkedin.com/in/jennybramble/) (being queer, women in tech, hiring for diversity as a director of engineering)
 - Avery (being trans)
 - Ida Fürjesová from Grafana - giving underrepresented groups a voice
