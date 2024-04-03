@@ -43,7 +43,7 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 06/03: Skipped (Marie on leave)
 
 ## Upcoming
-- 13/03: [Lina Deatherage](https://www.linkedin.com/in/lina-deatherage-393035112/)
+- 13/03: [Embracing and exploiting tech opportunities with Lina Deatherage](Embracing%20and%20exploiting%20tech%20opportunities%20with%20Lina%20Deatherage)
 - 20/03: Skipped (Nicole on KubeCon)
 - 27/03: [Abby Bangser](https://www.linkedin.com/in/abbybangser/)
 - 05/04: [Niki Manoledaki](https://www.linkedin.com/in/niki-manoledaki-9b505111b/)

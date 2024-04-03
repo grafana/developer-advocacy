@@ -41,14 +41,11 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 
 ### Upcoming
 
-- 09/02: GOH 27 - Roundup of everything that happened in Grafana Labs projects this year.
-- 16/02: break
-- 23/02: GOH 28
-- 01/03: break
-- 08/03: GOH 29
-- 15/03: break
-- 22/03: GOH 30
-- 29/03: breakl
+- ??: [GOH 27 - OpenTelemetry Metrics with Traefik](GOH%2027%20-%20OpenTelemetry%20Metrics%20with%20Traefik.md)
+- Emma Sleep
+- Navish Bahl on Asserts.ai
+- Matt Durham/Paschalis Tsilians: Grafana Agent new release and changes
+- Loki changes?
 
 ## Future guest suggestions
 
