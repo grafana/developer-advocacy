@@ -41,18 +41,19 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 21/02: [A&A 31 - Using data driven decisions with Heather Reid](A&A%2031%20-%20Using%20data%20driven%20decisions%20with%20Heather%20Reid.md)
 - 01/03: [A&A 32 - Facilitation techniques in tech with Steve Upton](A&A%2032%20-%20Facilitation%20techniques%20in%20tech%20with%20Steve%20Upton.md)
 - 06/03: Skipped (Marie on leave)
+- 13/03: [A&A 33 - Embracing and exploiting tech opportunities with Lina Deatherage](A&A%2033%20-%20Embracing%20and%20exploiting%20tech%20opportunities%20with%20Lina%20Deatherage)
+- 20/03: Skipped (Nicole on KubeCon)
+- 29/03: Skipped (Good Friday) 
 
 ## Upcoming
-- 13/03: [Embracing and exploiting tech opportunities with Lina Deatherage](Embracing%20and%20exploiting%20tech%20opportunities%20with%20Lina%20Deatherage)
-- 20/03: Skipped (Nicole on KubeCon)
-- 27/03: [Abby Bangser](https://www.linkedin.com/in/abbybangser/)
-- 05/04: [Niki Manoledaki](https://www.linkedin.com/in/niki-manoledaki-9b505111b/)
+- 05/04: [A&A 34 - All about CNCF Environmental Sustainability with Niki Manoledaki](A&A%2034%20-%20All%20about%20CNCF%20Environmental%20Sustainability%20with%20Niki%20Manoledaki.md)
 - 10/04: [Gift Egwuenu](https://www.linkedin.com/in/egwuenugift/)
 - 17/04: [Linda van de Vooren](https://www.linkedin.com/in/lindavandevooren/)
 - 24/04: [Alex Schladebeck](https://www.linkedin.com/in/alexandraschladebeck/)
 
 ## Future guest suggestions
 
+- [Abby Bangser](https://www.linkedin.com/in/abbybangser/)
 - [Mental health in tech with Richard Bradshaw](A&A%2031%20-%20Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)
 - [Emy Jamalian](https://www.linkedin.com/in/emyjamalian/) (encouraging people from underrepresented groups to speak up)
 - [Sowmya Sridharamurthy](https://www.linkedin.com/in/sowmyasridharamurthy/) (encouraging/hiring for diversity as a QEM)

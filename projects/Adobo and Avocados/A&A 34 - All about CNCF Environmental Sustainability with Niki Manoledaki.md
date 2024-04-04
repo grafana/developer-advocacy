@@ -1,12 +1,12 @@
 ---
-url: https://www.youtube.com/watch?v=3seEfZWYmxg
-date: 2024-03-10
+url: https://www.youtube.com/watch?v=AuGRCkHml8k
+date: 2024-04-05
 ---
-# [[ Embracing and exploiting tech opportunities with Lina Deatherage ]]
+# [[A&A 34 - All about CNCF Environmental Sustainability with Niki Manoledaki]]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AuGRCkHml8k?si=tJJIMxDi59Vm6vV7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-Guest:: Lina Deatherage
+Guest:: Niki Manoledaki
 
 ## Checklist
 
@@ -21,10 +21,10 @@ Guest:: Lina Deatherage
 	- [x] Add the standard description as per previous Adobo and Avocados shows. Check the video description and add guests' contact details.
 - [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
 - [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
-- [ ] Schedule posts on socials just when the show begins to say "We're live now!"
+- [x] Schedule posts on socials just when the show begins to say "We're live now!"
 
 ## Reference links
-
+https://github.com/cncf/tag-env-sustainability
 
 ## Timestamps
 
@@ -42,21 +42,28 @@ Guest:: Lina Deatherage
 	- What do you do?
 	- What's your adobo? (a food, item, activity that reminds you of home)
 - Career background
-	- How did you get into tech?
-	- What are some misconceptions people have about working in tech?
-- What other roles are available in tech that people might not know, apart from software development?
-	- Tech sales (Lina to expand)
-	- Developer advocacy (Marie and Nicole to expand, if needed)
-- Seizing opportunities
-	- How can one seize opportunities?
-		- Importance of networking
-		- Staying curious
-		- Continuous learning
-		- Brand of value
-		- Being adaptable
-		- Growth mindset
+- Emergence of cloud computing
+  - What is cloud computing?
+  - Popular services: IaaS, PaaS, SaaS
+  - Benefits
+    - You only pay for what you need 
+    - Lowers down operating costs
+    - Scale only when it's needed
+  - Environmental concerns regarding cloud computing
+    - Carbon footprint of cloud computing
+- CNCF TAG Environmental Sustainability
+  - Introduction
+    - What is CNCF TAG? What does it stand for?
+    - Why was the CNCF TAG Environmental Sustainability group created?
+    - What are some of the group's advocacies?
+    - What are some of the challenges that the group are facing?
+  - Your contributions
+    - How do you raise awareness?
+    - What can people do to help?
+    - Any recommended resources to anyone not familiar with cloud-native environmental sustainability?
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
+	- 
 
 ### Just before the show
 
