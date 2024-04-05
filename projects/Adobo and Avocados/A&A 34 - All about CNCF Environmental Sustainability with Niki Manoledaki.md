@@ -25,6 +25,9 @@ Guest:: Niki Manoledaki
 
 ## Reference links
 https://github.com/cncf/tag-env-sustainability
+https://sci-guide.greensoftware.foundation/
+https://github.com/sustainable-computing-io/kepler
+https://www.cloudcarbonfootprint.org/
 
 ## Timestamps
 
