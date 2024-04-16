@@ -44,12 +44,16 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 13/03: [A&A 33 - Embracing and exploiting tech opportunities with Lina Deatherage](A&A%2033%20-%20Embracing%20and%20exploiting%20tech%20opportunities%20with%20Lina%20Deatherage)
 - 20/03: Skipped (Nicole on KubeCon)
 - 29/03: Skipped (Good Friday) 
+- 05/04: [A&A 34 - All about CNCF Environmental Sustainability with Niki Manoledaki](A&A%2034%20-%20All%20about%20CNCF%20Environmental%20Sustainability%20with%20Niki%20Manoledaki.md)
+- 10/04: Skipped (Marie on leave)
 
 ## Upcoming
-- 05/04: [A&A 34 - All about CNCF Environmental Sustainability with Niki Manoledaki](A&A%2034%20-%20All%20about%20CNCF%20Environmental%20Sustainability%20with%20Niki%20Manoledaki.md)
-- 10/04: [Gift Egwuenu](https://www.linkedin.com/in/egwuenugift/)
-- 17/04: [Linda van de Vooren](https://www.linkedin.com/in/lindavandevooren/)
+- 17/04: [A&A 35 - Exploring mindsets and imposter syndrome with Linda van de Vooren](A&A%2035%20-%20Exploring%20mindsets%20and%20imposter%20syndrome%20with%20Linda%20van%20de%20Vooren.md)
 - 24/04: [Alex Schladebeck](https://www.linkedin.com/in/alexandraschladebeck/)
+- 01/05: Skipped (Nicole travelling)
+- 08/05: Gift Egwuenu
+- 15/05:
+- 22/05: [Abby Bangser](https://www.linkedin.com/in/abbybangser/)
 
 ## Future guest suggestions
 
