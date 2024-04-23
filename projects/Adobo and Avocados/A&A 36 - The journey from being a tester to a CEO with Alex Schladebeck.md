@@ -44,6 +44,7 @@ https://www.schladebeck.de/microheuristics/
 	- What's your adobo? (a food, item, activity that reminds you of home)
 - Career background
 	- Can you tell us a bit of your background story of how you ended up in tech?
+	- Being a frequent speaker at conferences, what has been your favourite talk? 
 - Journey from being a tester to a CEO
 	- Tell us about this journey! (your career in BREDEX)
 	- Do you still do a lot of testing?
