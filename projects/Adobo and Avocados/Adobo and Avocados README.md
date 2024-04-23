@@ -46,10 +46,10 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 29/03: Skipped (Good Friday) 
 - 05/04: [A&A 34 - All about CNCF Environmental Sustainability with Niki Manoledaki](A&A%2034%20-%20All%20about%20CNCF%20Environmental%20Sustainability%20with%20Niki%20Manoledaki.md)
 - 10/04: Skipped (Marie on leave)
+- 17/04: [A&A 35 - Exploring mindsets and imposter syndrome with Linda van de Vooren](A&A%2035%20-%20Exploring%20mindsets%20and%20imposter%20syndrome%20with%20Linda%20van%20de%20Vooren.md)
 
 ## Upcoming
-- 17/04: [A&A 35 - Exploring mindsets and imposter syndrome with Linda van de Vooren](A&A%2035%20-%20Exploring%20mindsets%20and%20imposter%20syndrome%20with%20Linda%20van%20de%20Vooren.md)
-- 24/04: [Alex Schladebeck](https://www.linkedin.com/in/alexandraschladebeck/)
+- 24/04: [A&A 36 - The journey from being a tester to a CEO with Alex Schladebeck](A&A%2036%20-%20The%20journey%20from%20being%20a%20tester%20to%20a%20CEO%20with%20Alex%20Schladebeck.md)
 - 01/05: Skipped (Nicole travelling)
 - 08/05: Gift Egwuenu
 - 15/05:
