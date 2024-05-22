@@ -59,9 +59,12 @@ Guest:: [Abby Bangser](https://www.linkedin.com/in/abbybangser/)
 		- SREs are QAs for systems
 		- platform engineers are automation engineers
 	- Lines are blurring between roles. Is that a good thing or a bad thing?
-- Why is mentoring important?
-	- TechVoices (mentors new and diverse speakers)
-	- CoffeeOps: she leads the London chapter, providing a space for DevOps professionals to talk in a more interactive space
+- Observability of ourselves as testers and humans
+	- Why is it difficult?
+	- Why is mentoring important?
+		- TechVoices (mentors new and diverse speakers)
+	- Community
+		- CoffeeOps: she leads the London chapter, providing a space for DevOps professionals to talk in a more interactive space
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
 	- 
