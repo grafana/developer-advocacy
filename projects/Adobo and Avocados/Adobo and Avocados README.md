@@ -54,16 +54,18 @@ Adobo and Avocados (A&A) is a one-hour [weekly livestream](https://www.youtube.c
 - 22/05: [A&A 37 - Observability for testers with Abby Bangser](A&A%2037%20-%20Observability%20for%20testers%20with%20Abby%20Bangser.md)
 
 ## Upcoming
+- 29/05: One year of Adobo and Avocados (Reflection episode)
 
 
 ## Future guest suggestions
 
-- [Abby Bangser](https://www.linkedin.com/in/abbybangser/)
 - [Mental health in tech with Richard Bradshaw](A&A%2031%20-%20Mental%20health%20in%20tech%20with%20Richard%20Bradshaw.md)
 - [Emy Jamalian](https://www.linkedin.com/in/emyjamalian/) (encouraging people from underrepresented groups to speak up)
 - [Sowmya Sridharamurthy](https://www.linkedin.com/in/sowmyasridharamurthy/) (encouraging/hiring for diversity as a QEM)
 - [Jenny Bramble](https://www.linkedin.com/in/jennybramble/) (being queer, women in tech, hiring for diversity as a director of engineering)
 - Avery (being trans)
 - Ida Fürjesová from Grafana - giving underrepresented groups a voice
+- [Lisi Hocke](https://www.linkedin.com/in/lisihocke) ([personal challenges](https://www.lisihocke.com/p/personal-challenges.html))
+- [Gem Hill](https://www.linkedin.com/in/gemhill/) - [self care backpack](https://selfcarebackpack.com/)
 
 
