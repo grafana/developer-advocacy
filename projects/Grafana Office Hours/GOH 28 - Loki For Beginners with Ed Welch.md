@@ -41,7 +41,7 @@ Guest::
 - Intro
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 
-Title: Something with OpenTelemetry Metrics (TBD)
+Title: Loki For Beginners with Ed Welch (TBD)
 
 
 - Intro, who we are (Ed & Nicole & Jay)  
@@ -56,6 +56,15 @@ Title: Something with OpenTelemetry Metrics (TBD)
     - Can you explain what a log stream is?
     - What are chunks and what are labels?
     - How to chunks and lables relate to log streams?
+  - What is the Loki query language?
+	- How does it compare to other query languages?
+	- What are some common queries you can run in Loki?
+- Common Problems you see in the wild?
+  - What are some common problems you see with Loki deployments?
+  - Common problems with how users use labels?
+  - How should users write logs into Loki effecticently?
+  - How should users query logs from Loki efficiently?
+  
   
 
 
