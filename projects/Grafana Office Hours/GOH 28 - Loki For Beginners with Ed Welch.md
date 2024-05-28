@@ -48,6 +48,7 @@ Title: Loki For Beginners with Ed Welch (TBD)
 - Why did Loki come to be?
   - Where did the idea for Loki come from?
   - What problems was you trying to solve with Loki vs. other logging solutions?
+  - Why does Loki avoid full-text indexing?
 - What is Loki?
   - How does Loki work?
   - Can you explain the Loki architecture?
@@ -56,6 +57,7 @@ Title: Loki For Beginners with Ed Welch (TBD)
     - Can you explain what a log stream is?
     - What are chunks and what are labels?
     - How to chunks and lables relate to log streams?
+    - How does Loki handle log retention and storage backends?
   - What is the Loki query language?
 	- How does it compare to other query languages?
 	- What are some common queries you can run in Loki?
@@ -64,6 +66,8 @@ Title: Loki For Beginners with Ed Welch (TBD)
   - Common problems with how users use labels?
   - How should users write logs into Loki effecticently?
   - How should users query logs from Loki efficiently?
+  - What are typical troubleshooting steps for performance issues in Loki?
+  - How can users monitor the health and performance of their Loki deployments?
   
   
 
