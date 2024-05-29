@@ -2,7 +2,7 @@
 url:
 date: 
 ---
-# [[GOH 28 - Loki For Beginners with Ed Welch]]
+# [[GOH 27 - Loki For Beginners with Ed Welch]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -48,10 +48,18 @@ Title: Loki For Beginners with Ed Welch (TBD)
 
 
 - Intro, who we are (Ed & Nicole & Jay)
+	- Loki was announced six years ago in November 2018. Ed started with Grafana in January 2019. He was the first engineer officially on the project.
+	- Tom Wilkie and David Kaltschmidt created the idea of Loki. Some engineers at Grafana (then about 30 people in the whole company) were working on Cortex, and some of them worked on Loki too, like Goutham and Jacob Lissi.
 	- We're going to be asking all the beginner questions for Loki!
 - Why do we need a logs-specific database? Why was Loki created?
+	- Loki is not particularly Kubernetes (especially not anymore) but it was a big part of why it was created. There wasn't an easy way to get logs out of Kubernetes. There was really nothing that was built for Kubernetes. Service discovery was not there. So it borrowed the concept of labels from Prometheus, although now we use it differently from Prometheus.
+	- Loki makes tradeoffs around the type of data and how we expect it to get used. No database gets anything for free and design decisions help determine what it's optimising for.
+		- What Loki wanted: very simple ingestion, very simple schema requirements so you don't have to figure out your schema beforehand.
+	- Ephemeral nature of pods
+	- Microservices-based, cloud-native
 	- Efficiency and high volume: Logs are write-intensive, time-series data
 	- (Horizontal) scalability due to amount of logs
+		- Don't have to worry about scaling disks or running out of disk space.
 	- Cost-effectiveness
 		- Databases usually have a large index, requiring "tall" (vertically scaled up) machines
 	- Query performance: querying logs is a pain, tagging and labelling
@@ -66,16 +74,27 @@ Title: Loki For Beginners with Ed Welch (TBD)
 		- Schema-less, structureless data model ("schema at query")
 		- Loki is a row-oriented database, not a columnar one. What's the difference?
 	- Definitions of terms
-		- Log streams
-		- Chunks
-		- Labels
-	    - How are chunks and lables related to log streams?
+		- Index: way to reduce a large amount of data into a smaller set so that it's easier to find what you're looking for. It's also a way to take data in different columns
+			- Keyspaces: key-value pairs. An index is a way of storing a keyspace.
+			- Ideally, you want to choose a key that breaks apart evenly into different systems
+		- Labels: Labels are also indices. Loki is not index-free.
+			- Also "metadata", "tags"
+			- Labels and tags are nearly interchangeable. Index and metadata are very related.
+			- OpenTelemetry: "semantic conventions" that are opinions on how labelling is done
+			- In Loki, this is limited. We recommend 15.
+		- Log streams: separate files on disk - unique combination of key-value pairs
+			- "series" in Prometheus, made up "stream" in Loki
+			- good streams live forever because the label values are very consistent (though in practice, labels definitely churn and don't last forever)
+		- Chunks: multiple log streams
+	    - How are chunks and labels related to log streams?
+	    - Log entry - one line
 	- Can you explain the Loki architecture?
 		- Built as a distributed system
 	- Loki can be deployed in different ways, can you explain the different ways to deploy Loki? (Deployment Modes - Monolithic, Microservices, etc.)
 - Writing to Loki: Ingestion options
 	- What are the ways that you can write stuff to Loki?
     - How does Loki handle log retention and storage backends? How are logs stored in Loki?
+    - Influx is a metrics database. Timestamp is the primary key. If a line comes in that has exactly the same timestamp, it will overwrite the first one. In Loki, if it's the same content, they're deduplicated (only one is kept). If it's different content, both are stored. THe problem with this is that it does also happen a lot because systems don't keep perfect time. Also we have exact duplicates because of replication.
 - Reading from Loki: LogQL
 	- How does Loki find data?
 		- Sorting algorithms: bubble sort, insertion sort, merge sort, bucket sort
@@ -89,6 +108,8 @@ Title: Loki For Beginners with Ed Welch (TBD)
 	- What are some common queries you can run in Loki?
 - What is Loki NOT good at?
 	- Columnar queries - what does that mean?
+		- Loki is row-oriented: it receives data in rows (strings), in files, and stores them on disk. Columnar database: define schema and then fill out the column with specific data. The key-value pairs become columns. Where this matters is in the read path, when it's queried. If you wanted to sum up all values in Column A, Loki would have to read the entire row - it's not efficient at this. Loki stores rows physically together. Columnar databases store columns together.
+		- Prometheus is more of a columnar store (but Ed doesn't feel comfortable saying this)-- this is better for metrics in general. Metrics can be thought of as an index for logs. You can use recording rules for Loki where you store metrics to Mimir or Prometheus. Metrics also normalise data over time -- they're way more consistent over time. "Logs are the only true observability signal." Metrics are a good way to narrow down logs. Next step would be instrumenting for metrics specifically.
 	- "Needle in a haystack" queries
 	- High-cardinality label values - what does that mean?
 - Common Problems you see in the wild
@@ -97,7 +118,17 @@ Title: Loki For Beginners with Ed Welch (TBD)
 		- The fewer labels you use, the better.
 		- Use labels that: describe infrastructure, are long-lived, and are intuitive for querying, are low cardinality
 	- How should users write logs into Loki efficiently?
+		- What if you have to change a label? This is always tricky because it always happens. It's good practice to normalsie data upon ingest, but accept it will change. You can change the schema or you can also change the query over time (this is probably easier).
 	- How should users query logs from Loki efficiently?
+		- All key values in Loki are parsed labels (it doesn't really matter). Can you put it within curly braces?
+		- LogQL isn't great at `count` or `distinct` (SQL is better at this)
+		- Loki is more like a Table of Contents in a book (the back of the book is more like a reverse index where it's very specific). 
+		- Tips (do this in order, left to right in the query - these are sequentially executed)
+			- Narrow down your time range first.
+			- The more specific you can be at the start, the faster you'll be able to get your result. You don't have to do country, suburb, post code, etc-- go with the post code if you know already.
+			- Then do filter expressions (like `|=` [contain] or `!=` [not contain]) - this is the next fastest thing that Loki can evaluate. Always prefer these to the regular expression equivalents because they're more expensive to evaluate. Never use the case insensitive variant (this is purposely hard to do in Loki because it's so slow and expensive).
+			- *Then* parse. (JSON parsing, like `parent = cat`)
+		- The tips above become more important the larger your database is-- you should optimise if it's >100s of GBs or TBs
 	- What are typical troubleshooting steps for performance issues in Loki?
 	- How can users monitor the health and performance of their Loki deployments?
 - Recent changes in Loki
@@ -109,20 +140,35 @@ Title: Loki For Beginners with Ed Welch (TBD)
 	- Architectural rewrite to remove replication factor?
 	- Explore Logs and queryless experience
   
-
+Next:
+- deployment and execution of Loki - Ed would have the opportunity to apologise for how difficult it can be
+	- Configuration is complicated and it's changed a lot over time
+	- People underestimate the amount of resources that you need to run a high-performant setup. Most people still just use a single binary and are happy with that, but there are somer cases where that's just not enough.
+	- We recommend Helm and Kubernetes, but that's not the way we do it-- we don't use that.
+	- Jay is already using the simple scalable Helm chart and it's working now.
+		- Simple scalable was Ed's idea and he's not sure it's a good idea now...
+	- Break it down: monolithic, SSD, microservices
+	- Advice on how many ingesters we need, how many queriers, how would you set it up onsite. 
+	- How we run it on the cloud-- we autoscale everything all the time, automating limits configuration.
+	- You *can* make Loki easier to run, but it costs more money.
+- Ingest
+	- Should we use the OTel endpoint? The client can't specify the labels if you use this. You send the payload and the seven keys are promoted to labels. The rest goes to structured metadata. YOu can't do this unless you run it yourself. You can do that in the YAML config.
+- Query
+- Bloom filters
+- Adaptive Logs
 
 ### Just before the show
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
+- [x] How do you pronounce your name?
 - [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
 - [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
 - [ ] We'll be streaming to YouTube.
 - [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
-- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
-- [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
+- [x] You can also use the private chat if you need to say something, but you can also just say it out loud.
+- [x] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
 - [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
 - [ ] Just in case I disconnect... stall for a minute and I'll be right back.
 
