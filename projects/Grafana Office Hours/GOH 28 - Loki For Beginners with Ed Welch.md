@@ -28,6 +28,9 @@ Guest::
 
 ## Reference links
 
+🖊️ Open-source log monitoring: The concise guide to Grafana Loki: https://grafana.com/blog/2023/12/11/open-source-log-monitoring-the-concise-guide-to-grafana-loki/?pg=blog&plcmt=body-txt
+🖊️ Everything you need to know about labels: https://grafana.com/blog/2023/12/20/the-concise-guide-to-grafana-loki-everything-you-need-to-know-about-labels/
+🖊️ How to work with out-of-order and older logs: https://grafana.com/blog/2024/01/04/the-concise-guide-to-loki-how-to-work-with-out-of-order-and-older-logs/
 
 
 ## Timestamps
@@ -44,31 +47,67 @@ Guest::
 Title: Loki For Beginners with Ed Welch (TBD)
 
 
-- Intro, who we are (Ed & Nicole & Jay)  
-- Why did Loki come to be?
-  - Where did the idea for Loki come from?
-  - What problems was you trying to solve with Loki vs. other logging solutions?
-  - Why does Loki avoid full-text indexing?
+- Intro, who we are (Ed & Nicole & Jay)
+	- We're going to be asking all the beginner questions for Loki!
+- Why do we need a logs-specific database? Why was Loki created?
+	- Efficiency and high volume: Logs are write-intensive, time-series data
+	- (Horizontal) scalability due to amount of logs
+	- Cost-effectiveness
+		- Databases usually have a large index, requiring "tall" (vertically scaled up) machines
+	- Query performance: querying logs is a pain, tagging and labelling
+	- "Prometheus but for logs" + integration with Grafana + Cortex's distributed system design
+	- What problems were you trying to solve with Loki vs. other logging solutions?
+		- Promtail
+		- What were/are the alternatives on the market?
+		- Why does Loki avoid full-text indexing?
 - What is Loki?
-  - How does Loki work?
-  - Can you explain the Loki architecture?
-  - Loki can be deployed in different ways, can you explain the different ways to deploy Loki? (Deployment Modes - Monolithic, Microservices, etc.)
-  - How are logs stored in Loki?
-    - Can you explain what a log stream is?
-    - What are chunks and what are labels?
-    - How to chunks and lables relate to log streams?
-    - How does Loki handle log retention and storage backends?
-  - What is the Loki query language?
+	- How does Loki work? How is Loki different?
+		- Loki's data model: store everything as a string.
+		- Schema-less, structureless data model ("schema at query")
+		- Loki is a row-oriented database, not a columnar one. What's the difference?
+	- Definitions of terms
+		- Log streams
+		- Chunks
+		- Labels
+	    - How are chunks and lables related to log streams?
+	- Can you explain the Loki architecture?
+		- Built as a distributed system
+	- Loki can be deployed in different ways, can you explain the different ways to deploy Loki? (Deployment Modes - Monolithic, Microservices, etc.)
+- Writing to Loki: Ingestion options
+	- What are the ways that you can write stuff to Loki?
+    - How does Loki handle log retention and storage backends? How are logs stored in Loki?
+- Reading from Loki: LogQL
+	- How does Loki find data?
+		- Sorting algorithms: bubble sort, insertion sort, merge sort, bucket sort
+		- What Loki uses
+			- minimal indexing
+			- chunking
+			- sharding
+			- replication/parallelization
+			- compression and storage optimisation
 	- How does it compare to other query languages?
 	- What are some common queries you can run in Loki?
-- Common Problems you see in the wild?
-  - What are some common problems you see with Loki deployments?
-  - Common problems with how users use labels?
-  - How should users write logs into Loki effecticently?
-  - How should users query logs from Loki efficiently?
-  - What are typical troubleshooting steps for performance issues in Loki?
-  - How can users monitor the health and performance of their Loki deployments?
-  
+- What is Loki NOT good at?
+	- Columnar queries - what does that mean?
+	- "Needle in a haystack" queries
+	- High-cardinality label values - what does that mean?
+- Common Problems you see in the wild
+	- What are some common problems you see with Loki deployments?
+	- Common problems with how users use labels
+		- The fewer labels you use, the better.
+		- Use labels that: describe infrastructure, are long-lived, and are intuitive for querying, are low cardinality
+	- How should users write logs into Loki efficiently?
+	- How should users query logs from Loki efficiently?
+	- What are typical troubleshooting steps for performance issues in Loki?
+	- How can users monitor the health and performance of their Loki deployments?
+- Recent changes in Loki
+	- Automatic stream sharding
+	- OpenTelemetry support: *structured metadata*.
+	- Bloom filters: "needle in a haystack" queries
+- Any future plans for Loki?
+	- Adaptive Logs and reduction of TCO
+	- Architectural rewrite to remove replication factor?
+	- Explore Logs and queryless experience
   
 
 

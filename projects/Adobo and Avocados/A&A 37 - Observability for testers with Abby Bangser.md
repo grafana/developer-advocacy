@@ -65,6 +65,7 @@ Guest:: [Abby Bangser](https://www.linkedin.com/in/abbybangser/)
 		- TechVoices (mentors new and diverse speakers)
 	- Community
 		- CoffeeOps: she leads the London chapter, providing a space for DevOps professionals to talk in a more interactive space
+	- CNCF Ambassadorship
 - Outro
 	- What's one piece of advice you would give to women or underrepresented groups who want to have a career in tech?
 	- 
