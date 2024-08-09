@@ -1,12 +1,12 @@
 ---
-url:
-date: 
+url: https://www.youtube.com/live/3uFMJLufgSo
+date: 2024-06-07
 ---
 # [[GOH 27 - Loki For Beginners with Ed Welch]]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3uFMJLufgSo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: 
+Guest:: Ed Welch
 
 ## Checklist
 
@@ -35,7 +35,18 @@ Guest::
 
 ## Timestamps
 
-
+00:00:00 Introductions to Nicole, Jay, and Ed Welch
+00:02:52 Why was Loki created?
+00:08:37 Why do we need a logs-specific database?
+00:15:51 What is an index?
+00:22:27 Keyspace, index, label, metadata, and tags
+00:25:57 What is a log stream? How can you make them long-lived?
+00:31:51 Tradeoff in databases: ingestion, query, and complexity
+00:35:35 How Loki stores logs as strings
+00:39:39 Columnar vs row-oriented databases
+00:46:58 When logs get deduplicated in Loki
+00:50:29 How to query in Loki with LogQL
+00:56:25 Best practices for querying logs from Loki
 
 ## Talking points
 
@@ -50,11 +61,12 @@ Title: Loki For Beginners with Ed Welch (TBD)
 - Intro, who we are (Ed & Nicole & Jay)
 	- Loki was announced six years ago in November 2018. Ed started with Grafana in January 2019. He was the first engineer officially on the project.
 	- Tom Wilkie and David Kaltschmidt created the idea of Loki. Some engineers at Grafana (then about 30 people in the whole company) were working on Cortex, and some of them worked on Loki too, like Goutham and Jacob Lissi.
-	- We're going to be asking all the beginner questions for Loki!
 - Why do we need a logs-specific database? Why was Loki created?
-	- Loki is not particularly Kubernetes (especially not anymore) but it was a big part of why it was created. There wasn't an easy way to get logs out of Kubernetes. There was really nothing that was built for Kubernetes. Service discovery was not there. So it borrowed the concept of labels from Prometheus, although now we use it differently from Prometheus.
+	- Loki is not particularly Kubernetes (especially not anymore) but it was a big part of why it was created. There wasn't an easy way to get logs out of Kubernetes. There was really nothing that was built for Kubernetes. Service discovery, which is one of the core features, was not there. So it borrowed the concept of labels from Prometheus, although now we use it differently from Prometheus.
+	- Key to what Loki does: use object storage to simplify maintenance-- you don't get paged for disks running out of space
 	- Loki makes tradeoffs around the type of data and how we expect it to get used. No database gets anything for free and design decisions help determine what it's optimising for.
 		- What Loki wanted: very simple ingestion, very simple schema requirements so you don't have to figure out your schema beforehand.
+			- LogQL as a query language + "Schema at query"
 	- Ephemeral nature of pods
 	- Microservices-based, cloud-native
 	- Efficiency and high volume: Logs are write-intensive, time-series data
@@ -73,6 +85,8 @@ Title: Loki For Beginners with Ed Welch (TBD)
 		- Loki's data model: store everything as a string.
 		- Schema-less, structureless data model ("schema at query")
 		- Loki is a row-oriented database, not a columnar one. What's the difference?
+			- Columnar databases are better for metrics
+			- Metrics can be looked at as kind of an index for logs too
 	- Definitions of terms
 		- Index: way to reduce a large amount of data into a smaller set so that it's easier to find what you're looking for. It's also a way to take data in different columns
 			- Keyspaces: key-value pairs. An index is a way of storing a keyspace.
@@ -83,7 +97,7 @@ Title: Loki For Beginners with Ed Welch (TBD)
 			- OpenTelemetry: "semantic conventions" that are opinions on how labelling is done
 			- In Loki, this is limited. We recommend 15.
 		- Log streams: separate files on disk - unique combination of key-value pairs
-			- "series" in Prometheus, made up "stream" in Loki
+			- analogous to "series" in Prometheus. We made up "stream" in Loki
 			- good streams live forever because the label values are very consistent (though in practice, labels definitely churn and don't last forever)
 		- Chunks: multiple log streams
 	    - How are chunks and labels related to log streams?
@@ -94,7 +108,7 @@ Title: Loki For Beginners with Ed Welch (TBD)
 - Writing to Loki: Ingestion options
 	- What are the ways that you can write stuff to Loki?
     - How does Loki handle log retention and storage backends? How are logs stored in Loki?
-    - Influx is a metrics database. Timestamp is the primary key. If a line comes in that has exactly the same timestamp, it will overwrite the first one. In Loki, if it's the same content, they're deduplicated (only one is kept). If it's different content, both are stored. THe problem with this is that it does also happen a lot because systems don't keep perfect time. Also we have exact duplicates because of replication.
+    - Influx is a metrics database. Timestamp is the primary key. If a line comes in that has exactly the same timestamp, it will overwrite the first one. In Loki, if it's the same content, they're deduplicated (only one is kept). If it's different content, both are stored. The problem with this is that it does also happen a lot because systems don't keep perfect time. Also we have exact duplicates because of replication.
 - Reading from Loki: LogQL
 	- How does Loki find data?
 		- Sorting algorithms: bubble sort, insertion sort, merge sort, bucket sort
@@ -107,6 +121,7 @@ Title: Loki For Beginners with Ed Welch (TBD)
 	- How does it compare to other query languages?
 	- What are some common queries you can run in Loki?
 - What is Loki NOT good at?
+	- Finding small bits of information over a huge dataset (though bloom filters are going to help with this)
 	- Columnar queries - what does that mean?
 		- Loki is row-oriented: it receives data in rows (strings), in files, and stores them on disk. Columnar database: define schema and then fill out the column with specific data. The key-value pairs become columns. Where this matters is in the read path, when it's queried. If you wanted to sum up all values in Column A, Loki would have to read the entire row - it's not efficient at this. Loki stores rows physically together. Columnar databases store columns together.
 		- Prometheus is more of a columnar store (but Ed doesn't feel comfortable saying this)-- this is better for metrics in general. Metrics can be thought of as an index for logs. You can use recording rules for Loki where you store metrics to Mimir or Prometheus. Metrics also normalise data over time -- they're way more consistent over time. "Logs are the only true observability signal." Metrics are a good way to narrow down logs. Next step would be instrumenting for metrics specifically.
@@ -119,12 +134,15 @@ Title: Loki For Beginners with Ed Welch (TBD)
 		- Use labels that: describe infrastructure, are long-lived, and are intuitive for querying, are low cardinality
 	- How should users write logs into Loki efficiently?
 		- What if you have to change a label? This is always tricky because it always happens. It's good practice to normalsie data upon ingest, but accept it will change. You can change the schema or you can also change the query over time (this is probably easier).
+		- Use fewer labels
+		- Use long-lived labels (not unique)
+		- Use labels people would actually query for (postcodes, not house numbers)
 	- How should users query logs from Loki efficiently?
 		- All key values in Loki are parsed labels (it doesn't really matter). Can you put it within curly braces?
 		- LogQL isn't great at `count` or `distinct` (SQL is better at this)
 		- Loki is more like a Table of Contents in a book (the back of the book is more like a reverse index where it's very specific). 
 		- Tips (do this in order, left to right in the query - these are sequentially executed)
-			- Narrow down your time range first.
+			- Narrow down your time range first. This is usually the best way to reduce the number of logs that need to be parsed, but in practice, if there's another label that reduces the amount of logs more, then use that.
 			- The more specific you can be at the start, the faster you'll be able to get your result. You don't have to do country, suburb, post code, etc-- go with the post code if you know already.
 			- Then do filter expressions (like `|=` [contain] or `!=` [not contain]) - this is the next fastest thing that Loki can evaluate. Always prefer these to the regular expression equivalents because they're more expensive to evaluate. Never use the case insensitive variant (this is purposely hard to do in Loki because it's so slow and expensive).
 			- *Then* parse. (JSON parsing, like `parent = cat`)

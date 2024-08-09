@@ -38,10 +38,13 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - 19/01: [GOH 26 - How to do continuous profiling right, with Grafana Pyroscope & Ryan Perry](GOH%2026%20-%20How%20to%20do%20continuous%20profiling%20right,%20with%20Grafana%20Pyroscope%20&%20Ryan%20Perry.md)
 - Break
 - 07/06: [GOH 27 - Loki For Beginners with Ed Welch](GOH%2027%20-%20Loki%20For%20Beginners%20with%20Ed%20Welch.md)
+- 19/07: [GOH 28 - OpenTelemetry Metrics with Traefik](GOH%2028%20-%20OpenTelemetry%20Metrics%20with%20Traefik.md)
 
 ### Upcoming
 
-- ??: [GOH 28 - OpenTelemetry Metrics with Traefik](GOH%2028%20-%20OpenTelemetry%20Metrics%20with%20Traefik.md)
+- [GOH 29 - Loki deployments](GOH%2029%20-%20Loki%20deployments.md) with Jay Clifford
+- [GOH 30 - Grafana plugins for beginners](GOH%2030%20-%20Grafana%20plugins%20for%20beginners.md) with Tom Glenn
+- [[GOH 31 - Antonio Berbén]]
 - Emma Sleep
 - Navish Bahl on Asserts.ai
 - Matt Durham/Paschalis Tsilians: Grafana Agent new release and changes

@@ -1,10 +1,11 @@
 ---
-url:
-date: 
+url: https://youtube.com/live/1Buk3wPpJdY
+date: 2024-07-19
 ---
-# [[GOH 28 - OpenTelemetry Metrics with Traefik]]
+[GOH 28 - OpenTelemetry Metrics with Traefik](GOH%2028%20-%20OpenTelemetry%20Metrics%20with%20Traefik.md)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1Buk3wPpJdY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 Guest:: 
 
@@ -32,6 +33,16 @@ Guest::
 
 ## Timestamps
 
+00:00:00 Introductions
+00:03:30 What does Traefik Labs do?
+00:08:12 What is a reverse proxy and why might you need one?
+00:20:50 What are the advantages of Traefik over Nginx?
+00:25:52 How is Traefik improve observability for microservices?
+00:31:20 Demo: Traefik + Grafana for observability
+00:41:02 Grafana dashboard using Traefik for API performance
+00:53:17 Personal use cases for Grafana
+00:57:09 Zero trust and security for APIs
+00:58:42 How can you learn more about Traefik?
 
 
 ## Talking points
@@ -46,20 +57,29 @@ Title: Something with OpenTelemetry Metrics (TBD)
 
 - Intro, who we are (Maytham & Immánuel)  
 - How we’ve met (API Days Paris booth)    
+- Why Traefik was created
+	- Reverse proxies are not cloud-native, dynamic configuration did not exist. Service discovery was very early/nonexistent.
+	- Traefik automates thousands of microservices. Truly cloud native and Kubernetes-native because everything can be configured using CRDs.
+	- Traefik is the default ingress for Rancher and k3s
+	- Traefik takes into account the ephemeral nature of Kubernetes pods.
 - About Traefik Labs
 	- Community as a core value
 	- DockerHub stats, etc. regular pitch
-	- Used to be an application proxy, then full-fledged API gateway
+	- Used to be an application proxy, then full-fledged API gateway. Now also API management.
 - Why do you need a reverse proxy?
 	- You don't have to expose the application directly
-	- 
-- Some basic things, what is a reverse proxy, why you need an LB
+	- You might want to use the same domain name for different services. (microservices)
+	- You can also use it as an ingress controller to access parts of your service
 	- automatic routing
 	- web UI
-	- Why isn't Nginx enough?
-		- Config isn't enough in Nginx
-		- Nginx has LUA based plugin system. Traefik doesn't use Lua.
-		- Traefik is written in Go
+	- load balancer
+- Why isn't Nginx enough?
+	- Config isn't enough in Nginx
+	- Nginx has LUA based plugin system. Traefik doesn't use Lua.
+	- Traefik is written in Go
+	- The level of automation
+	- Static vs dynamic config
+	- Plugins in LUA vs Go/WASM
 - Portfolio
 	- Proxy - OSS reverse proxy/ingress controller
 	- Enterprise - an API GW based on Proxy
