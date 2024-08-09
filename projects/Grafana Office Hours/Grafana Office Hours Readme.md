@@ -44,7 +44,7 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 
 - [GOH 29 - Loki deployments](GOH%2029%20-%20Loki%20deployments.md) with Jay Clifford
 - [GOH 30 - Grafana plugins for beginners](GOH%2030%20-%20Grafana%20plugins%20for%20beginners.md) with Tom Glenn
-- [[GOH 31 - Antonio Berbén]]
+- [GOH 31 - Antonio Berbén](GOH%2031%20-%20Antonio%20Berbén.md)
 - Emma Sleep
 - Navish Bahl on Asserts.ai
 - Matt Durham/Paschalis Tsilians: Grafana Agent new release and changes
