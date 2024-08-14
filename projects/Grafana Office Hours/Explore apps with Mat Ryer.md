@@ -2,11 +2,11 @@
 url:
 date: 
 ---
-# [[GOH 30 - Grafana plugins for beginners]]
+# [[Explore apps with Mat Ryer]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: Tom Glenn
+Guest:: 
 
 ## Checklist
 
@@ -47,25 +47,9 @@ Guest:: Tom Glenn
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
-- What is a plugin?
-	- Why would you need to write a plugin?
-	- What's a datasource?
-	- What's a panel?
-	- What's an app?
-	- What's Scenes?
-- What do you need to write a plugin for Grafana?
-	- Skills you need-- what languages do you need to know?
-		- You need to know at least a little bit of JavaScript and Go, but you don't have to be an expert
-	- Where should I start when wanting to build my own plugin?
-	- Are there some types of plugins that are easier or harder?
-		- Panel is easiest
-- Demo: how to create a plugin
-- How do I use my plugin in my own local Grafana instance?
-- How do you get your plugin listed in the Grafana plugin directory for others to use?
-- How do you test Grafana plugins?
+- 
 - Outro
 	- If people want to learn more about this topic, where should they go?
-	- Resources for getting started
 	- 
 
 ### Just before the show
