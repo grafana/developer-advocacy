@@ -2,7 +2,7 @@
 url: https://youtube.com/live/1Buk3wPpJdY
 date: 2024-07-19
 ---
-[GOH 28 - OpenTelemetry Metrics with Traefik](GOH%2028%20-%20OpenTelemetry%20Metrics%20with%20Traefik.md)
+# [GOH 28 - OpenTelemetry Metrics with Traefik](GOH%2028%20-%20OpenTelemetry%20Metrics%20with%20Traefik.md)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/1Buk3wPpJdY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
