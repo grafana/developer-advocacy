@@ -29,7 +29,13 @@ Guest::
 ## Reference links
 
 
-Ishan Jain on LLM observability with OpenTelemetry: [blog1](https://techstrong.ai/building-with-ai/a-guide-to-llm-observability-with-opentelemetry/) [blog2](https://opentelemetry.io/blog/2024/llm-observability/) [blog3](https://grafana.com/blog/2024/07/18/a-complete-guide-to-llm-observability-with-opentelemetry-and-grafana-cloud/)
+Ishan Jain on LLM observability with OpenTelemetry: 
+
+(blog) A Guide to LLM Observability with OpenTelemetry: https://techstrong.ai/building-with-ai/a-guide-to-llm-observability-with-opentelemetry/
+(blog) An Introduction to Observability for LLM-based applications using OpenTelemetry: https://opentelemetry.io/blog/2024/llm-observability/
+(blog) A complete guide to LLM observability with OpenTelemetry and Grafana Cloud:  https://grafana.com/blog/2024/07/18/a-complete-guide-to-llm-observability-with-opentelemetry-and-grafana-cloud/
+(docs) AI Observability: https://grafana.com/docs/grafana-cloud/monitor-applications/ai-observability/
+
 ## Timestamps
 
 
@@ -39,15 +45,41 @@ Ishan Jain on LLM observability with OpenTelemetry: [blog1](https://techstrong.a
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
 - Intro
-	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
-- Announcements
-	- New project releases
-	- Recent content published
-- Introduce guest
+	- *Hello and welcome to Grafana Office Hours. Artificial intelligence has gone very quickly from something out of sci-fi books to something quite commonplace that we use in various forms as part of our every day lives. Some of us might have even tried our hand at creating apps leveraging AI SDKs. Our guest today is going to talk about observability for AI: why we should do it, what to watch out for, and how exactly to set it up.*
+	- *I'm Nicole van der Hoeven, a Senior Developer Advocate at Grafana Labs, and I'm joined by Ishan Jain.*
+- Introduce guest: Ishan Jain
 	- Who are you?
 	- What do you do?
-	- How long have you been using Grafana/other project?
-- New feature in Grafana Cloud: AI Observability 
+- Definition of terms
+	- Artificial intelligence
+	- Machine learning
+	- LLM
+	- What are we talking about observing today?
+- Why should we monitor AI?
+	- Is AI Observability just another type of Application Observability?
+	- How are AI-based apps different?
+		- massive datasets
+		- costs can increase quickly
+		- possibility of model drift
+		- security concerns
+		- existence of rate limiting for many models
+		- latency is important
+- What do we need to monitor?
+	- Traces
+		- Request metadata, like temperature (amount of creativity/randomness), model version, etc
+		- Response metadata, like tokens and cost
+	- Metrics
+		- Request volume
+		- Request duration
+		- Costs and token counters
+	- What about logs?
+- How can we monitor AI?
+	- Instrumentation
+		- Manual: OpenTelemetry
+		- Automated: OpenLIT SDK
+	- Demo? : Grafana, Alloy, Prometheus, Tempo
+	- New feature in Grafana Cloud: AI Observability
+	- OpenLit dashboard for Grafana Cloud
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- 

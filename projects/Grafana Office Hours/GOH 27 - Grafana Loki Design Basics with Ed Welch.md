@@ -2,7 +2,7 @@
 url: https://www.youtube.com/live/3uFMJLufgSo
 date: 2024-06-07
 ---
-# [[GOH 27 - Loki For Beginners with Ed Welch]]
+# [[GOH 27 - Grafana Loki Design Basics with Ed Welch]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3uFMJLufgSo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
