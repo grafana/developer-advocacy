@@ -35,6 +35,8 @@ Ishan Jain on LLM observability with OpenTelemetry:
 (blog) An Introduction to Observability for LLM-based applications using OpenTelemetry: https://opentelemetry.io/blog/2024/llm-observability/
 (blog) A complete guide to LLM observability with OpenTelemetry and Grafana Cloud:  https://grafana.com/blog/2024/07/18/a-complete-guide-to-llm-observability-with-opentelemetry-and-grafana-cloud/
 (docs) AI Observability: https://grafana.com/docs/grafana-cloud/monitor-applications/ai-observability/
+(repo) OpenLit repository
+(docs) OpenLit docs
 
 ## Timestamps
 
@@ -46,7 +48,7 @@ Ishan Jain on LLM observability with OpenTelemetry:
 
 - Intro
 	- *Hello and welcome to Grafana Office Hours. Artificial intelligence has gone very quickly from something out of sci-fi books to something quite commonplace that we use in various forms as part of our every day lives. Some of us might have even tried our hand at creating apps leveraging AI SDKs. Our guest today is going to talk about observability for AI: why we should do it, what to watch out for, and how exactly to set it up.*
-	- *I'm Nicole van der Hoeven, a Senior Developer Advocate at Grafana Labs, and I'm joined by Ishan Jain.*
+	- *I'm Nicole van der Hoeven, a Senior Developer Advocate at Grafana Labs, and I'm joined by a colleague of mine, Ishan Jain, a Senior Developer Experience Engineer.*
 - Introduce guest: Ishan Jain
 	- Who are you?
 	- What do you do?
@@ -55,6 +57,7 @@ Ishan Jain on LLM observability with OpenTelemetry:
 	- Machine learning
 	- LLM
 	- What are we talking about observing today?
+	- Ishan says AI is the biggest area. ML is under AI and LLM is under ML. 
 - Why should we monitor AI?
 	- Is AI Observability just another type of Application Observability?
 	- How are AI-based apps different?
@@ -68,6 +71,7 @@ Ishan Jain on LLM observability with OpenTelemetry:
 	- Traces
 		- Request metadata, like temperature (amount of creativity/randomness), model version, etc
 		- Response metadata, like tokens and cost
+		- These are the most important for LLMs becuase it talks about the sequence of events. Did I make an LLM call or did I make a call to the Vector DB instead?
 	- Metrics
 		- Request volume
 		- Request duration
@@ -76,22 +80,26 @@ Ishan Jain on LLM observability with OpenTelemetry:
 - How can we monitor AI?
 	- Instrumentation
 		- Manual: OpenTelemetry
-		- Automated: OpenLIT SDK
-	- Demo? : Grafana, Alloy, Prometheus, Tempo
-	- New feature in Grafana Cloud: AI Observability
+		- Automated: OpenLIT SDK, Traceloop, Lantrace?
+	- Demo? : AI integration for Grafana Cloud: AI Observability (Tempo, Prometheus or Mimir)
+		- There was already an OpenAI integration but it wasn't OTel specific. He really wanted something that was a one line or one-click thing.
 	- OpenLit dashboard for Grafana Cloud
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- 
 
+
+Ollama: https://ollama.com/
+
+GPT 4 all: https://www.nomic.ai/gpt4all
 ### Just before the show
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
+- [x] How do you pronounce your name?
 - [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
 - [ ] We'll be streaming to YouTube.
 - [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
 - [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
