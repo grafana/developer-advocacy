@@ -39,11 +39,12 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - Break
 - 07/06: [GOH 27 - Grafana Loki Design Basics with Ed Welch](GOH%2027%20-%20Grafana%20Loki%20Design%20Basics%20with%20Ed%20Welch.md)
 - 19/07: [GOH 28 - OpenTelemetry Metrics with Traefik](GOH%2028%20-%20OpenTelemetry%20Metrics%20with%20Traefik.md)
-- 
+- [GOH - LLM Observability with Ishan Jain](GOH%20-%20LLM%20Observability%20with%20Ishan%20Jain.md)
+- [[GOH - Loki Adaptive Logs]]
 
 ### Upcoming
 
-- [GOH - LLM Observability with Ishan Jain](GOH%20-%20LLM%20Observability%20with%20Ishan%20Jain.md)
+
 - [GOH 29 - Loki deployments](GOH%2029%20-%20Loki%20deployments.md) with Jay Clifford
 - [GOH 30 - Grafana plugins for beginners](GOH%2030%20-%20Grafana%20plugins%20for%20beginners.md) with Tom Glenn
 - [GOH 31 - Antonio Berbén](GOH%2031%20-%20Antonio%20Berbén.md)
@@ -54,6 +55,7 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - Loki changes?
 - Testcontainers (and Imma) on how they've incorporated the LGTM stack into testcontainers
 - Loki Adaptive Logs
+- Explore Profiles ([see this thread](https://raintank-corp.slack.com/archives/C03NCLB4GG7/p1726677982509789))
 
 ## Future guest suggestions
 
