@@ -57,6 +57,8 @@ Guest::
 		- Sampling types and which one they decided on
 		- In which component of Loki are the logs dropped?
 		- How do we ensure that important diagnostic information isn't lost during log reduction?
+		- What where the differnces between adaptive metrics vs adaptive logs? Did you have to build it from scratch?
+		- Any road blocks you ran into? What made it an insteresting project to work on?
 	- How well do Adaptive Logs scale with microservices-based systems?
 - Enabling Adaptive Logs
 	- Are there any reasons *not* to enable Adaptive Logs?
@@ -71,6 +73,7 @@ Guest::
 	- What are some conservative settings that you'd recommend a team start with?
 	- Which logs do you recommend starting to drop?
 	- Are there logs you recommend never dropping?
+	- Can you turn off Adaptive Logs if you need to?
 - What's next?
 	- Adaptive Metrics is also out
 	- Adaptive Traces? Adaptive Profiles?
