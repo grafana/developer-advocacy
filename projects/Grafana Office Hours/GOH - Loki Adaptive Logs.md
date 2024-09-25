@@ -59,6 +59,7 @@ Guest::
 		- How do we ensure that important diagnostic information isn't lost during log reduction?
 		- What where the differnces between adaptive metrics vs adaptive logs? Did you have to build it from scratch?
 		- Any road blocks you ran into? What made it an insteresting project to work on?
+		- `Query:ingest` ratio: What queries count? Is there a staggered approach?
 	- How well do Adaptive Logs scale with microservices-based systems?
 - Enabling Adaptive Logs
 	- Are there any reasons *not* to enable Adaptive Logs?
