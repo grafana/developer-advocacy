@@ -53,7 +53,11 @@ Guest::
 - What are Adaptive Logs?
 	- Grafana Cloud only
 	- How does it work?
-		- based on percentage and 
+		- based on percentage set and queries made
+		- Sampling types and which one they decided on
+		- In which component of Loki are the logs dropped?
+		- How do we ensure that important diagnostic information isn't lost during log reduction?
+	- How well do Adaptive Logs scale with microservices-based systems?
 - Enabling Adaptive Logs
 	- Are there any reasons *not* to enable Adaptive Logs?
 	- (Demo) Going through the UI in Grafana Cloud
@@ -62,14 +66,16 @@ Guest::
 		- Volume
 		- Pattern
 - Dogfooding: How has it gone since we've turned it on for our own production stack?
-	- How did you convince teams to let you turn it on?
+	- How did you convince teams to let you turn it on? (How did you build trust in this feature?)
 	- Have there been any major issues that you've had to resolve?
 	- What are some conservative settings that you'd recommend a team start with?
 	- Which logs do you recommend starting to drop?
-	- 
+	- Are there logs you recommend never dropping?
 - What's next?
 	- Adaptive Metrics is also out
 	- Adaptive Traces? Adaptive Profiles?
+	- How do you think AL should work with distributed tracing?
+	- How could AI/ML be used to improve AL?
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- 
