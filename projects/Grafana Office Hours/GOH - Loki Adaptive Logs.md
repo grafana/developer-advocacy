@@ -28,6 +28,7 @@ Guest::
 
 ## Reference links
 
+(docs) Grafana Cloud Adaptive Logs: https://grafana.com/docs/grafana-cloud/cost-management-and-billing/reduce-costs/logs-costs/adaptive-logs/
 
 
 ## Timestamps
@@ -43,11 +44,32 @@ Guest::
 - Announcements
 	- New project releases
 	- Recent content published
-- Introduce guest
+- Introduce guest: Travis Patterson
 	- Who are you?
 	- What do you do?
-	- How long have you been using Grafana/other project?
-- 
+- Why did we come up with Adaptive Logs?
+	- Cost savings
+	- Query efficiency
+- What are Adaptive Logs?
+	- Grafana Cloud only
+	- How does it work?
+		- based on percentage and 
+- Enabling Adaptive Logs
+	- Are there any reasons *not* to enable Adaptive Logs?
+	- (Demo) Going through the UI in Grafana Cloud
+		- Drop rate
+		- Savings
+		- Volume
+		- Pattern
+- Dogfooding: How has it gone since we've turned it on for our own production stack?
+	- How did you convince teams to let you turn it on?
+	- Have there been any major issues that you've had to resolve?
+	- What are some conservative settings that you'd recommend a team start with?
+	- Which logs do you recommend starting to drop?
+	- 
+- What's next?
+	- Adaptive Metrics is also out
+	- Adaptive Traces? Adaptive Profiles?
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- 
