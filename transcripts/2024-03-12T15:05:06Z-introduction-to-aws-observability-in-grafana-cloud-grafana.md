@@ -1,0 +1,10 @@
+# Introduction to AWS Observability in Grafana Cloud | Grafana
+
+Grafana Cloud's streamlined approach to collecting and configuring your AWS data makes it easier to manage your cloud ...
+
+Published on 2024-03-12T15:05:06Z
+
+URL: https://www.youtube.com/watch?v=vBEUlC1aiU0
+
+Transcript: hi everyone my name is Anna and I'm going to show you how easy it is to monitor AWS in grafana cloud with the AWS observability application the new application is easy to find in grafana Cloud this experience is designed to make AWS service observability simpler and more robust gun are the days of tangle configuration for cloudwatch metrics and logs collection graphon cloud has taken a streamlined approach towards collecting and configuring your AWS data monitoring WS is a breeze all you need to do is to create a configuration by connecting to your AWS account and then choose what you want to monitor select the services pick which metrics you want to scrape and optionally Define custom name spaces and tag your data the configuration Details page offers you a bird eye view of all your scrape jobs each job's irn status and region can be seen in one place simplifying management need to twe a configuration no problem every scrape job is fully editable ensuring flexibility with monitoring without needing to start from scratch this application offers insights with out-of-the-box dashboards from sqs to Lambda track historical trends of core AWS services effortlessly for example you can keep AWS spending in check with the dedicating billing dashboard forecast and manage AWS expenses with Precision avoiding any surprises we also have outof thee boox dashboards for ec2 fleets the ec2 custom views offer a snapshot of instance strands and CPU utilization on all your AWS accounts all regions and all of your teag data ensuring fleet's health and efficiency optimize for performance and cost with the right sizing view make informed decisions on CPU and dis resource allocation Paving the way for a laner and more efficient infrastructure so this is the new application for monitoring AWS we hope you love it thank thank you
+
