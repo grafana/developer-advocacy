@@ -47,11 +47,11 @@ def fetch_transcripts(videos):
         video_id = video['id']['videoId']
 
         if os.path.isfile(file_for_video(video)):
-            print("Skipping video {video_id} because it already has a transcript.")
+            print(f"Skipping video {video_id} because it already has a transcript.")
             continue
 
         try:
-            transcript = YouTubeTranscriptApi.get_transcript(video_id)
+            transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=('en','es', 'fr', 'de'))
             full_text = ' '.join([entry['text'] for entry in transcript])
             video['transcript'] = full_text
             processed.append(video)
@@ -93,7 +93,7 @@ def write_markdown(video):
 def main():
     channel_id = 'UCYCwgQAMm9sTJv0rgwQLCxw'  # Replace with the target channel's ID
     start_date = '2024-01-01T00:00:00Z'  # Replace with your start date in ISO 8601 format
-    end_date = '2024-11-07T00:00:00Z'  # Replace with your end date in ISO 8601 format
+    end_date = '2025-12-31T00:00:00Z'  # Replace with your end date in ISO 8601 format
 
     videos = get_channel_videos(channel_id, start_date, end_date)
     print(f"Found {len(videos)} videos in the specified date range.")
