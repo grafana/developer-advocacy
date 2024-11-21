@@ -11,7 +11,8 @@ a separate repo of text/markdown corresponding to all of the content in the vide
 
 ## Configure Environment
 
-Edit `.env` file and set `API_KEY` to the correct value.
+Edit `.env` file and set `API_KEY` to the correct value for YouTube
+Optionally, add `OPENAI_API_KEY` if you intend to use the categorizer
 
 ## Need a Key?
 
