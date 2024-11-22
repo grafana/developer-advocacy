@@ -1,11 +1,11 @@
 import os
 from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 from slugify import slugify
 import json
 
-#load_dotenv()
+load_dotenv()
 
 # Set up your YouTube API key
 # This is inherited from .env
