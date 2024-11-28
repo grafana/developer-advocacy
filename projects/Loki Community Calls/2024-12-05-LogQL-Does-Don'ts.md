@@ -17,5 +17,24 @@ Loki Engineer - Cyril Tovena
 
 ## Jay and Nicole Questions
 
+### LOGQL
 
+- What are your top 5 common mistakes when writing LogQL queries?
+- When preparing to write a logQL query, what factors should you consider?
+- Is it better to format my log line first before running filtering by a field or is it better to use line filters?
+- Can you provide some examples of when and when not to use regular expressions in LogQL queries?
+- What are the key factors that impact Loki query performance?
+- How can you troubleshoot slow LogQL queries?
+- How do you handle unstructured log data in LogQL?
+- Can you explain the unwrap function and how it can be used in queries?
+- How do you validate the correctness of a LogQL query?
+- How can you test and benchmark Loki queries before deploying them in production?
+- What are some lesser-known LogQL features that users often overlook but can be game-changers?
+- What are count_over_time, rate, and bytes_over_time, and how do you decide which to use?
 
+### Query
+
+- How can Loki users clean up unused or redundant labels?
+
+### Scenarios
+- Can you write a LogQL query that detects downtime by analyzing log gaps?
