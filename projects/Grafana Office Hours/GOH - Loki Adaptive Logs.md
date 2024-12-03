@@ -41,6 +41,7 @@ Guest::
 
 - Intro
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
+	- We are not live
 - Announcements
 	- New project releases
 	- Recent content published
@@ -50,6 +51,8 @@ Guest::
 - Why did we come up with Adaptive Logs?
 	- Cost savings
 	- Query efficiency
+	- How is this different from/better than retention periods?
+		- Adaptive Logs occurs on ingest because once it hits storage, then you're already paying for it. It's like the log was never sent to Grafana Cloud
 - What are Adaptive Logs?
 	- Grafana Cloud only
 	- How does it work?
@@ -76,8 +79,9 @@ Guest::
 	- Are there logs you recommend never dropping?
 	- Can you turn off Adaptive Logs if you need to?
 - What's next?
-	- Adaptive Metrics is also out
-	- Adaptive Traces? Adaptive Profiles?
+	- Adaptive Telemetry
+		- Adaptive Metrics is also out
+		- Adaptive Traces? Adaptive Profiles?
 	- How do you think AL should work with distributed tracing?
 	- How could AI/ML be used to improve AL?
 - Outro
@@ -89,15 +93,15 @@ Guest::
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
 - [ ] How do you pronounce your name?
-- [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
-- [ ] We'll be streaming to YouTube.
+- [x] What are your pronouns?
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] We'll be streaming to YouTube.
 - [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
-- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
-- [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
-- [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
-- [ ] Just in case I disconnect... stall for a minute and I'll be right back.
+- [x] You can also use the private chat if you need to say something, but you can also just say it out loud.
+- [x] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
+- [x] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
+- [x] Just in case I disconnect... stall for a minute and I'll be right back.
 
 ## After the show
 

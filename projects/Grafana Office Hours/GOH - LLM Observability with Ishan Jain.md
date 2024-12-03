@@ -1,6 +1,6 @@
 ---
-url:
-date: 
+url: https://www.youtube.com/watch?v=9X7M-bvnZG0
+date:
 ---
 # [[GOH - LLM Observability with Ishan Jain]]
 
@@ -80,7 +80,7 @@ Ishan Jain on LLM observability with OpenTelemetry:
 - How can we monitor AI?
 	- Instrumentation
 		- Manual: OpenTelemetry
-		- Automated: OpenLIT SDK, Traceloop, Lantrace?
+		- Automated: OpenLIT SDK, Traceloop, Langtrace?
 	- Demo? : AI integration for Grafana Cloud: AI Observability (Tempo, Prometheus or Mimir)
 		- There was already an OpenAI integration but it wasn't OTel specific. He really wanted something that was a one line or one-click thing.
 	- OpenLit dashboard for Grafana Cloud
