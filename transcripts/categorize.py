@@ -8,7 +8,7 @@ import json
 
 load_dotenv()
 
-def read_urls(file_path='topdocs.csv'):
+def read_urls(file_path='rest.csv'):
     """
     Reads a CSV file and returns its contents as a list of dictionaries.
     Each dictionary represents a row, with column headers as keys.
@@ -65,8 +65,10 @@ if __name__ == "__main__":
     urls = read_urls()
     print(urls)
 
+    client = OpenAI()
+
     fp = open("results.csv", mode='w', newline='', encoding='utf-8')
-    writer = csv.DictWriter(fp, fieldnames=['page_title', 'page_url', 'summary', 'tags', '# orgs viewed (in my scope) '])
+    writer = csv.DictWriter(fp, fieldnames=['page_title', 'page_url', 'summary', 'productTags', 'topicTags', 'materialTags', 'extraTags', '# orgs viewed (in my scope) '])
     writer.writeheader()
 
     # url = input("Enter the URL: ")
@@ -76,8 +78,6 @@ if __name__ == "__main__":
         url = entry['page_url']
         print(url)
         markdown = fetch_url_to_markdown(url)
-
-        client = OpenAI()
 
         print("URL %d: %s" % (idx, url))
         completion = client.chat.completions.create(
@@ -96,20 +96,25 @@ if __name__ == "__main__":
                         "it would help a user accomplish with Grafana's software. Please pick no more than 3 or 4 tags" +
                         "to describe it. I will provide some example tags you can choose from, but you can come up with others " +
                         "if none of the provided options seem to fit.  Here are some sample tags: " +
-                        "Product tags: (All Products), Grafana, Loki, Mimir, Tempo, K6, Faro, Beyla, Alloy, Agent " +
-                        "Topic tags: (All Topics), installation, configuration, data-sources, plugins, dashboards, security, pricing, architecture, etc. " +
-                        "Material tags: (General), Overview, Summary, Deep Dive, Tutorial, Reference, Troubleshooting, etc. " +
-                        "Extra tags: Beta, OpenTelemetry, Prometheus, Azure, Google Cloud, AWS, Graphite " +
-                        "A good set of tags will be a product tag, one or more topic tags, a material tag, and (only if applicable) an extra tag. " +
+                        "Product tags indicate what product the page describes: Grafana, Loki, Mimir, Tempo, K6, Faro, Beyla, Alloy, Agent " +
+                        "Topic tags describe what facet of the product the page describes: installation, configuration, data-sources, plugins, dashboards, security, pricing, architecture, etc. " +
+                        "Material tags indicate what kind of technical content it is: Overview, Summary, Tutorial, Reference, Troubleshooting, General, etc. " +
+                        "Extra tags indicate other technologies or integrations the page may describe or involve: Beta, OpenTelemetry, Prometheus, Azure, Google Cloud, AWS, Graphite, etc. " +
+                        "A good set of tags will be a single product tag, one or more topic tags, ONLY ONE material tag, and (only if applicable) an extra tag. " +
+                        "Assign only one product tag that is the main focus of the page. Many products may be identified two ways, such as Beyla and Grafana Beyla. " +
+                        "in those cases, use the shorter name.  For example, use Beyla instead of Grafana Beyla. " +
+                        "Assign only one material tag that best describes the primary type of content. " +
+                        "For topic tags, you may assign up to 3.  If you are unsure, you may assign only one. " +
+                        "You may assign up to 3 extra tags. " + 
                         "This is not a complete list of product, topic, and focus tags, you may create new ones, but " +
                         "if an existing tag fits, please use it.  The name of any third-party technology, database, or product is an acceptable "+
-                        "topic tag, such as InfluxDB, MySQL, Postgres, DataDog, etc."
+                        "extra tag, such as InfluxDB, MySQL, Postgres, DataDog, etc, but do not use these as topic tags."
                     )
                 },
                 { 
                     "role": "system", 
                     "content": (
-                        "Output one json object with two keys: summary and tags"
+                        "Output one json object with the following keys: summary, productTags, topicTags, materialTags, extraTags.  Each tags field must be an array of strings"
                     )
                 },
                 { "role": "user", "content": markdown }
@@ -119,8 +124,12 @@ if __name__ == "__main__":
         )
 
         obj = json.loads(completion.choices[0].message.content)
+        # print(obj)
         entry['summary'] = obj['summary']
-        entry['tags'] = ','.join(obj['tags'])
+
+        for key in ['productTags', 'topicTags', 'materialTags', 'extraTags']:
+            entry[key] = ','.join([x.lower() for x in obj[key]])
+
         writer.writerows([entry])
         fp.flush()
     
