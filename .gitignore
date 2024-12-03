@@ -2,3 +2,4 @@
 .obsidian
 venv
 .env
+transcripts/*.csv
