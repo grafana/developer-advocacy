@@ -4,6 +4,11 @@ Resources, processes, and information on the projects we're doing as Developer A
 ## Who are we?
 
 
+
+## How do we create content?
+
+- [[How to contribute to open-source docs]]
+
 ## Projects
 
 - [Grafana Office Hours Readme](projects/Grafana%20Office%20Hours/Grafana%20Office%20Hours%20Readme.md)
