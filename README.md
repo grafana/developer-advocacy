@@ -7,7 +7,10 @@ Resources, processes, and information on the projects we're doing as Developer A
 
 ## How do we create content?
 
-- [[How to contribute to open-source docs]]
+- [How to contribute to open-source docs](How%20to%20contribute%20to%20open-source%20docs.md)
+- [How to create a video](How%20to%20create%20a%20video.md)
+- How to write a blog post
+- How to give a talk at a conference
 
 ## Projects
 
