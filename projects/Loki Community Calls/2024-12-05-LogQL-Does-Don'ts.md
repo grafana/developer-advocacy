@@ -9,6 +9,8 @@ Loki Engineer - Cyril Tovena
 ## Talking points
 - Introductions
 
+
+
 ### LogQL basics
 - What is LogQL?
 - How is LogQL structured? What does it look like?
@@ -35,7 +37,7 @@ Loki Engineer - Cyril Tovena
 
 - When preparing to write a logQL query, what factors should you consider?
 - How can Loki users clean up unused or redundant labels?
-- What are your top 5 common mistakes when writing LogQL queries?
+- [x] What are your top 5 common mistakes when writing LogQL queries?
 - Functionality
 	- How do you validate the correctness of a LogQL query?
 	- How can you test and benchmark Loki queries before deploying them in production?
