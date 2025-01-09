@@ -1,4 +1,4 @@
-# 2024 / 12 / 05 - LogQL Does and Don'ts
+# 2024 / 01 / 23 - Running Loki at Scale on Kubernetes
 
 [url](https://www.youtube.com/watch?v=lAr0GwuZHiw)
 
