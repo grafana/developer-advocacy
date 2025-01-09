@@ -22,19 +22,36 @@ Loki Engineer - Poyzan Taneli
 
 ### Setting the stage
 
-* What exactly do we mean by running Loki at scale on Kubernetes?
-* To set the stage can we talk about the scale of our own Loki deployment?
+* What's the problem we're trying to address? Why do we need a guide for scaling Loki? Don't you just embiggen everything?
+	* Tradeoff: Loki is light on ingest, but more expensive to query at scale.
+	* Risks if too small
+		* What's small? About 30GB a day, a few TB a month
+		* OOM, dropping logs, slow query performance, HTTP 5xx
+	* Risks if too big
+		* Cost: FinOps
+* Scale of our own Loki deployment
+	* The range of our clusters (2 PB/month, multitenant and single tenant)
+	* We query 100x/200x of what people ingest (if a customer does 300 TB/day, they can do 100x/200x for querying that)
 
 
 ### Sizing and Scaling Loki
 
 * Is there a specfic deployment version of Loki that users should be using at scale?
-* Why is this is this the best architecture for scaling Loki?
-* When we look at scaling Loki for a customer what key metrics do we need to consider?
+	* Monolithic and distributed
+	* Note: We're deprecating SSD. You should use distributed mode now.
+	* Why is distributed the best architecture for scaling Loki?
+		* Allows you to scale read and write paths independently from each other.
+* When we look at scaling Loki for a customer, what key metrics do we need to consider?
+	* Amount of logs ingested and queried
+	* Number of users that will be querying Loki at the same time
+	* Cost and complexity of running and maintaining (self-hosting vs SaaS)
 * Talking about Ingest first:
   * What key aspects of ingest effect sizing? Throughput, payload size. 
-  * Is there a particular time period they should aggregate this over. For example estimated amount of logs per day?
   * What particular components of Loki will we scale to handle large ingest scenarios?
+    * (Check out our infrastructure video - add YouTube card later)
+    * Ingesters
+    * Distributors: should be half the number of ingesters as a rule of thumb
+  * Is there a particular time period they should aggregate this over? For example: estimated amount of logs per day?
 * Querying:
   * Is there a differnce to how we size querying vs ingest?
   * What components of Loki do we look to scale for scenerios where large amounts of querying is required?
@@ -49,7 +66,8 @@ Loki Engineer - Poyzan Taneli
 ### Announcement: Loki Sizing Guide
 
 This section talk about the work Poyzan has been doing on the Loki Sizing Guide. 
-* what is it?
+- Check it out [in the docs here](https://grafana.com/docs/loki/latest/setup/size/)
+* What is it?
 * Why did we create it?
 * How have we used it?
 * Demo / Overview
