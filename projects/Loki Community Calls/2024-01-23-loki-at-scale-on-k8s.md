@@ -66,6 +66,9 @@ Loki Engineer - Poyzan Taneli
     * Queriers are stateless, ephemeral components
     * 20% on default nodes and 80% on spot instances. Help with costs and reactivity to heavier queries
     * Auto scale of queriers are based on the length of queue and number of workers vs ingest pipeline which is resource based. 
+  * (Community Question) Our users sometimes query logs for very long time periods - there might be multiple months, 30 days at a time - for services which produce logs at around a terabyte per day. How can we autoscale the queriers so that the queries happen faster and the users don't complain about things being slow? Are there any other ways to increase query performance than scaling more aggressively?
+  * (Community Question) Would love to go into depth around tuning of the chunks cache -- this seems to be the biggest bottleneck on the query side for us.
+  
   
 * Does scaling ingesters impact querying and vice versa?
   * actually querying will impact CPU preasure of the ingesters espically when running recent data queries as we run calculations within the ingesters
@@ -102,3 +105,5 @@ This section talk about the work Poyzan has been doing on the Loki Sizing Guide.
 * 
 
 ### Community Questions
+
+* We are running Loki in an EKS cluster in three availability zones. One of the main cost factors is the cross-AZ traffic caused by the multi-zone architecture. What are the best ways to minimize that cost?
