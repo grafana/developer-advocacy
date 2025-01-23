@@ -1,10 +1,25 @@
-# 2025 / 01 / 23 - Running Loki at Scale on Kubernetes
+# 2024 / 01 / 23 - Running Loki at Scale on Kubernetes
 
 [url](https://www.youtube.com/watch?v=lAr0GwuZHiw)
 
 Hosts -  Nicole & Jay
 
 Loki Engineer - Poyzan Taneli
+
+
+### Just before the show
+
+> Here are some points to discuss with the guest in the 15 minutes before the stream begins.
+
+- [ ] How do you pronounce your name?
+- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [ ] Does anyone want to share their screen? We can do that now, and we can show you how that works.
+- [ ] We'll be streaming to YouTube.
+- [ ] You'll be able to see comments, but if you have links, we have to paste it into the private chat.
+- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
+- [ ] If at any point you aren't comfortable talking about something, please either say so or let us know in the private chat, and we'll pivot away from that topic.
+- [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief and upload the local recording.
+- [ ] Just in case one of us disconnects... the rest should stall for a minute and we'll be right back.
 
 ## Talking points
 
@@ -20,10 +35,11 @@ Loki Engineer - Poyzan Taneli
 * Nicole and Jay introduce themselves
 * Introduce Poyzan Taneli
 - Submit to the GrafanaCON CFP or Golden Grot Awards: https://grafana.com/events/grafanacon/?src=gtm&mdm=social
+- Leave comments in the chat or down below if you have questions and we'll try and answer them, prioritising questions about scaling Loki
 
 ### Setting the stage (7min)
 
-* What's the problem we're trying to address? Why do we need a guide for scaling Loki? Don't you just embiggen everything?
+* What's the problem we're trying to address? Why do we need a guide for scaling Loki? Don't you just embiggen everything? Can't we just autoscale everything?
 	* Tradeoff: Loki is light on ingest, but more expensive to query at scale.
 	* Risks if too small
 		* What's small? About 30GB a day, a few TB a month
@@ -123,3 +139,10 @@ This section talk about the work Poyzan has been doing on the Loki Sizing Guide.
 - Submit to the GrafanaCON CFP or Golden Grot Awards: https://grafana.com/events/grafanacon/?src=gtm&mdm=social
 - Watch out for Grafana Campfire tomorrow: https://youtube.com/live/YqUrfxMw4tY
 
+
+
+## After the show
+
+- [ ] Add timestamps to the video (at least four).
+- [ ] Add any links shared to the description of the video.
+- [ ] Add the video to video playlists that make sense (at the very least, the "Loki Community Call" one.)
