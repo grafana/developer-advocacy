@@ -1,4 +1,4 @@
-# Visualize any CSV File with Grafana
+# Visualize any CSV Data with Grafana
 
 Getting started with Grafana requires a basic understanding of how dashboards, datasources, and queries work.  In
 this post, we'll go through a complete worked example of using Grafana to visualize any CSV file anywhere on the web.
