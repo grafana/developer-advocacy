@@ -1,4 +1,4 @@
-# 2024 / 01 / 23 - Running Loki at Scale on Kubernetes
+# 2025 / 01 / 23 - Running Loki at Scale on Kubernetes
 
 [url](https://www.youtube.com/watch?v=lAr0GwuZHiw)
 
