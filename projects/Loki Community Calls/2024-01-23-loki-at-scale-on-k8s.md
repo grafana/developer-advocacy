@@ -16,9 +16,10 @@ Loki Engineer - Poyzan Taneli
 
 ### Introductions (3 mins)
 
+* What is our topic for today?
 * Nicole and Jay introduce themselves
 * Introduce Poyzan Taneli
-* What is our topic for today?
+- Submit to the GrafanaCON CFP or Golden Grot Awards: https://grafana.com/events/grafanacon/?src=gtm&mdm=social
 
 ### Setting the stage (7min)
 
@@ -40,49 +41,56 @@ Loki Engineer - Poyzan Taneli
 	* Monolithic and distributed
 	* Note: We're deprecating SSD. You should use distributed mode now.
 	* Why is distributed the best architecture for scaling Loki?
-  	* (community question - optional) The description talks about "running Loki in microservices mode", and I thought SSD should be tunable enough even for large use-cases. What's the point when we have to move from SSD to full-microservices mode?
-		* Allows you to scale read and write paths independently from each other.
+```
+@HerveNicol:The description talks about "running Loki in microservices mode", and I thought SSD should be tunable enough even for large use-cases. What's the point when we have to move from SSD to full-microservices mode?
+```
+- Allows you to scale read and write paths independently from each other.
 * When we look at scaling Loki for a customer, what key metrics do we need to consider?
 	* Amount of logs ingested and queried
 	* Number of users that will be querying Loki at the same time
 	* Cost and complexity of running and maintaining (self-hosting vs SaaS)
-* Talking about Ingest first:
-  * What key aspects of ingest effect sizing? Throughput, payload size. 
-  * What particular components of Loki will we scale to handle large ingest scenarios?
-    * (Check out our infrastructure video - add YouTube card later)
-    * Ingesters
-       - Ingesters should show stable memory utilizations and CPU utilizations
-    * Distributors: should be half the number of ingesters as a rule of thumb
-      * - aggregate all logs together and share log stream based on hash to ingesters
-  * How should should i calculate my ingestion?
 
-* Querying:
-  * Is there a differnce to how we size querying vs ingest?
-    * Bad vs good queries
-    * What scenario do I need my logs 
-    * Loki brute forces
-    * Query best practises need to be in play when querying longer ranges
-  * What components of Loki do we look to scale for scenerios where large amounts of querying is required?
-  * How do we scale queriers?
-    * Queriers are stateless, ephemeral components
-    * 20% on default nodes and 80% on spot instances. Help with costs and reactivity to heavier queries
-    * Auto scale of queriers are based on the length of queue and number of workers vs ingest pipeline which is resource based. 
-  * (Community Question) Our users sometimes query logs for very long time periods - there might be multiple months, 30 days at a time - for services which produce logs at around a terabyte per day. How can we autoscale the queriers so that the queries happen faster and the users don't complain about things being slow? Are there any other ways to increase query performance than scaling more aggressively?
-  * (Community Question) Would love to go into depth around tuning of the chunks cache -- this seems to be the biggest bottleneck on the query side for us.
-  
+#### Ingest
+* What key aspects of ingest effect sizing? Throughput, payload size. 
+* What particular components of Loki will we scale to handle large ingest scenarios?
+* (Check out our infrastructure video - add YouTube card later)
+* Ingesters
+   - Ingesters should show stable memory utilizations and CPU utilizations
+* Distributors: should be half the number of ingesters as a rule of thumb
+  * - aggregate all logs together and share log stream based on hash to ingesters
+* How should should i calculate my ingestion?
+
+#### Query
+* Is there a difference to how we size querying vs ingest?
+* Bad vs good queries
+* What scenario do I need my logs 
+* Loki brute forces
+* Query best practises need to be in play when querying longer ranges
+* What components of Loki do we look to scale for scenerios where large amounts of querying is required?
+* How do we scale queriers?
+* Queriers are stateless, ephemeral components
+* 20% on default nodes and 80% on spot instances. Help with costs and reactivity to heavier queries
+* Auto scale of queriers are based on the length of queue and number of workers vs ingest pipeline which is resource based. 
+
+```
+@JuhaTiensyrjä-o11y: Our users sometimes query logs for very long time periods - there might be multiple months, 30 days at a time - for services which produce logs at around a terabyte per day. How can we autoscale the queriers so that the queries happen faster and the users don't complain about things being slow? Are there any other ways to increase query performance than scaling more aggressively?
+```
+
+```
+@ecommventures: Would love to go into depth around tuning of the chunks cache -- this seems to be the biggest bottleneck on the query side for us.
+```  
   
 * Does scaling ingesters impact querying and vice versa?
-  * actually querying will impact CPU preasure of the ingesters espically when running recent data queries as we run calculations within the ingesters
-* Backend Components:
-  * Ruler, Index Gateway, Compactor do we need to scale these components differently?
-   *  Compactor verticaly scale
-   *  Ruler depends on usecase and how heavily use them
-   *  Index gateway depends on if you are running in multi tennant mode (really only maters at 5000+ tenants )
+  * actually querying will impact CPU pressure of the ingesters especially when running recent data queries as we run calculations within the ingesters
+* Backend Components
+  * Ruler, Index Gateway, Compactor: do we need to scale these components differently?
+   * Compactor vertically scales
+   * Ruler depends on usecase and how heavily use them
+   * Index gateway depends on if you are running in multitenant mode (really only matters at 5000+ tenants )
 * Cost:
   * Is there a minimum cost to run Loki at scale?
   * How do we measure the cost when running Loki in our own infrastructure?
     * measure based in ingested GB 
-* 
 
 ### Announcement: Loki Sizing Guide
 
@@ -93,7 +101,7 @@ This section talk about the work Poyzan has been doing on the Loki Sizing Guide.
 * How have we used it?
 * Demo / Overview
 * What should users keep in mind when using the sizing guide?
-* When can they ger their hands on it?
+* When can they get their hands on it?
 * Jay + Nicole make sure to post blog link: https://grafana.com/blog/2023/08/23/how-we-scaled-grafana-cloud-logs-memcached-cluster-to-50tb-and-improved-reliability/ 
 
 ### Monitoring Capacity of your Loki Cluster (Optional -  time permitting)
@@ -102,9 +110,16 @@ This section talk about the work Poyzan has been doing on the Loki Sizing Guide.
 * What are the telltale signs that you need to scale your Loki cluster?
 * Are there any key safe guards that users can put in place to prevent their Loki cluster from becoming overwhelmed under heavy load?
   * Autoscaling?
-  * Alerting?
-* 
+  * Alerting? 
 
 ### Community Questions
 
-* We are running Loki in an EKS cluster in three availability zones. One of the main cost factors is the cross-AZ traffic caused by the multi-zone architecture. What are the best ways to minimize that cost?
+```
+@JuhaTiensyrjä-o11y: We are running Loki in an EKS cluster in three availability zones. One of the main cost factors is the cross-AZ traffic caused by the multi-zone architecture. What are the best ways to minimize that cost?
+```
+
+### Outro
+
+- Submit to the GrafanaCON CFP or Golden Grot Awards: https://grafana.com/events/grafanacon/?src=gtm&mdm=social
+- Watch out for Grafana Campfire tomorrow: https://youtube.com/live/YqUrfxMw4tY
+
