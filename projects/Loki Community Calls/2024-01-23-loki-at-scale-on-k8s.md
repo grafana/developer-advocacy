@@ -40,6 +40,7 @@ Loki Engineer - Poyzan Taneli
 	* Monolithic and distributed
 	* Note: We're deprecating SSD. You should use distributed mode now.
 	* Why is distributed the best architecture for scaling Loki?
+  	* (community question - optional) The description talks about "running Loki in microservices mode", and I thought SSD should be tunable enough even for large use-cases. What's the point when we have to move from SSD to full-microservices mode?
 		* Allows you to scale read and write paths independently from each other.
 * When we look at scaling Loki for a customer, what key metrics do we need to consider?
 	* Amount of logs ingested and queried
