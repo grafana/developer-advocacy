@@ -32,7 +32,7 @@ you needed to provide a bearer token to access CSV at some endpoint, you could c
 
 Click "Save and Test"
 
-![alt text](image.png)
+![Save and Test](img/3-save-and-test.png)
 
 We'll be using a public dataset, so we can simply continue without customizing anything further.  
 
@@ -60,7 +60,7 @@ The next screenshot shows all of the selections we'll make. You can follow along
 
 1. In the query section at the bottom, choose `Type: CSV`
 2. Ensure the source is `URL` and the method is `GET`
-3. For the URL, enter `https://raw.githubusercontent.com/grafana/developer-advocacy/refs/heads/load-csv/projects/Visualize%20CSV/data/worldcities.csv` which links to a CSV file full of data about world cities and their locations
+3. For the URL, enter `https://raw.githubusercontent.com/grafana/developer-advocacy/refs/heads/main/projects/Visualize%20CSV/data/worldcities.csv` which links to a CSV file full of data about world cities and their locations
 4. In the upper right hand of the screen, choose "Table" as the visualization type.
 
 That's it! You should see a table pop up displaying the data.
@@ -72,7 +72,7 @@ our progress.
 
 ![My first dashboard](img/7-my-first-dashboard.png)
 
-## Adding a second visualization
+## Adding another visualization: Map of World Cities
 
 World cities exist on a map, and tables aren't that visually interesting, so let's add something nicer.  In the top
 right of the dashboard, click Add > Visualization to create a new panel.
@@ -84,7 +84,7 @@ In the resulting screen, make the following choices to add a map:
 1. Data source: `yesoreyeram-infinity-datasource`
 2. Type: `CSV`
 3. Method: `GET`
-4. URL: same as above, `https://raw.githubusercontent.com/grafana/developer-advocacy/refs/heads/load-csv/projects/Visualize%20CSV/data/worldcities.csv`
+4. URL: same as above, `https://raw.githubusercontent.com/grafana/developer-advocacy/refs/heads/main/projects/Visualize%20CSV/data/worldcities.csv`
 5. Visualization type (top right of screen): Geomap
 
 In Grafana, [Geomap visualizations](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/geomap/) require latitude and longitude information. But Grafana is smart enough to detect those fields in this dataset automatically. So you will get an automatically populated (but very busy) map, as pictured here:
@@ -93,7 +93,7 @@ In Grafana, [Geomap visualizations](https://grafana.com/docs/grafana/latest/pane
 
 You could save this visualization as-is and have a usable map. Mouse wheel scrolling zooms in and out, so you can inspect any region of the world you like.  But let's see if we can focus on the big cities, and teach one more key Grafana idea.
 
-## Adding Transformations
+## Transforming and Filtering Data
 
 Transformations in Grafana change the data before it gets visualized. In the query editor where we found the URL for
 our datasource, you'll see a tab named Transformations.  Click it, and then click "Add Transformation".
