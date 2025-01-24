@@ -11,14 +11,14 @@ Loki Engineer - Poyzan Taneli
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and we can show you how that works.
-- [ ] We'll be streaming to YouTube.
-- [ ] You'll be able to see comments, but if you have links, we have to paste it into the private chat.
-- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
-- [ ] If at any point you aren't comfortable talking about something, please either say so or let us know in the private chat, and we'll pivot away from that topic.
-- [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief and upload the local recording.
+- [x] How do you pronounce your name?
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] Does anyone want to share their screen? We can do that now, and we can show you how that works.
+- [x] We'll be streaming to YouTube.
+- [x] You'll be able to see comments, but if you have links, we have to paste it into the private chat.
+- [x] You can also use the private chat if you need to say something, but you can also just say it out loud.
+- [x] If at any point you aren't comfortable talking about something, please either say so or let us know in the private chat, and we'll pivot away from that topic.
+- [x] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief and upload the local recording.
 - [ ] Just in case one of us disconnects... the rest should stall for a minute and we'll be right back.
 
 ## Talking points
@@ -143,6 +143,7 @@ This section talk about the work Poyzan has been doing on the Loki Sizing Guide.
 
 ## After the show
 
-- [ ] Add timestamps to the video (at least four).
-- [ ] Add any links shared to the description of the video.
-- [ ] Add the video to video playlists that make sense (at the very least, the "Loki Community Call" one.)
+- [x] Add timestamps to the video (at least four).
+- [x] Add any links shared to the description of the video.
+- [x] Add the video to video playlists that make sense (at the very least, the "Loki Community Call" one.)
+
