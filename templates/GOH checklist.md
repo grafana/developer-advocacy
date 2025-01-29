@@ -29,6 +29,7 @@ Guest:: "Name"
 - [ ] Schedule posts on socials just when the show begins to say "We're live now!" [Buffer](https://buffer.com/) is a good free tool to use for this. Set it up for your socials and be sure to tag/mention the official Grafana account-- they'll usually boost/repost it if you do.
 - [ ] Schedule a Slack message on the internal Grafana workspace (in `#community`, `#content-video`, `#video-offsite-2025-futurism`, and anywhere else you think it might be relevant). Yes this is excessive. Let's change this process!
 - [ ] Schedule a Slack message on the public Grafana Slack workspace (in the appropriate channel, such as `#loki` or `#announcements`).
+- [ ] Add your call to the Community Calendar (ask David, Richi, Nicole, and Usman).
 - [ ] Think of any reference links you might want to give the audience. Add it to the YouTube description.
 
 ## Talking points
