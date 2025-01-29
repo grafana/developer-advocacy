@@ -48,11 +48,13 @@ A livestream is a video broadcast, and it's different from pre-recorded and pre-
 - The live format means that there is a greater chance of demos failing or the subject of conversation changing.
 
 We have two types of streams at Grafana:
-- [Grafana Office Hours](Grafana%20Office%20Hours%20Readme.md) is a weekly livestream where we invite internal or external guests to talk about use cases for projects in the Grafana stack as well as observability best practices. We can talk about both OSS and Cloud offerings. It started as [k6 Office Hours](https://www.youtube.com/watch?v=KPyI8rM3LvE&list=PLJdv3RhAQXNE1TFXn2pp9h_Ul1q_kJrEZ)) but we adopted it into [Grafana Office Hours](https://www.youtube.com/playlist?list=PLDGkOdUX1Ujrrse-cdj20RRah9hyHdxBu) when k6 was acquired by Grafana.
-- [Community Call](Community%20Call.md) is a livestream to be held once every cycle (8 weeks). Unlike Office Hours, its focus is on and new features in the latest project release. It is open to the wider user community, and users will be able to ask questions live. This used to be Google Meet links and still is for some projects, but Nicole and Jay revamped [the Loki Community Call](https://gra.fan/lokicclist) recently to align more closely with the Office Hours format, and Mat Ryer relaunched the Grafana Community Calls as [Grafana Campfire](https://www.youtube.com/watch?v=2FgSP2MIjxo).
+- [Grafana Office Hours Readme](projects/Grafana%20Office%20Hours/Grafana%20Office%20Hours%20Readme.md) is a weekly livestream where we invite internal or external guests to talk about use cases for projects in the Grafana stack as well as observability best practices. We can talk about both OSS and Cloud offerings. It started as [k6 Office Hours](https://www.youtube.com/watch?v=KPyI8rM3LvE&list=PLJdv3RhAQXNE1TFXn2pp9h_Ul1q_kJrEZ)) but we adopted it into [Grafana Office Hours](https://www.youtube.com/playlist?list=PLDGkOdUX1Ujrrse-cdj20RRah9hyHdxBu) when k6 was acquired by Grafana.
+- [Community Calls](projects/Loki%20Community%20Calls/Loki%20Community%20Calls.md) are livestreams to be held once every cycle (8 weeks). Unlike Office Hours, their focus is on and new features in the latest project release. They are open to the wider user community, and users will be able to ask questions live. This used to be Google Meet links and still is for some projects, but Nicole and Jay revamped [the Loki Community Call](https://gra.fan/lokicclist) recently to align more closely with the Office Hours format, and Mat Ryer relaunched the Grafana Community Calls as [Grafana Campfire](https://www.youtube.com/watch?v=2FgSP2MIjxo).
 
 Something we only briefly dabbled in at k6, but at Grafana is Twitch streams-- mostly because we don't know who has access to the Grafana Twitch account.
 Impromptu streams can give a glimpse into someone's daily work in an unstructured way. Unlike the other two types of streams, impromptu streams are not promoted and are solely stored on Twitch. They are low-effort and low return, but are the most authentic types of streams.
+
+Also see: [How to run an Office Hours or Community Call](processes/How%20to%20run%20an%20Office%20Hours%20or%20Community%20Call.md)
 
 ## Tools
 
@@ -70,8 +72,6 @@ The team is too small to have a need to standardize on videography gear, so righ
 	- [Video gear](https://notes.nicolevanderhoeven.com/Video+gear)
 	- [Lighting gear](https://notes.nicolevanderhoeven.com/Lighting+gear)
 	- [Audio gear](https://notes.nicolevanderhoeven.com/Audio+gear)
-
-- [Leandro's gear](./LeandroAudioVideo.md)
 
 ### Streaming
 
