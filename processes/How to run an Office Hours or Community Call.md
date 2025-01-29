@@ -26,6 +26,12 @@ Consider doing a Community Call for topics that:
 - are presented by us and someone(s) on the project engineering teams
 - skew towards more advanced/in-depth usage so that it's not great for a broader audience
 
+### What's in it for you?
+
+- Use this as an opportunity to learn in public
+- Use this as a way to get engineers to say things in public that haven't been said/explained before
+- *Don't* use this as a one-and-done piece of content
+
 
 ### Ask the right person
 
