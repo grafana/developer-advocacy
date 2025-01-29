@@ -1,12 +1,12 @@
 ---
 url: https://www.youtube.com/watch?v=9X7M-bvnZG0
-date:
+date: 2024-11-08
 ---
-# [[GOH - LLM Observability with Ishan Jain]]
+# [GOH 29 - LLM Observability with Ishan Jain](projects/Grafana%20Office%20Hours/GOH%2029%20-%20LLM%20Observability%20with%20Ishan%20Jain.md)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9X7M-bvnZG0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: 
+Guest:: "Ishan Jain"
 
 ## Checklist
 

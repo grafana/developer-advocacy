@@ -2,7 +2,7 @@
 url:
 date: 
 ---
-# [[GOH 31 - Antonio Berbén]]
+# [GOH 30 - Loki deployments](projects/Grafana%20Office%20Hours/GOH%2030%20-%20Loki%20deployments.md)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -28,8 +28,7 @@ Guest::
 
 ## Reference links
 
-Contact Antonio:
-LinkedIn: https://www.linkedin.com/in/antonio-berben/
+
 
 ## Timestamps
 
@@ -48,10 +47,31 @@ LinkedIn: https://www.linkedin.com/in/antonio-berben/
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
-- 
-- Outro
-	- If people want to learn more about this topic, where should they go?
-	- 
+
+- Three deployment methods (monolithic, simple scalable, microservices) and when you should use what.
+	- When should you do monolithic federated (multiple replicas) vs. simple scalable vs. microservices
+- Production setup
+	- How many replicas of each?
+	- Storage
+		- Minio bridge to AWS S3?
+	- Quirks in cloud providers: how to authenticate-- i.e. IAM for AWS. How do we make sure Loki can talk to object storage? What are some best practices there?
+	- Why does GEL exist? At what point do you recommend that people switch over?
+- Migration
+	- from one version of Loki to another
+	- from one type of storage to another
+- Using a ruler to query Prometheus instead of Loki
+
+### Questions
+
+- What's the status of loki-disributed helm chart? Will it be updated to with Loki 3.0? There is migration document about migrating from loki-distributed chart to loki chart with "distributed mode". Does it mean that loki-distributed chart is deprecated? Ref: https://github.com/grafana/helm-charts/issues/3086 (local)
+- Are there any plans improving the documentation of Loki, considering the many open issues on Github and the Grafana community? (local)
+- How to deploy in ssd mode in kubernetes using helm chart (GCP)
+- It feels like I pay a tremendous amount in PUT/LIST requests versus actual storage costs on AWS. My storage is a couple bucks while my PUT/LISTs result in 80+ dollar bills. What are optimizations I can make to lower my costs when using cloud storage costs?
+- what is the future of jsonnet based deployment? seems it is not updated frequently
+- We do multi-cloud deployments of our apps but have loki configured so it writes back to a single cloud/region. Do you have other users doing this?
+- Considering single-store tsdb is recommended now, are there any reasons to still support any alternatives in Loki 3?
+- How to configure helm chart values for a proper production ready loki (GCP)
+- What does non-cloud deployment look like? For example is minio or similar S3 store a bad idea
 
 ### Just before the show
 

@@ -39,26 +39,16 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - Break
 - 07/06: [GOH 27 - Grafana Loki Design Basics with Ed Welch](GOH%2027%20-%20Grafana%20Loki%20Design%20Basics%20with%20Ed%20Welch.md)
 - 19/07: [GOH 28 - OpenTelemetry Metrics with Traefik](GOH%2028%20-%20OpenTelemetry%20Metrics%20with%20Traefik.md)
-- [GOH - LLM Observability with Ishan Jain](GOH%20-%20LLM%20Observability%20with%20Ishan%20Jain.md)
-- [[GOH - Loki Adaptive Logs]]
+- [GOH 29 - LLM Observability with Ishan Jain](projects/Grafana%20Office%20Hours/GOH%2029%20-%20LLM%20Observability%20with%20Ishan%20Jain.md)
+
 
 ### Upcoming
 
 
-- [GOH 29 - Loki deployments](GOH%2029%20-%20Loki%20deployments.md) with Jay Clifford
-- [GOH 30 - Grafana plugins for beginners](GOH%2030%20-%20Grafana%20plugins%20for%20beginners.md) with Tom Glenn
-- [GOH 31 - Antonio Berbén](GOH%2031%20-%20Antonio%20Berbén.md)
-- [Explore apps with Mat Ryer](Explore%20apps%20with%20Mat%20Ryer.md)
-- Emma Sleep
-- Navish Bahl on Asserts.ai
-- Matt Durham/Paschalis Tsilians: Grafana Agent new release and changes
-- Loki changes?
-- Testcontainers (and Imma) on how they've incorporated the LGTM stack into testcontainers
-- Loki Adaptive Logs
-- Explore Profiles ([see this thread](https://raintank-corp.slack.com/archives/C03NCLB4GG7/p1726677982509789))
 
 ## Future guest suggestions
 
+- [[GOH - Loki Adaptive Logs]]
 - SLOs: Ryan Kehoe, Joe Bluebaugh, or Bob Cotton - ask in `#gops-slos`
 	- Nadine - created Pira, on Prometheus SLOs with her partner Matthias
 		- Joining community of OSS SLO tools
@@ -71,5 +61,14 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 - Marcelo Magallón about Synthetic Monitoring and k6.
 - Ivan Szkiba on xk6-dashboard
 - Marie - psychology of waiting/reliability
-- 
-
+- [GOH 30 - Loki deployments](projects/Grafana%20Office%20Hours/GOH%2030%20-%20Loki%20deployments.md) with Jay Clifford
+- [Grafana plugins for beginners](projects/Grafana%20Office%20Hours/Grafana%20plugins%20for%20beginners.md) with Tom Glenn
+- [Antonio Berbén](projects/Grafana%20Office%20Hours/Antonio%20Berbén.md) with Usman
+- [Explore apps with Mat Ryer](Explore%20apps%20with%20Mat%20Ryer.md)
+- Emma Sleep
+- Navish Bahl on Asserts.ai
+- Matt Durham/Paschalis Tsilians: Grafana Agent new release and changes
+- Loki changes?
+- Testcontainers (and Imma) on how they've incorporated the LGTM stack into testcontainers
+- Loki Adaptive Logs
+- Explore Profiles ([see this thread](https://raintank-corp.slack.com/archives/C03NCLB4GG7/p1726677982509789))
