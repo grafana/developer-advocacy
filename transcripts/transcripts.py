@@ -1,4 +1,5 @@
 import os
+import argparse
 from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi
 from dotenv import load_dotenv
@@ -99,7 +100,7 @@ def get_id(video):
     
     return video['id']['videoId']
 
-def fetch_transcripts(videos):
+def fetch_transcripts(args, videos):
     processed = []
     for video in videos:
         video_id = get_id(video)
@@ -109,21 +110,23 @@ def fetch_transcripts(videos):
             print(json.dumps(video, indent=2))
             continue
 
-        if os.path.isfile(file_for_video(video)):
+        if os.path.isfile(file_for_video(args, video)):
             print(f"Skipping video {video_id} because it already has a transcript.")
             continue
 
         try:
-            transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=('en','es', 'fr', 'de'))
+            transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=('en','es', 'fr', 'de', 'jp'))
             full_text = ' '.join([entry['text'] for entry in transcript])
             video['transcript'] = full_text
             processed.append(video)
         except Exception as e:
             print(f"Could not fetch transcript for video {video_id}: {e}")
+        
+        write_markdown(args, video)
     
     return processed
 
-def file_for_video(video):
+def file_for_video(args, video):
     published = get_publish(video)
     
     if published == '':
@@ -131,10 +134,10 @@ def file_for_video(video):
 
     title = video['snippet']['title']
     slug = slugify(title)
-    filename = f"{published}-{slug}.md"
+    filename = f"{args.path}/{published}-{slug}.md"
     return filename
 
-def write_markdown(video):
+def write_markdown(args, video):
     video_id = get_id(video)
     
     if video_id == '':
@@ -153,7 +156,7 @@ def write_markdown(video):
 
     url = f"https://www.youtube.com/watch?v={video_id}"
 
-    filename = file_for_video(video)
+    filename = file_for_video(args, video)
     with open(filename, "w") as file:
         file.write(f"# {title}\n\n")
         file.write(f"{description}\n\n")
@@ -163,34 +166,48 @@ def write_markdown(video):
 
     print(f"Successfully wrote transcript for video {video_id} to {filename}")
 
-playlists = ['PLDGkOdUX1UjrEOz4fOB4UZW8m-hx8_mtb']
-
 def have_transcript_file(video):
-    return os.path.isfile(file_for_video(video))
+    return os.path.isfile(file_for_video(args, video))
 
-def main():
-    channel_id = 'UCYCwgQAMm9sTJv0rgwQLCxw'  # Replace with the target channel's ID
-    start_date = '2024-01-01T00:00:00Z'  # Replace with your start date in ISO 8601 format
-    end_date = '2025-12-31T00:00:00Z'  # Replace with your end date in ISO 8601 format
-
+def main(args):
     videos_to_transcribe = []
 
-    for playlist in playlists:
-        playlist_videos = get_playlist_videos(playlist)
+    if args.playlist:
+        playlist_videos = get_playlist_videos(args.playlist)
         videos_to_transcribe = videos_to_transcribe + playlist_videos
-        print(f"Found {len(playlist_videos)} videos in plalyst %s" % playlist)
+        print(f"Found {len(playlist_videos)} videos in playlist %s" % args.playlist)
 
-    channel_videos = get_channel_videos(channel_id, start_date, end_date)
-    videos_to_transcribe = videos_to_transcribe + channel_videos
-    print(f"Found {len(channel_videos)} videos in the specified date range.")
+    if args.channel:
+        channel_videos = get_channel_videos(args.channel, args.start, args.end)
+        videos_to_transcribe = videos_to_transcribe + channel_videos
+        print(f"Found {len(channel_videos)} videos in the specified date range.")
 
     videos_to_transcribe = [v for v in videos_to_transcribe if not have_transcript_file(v)]
     print(f"Found {len(videos_to_transcribe)} videos to transcribe, after filtering out those that already have transcripts.")
 
-    videos = fetch_transcripts(videos_to_transcribe)
-
-    for video in videos:
-       write_markdown(video)
+    videos = fetch_transcripts(args, videos_to_transcribe)
+    print("Done")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(
+            prog='transcripts',
+            description='Extracts Transcripts from YouTube and writes them as local markdown files')
+    parser.add_argument('-c', '--channel', required=False,
+                        help='YouTube Channel ID; defaults to Grafana', 
+                        default='UCYCwgQAMm9sTJv0rgwQLCxw')
+    parser.add_argument('-p', '--playlist', required=False,
+                        help='YouTube Playlist ID; defaults to Grafana obscon playlist',
+                        default=None)
+                        # default='PLDGkOdUX1UjrEOz4fOB4UZW8m-hx8_mtb')
+    parser.add_argument('-s', '--start', required=False,
+                        help='Start date for videos; Must be in ISO 8601 format. defaults to 2024-01-01T00:00:00Z',
+                        default='2024-01-01T00:00:00Z')
+    parser.add_argument('-e', '--end', required=False,
+                        help='End date for videos; Must be in ISO 8601 format. defaults to 2030-12-31T00:00:00Z to get all',
+                        default='2030-12-31T00:00:00Z')
+    parser.add_argument('-d', '--path', 
+                        help='Path to write markdown files to; defaults to current directory',
+                        required=False, default='.')
+    args = parser.parse_args()
+
+    main(args)
