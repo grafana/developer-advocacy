@@ -45,7 +45,7 @@ Say you'll ask them questions about things they already know. Try to make it so 
 
 ## The prep
 
-Follow [the Grafana Office Hours checklist here](templates/GOH%20checklist.md). For an example of how this looks like when filled out: [GOH 26 - How to do continuous profiling right, with Grafana Pyroscope & Ryan Perry](projects/Grafana%20Office%20Hours/GOH%2026%20-%20How%20to%20do%20continuous%20profiling%20right,%20with%20Grafana%20Pyroscope%20&%20Ryan%20Perry.md).
+Follow [the Grafana Office Hours checklist here](../templates/GOH%20checklist.md). For an example of how this looks like when filled out: [GOH 26 - How to do continuous profiling right, with Grafana Pyroscope & Ryan Perry](../projects/Grafana%20Office%20Hours/GOH%2026%20-%20How%20to%20do%20continuous%20profiling%20right,%20with%20Grafana%20Pyroscope%20&%20Ryan%20Perry.md).
 
 Research!
 
