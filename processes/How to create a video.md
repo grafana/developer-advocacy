@@ -54,7 +54,7 @@ We have two types of streams at Grafana:
 Something we only briefly dabbled in at k6, but at Grafana is Twitch streams-- mostly because we don't know who has access to the Grafana Twitch account.
 Impromptu streams can give a glimpse into someone's daily work in an unstructured way. Unlike the other two types of streams, impromptu streams are not promoted and are solely stored on Twitch. They are low-effort and low return, but are the most authentic types of streams.
 
-Also see: [How to run an Office Hours or Community Call](processes/How%20to%20run%20an%20Office%20Hours%20or%20Community%20Call.md)
+Also see: [How to run an Office Hours or Community Call](How%20to%20run%20an%20Office%20Hours%20or%20Community%20Call.md)
 
 ## Tools
 
