@@ -17,6 +17,8 @@ First, clone the project repo locally. `cd` to the directory you want the projec
 git clone https://github.com/grafana/loki.git
 ```
 
+The Cloud docs are not project-specific and are held in [the Grafana website repo](https://github.com/grafana/website).
+
 ### Create a new branch
 
 Within the GitHub UI, create a new branch for your changes. Different projects might use different naming conventions, but something like `docs-revamp-logql-page` would work.
