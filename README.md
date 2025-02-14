@@ -9,8 +9,8 @@ Resources, processes, and information on the projects we're doing as Developer A
 
 - [How to contribute to Grafana Labs docs](processes/How%20to%20contribute%20to%20Grafana%20Labs%20docs.md)
 - [How to create a video](processes/How%20to%20create%20a%20video.md)
-- How to write a blog post
-- How to give a talk at a conference
+- [How to Contribute Grafana Blog Post](processes/How%20to%20Contribute%20Grafana%20Blog%20Post.md)
+- [How to give a talk at a conference](processes/How%20to%20give%20a%20talk%20at%20a%20conference.md)
 
 ## Projects
 
