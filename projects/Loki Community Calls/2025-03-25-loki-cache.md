@@ -2,22 +2,22 @@
 url:
 date: 
 ---
-# [[2025-02-26-Alerting]]
+# [[2025-03-25-loki-cache]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: "Name"
+Guest:: "Poyzan Taneli"
 
 ## Pre-show checklist
 
-- [x] Create a new `.md` file and copy this template into it. Check things off as you work through it.
-- [x] Update [Grafana Office Hours Readme](projects/Grafana%20Office%20Hours/Grafana%20Office%20Hours%20Readme.md) to add the new file to the `Upcoming` section.
-- [x] Contact the guest and tell them about Office Hours.
+- [ ] Create a new `.md` file and copy this template into it. Check things off as you work through it.
+- [ ] Update [Grafana Office Hours Readme](projects/Grafana%20Office%20Hours/Grafana%20Office%20Hours%20Readme.md) to add the new file to the `Upcoming` section.
+- [ ] Contact the guest and tell them about Office Hours.
 	> At Grafana Labs, we do a livestream called [Grafana Office Hours](https://www.youtube.com/watch?v=uk7NoagbJ28&list=PLDGkOdUX1Ujrrse-cdj20RRah9hyHdxBu), where we have guests on to talk about how to use Grafana, observability, or visualization. I saw your [blog post/video/post] on [source] and I think it would be great to have you on the show to share your experience about [topic].
 	Office Hours is an hour-long live conversation that is streamed to the [Grafana YouTube channel](https://youtube.com/@grafana). It's very casual, and you can also share your screen if you'd like to do a demo (not required). If you'd like to join, I'd love to have you! 
-- [x] If the guest agrees, choose a date for the Office Hours session. Check [the Monday board](https://grafana-labs.monday.com/boards/5724430500) to make sure no other livestream is scheduled for that day. Add a card for that date and time to save the spot.
+- [ ] If the guest agrees, choose a date for the Office Hours session. Check [the Monday board](https://grafana-labs.monday.com/boards/5724430500) to make sure no other livestream is scheduled for that day. Add a card for that date and time to save the spot.
 - [ ] Confirm the time (16:00 CEST on Friday is generally best) with the guest. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
-- [x] Invite them to the Grafana Office Hours calendar invite (choose "this instance only", not the whole series). Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours total. Explain this to them.
+- [ ] Invite them to the Grafana Office Hours calendar invite (choose "this instance only", not the whole series). Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours total. Explain this to them.
 - [ ] Create a thumbnail on [Canva](https://canva.com) using the Grafana Office Hours thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices. [Here are some guidelines for creating thumbnails](https://notes.nicolevanderhoeven.com/Create+engaging+thumbnails).
 - [ ] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
 	- [ ] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`. Including the number or the date (such as `All About Explore Logs (Loki Community Call November 2024`) helps people remember it.
@@ -39,56 +39,41 @@ Guest:: "Name"
 - Intro
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
-	- KubeCon London in April
-		- Tom and Jay: [Logs, Metrics, Traces, and Mayhem: An Interactive Observability Adventure Game](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/schedule/)
-		- Nicole: [Asimov's Zeroth Law of Robotics: Observability for AI](https://events.linuxfoundation.org/kubecon-cloudnativecon-europe/program/schedule/)
-		- 6 other talks by Grafanistas	
-	- Loki 3.4 released
-	- GrafanaCon in May
-- Introduce guest (George Robinson)
+	- New project releases
+	- Recent content published
+- Introduce guest
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
-- Lets talk the basics of Alerting and Recording Rules
-	- What's an alert?
-		- rule that is continuously evaluated at a frequerncy or interval that you choose that is looking for condition. When the condition is met, the alert fires. Idea: continuously running query whose parameters you can set.
-	- What are alerts used for in Loki?
-	- What are recording rules used for in Loki?
-		- Saving the result of computationally extensive Loki queries
-		- What's different about Loki recording rules? They translate logs into metrics unlike Mimir/Prometheus
-	- You use the recording rule to calculate the metric that you want to alert on.
-	- What component of Loki handles alerting and recording rules?
-		- Ruler
-		- You identify a group, a series of rules, and you can say how frequently those rules are evaluated.
-	- Do you still need an alert manager?
-	- How does alerting with Loki differ for Cloud vs OSS users?
-	- When is it better to use Grafana Managed Alerts vs the ruler?
-	- What methods are there for setting up alerts and recording rules?
-	- What is the Lokitool is this the best way to set up alerts and recording rules?
-- Alerting Rules
-    - Whart are the most common alerting rules?
-    - When creating an aleting rule, what are the most important things to consider? (labels, time range, etc)
-    - Is there a way to test alerting rules before deploying them?
-    - What are some common mistakes people make when creating alerting rules?
-    - How do you troubleshoot alerting rules?
-    - How do you know if an alert is working?
-    - Are there ways to aggregate multiple Loki alerts into a single notification?
-- Recording Rules
-    - What are the most common recording rules?
-    - Are there any performance considerations to consider when creating recording rules?
-    - What are some common mistakes people make when creating recording rules?
-- Ruler
-    - Do you need to scale the ruler or should one replica be enough?
-    - Is the ruler stateful or stateless?
-    - What is the ruler sharding strategy? Does this help with sorting expensive queries?
-- Grafana Managed Alerts vs Datasource Managed Alerts (DMA)
-	- GMA has its own Alertmanager built in. If you don't want to deploy separate Alertmanager components built in, this is better. With Loki you have to use the ruler and also Alertmanager
-	- Open sourced alerts don't support sharding, whereas the Mimir and Loki rulers do. DMA can be a challenge - you can split your rules manually yourself.
-- Community Questions (From Common Room)
-    - [x] (Matt Browne) is anyone aware of what might cause loki recording rules that you define in grafana to disappear? Is there a way to recover recording rules?
-    - [x] (sitilge) I'm trying to figure out why my Loki setup is not running recording rules and not sending the resulting metrics to the Prometheus remote write endpoint. The rules do get added to the /rules directory by the sidecar container, but I don't see anything related in the logs of the loki container in the loki-backend pod or the loki-sc-rules container, even after enabling debug logging for both. Any ideas on how to troubleshoot this?
-    - [x] (Andreas Jägle) How to include log lines into the alert notifications? (maybe just a few samples, without modifying/complicating the alert condition itself). exa: show logs causing the alert on level=error.
-	- [x] (synchroii) Alerting in Multi-Tenant environments. I run Loki ingesting logs from multiple clusters. Each cluster is identical but hosted in different zones/regions and each have a tenant id. At the moment, I need to create one alert per each cluster (x20) because the Ruler component does not support multi-tenancy,Are there any plans to support multi-tenant queries in the Ruler component?
+- Cache concepts
+	- Telltale signs that you need a cache: all components seem to be doing fine, except for high latency in retrieving from the store
+	- Tradeoffs: speed vs inaccuracy/being outdated (this isn't a problem for us because of how we configure it), cost (how much money do you want to throw at performance?)
+	- When should you use a cache vs. a recording rule?
+		- Recording rule: something that changes over a certain time period, and is aggregatable
+		- Cache: something that doesn't necessarily need to be repeated - you might look for something slightly different, but you're still looking at the same cache (for example)
+- Memcached tiering (Excalidraw?) + differences
+	- Memcache frontend
+	- Results cache (where the query results go)
+		- saves computation cost
+	- Chunks cache (the one that goes to extstore)
+		- saves access to storage: iops and bandwidth
+		- Spillover cache
+			- Prevents the problem where memcache is not smart enough to keep the part of a query that it already has
+			- Not worth the complication for most users
+- How to scale memcache
+	- How do we deploy at scale?
+	- Up to 3TB of capacity
+	- Where are we at?
+	- Where should people start? 
+	- Also important from a cost perspective
+	- Make it part of your process to regularly revisit your decisions ([Community PR for not writing to cache if outside chosen window](https://github.com/grafana/loki/issues/14983))
+- Is it better to use the included memcache or scale your own?
+	- We have a heuristic (70% of the query timerange that hits a cell in 7 days)
+	- Poyzan can show ops numbers - explain that Loki team is responsible for our own Loki instances
+- Failure scenarios
+	- Failure scenario 1: getting hit by a large number of queries that touch a long period (writeback loop for memcache)
+	- Failure scenario 2: losing 20%, 50%, all of pods for cache - what's the performance hit? (Loki can still serve up to 3 hours of data)
+- Configuration parameters
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- 
@@ -127,3 +112,6 @@ Guest:: "Name"
 
 ### Reference links
 
+
+🖊️ How we scaled Grafana Cloud Logs Memcached Cluster to 50 TB: https://grafana.com/blog/2023/08/23/how-we-scaled-grafana-cloud-logs-memcached-cluster-to-50tb-and-improved-reliability/ 
+💻 Community PR for skipping writing to chunks cache if outside of desired window: https://github.com/grafana/loki/issues/14983 
