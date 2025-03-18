@@ -45,38 +45,55 @@ Guest:: "Poyzan Taneli"
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
-- Cache concepts
-	- Telltale signs that you need a cache: all components seem to be doing fine, except for high latency in retrieving from the store
-	- Tradeoffs: speed vs inaccuracy/being outdated (this isn't a problem for us because of how we configure it), cost (how much money do you want to throw at performance?)
-	- When should you use a cache vs. a recording rule?
-		- Recording rule: something that changes over a certain time period, and is aggregatable
-		- Cache: something that doesn't necessarily need to be repeated - you might look for something slightly different, but you're still looking at the same cache (for example)
-- Memcached tiering (Excalidraw?) + differences
-	- Memcache frontend
-	- Results cache (where the query results go)
-		- saves computation cost
-	- Chunks cache (the one that goes to extstore)
-		- saves access to storage: iops and bandwidth
-		- Spillover cache
-			- Prevents the problem where memcache is not smart enough to keep the part of a query that it already has
-			- Not worth the complication for most users
-- How to scale memcache
-	- How do we deploy at scale?
-	- Up to 3TB of capacity
-	- Where are we at?
-	- Where should people start? 
-	- Also important from a cost perspective
-	- Make it part of your process to regularly revisit your decisions ([Community PR for not writing to cache if outside chosen window](https://github.com/grafana/loki/issues/14983))
-- Is it better to use the included memcache or scale your own?
-	- We have a heuristic (70% of the query timerange that hits a cell in 7 days)
-	- Poyzan can show ops numbers - explain that Loki team is responsible for our own Loki instances
-- Failure scenarios
-	- Failure scenario 1: getting hit by a large number of queries that touch a long period (writeback loop for memcache)
-	- Failure scenario 2: losing 20%, 50%, all of pods for cache - what's the performance hit? (Loki can still serve up to 3 hours of data)
-- Configuration parameters
+- Cache Concepts
+  - What are the telltale signs that indicate you might need a cache?
+    - (e.g. high latency retrieving from the store despite all other components working fine)
+  - What tradeoffs do you consider when implementing a cache?
+    - (e.g. speed versus potential inaccuracy/outdated data, and cost implications)
+  - When should you use a cache versus a recording rule?
+    - (e.g. recording rules for data that changes over a period and is aggregatable vs. cache for similar repeated queries)
+  - What types of queries benefit most from caching, and when might caching be less effective?
+  - Are all query types cached by Loki, or only certain types of queries (for example, raw log queries vs. aggregated metric queries)?
+  - How does caching work in a multi-tenant Loki environment – are caches shared across tenants or isolated per tenant?
+  - How long do cached entries stay valid?
+
+- Memcached Tiering & Differences
+  - Can you describe the different components involved in memcache tiering? (Live Draw)
+    - (e.g. Memcache frontend, results cache, and chunks cache)
+  - What is the role of the results cache?
+    - (Note: It saves computation cost)
+  - What is the role of the chunks cache?
+    - (Note: It reduces storage IOPS and bandwidth usage)
+  - What is a spillover cache and why might it not be necessary for most users?
+    - (e.g. it prevents issues where memcache isn’t smart enough to retain parts of a query)
+
+- Scaling Memcache
+  - How do we deploy memcache at scale in a Loki environment?
+    - (Note: Considerations include capacity up to 3TB and where to start)
+  - What cost considerations should be kept in mind when scaling memcache?
+  - How often should we revisit our caching decisions?
+    - (Note: Reference [Community PR for not writing to cache if outside chosen window](https://github.com/grafana/loki/issues/14983))
+
+- Using Included Memcache vs. Scaling Your Own
+  - Is it better to use the included memcache or scale your own solution?
+    - (Note: A heuristic suggests that 70% of the query timerange should hit a cell in 7 days; also, the Loki team manages our own instances)
+  - How can tools like Poyzan help in showing operational numbers for memcache performance?
+
+- Failure Scenarios
+  - What happens when the system is hit by a large number of queries that cover a long time period?
+    - (Note: This could trigger a writeback loop for memcache)
+  - What are the performance impacts if we lose 20%, 50%, or all of the cache pods?
+    - (Note: Loki can still serve up to 3 hours of data under such scenarios)
+
+- Monitoring Memcache
+  - What are some best practices for monitoring cache performance in a Loki environment?
+  - How can you verify that Loki is actually utilizing the cache?
+
 - Outro
 	- If people want to learn more about this topic, where should they go?
-	- 
+
+Communty questions:
+- 
 
 ### Just before the show
 
