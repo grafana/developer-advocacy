@@ -90,6 +90,6 @@ The team is too small to have a need to standardize on videography gear, so righ
 
 ## Other resources
 
-- [Video Checklist](templates/Video%20Checklist.md)
+- 
 - [Nicole's notes on how to produce videos](https://notes.nicolevanderhoeven.com/Producing+videos)
 
