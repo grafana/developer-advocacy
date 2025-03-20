@@ -1,0 +1,10 @@
+# Drilldown apps: An improved queryless experience for faster insights into your observability data
+
+See how we're improving the apps to help you quickly get insights into your logs, metrics, traces, and profiles, and find out why we ...
+
+Published on 2025-02-20T20:57:54Z
+
+URL: https://www.youtube.com/watch?v=ciqYdiE1fhA
+
+Transcript: hi my name is Jal a pro manager from Goan Labs today I'm excited to introduce you to many new exciting features we have introduced to the Dr down apps in the past few months first and foremost I will reintroduce you to grafana Dr down apps which were previously known as gr explore apps we change the name for two reasons first we want to separate these seless apps from classic Flor where users have to write queries second this new name better reflects what users can achieve using this apps by letting users drill down into Data effortlessly as you can see from us change classic explor has been moved into a separate section to better reflect the user intent of writing queries and all the apps have been moved into a new section under the drill down name for metrix drill down we continue our journey by supporting new functionalities for example we added features like L htest to give customers high resolution to uncover unknown issues we have also introduced a new homepage to make it easier for users to get started for lock drill down we focus on improving many of the existing features for example users can start with a different filter other than Services we also added reject filter enable query streaming for Tracy Dr down we're working tirelessly to make Tracy Dr down ready for G for example users can now check examplars directly from TR metrics and realze Trace details in your drawer last but not least we have just G profiles drill down over the last few months the team has worked hard to improve the ux reduce the latency and strengthen the whole application thanks for watching this video please check out the blog for more details and all the new features thank you [Music]
+
