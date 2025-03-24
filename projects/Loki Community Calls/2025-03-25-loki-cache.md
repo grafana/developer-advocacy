@@ -73,16 +73,21 @@ Guest:: "Poyzan Taneli"
     - Storge access (API calls), Latencties that come cache, trace would show the latency of each component
   - How to decide on cache numbers?
     - (Note: A heuristic suggests that 70% of the query timerange should hit a cell in 7 days; also, the Loki team manages our own instances)
-  - How can tools help in showing operational numbers for memcache performance?
-  - Are all query types cached by Loki, or only certain types of queries (for example, raw log queries vs. aggregated metric queries)?
-  - How does caching work in a multi-tenant Loki environment – are caches shared across tenants or isolated per tenant?
   - How long do cached entries stay valid?
+    - Reset 24 hours
+    - Don't cache when we flush to storage
+    - cache data will go stale. Time to live (TTL)
 
 - Failure Scenarios
   - What happens when the system is hit by a large number of queries that cover a long time period?
     - (Note: This could trigger a writeback loop for memcache)
+    - Is my cache provisioned correctly? 1 day provisioned but querying 7 days
   - What are the performance impacts if we lose 20%, 50%, or all of the cache pods?
     - (Note: Loki can still serve up to 3 hours of data under such scenarios)
+  - What happnes if you see your cache OOMing? Or what should you do if you want verticaly scale your cache?
+    - Cache CPU and RAM, configuration how much its allowed to use. Default covers for this
+    - memory_limit_mb and max_item_size 
+    - Boxes are to big bad for memcache check chunk size
 
 - Monitoring Memcache
   - What are some best practices for monitoring cache performance in a Loki environment?
