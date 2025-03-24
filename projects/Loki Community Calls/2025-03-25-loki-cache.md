@@ -51,11 +51,12 @@ Guest:: "Poyzan Taneli"
   - What tradeoffs do you consider when using cache?
     - (e.g. latency versus potential inaccuracy/outdated data, and cost implications)
   - What types of queries benefit most from caching, and when might caching be less effective?
-
-
+    - (repeated query behaviour, touching the same data, most queried time period, recent data)
+    - Last 3 hours of data
+  
 - Memcached Tiering & Differences
   - Can you describe the different components involved in memcache tiering? (Live Draw)
-    - (e.g. Memcache frontend, results cache, and chunks cache)
+    - (e.g. Memcache frontend (metrics, labels, volume; done via a hash in header), results cache (query hash, is it in cash or not in cash), and chunks cache (biggest cache, no need for tennancy understanding chunk ref holds this metadata))
   - What is the role of the results cache?
     - (Note: It saves computation cost)
   - What is the role of the chunks cache?
@@ -65,15 +66,14 @@ Guest:: "Poyzan Taneli"
 
 - Scaling Memcache
   - How do we deploy memcache at scale in a Loki environment?
+    - Mention Helm value differnces from JSONnet
     - (Note: Considerations include capacity up to 3TB and where to start)
-  - What cost considerations should be kept in mind when scaling memcache?
   - How often should we revisit our caching decisions?
     - (Note: Reference [Community PR for not writing to cache if outside chosen window](https://github.com/grafana/loki/issues/14983))
-
-- Using Included Memcache vs. Scaling Your Own
-  - Is it better to use the included memcache or scale your own solution?
+    - Storge access (API calls), Latencties that come cache, trace would show the latency of each component
+  - How to decide on cache numbers?
     - (Note: A heuristic suggests that 70% of the query timerange should hit a cell in 7 days; also, the Loki team manages our own instances)
-  - How can tools like Poyzan help in showing operational numbers for memcache performance?
+  - How can tools help in showing operational numbers for memcache performance?
   - Are all query types cached by Loki, or only certain types of queries (for example, raw log queries vs. aggregated metric queries)?
   - How does caching work in a multi-tenant Loki environment – are caches shared across tenants or isolated per tenant?
   - How long do cached entries stay valid?
@@ -95,7 +95,8 @@ Guest:: "Poyzan Taneli"
 - Outro
 	- If people want to learn more about this topic, where should they go?
 
-Communty questions:
+Useful links:
+Underlining code for how storage ansd cache works: https://github.com/grafana/loki/tree/main/pkg/storage 
 
 
 ### Just before the show
