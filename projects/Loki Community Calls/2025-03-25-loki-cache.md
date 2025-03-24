@@ -48,14 +48,10 @@ Guest:: "Poyzan Taneli"
 - Cache Concepts
   - What are the telltale signs that indicate you might need a cache?
     - (e.g. high latency retrieving from the store despite all other components working fine)
-  - What tradeoffs do you consider when implementing a cache?
-    - (e.g. speed versus potential inaccuracy/outdated data, and cost implications)
-  - When should you use a cache versus a recording rule?
-    - (e.g. recording rules for data that changes over a period and is aggregatable vs. cache for similar repeated queries)
+  - What tradeoffs do you consider when using cache?
+    - (e.g. latency versus potential inaccuracy/outdated data, and cost implications)
   - What types of queries benefit most from caching, and when might caching be less effective?
-  - Are all query types cached by Loki, or only certain types of queries (for example, raw log queries vs. aggregated metric queries)?
-  - How does caching work in a multi-tenant Loki environment – are caches shared across tenants or isolated per tenant?
-  - How long do cached entries stay valid?
+
 
 - Memcached Tiering & Differences
   - Can you describe the different components involved in memcache tiering? (Live Draw)
@@ -78,6 +74,9 @@ Guest:: "Poyzan Taneli"
   - Is it better to use the included memcache or scale your own solution?
     - (Note: A heuristic suggests that 70% of the query timerange should hit a cell in 7 days; also, the Loki team manages our own instances)
   - How can tools like Poyzan help in showing operational numbers for memcache performance?
+  - Are all query types cached by Loki, or only certain types of queries (for example, raw log queries vs. aggregated metric queries)?
+  - How does caching work in a multi-tenant Loki environment – are caches shared across tenants or isolated per tenant?
+  - How long do cached entries stay valid?
 
 - Failure Scenarios
   - What happens when the system is hit by a large number of queries that cover a long time period?
@@ -89,11 +88,15 @@ Guest:: "Poyzan Taneli"
   - What are some best practices for monitoring cache performance in a Loki environment?
   - How can you verify that Loki is actually utilizing the cache?
 
+- Cache vs other methods of query
+   - When should you use a cache versus a recording rule?
+      - (e.g. recording rules for data that changes over a period and is aggregatable vs. cache for similar repeated queries)
+
 - Outro
 	- If people want to learn more about this topic, where should they go?
 
 Communty questions:
-- 
+
 
 ### Just before the show
 
