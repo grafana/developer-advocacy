@@ -46,6 +46,8 @@ Guest:: "Poyzan Taneli" & "Paul Rogers"
 	- What do you do?
 	- How long have you been using Grafana/other project?
 - Cache Concepts
+  - What is a cache? What's a memcache? What's memcached?
+  - What are the things that Loki caches?
   - What are the telltale signs that indicate you might need a cache?
     - (e.g. high latency retrieving from the store despite all other components working fine)
   - What tradeoffs do you consider when using cache?
