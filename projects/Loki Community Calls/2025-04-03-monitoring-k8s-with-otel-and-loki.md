@@ -2,11 +2,11 @@
 url:
 date: 
 ---
-# [[2025-03-25-loki-cache]]
+# [[2025-04-03-monitoring-k8s-with-otel-and-loki]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: "Poyzan Taneli" & "Paul Rogers"
+Guest:: "Cyril Tovena"
 
 ## Pre-show checklist
 
@@ -39,102 +39,39 @@ Guest:: "Poyzan Taneli" & "Paul Rogers"
 - Intro
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
-	- New project releases
-	- Recent content published
+	- We're at KubeCon!
 - Introduce guest
 	- Who are you?
-		- Paul
-			- involved in infrastructure scaling of Loki in the last year
 	- What do you do?
 	- How long have you been using Grafana/other project?
-- Cache Concepts
-  - What is a cache? What's a memcache? What's memcached?
-	  - Cache: Software/hardware designed to speed up certain operations
-	  - Memcache: memory
-	  - memcached: key-value pairing operation, open source
-  - What are the things that Loki caches?
-	  - biggest: chunk cache
-	  - query results (memcached frontend, memcached results cache)
-		  - 3 endpoints: metrics, volume queries, 
-	  - index writes and lookups (labels)
-		  - You don't need this if you're using TSDB and not using BoltDB (memcached index queries in JSONNET and Helm chart)
-  - What are the telltale signs that indicate you might need a cache?
-    - (e.g. high latency retrieving from the store despite all other components working fine)
-  - What tradeoffs do you consider when using cache?
-    - (e.g. latency versus potential inaccuracy/outdated data, and cost implications)
-  - What types of queries benefit most from caching, and when might caching be less effective?
-    - (repeated query behaviour, touching the same data, most queried time period, recent data)
-    - Last 3 hours of data
-    - It depends on how the user is using Loki. The intent is that the data you're touching very often is what should be cached.
-  
-- Memcached Tiering & Differences
-	- What's the role of tiering in cache?
-  - Can you describe the different components involved in memcache tiering? (Live Draw)
-    - (e.g. Memcache frontend (metrics, labels, volume; done via a hash in header), results cache (query hash, is it in cash or not in cash), and chunks cache (biggest cache, no need for tennancy understanding chunk ref holds this metadata))
-  - What is the role of the results cache?
-    - (Note: It saves computation cost)
-  - What is the role of the chunks cache?
-    - (Note: It reduces storage IOPS and bandwidth usage)
-    - QUESTION from Andre Ziviani on dedup and chunks cache - what is a good/expected ratio for dedups?
-  - What is a spillover cache and why might it not be necessary for most users?
-    - (e.g. it prevents issues where memcache isn’t smart enough to retain parts of a query)
-- Q: What are the key metrics to look at to know if the cache is correctly tuned?
-	- IOPS
-	- bandwidth usage
-	- computation cost
-	- latency - read path (query)
-	- The memcached software itself has a command `stat` that will print out all sorts of info - hit rate, eviction, how often cache is compacted. Use this in conjunction with outside metrics.
-	- Close to 90% utilization of memcached is what we aim for. When you deploy it as a pod, there are resource limits. But there's also an internal setting that you should have 90%. Correctly tuned memached should never OOM.
-
-- Scaling Memcache
-	- How we handle cache at Grafana
-		- memcached-extstore attached SSDs to memcached. it gets all data in memory and then flushes to the disk. (Disk, not persistent volumes)
-			- When should you scale chunk cache pods vertically/horizontally?
-			- 
-		- (Danny Kopping) L1 cache - huge storage (extstore)
-		- (Ed Welch) L2 cache - update cache based on hits and misses. This is a spillover cache. There is a handoff period of a few days or more. WHen a query hits, look at handoff time. if within L1 time, check L1. If not, check L2.
-		- We keep 7 days in cache. We create a recording rule 
-	- Extstore is relevant for >half a PB per month.
-  - How do we deploy memcache at scale in a Loki environment?
-    - Mention Helm value differnces from JSONnet
-    - (Note: Considerations include capacity up to 3TB and where to start)
-  - How often should we revisit our caching decisions?
-    - (Note: Reference [Community PR for not writing to cache if outside chosen window](https://github.com/grafana/loki/issues/14983))
-    - Storge access (API calls), Latencties that come cache, trace would show the latency of each component
-  - How to decide on cache numbers?
-    - (Note: A heuristic suggests that 70% of the query timerange should hit a cell in 7 days; also, the Loki team manages our own instances)
-  - How long do cached entries stay valid?
-    - Reset 24 hours
-    - Don't cache when we flush to storage
-    - cache data will go stale. Time to live (TTL)
-- What Poyzan and Paul are working on: dynamically sizing memcache
-	- Recording rules, then memcache scales up or down dynamically based on the hit ratio of etc. Appropriately sizing
-
-- Failure Scenarios
-  - What happens when the system is hit by a large number of queries that cover a long time period?
-    - (Note: This could trigger a writeback loop for memcache)
-    - Is my cache provisioned correctly? 1 day provisioned but querying 7 days
-  - What are the performance impacts if we lose 20%, 50%, or all of the cache pods?
-    - (Note: Loki can still serve up to 3 hours of data under such scenarios)
-  - What happnes if you see your cache OOMing? Or what should you do if you want verticaly scale your cache?
-    - Cache CPU and RAM, configuration how much its allowed to use. Default covers for this
-    - memory_limit_mb and max_item_size 
-    - Boxes are to big bad for memcache check chunk size
-
-- Monitoring Memcache
-  - What are some best practices for monitoring cache performance in a Loki environment?
-  - How can you verify that Loki is actually utilizing the cache?
-
-- Cache vs other methods of query
-   - When should you use a cache versus a recording rule?
-      - (e.g. recording rules for data that changes over a period and is aggregatable vs. cache for similar repeated queries)
-
+- What is OpenTelemetry?
+	- Why is it needed/why it's important (vendor lock-in)
+	- How should you decide whether to use it or not?
+		- Pros and cons
+		- Factors to consider
+		- Use cases (infrastructure)
+	- Alternatives - Prometheus (also has a native OTLP endpoint)
+- OTLP endpoint in Loki 3.0
+	- Why did we build it?
+	- Making Loki a first-class citizen in OTel
+	- Before: [Loki Exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/lokiexporter/README.md) - now deprecated!
+	- Docs: https://grafana.com/docs/loki/latest/send-data/otel/native_otlp_vs_loki_exporter/
+	- What is OTLP? What needed to change in Loki?
+		- Why is it better ot have a native OTLP endpoint
+	- Demo
+	- Migration (Loki exporter to OTLP)
+		- Loki 3.0 required
+		- configuration
+		- point OTel logs at Loki
+- Landscape of log collection for Kubernetes clusters
+	- Different approaches for getting logs from k8s pods
+		- Cyril heard of a new approach that doesn't involve scraping the files
+	- OpenTelemetry's work on getting pod logs in an OTel compliant way
+		- [OpenTelemetry Operator for Kubernetes](https://github.com/open-telemetry/opentelemetry-operator) and [how it works with Grafana Cloud](https://grafana.com/blog/2024/10/17/how-to-quickly-configure-grafana-cloud-application-observability-with-opentelemetry-operator/)
+	- The future of log collection in Kubernetes (any KubeCon talks about this?)
 - Outro
 	- If people want to learn more about this topic, where should they go?
-
-Useful links:
-Underlining code for how storage ansd cache works: https://github.com/grafana/loki/tree/main/pkg/storage 
-
+	- 
 
 ### Just before the show
 
@@ -170,6 +107,3 @@ Underlining code for how storage ansd cache works: https://github.com/grafana/lo
 
 ### Reference links
 
-
-🖊️ How we scaled Grafana Cloud Logs Memcached Cluster to 50 TB: https://grafana.com/blog/2023/08/23/how-we-scaled-grafana-cloud-logs-memcached-cluster-to-50tb-and-improved-reliability/ 
-💻 Community PR for skipping writing to chunks cache if outside of desired window: https://github.com/grafana/loki/issues/14983 
