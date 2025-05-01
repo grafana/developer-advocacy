@@ -53,7 +53,6 @@ Guest:: "Name"
 	- Performance
 	- Adaptive Telemetry
 	- Drilldown apps
-	- Helm
 - Focus: Loki
 	- Loki famously avoids full-text indexing—what are the hardest challenges in maintaining query performance as data volume scales?
 	- Current projects?
@@ -65,7 +64,7 @@ Guest:: "Name"
 	- How do you approach schema evolution in Mimir, especially when operating at scale across many tenants?
 	- Current projects?
 		- Project Sigyn
-		- ?
+		- New query engine: https://grafana.com/docs/mimir/latest/references/architecture/mimir-query-engine/
 - Focus: Tempo
 	- Tempo uses a trace-by-ID model without indexing most attributes—how do you balance simplicity with user demands for flexible querying?
 	- Are there plans to support more advanced trace analytics or custom aggregations?
