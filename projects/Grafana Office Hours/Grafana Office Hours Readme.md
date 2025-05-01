@@ -44,7 +44,7 @@ Grafana Office Hours (GOH) is a one-hour [weekly livestream](https://www.youtube
 
 ### Upcoming
 
-
+- [GOH 30 - Direction of Grafana Loki, Mimir, Tempo, and Pyroscope](GOH%2030%20-%20Direction%20of%20Grafana%20Loki,%20Mimir,%20Tempo,%20and%20Pyroscope.md)
 
 ## Future guest suggestions
 
