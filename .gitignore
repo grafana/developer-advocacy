@@ -3,4 +3,3 @@
 venv
 .env
 transcripts/*.csv
-code-examples/play-cleanup/play-users/node_modules
