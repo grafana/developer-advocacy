@@ -1,0 +1,17 @@
+{
+  "name": "play-users",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "1.8.4",
+    "dotenv": "16.4.7",
+    "xlsx": "0.18.5"
+  }
+}
