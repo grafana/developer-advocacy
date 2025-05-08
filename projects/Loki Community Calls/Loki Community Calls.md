@@ -11,7 +11,7 @@
 - [2025-04-03-monitoring-k8s-with-otel-and-loki](2025-04-03-monitoring-k8s-with-otel-and-loki.md)
 ### Upcoming
 
-- May: meta-monitoring with Poyzan maybe
+- May: [Meta-monitoring Loki with Dylan Guedes](Meta-monitoring%20Loki%20with%20Dylan%20Guedes.md)
 - Monitoring Loki in real time: monitor a prod cluster and see what Poyzan does on a daily basis
 - Explore Logs
 - Adaptive Logs

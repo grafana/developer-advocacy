@@ -1,8 +1,8 @@
 ---
-url:
-date: 
+url: https://youtube.com/live/OzYHV9xHIms
+date:
 ---
-# [[GOH 31 - Adaptive Telemetry with Sean Porter]]
+# [[Meta-monitoring Loki with Dylan Guedes]]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -45,32 +45,31 @@ Guest:: "Name"
 	- Who are you?
 	- What do you do?
 	- How long have you been using Grafana/other project?
-- The context and problem: Telemetry data can be costly to ingest and store.
-- Solution approaches
-	- Intelligent sampling (head, tail, remote, adaptive)
-	- Metric downsampling/rollups by time
-	- Retention policies
-	- Tiered storage
-	- Pattern-based filtering
-- Why Adaptive Telemetry? What is it?
-	- What are the benefits of AT?
-- How does it work?
-- What are some obstacles you ran into when rolling this out internally and externally?
-	- internally: dogfooding, getting teams on the same page
-- State of Adaptive Telemetry rollout across projects:
-	- Adaptive Logs
-		- Pause AL button
-	- Adaptive Metrics
-	- Adaptive Traces
-	- Adaptive Profiles
-- Can teams use adaptive telemetry for some signals but not others?
-- Can we share any success stories of people using AT?
-	- Ex: TeleTracking stated that they reduced their spending by 46% just by implementing Adaptive Metrics.
-- What's happening in the future?
-	- replay, the possibility that we can go back in time (e.g. 1h) and disaggregate (or not drop events)
+- What is meta-monitoring and why is it necessary?
+	- Why monitor Loki specifically?
+	- How do we do this at Grafana Labs for our own production environment?
+		- What's our setup like?
+		- Run us through what it's like to be on call. What type of alert would you get? What do you check first?
+		- What are some (general, non-customer related) issues you've encountered while on call?
+- How to meta-monitor Loki
+	- Recommended: separate instance of Loki + Prometheus + Grafana
+	- Where to get meta-information about Loki
+		- Metrics: `http://localhost:3100/metrics` endpoint (Prometheus format)
+		- Logs: `metrics.go` has a detailed log line for every query (query duration, number of lines returned, query throughput, specific LogQL query executed, chunks searched, etc)
+			- Configuring log levels
+	- Deployment
+		- k8s-monitoring-helm: https://github.com/grafana/k8s-monitoring-helm/
+			- Run us through the config for the Helm chart. What values should we use?
+			- How do we manage cardinality?
+		- Loki mixin
+			- What's a Loki mixin?
+			- How do we install a mixin?
+			- (brief demo?)
+			- What are some common failure scenarios?
+			- How do you use the mixin to troubleshoot an issue in production?
 - Outro
-	- How could people get started with AT?
 	- If people want to learn more about this topic, where should they go?
+	- 
 
 ### Just before the show
 
@@ -99,10 +98,14 @@ Guest:: "Name"
 
 
 
-### Timestamps
+### Timestamp
 
 00:00:00 Introductions
 
 
 ### Reference links
 
+(docs) Meta-monitoring Loki: https://gra.fan/lokimeta
+(repo) k8s-monitoring-helm: https://gra.fan/k8shelmrepo
+(video playlist) k8s-monitoring-helm Office Hours: https://gra.fan/k8shelm
+(repo) Loki Mixin for Grafana: https://gra.fan/lokimixin
