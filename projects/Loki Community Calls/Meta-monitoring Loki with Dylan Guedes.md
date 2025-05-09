@@ -53,6 +53,12 @@ Guest:: "Name"
 		- What are some (general, non-customer related) issues you've encountered while on call?
 - How to meta-monitor Loki
 	- Recommended: separate instance of Loki + Prometheus + Grafana
+	- What should we look at?
+		- Questions from Matt on our Grafana Community Slack
+			- What log levels are worth capturing and looking at within Loki?
+			    - Should I only care about errors and above?
+			- What kind of metrics can we get from the logs that are valuable in determining the health of Loki?
+			- What are the top key indicators that Loki is healthy vs degraded?
 	- Where to get meta-information about Loki
 		- Metrics: `http://localhost:3100/metrics` endpoint (Prometheus format)
 		- Logs: `metrics.go` has a detailed log line for every query (query duration, number of lines returned, query throughput, specific LogQL query executed, chunks searched, etc)
