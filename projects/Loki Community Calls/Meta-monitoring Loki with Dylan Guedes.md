@@ -52,7 +52,7 @@ Guest:: "Name"
 		- Run us through what it's like to be on call. What type of alert would you get? What do you check first?
 		- What are some (general, non-customer related) issues you've encountered while on call?
 - How to meta-monitor Loki
-	- Recommended: separate instance of Loki + Prometheus + Grafana
+	- Recommended: separate instance of Loki + Prometheus + Grafana or Grafana Cloud
 	- What should we look at?
 		- Questions from Matt on our Grafana Community Slack
 			- What log levels are worth capturing and looking at within Loki?
@@ -63,16 +63,24 @@ Guest:: "Name"
 		- Metrics: `http://localhost:3100/metrics` endpoint (Prometheus format)
 		- Logs: `metrics.go` has a detailed log line for every query (query duration, number of lines returned, query throughput, specific LogQL query executed, chunks searched, etc)
 			- Configuring log levels
+			- pod logs
+			- kubernetes events
 	- Deployment
 		- k8s-monitoring-helm: https://github.com/grafana/k8s-monitoring-helm/
+			- Why did we choose the K8s Monitoring Helm chart?
+			- What are the pros and cons of using this chart?
 			- Run us through the config for the Helm chart. What values should we use?
 			- How do we manage cardinality?
+  
 		- Loki mixin
 			- What's a Loki mixin?
 			- How do we install a mixin?
 			- (brief demo?)
 			- What are some common failure scenarios?
 			- How do you use the mixin to troubleshoot an issue in production?
+- Other community questions
+  - since the query frontend "stitches" the result of all subqueries that queriers execute, is that mean that it should be able to hold the "whole" query in memory and might need double memory then querier have ? (i know that abit navie, and i guess that there is som type of lazy iteration, but still i want to understand this)
+  - Is there any way to control and throttle such big query without putting a hard limit, such as max lines / max query bytes?
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- 
