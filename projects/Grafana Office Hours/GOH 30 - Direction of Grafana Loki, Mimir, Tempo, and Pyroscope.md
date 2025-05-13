@@ -1,6 +1,6 @@
 ---
-url:
-date: 
+url: https://youtube.com/live/6Ph5nvicm6M
+date:
 ---
 # [[GOH 30 - Direction of Grafana Loki, Mimir, Tempo, and Pyroscope]]
 
@@ -49,6 +49,7 @@ Guest:: "Name"
 	- common issues among all four
 	- How do you prioritize engineering effort and features across all four projects?
 - Projects across all four
+	- columnar storage, WarpStream
 	- OTel compatibility
 	- Performance
 	- Adaptive Telemetry
@@ -80,6 +81,7 @@ Guest:: "Name"
 	- Have you thought about cross-database queries or unified ingestion pipelines?
 	- What about unified storage between the projects? Why or why not?
 	- ?
+- Challenges
 - Outro
 
 
