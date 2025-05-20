@@ -49,7 +49,7 @@ Guest:: "Name"
 	- common issues among all four
 	- How do you prioritize engineering effort and features across all four projects?
 - Projects across all four
-	- columnar storage, WarpStream
+	- WarpStream
 	- OTel compatibility
 	- Performance
 	- Adaptive Telemetry
@@ -78,6 +78,7 @@ Guest:: "Name"
 		- 
 - Future changes coming (that we can talk about)
 	- What about AI/ML? How do you see that fitting into the future of our databases?
+		- Grafana Assistant
 	- Have you thought about cross-database queries or unified ingestion pipelines?
 	- What about unified storage between the projects? Why or why not?
 	- ?
