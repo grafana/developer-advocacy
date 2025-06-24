@@ -9,10 +9,11 @@
 - [2025-02-26-Alerting](2025-02-26-Alerting.md)
 - [2025-03-25-loki-cache](2025-03-25-loki-cache.md)
 - [2025-04-03-monitoring-k8s-with-otel-and-loki](2025-04-03-monitoring-k8s-with-otel-and-loki.md)
+- May: [Meta-monitoring Loki with Dylan Guedes](Meta-monitoring%20Loki%20with%20Dylan%20Guedes.md)
+- June: [2025-06-24-road-to-4-0](2025-06-24-road-to-4-0.md)
+
 ### Upcoming
 
-- May: [Meta-monitoring Loki with Dylan Guedes](Meta-monitoring%20Loki%20with%20Dylan%20Guedes.md)
-- Monitoring Loki in real time: monitor a prod cluster and see what Poyzan does on a daily basis
-- Explore Logs
+- July: 
 - Adaptive Logs
 - 
