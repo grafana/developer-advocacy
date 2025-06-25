@@ -14,6 +14,6 @@
 
 ### Upcoming
 
-- July: 
+- July: [2025-06-08 All About Metric Queries](2025-06-08%20All%20About%20Metric%20Queries.md)
 - Adaptive Logs
 - 
