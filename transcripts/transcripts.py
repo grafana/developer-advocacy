@@ -115,13 +115,12 @@ def fetch_transcripts(args, videos):
             print(f"Skipping video {video_id} because it already has a transcript.")
             continue
 
-        try:
-            transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=('en','es', 'fr', 'de', 'jp'))
-            full_text = ' '.join([entry['text'] for entry in transcript])
-            video['transcript'] = full_text
-            processed.append(video)
-        except Exception as e:
-            print(f"Could not fetch transcript for video {video_id}: {e}")
+        transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=('en','es', 'fr', 'de', 'jp'))
+        print("TRANSCRIPT")
+        print(transcript)
+        full_text = ' '.join([entry['text'] for entry in transcript])
+        video['transcript'] = full_text
+        processed.append(video)
         
         write_markdown(args, video)
     
@@ -216,6 +215,7 @@ def write_markdown(args, video):
 
     if transcript == '':
         print(f"Skipping video {video_id} / {title} because it has no transcript.")
+        print(json.dumps(video, indent=2))
         return 
 
     url = f"https://www.youtube.com/watch?v={video_id}"
@@ -250,11 +250,13 @@ def main(args):
     videos_to_transcribe = []
 
     if args.playlist:
+        print("Fetching playlist videos")
         playlist_videos = get_playlist_videos(args.playlist)
         videos_to_transcribe = videos_to_transcribe + playlist_videos
         print(f"Found {len(playlist_videos)} videos in playlist %s" % args.playlist)
 
     if args.channel:
+        print("Fetching channel videos")
         channel_videos = get_channel_videos(args.channel, args.start, args.end)
         videos_to_transcribe = videos_to_transcribe + channel_videos
         print(f"Found {len(channel_videos)} videos in the specified date range.")
