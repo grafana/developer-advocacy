@@ -1,27 +1,27 @@
 ---
-url: https://www.youtube.com/watch?v=LWDeIHfAC9A
-date:
+url:
+date: 
 ---
-# [[2025-06-24-road-to-4-0]]
+# [[2025-06-08 All About Metric Queries]]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LWDeIHfAC9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Guest:: "Ed Welch"
+Guest:: "Name"
 
 ## Pre-show checklist
 
 - [ ] Create a new `.md` file and copy this template into it. Check things off as you work through it.
 - [ ] Update [Grafana Office Hours Readme](projects/Grafana%20Office%20Hours/Grafana%20Office%20Hours%20Readme.md) to add the new file to the `Upcoming` section.
 - [ ] Contact the guest and tell them about Office Hours.
-    > At Grafana Labs, we do a livestream called [Grafana Office Hours](https://www.youtube.com/watch?v=uk7NoagbJ28&list=PLDGkOdUX1Ujrrse-cdj20RRah9hyHdxBu), where we have guests on to talk about how to use Grafana, observability, or visualization. I saw your [blog post/video/post] on [source] and I think it would be great to have you on the show to share your experience about [topic].
-    Office Hours is an hour-long live conversation that is streamed to the [Grafana YouTube channel](https://youtube.com/@grafana). It's very casual, and you can also share your screen if you'd like to do a demo (not required). If you'd like to join, I'd love to have you! 
+	> At Grafana Labs, we do a livestream called [Grafana Office Hours](https://www.youtube.com/watch?v=uk7NoagbJ28&list=PLDGkOdUX1Ujrrse-cdj20RRah9hyHdxBu), where we have guests on to talk about how to use Grafana, observability, or visualization. I saw your [blog post/video/post] on [source] and I think it would be great to have you on the show to share your experience about [topic].
+	Office Hours is an hour-long live conversation that is streamed to the [Grafana YouTube channel](https://youtube.com/@grafana). It's very casual, and you can also share your screen if you'd like to do a demo (not required). If you'd like to join, I'd love to have you! 
 - [ ] If the guest agrees, choose a date for the Office Hours session. Check [the Monday board](https://grafana-labs.monday.com/boards/5724430500) to make sure no other livestream is scheduled for that day. Add a card for that date and time to save the spot.
 - [ ] Confirm the time (16:00 CEST on Friday is generally best) with the guest. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
 - [ ] Invite them to the Grafana Office Hours calendar invite (choose "this instance only", not the whole series). Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours total. Explain this to them.
 - [ ] Create a thumbnail on [Canva](https://canva.com) using the Grafana Office Hours thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices. [Here are some guidelines for creating thumbnails](https://notes.nicolevanderhoeven.com/Create+engaging+thumbnails).
 - [ ] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
-    - [ ] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`. Including the number or the date (such as `All About Explore Logs (Loki Community Call November 2024`) helps people remember it.
-    - [ ] Add the standard description as per previous Grafana Office Hours shows. Check the video description and add guests' contact details.
+	- [ ] In the title, include the instance of Office Hours, i.e. `What's new in Grafana 10? (Grafana Office Hours #01)`. Including the number or the date (such as `All About Explore Logs (Loki Community Call November 2024`) helps people remember it.
+	- [ ] Add the standard description as per previous Grafana Office Hours shows. Check the video description and add guests' contact details.
 - [ ] Get familiar with how to use Streamyard. [Here's a crash course on how to use Streamyard](https://drive.google.com/file/d/1hb8FeoO88zinZu638MfnBwGctyspgfm0/view?usp=drive_link) and [here's a second recorded call with the Grafana Campfire hosts](https://drive.google.com/file/d/1hdX4SvDM67KRwGkzA6HWEETK1-gy8iUk/view?usp=drive_link) to get them onboarded with Streamyard. These include how to create the stream on Streamyard.
 - [ ] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
 - [ ] Get the YouTube link to the show. Put the link on this page, in the URL property above.
@@ -37,36 +37,18 @@ Guest:: "Ed Welch"
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
 - Intro
-    - *Hello and welcome to Loki Community Call. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
+	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
-  - Loki Helm Maintainers
-  - 🎥 [How to query Grafana Loki with LogQL](https://youtu.be/57dQwcmqkpQ) is out!
-- Welcome Ed
-  - Welcome back its been a while since we had you on the show
-  - Hows things been?
-  - What have you been up to?
-- So Loki 4.0
-  - What are customers doing with Loki 3.0 that you want to improve in 4.0?
-    - Analytical queries
-  - What are the main architectural changes you are considering from a high level?
-- Ingest
-  - What is the major change happening here? 
-  - Why did we land on Kafka/WarpStream?
-  - Benefits of seperating read and write paths
-  - What are the advantages and disadvantages of this new solution?
-- Storage
-  - New storage format?
-  - Why not just use Parquet?
-  - Current considerations moving from row to columnar storage
-- Query
-  - New query engine?
-  - Will you still support logql?
-- Community
-  - How can the community help?
-  - How will current community contributions be affected?
-  - Will there be an opportunity for the community to feedback on the new architecture?
+	- New project releases
+	- Recent content published
+- Introduce guest
+	- Who are you?
+	- What do you do?
+	- How long have you been using Grafana/other project?
+- 
 - Outro
-    - *Thank you for joining us today. If you have any questions, please feel free to reach out to us on the Grafana Community Slack or on our [forums](https://community.grafana.com/).*
+	- If people want to learn more about this topic, where should they go?
+	- 
 
 ### Just before the show
 
