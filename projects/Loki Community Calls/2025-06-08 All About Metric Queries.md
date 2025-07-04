@@ -48,14 +48,20 @@ Guest:: "Cyril Tovena"
 	- When should you do a metric query and when should you use Grafana transformations?
 - Demo: examples of metric queries (show on Grafana Play)
 	- What are good use cases for metric queries?
+- Are there best practices for labels when you know you're going to be using them for metric queries? What makes a label set good for aggregation?
 - Types of metric queries
 	- What are the types of metric queries?
 	- What's a range vector aggregation? Are all metric queries range vector aggregations?
 	- What's the difference between a log range aggregation and an unwrapped range aggregation?
 	- What does it mean to "unwrap" an aggregation?
 	- There's a `vector()` function that turns a scalar into a vector. What's a scalar, what's a vector, and why would you want to turn one into the other?
+	- What's the difference between `count_over_time()` and `rate()`? When should you use one over the other? Are there performance impacts?
+	- How does Loki compute `rate()` under the hood? Is it true streaming rate or derived from sampled intervals?
+	- **How does LogQL handle missing time buckets or sparse log streams in metric queries?**  (like during service downtime or when log volume is very low)
 - Alerting
 	- Can you create an alert based on a metric query?
+	- **How should you tune alert thresholds and evaluation windows when working with logs?** For example, how do you avoid alert fatigue due to bursty log patterns?
+	- **How would you build an alert to detect anomalous behavior (not just static thresholds) using logs?** Are there patterns for outlier detection?
 - Performance consideration for metric queries
 	- What are some do's and don'ts for using metric queries?
 	- Are metric queries slower or faster than log queries?
