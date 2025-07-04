@@ -15,5 +15,7 @@
 ### Upcoming
 
 - July: [2025-06-08 All About Metric Queries](2025-06-08%20All%20About%20Metric%20Queries.md)
+- August: Something about structured metadata?
+	- From champion Avanish Vaghela: ideal use cases, best practices, anti-patterns, resource utilisation of storing and querying structure metadata etc.
 - Adaptive Logs
 - 
