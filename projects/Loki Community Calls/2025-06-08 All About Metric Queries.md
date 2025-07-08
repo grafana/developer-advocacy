@@ -37,6 +37,8 @@ Guest:: "Cyril Tovena"
 
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
+- Announcements
+	- Loki Helm Maintainers! (Jay)
 - Intro to Cyril-- his work on Loki, and what he's working on now
 	- Last time, we talked about [query best practices](../../transcripts/2024-12-06T05:24:36Z-grafana-loki-query-best-practices-with-logql-loki-community-call-december-2024.md) with Cyril, but we didn't really get a chance to discuss metric queries.
 - Metric query basics
