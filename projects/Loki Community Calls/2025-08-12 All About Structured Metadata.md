@@ -52,9 +52,15 @@ Guest:: "Salva Corts Sánchez"
 	- Search and filtering
 	- correlation between telemetry signals
 	- alerting
+        - What does LogQL query look like with structured metadata?
+- Which collectors currently support structured metadata
+        - Alloy
+        - Otel collector inherited via the otlp endpoint -> segway
 - OTel and structured metadata
 	- What does structured metadata have to do with OTel?
 	- What are OTel attributes and are they all stored as structured metadata?
+        - In Loki OSS we allow users to control structured metadata promotion. Can you tell us how this works?
+        - Can you also do this in Grafana Cloud?
 - Best practices for structured metadata
 	- OTel semantic conventions
 	- be selective about labels
@@ -63,7 +69,7 @@ Guest:: "Salva Corts Sánchez"
 	- don't include sensitive data
 	- use resource attributes for stable metadata (tag at source level rather than repeating for every log)
 - What *shouldn't* we do with structured metadata?
-- 
+- Should you omit the attribute from your log body if you have added it to structured metadata?
 
 - From champion Avanish Vaghela: ideal use cases, best practices, anti-patterns, resource utilisation of storing and querying structure metadata etc.
 	- What are the best practices around structure metadata?
