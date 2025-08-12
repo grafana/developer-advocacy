@@ -39,7 +39,7 @@ Guest:: "Salva Corts Sánchez"
 
 - Intro
 - Announcements
-	- New Loki Helm Maintainer: Mike Timmerman
+	- New Loki Helm Maintainers: Mike Timmerman and Quentin Bisson
 	- Loki Helm: `kubectl` removed [in this PR](https://github.com/grafana/loki/pull/18803) to remove the tokengen part in conjunction with the deprecation of the Bitnami image
 - Introduce guest: Salva
 - Thanks to Grafana Champions for their questions:
@@ -102,7 +102,7 @@ Guest:: "Salva Corts Sánchez"
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
+- [x] How do you pronounce your name?
 - [ ] What are your pronouns?
 - [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
 - [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
