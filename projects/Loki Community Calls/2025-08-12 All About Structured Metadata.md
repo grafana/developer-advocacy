@@ -38,24 +38,33 @@ Guest:: "Salva Corts Sánchez"
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
 - Intro
-	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
-	- Loki Helm Maintainers?
+	- New Loki Helm Maintainer: Mike Timmerman
+	- Loki Helm: `kubectl` removed [in this PR](https://github.com/grafana/loki/pull/18803) to remove the tokengen part in conjunction with the deprecation of the Bitnami image
 - Introduce guest: Salva
+- Thanks to Grafana Champions for their questions:
+	- Avanish Vaghela
+	- Andre Ziviani
+	- Mike Timmerman
+### Basics of structured metadata
+
 - What is structured metadata?
 	- What does "structured" mean? What format does the metadata have to be in?
 	- What's the difference between structured metadata and labels?
 	- Why do we need structured metadata? 
 		- Can't everything just be a label? (+ what happens when we have high cardinality)
 		- Enables correlation between telemetry signals
+	- When should we use it instead of a label or just searching through the log line?
 - What are some ideal use cases for structured metadata?
 	- Search and filtering
 	- correlation between telemetry signals
 	- alerting
         - What does LogQL query look like with structured metadata?
 - Which collectors currently support structured metadata
-        - Alloy
-        - Otel collector inherited via the otlp endpoint -> segway
+	- Alloy
+	- Otel collector inherited via the otlp endpoint -> segway
+### Practices for structured metadata
+
 - OTel and structured metadata
 	- What does structured metadata have to do with OTel?
 	- What are OTel attributes and are they all stored as structured metadata?
@@ -69,23 +78,22 @@ Guest:: "Salva Corts Sánchez"
 	- don't include sensitive data
 	- use resource attributes for stable metadata (tag at source level rather than repeating for every log)
 - What *shouldn't* we do with structured metadata?
-- Should you omit the attribute from your log body if you have added it to structured metadata?
-
-- From champion Avanish Vaghela: ideal use cases, best practices, anti-patterns, resource utilisation of storing and querying structure metadata etc.
-	- What are the best practices around structure metadata?
-	- Impact of ingesting large amount of structured metadata
-	    - Is there a thing as too much structured metadata? What's the ideal ratio for size of log line bytes vs structured metadata bytes.
-	    - Does it have a read latency implication when logs contain large amount of structured metadata?
+	- Should you omit the attribute from your log body if you have added it to structured metadata?
 	- Should the data extracted from the log lines as structured metadata be removed from the log body to avoid duplication of data?
 	- Should all OTel log and resource attributed be added as structured metadata?
 	- What happens if you have tiny log line with a lot of structured metadata?
 	- Does `loki_distributor_bytes_received_total` contain the structure metadata bytes as well or should `loki_distributor_structured_metadata_bytes_received_total`  be combined to see the total volume received?
-- Andre Ziviani
 	- when is it too much metadata?
-	- when should I use it instead of a label or just searching through the log line
-	- overhead in compute (query and ingestion) and storage
-- Michael Timmerman
-	- I like structed metadata now, but with the next releases of Mimir and Loki redesigining ingestion to include kafka, which I've heard is being done with the intention to support more labels (IE indexes), it has me wondering if it will shift the meta.  Will the use cases for structured metadata change?  I ask this having not done much research on use cases beyond my own.
+- Is there a difference in resource consumption or performance when querying structured metadata vs. querying labels?
+	- Impact of ingesting large amount of structured metadata
+	- Is there a thing as too much structured metadata? What's the ideal ratio for size of log line bytes vs structured metadata bytes.
+	- Does it have a read latency implication when logs contain large amount of structured metadata?
+	- What's the overhead in compute (query and ingestion) and storage?
+
+### Future of structured metadata in Loki 4.0
+
+- (Mike Zimmerman) I like structed metadata now, but with the next releases of Mimir and Loki redesigining ingestion to include kafka, which I've heard is being done with the intention to support more labels (IE indexes), it has me wondering if it will shift the meta.  Will the use cases for structured metadata change?  I ask this having not done much research on use cases beyond my own.
+
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- 
