@@ -11,9 +11,10 @@
 - [2025-04-03-monitoring-k8s-with-otel-and-loki](2025-04-03-monitoring-k8s-with-otel-and-loki.md)
 - May: [Meta-monitoring Loki with Dylan Guedes](Meta-monitoring%20Loki%20with%20Dylan%20Guedes.md)
 - June: [2025-06-24-road-to-4-0](2025-06-24-road-to-4-0.md)
+- July: [2025-06-08 All About Metric Queries](2025-06-08%20All%20About%20Metric%20Queries.md)
 
 ### Upcoming
 
-- July: 
+- August: [2025-08-12 All About Structured Metadata](2025-08-12%20All%20About%20Structured%20Metadata.md) with Salva Corts Sánchez
 - Adaptive Logs
 - 

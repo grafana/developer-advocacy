@@ -1,10 +1,10 @@
 ---
-url:
-date: 
+url: https://www.youtube.com/watch?v=3u8UxLfmq6I
+date:
 ---
 # [[2025-03-25-loki-cache]]
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+![](https://www.youtube.com/watch?v=3u8UxLfmq6I)
 
 Guest:: "Poyzan Taneli" & "Paul Rogers"
 
