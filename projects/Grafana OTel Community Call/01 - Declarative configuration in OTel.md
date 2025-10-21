@@ -69,7 +69,7 @@ Guest:: "Marylia Gutierrez"
 	- What does the process look like for contributing to OTel?
 	- What are some changes you'd like to see for OTel in the future?
 	- OpenTelemetry Governance Committee Election! Oct 27-30
-		- Vote for Marylia: https://gra.fan/votemarylia
+		- Vote for Marylia: https://gra.fan/otelvote
 		- Also vote for Ted Young!
 - Outro
 	- If people want to learn more about this topic, where should they go?
