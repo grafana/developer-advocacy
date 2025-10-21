@@ -57,6 +57,7 @@ Guest:: "Marylia Gutierrez"
 	- What is OTel autoconfigure and what does that have to do with declarative config?
 	- What happens if both a YAML file and environment variables are present?
 	- What languages is declarative config available for?
+	- Blog post: https://gra.fan/oteldeclarativeblog
 - Declarative config in the future
 	- Where are we headed?
 	- One config, all languages?
@@ -67,6 +68,9 @@ Guest:: "Marylia Gutierrez"
 	- How do you get started as a contributor to OTel?
 	- What does the process look like for contributing to OTel?
 	- What are some changes you'd like to see for OTel in the future?
+	- OpenTelemetry Governance Committee Election! Oct 27-30
+		- Vote for Marylia: https://gra.fan/votemarylia
+		- Also vote for Ted Young!
 - Outro
 	- If people want to learn more about this topic, where should they go?
 	- 
@@ -105,3 +109,5 @@ Guest:: "Marylia Gutierrez"
 
 ### Reference links
 
+🖊️ The declarative configuration journey: Why it took 5 years to ignore health check endpoints in tracing (blog): https://gra.fan/oteldeclarativeblog
+Vote for Marylia Gutierrez: https://gra.fan/votemarylia
