@@ -40,12 +40,11 @@ Guest:: "Marylia Gutierrez"
 - Intro
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
-	- New project releases
-	- Recent content published
+	- ObsCon keynote: https://gra.fan/obscon2025
 - Introduce guest: Marylia Gutierrez
 	- Who are you?
 	- What do you do?
-	- How long have you been using Grafana/other project?
+	- How did you get into OpenTelemetry?
 - Difficulties in getting started with OTel: the instrumentation experience
 	- What pain points in telemetry setup does declarative config fix?
 	- How does SDK config work today?
@@ -110,4 +109,4 @@ Guest:: "Marylia Gutierrez"
 ### Reference links
 
 🖊️ The declarative configuration journey: Why it took 5 years to ignore health check endpoints in tracing (blog): https://gra.fan/oteldeclarativeblog
-Vote for Marylia Gutierrez: https://gra.fan/votemarylia
+Vote for Marylia Gutierrez and Ted Young: https://gra.fan/otelvote
