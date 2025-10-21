@@ -62,6 +62,7 @@ Guest:: "Salva Corts Sánchez"
         - What does LogQL query look like with structured metadata?
 - Which collectors currently support structured metadata
 	- Alloy
+	- Vector
 	- Otel collector inherited via the otlp endpoint -> segway
 ### Practices for structured metadata
 
@@ -92,7 +93,7 @@ Guest:: "Salva Corts Sánchez"
 
 ### Future of structured metadata in Loki 4.0
 
-- (Mike Zimmerman) I like structed metadata now, but with the next releases of Mimir and Loki redesigining ingestion to include kafka, which I've heard is being done with the intention to support more labels (IE indexes), it has me wondering if it will shift the meta.  Will the use cases for structured metadata change?  I ask this having not done much research on use cases beyond my own.
+- (Mike Timmerman) I like structed metadata now, but with the next releases of Mimir and Loki redesigining ingestion to include kafka, which I've heard is being done with the intention to support more labels (IE indexes), it has me wondering if it will shift the meta.  Will the use cases for structured metadata change?  I ask this having not done much research on use cases beyond my own.
 
 - Outro
 	- If people want to learn more about this topic, where should they go?
@@ -104,14 +105,14 @@ Guest:: "Salva Corts Sánchez"
 
 - [x] How do you pronounce your name?
 - [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
 - [ ] We'll be streaming to YouTube.
-- [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
-- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
-- [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
+- [x] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
+- [x] You can also use the private chat if you need to say something, but you can also just say it out loud.
+- [x] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
 - [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
-- [ ] Just in case I disconnect... stall for a minute and I'll be right back.
+- [x] Just in case I disconnect... stall for a minute and I'll be right back.
 
 ## Post-show checklist
 
@@ -132,3 +133,4 @@ Guest:: "Salva Corts Sánchez"
 
 ### Reference links
 
+https://grafana.com/blog/2023/08/17/introducing-the-grafana-champions-program-celebrating-our-open-source-community/
