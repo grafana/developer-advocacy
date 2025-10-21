@@ -51,6 +51,7 @@ Guest:: "Marylia Gutierrez"
 	- How does SDK config work today?
 	- What are the differences between manual instrumentation and SDK configuration?
 - What is declarative configuration?
+	- Distinguish between declarative config for SDKs and declarative config for OTel collector
 	- How does declarative configuration improve the experience?
 	- What are the benefits to having configuration outside of the codebase?
 	- What is OTel autoconfigure and what does that have to do with declarative config?
