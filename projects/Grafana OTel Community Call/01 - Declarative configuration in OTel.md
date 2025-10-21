@@ -41,6 +41,7 @@ Guest:: "Marylia Gutierrez"
 	- *Hello and welcome to Grafana Office Hours. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
 	- ObsCon keynote: https://gra.fan/obscon2025
+	- Grafana Pathfinder: https://gra.fan/pathfinder
 - Introduce guest: Marylia Gutierrez
 	- Who are you?
 	- What do you do?
