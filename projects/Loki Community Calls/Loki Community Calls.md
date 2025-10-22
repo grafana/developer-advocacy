@@ -13,10 +13,10 @@
 - June: [2025-06-24-road-to-4-0](2025-06-24-road-to-4-0.md)
 - July: [2025-06-08 All About Metric Queries](2025-06-08%20All%20About%20Metric%20Queries.md)
 - August: [2025-08-12 All About Structured Metadata](2025-08-12%20All%20About%20Structured%20Metadata.md) with Salva Corts Sánchez
+- October: [2025-10-29-loki-helm](2025-10-29-loki-helm.md)
 
 ### Upcoming
 
-- September: Deploying Loki with Helm + Helm Maintainers Group
-- October: intro to instrumentation with OTel logging - Liudmila as guest, to go over semantic conventions + different ways to instrument in different languages
-- November: Tom Donohue - best practices of ingest, war stories with customers?
+- ?: intro to instrumentation with OTel logging - Liudmila as guest, to go over semantic conventions + different ways to instrument in different languages
+- ?: Tom Donohue - best practices of ingest, war stories with customers?
 - December: Adaptive Logs finally, with Travis?

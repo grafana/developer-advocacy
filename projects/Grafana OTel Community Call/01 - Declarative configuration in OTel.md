@@ -47,23 +47,23 @@ Guest:: "Marylia Gutierrez"
 	- What do you do?
 	- How did you get into OpenTelemetry?
 - Difficulties in getting started with OTel: the instrumentation experience
-	- What pain points in telemetry setup does declarative config fix?
-	- How does SDK config work today?
+	- [x] What pain points in telemetry setup does declarative config fix?
+	- [x] How does SDK config work today?
 	- What are the differences between manual instrumentation and SDK configuration?
 - What is declarative configuration?
-	- Distinguish between declarative config for SDKs and declarative config for OTel collector
-	- How does declarative configuration improve the experience?
-	- What are the benefits to having configuration outside of the codebase?
-	- What is OTel autoconfigure and what does that have to do with declarative config?
-	- What happens if both a YAML file and environment variables are present?
+	- [x] Distinguish between declarative config for SDKs and declarative config for OTel collector
+	- [x] How does declarative configuration improve the experience?
+	- [x] What are the benefits to having configuration outside of the codebase?
+	- [ ] What is OTel autoconfigure and what does that have to do with declarative config?
+	- [x] What happens if both a YAML file and environment variables are present?
 	- What languages is declarative config available for?
-	- Blog post: https://gra.fan/oteldeclarativeblog
+	- Marylia's blog post: https://gra.fan/oteldeclarativeblog
 - Declarative config in the future
 	- Where are we headed?
-	- One config, all languages?
-	- What's missing in declarative config today?
-	- Live configuration (no restarting)?
-	- How does this shift ownership between dev and ops teams?
+	- [x] One config, all languages?
+	- [x] What's missing in declarative config today?
+	- [x] Live configuration (no restarting)?
+	- [x] How does this shift ownership between dev and ops teams?
 - Marylia's experience in contributing to OpenTelemetry
 	- How do you get started as a contributor to OTel?
 	- What does the process look like for contributing to OTel?
@@ -79,16 +79,16 @@ Guest:: "Marylia Gutierrez"
 
 > Here are some points to discuss with the guest in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
+- [x] How do you pronounce your name?
 - [ ] What are your pronouns?
-- [ ] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
-- [ ] Does anyone want to share their screen? We can do that now, and I can show you how that works
-- [ ] We'll be streaming to YouTube.
-- [ ] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
-- [ ] You can also use the private chat if you need to say something, but you can also just say it out loud.
-- [ ] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
-- [ ] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
-- [ ] Just in case I disconnect... stall for a minute and I'll be right back.
+- [x] We will be using the talking points, but we don't have to be strict about it. We don't have to go through all of them, or follow a specific order. They're only there to make us comfortable.
+- [x] Does anyone want to share their screen? We can do that now, and I can show you how that works
+- [x] We'll be streaming to YouTube.
+- [x] You'll be able to see comments, but if you have links, I have to paste it into the private chat.
+- [x] You can also use the private chat if you need to say something, but you can also just say it out loud.
+- [x] If at any point you aren't comfortable talking about something, please either say so or let me know in the private chat, and I'll pivot away from that topic.
+- [x] Afterwards, we'll say goodbye to the stream, but please stay on past that so we can debrief.
+- [x] Just in case I disconnect... stall for a minute and I'll be right back.
 
 ## Post-show checklist
 
