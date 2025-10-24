@@ -51,7 +51,9 @@ def get_playlist_videos(playlist_id):
                 break
                 
             # Rate limiting between pagination requests
-            time.sleep(0.5)  # 500ms delay between API pages
+            delay = random.uniform(3, 8)  # Random delay between 3-8 seconds
+            print(f"Waiting {delay:.1f} seconds before next page...")
+            time.sleep(delay)
             
         except HttpError as e:
             if e.resp.status == 403 and 'quota' in str(e).lower():
@@ -99,8 +101,10 @@ def get_channel_videos(channel_id, start_date, end_date):
     
     videos = []
     next_page_token = None
+    page_count = 0
+    max_pages = 1  # Limit to 1 page (50 videos max) to avoid pagination issues
 
-    while True:
+    while page_count < max_pages:
         try:
             # Build request parameters
             request_params = {
@@ -108,8 +112,6 @@ def get_channel_videos(channel_id, start_date, end_date):
                 'channelId': channel_id,
                 'maxResults': 50,
                 'order': 'date',
-                'publishedAfter': start_date,
-                'publishedBefore': end_date,
                 'type': 'video'
             }
             
@@ -118,7 +120,9 @@ def get_channel_videos(channel_id, start_date, end_date):
                 request_params['pageToken'] = next_page_token
                 
             request = youtube.search().list(**request_params)
+            print(f"Making API request with params: {request_params}")
             response = request.execute()
+            print(f"API request successful, got {len(response.get('items', []))} videos")
 
             for item in response['items']:
                 videos.append(item)            
@@ -128,7 +132,10 @@ def get_channel_videos(channel_id, start_date, end_date):
                 break
                 
             # Rate limiting between pagination requests
-            time.sleep(0.5)  # 500ms delay between API pages
+            delay = random.uniform(5, 15)  # Random delay between 5-15 seconds
+            print(f"Waiting {delay:.1f} seconds before next page...")
+            time.sleep(delay)
+            page_count += 1
             
         except HttpError as e:
             if e.resp.status == 403 and 'quota' in str(e).lower():
@@ -182,7 +189,7 @@ def fetch_transcripts(args, videos):
             
         # Rate limiting between transcript fetches
         if i < len(videos) - 1:  # Don't sleep after the last video
-            delay = random.uniform(1, 10)  # Random delay between 1-10 seconds
+            delay = random.uniform(10, 30)  # Random delay between 10-30 seconds
             print(f"Waiting {delay:.1f} seconds before next video...")
             time.sleep(delay)
     
@@ -423,6 +430,11 @@ def get_video_transcript_with_retry(video_id, max_retries=3):
     return None
 
 def main(args):
+    # Add initial delay to let API "cool down"
+    initial_delay = random.uniform(5, 15)
+    print(f"Starting with {initial_delay:.1f} second delay to avoid rate limiting...")
+    time.sleep(initial_delay)
+    
     videos_to_transcribe = []
 
     if args.playlist:
@@ -430,6 +442,12 @@ def main(args):
         playlist_videos = get_playlist_videos(args.playlist)
         videos_to_transcribe = videos_to_transcribe + playlist_videos
         print(f"Found {len(playlist_videos)} videos in playlist %s" % args.playlist)
+        
+        # Add delay between different API calls
+        if args.channel:
+            delay = random.uniform(10, 20)
+            print(f"Waiting {delay:.1f} seconds before fetching channel videos...")
+            time.sleep(delay)
 
     if args.channel:
         print("Fetching channel videos")
@@ -459,11 +477,11 @@ if __name__ == "__main__":
                         default=None)
                         # default='PLDGkOdUX1UjrEOz4fOB4UZW8m-hx8_mtb')
     parser.add_argument('-s', '--start', required=False,
-                        help='Start date for videos; Must be in ISO 8601 format. defaults to 2024-01-01T00:00:00Z',
-                        default='2024-01-01T00:00:00Z')
+                        help='Start date for videos; Must be in ISO 8601 format. defaults to 2025-01-01T00:00:00Z',
+                        default='2025-01-01T00:00:00Z')
     parser.add_argument('-e', '--end', required=False,
-                        help='End date for videos; Must be in ISO 8601 format. defaults to 2030-12-31T00:00:00Z to get all',
-                        default='2030-12-31T00:00:00Z')
+                        help='End date for videos; Must be in ISO 8601 format. defaults to 2025-12-31T00:00:00Z',
+                        default='2025-12-31T00:00:00Z')
     parser.add_argument('-d', '--path', 
                         help='Path to write markdown files to; defaults to current directory',
                         required=False, default='.')
