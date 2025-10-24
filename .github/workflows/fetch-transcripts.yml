@@ -60,7 +60,7 @@ jobs:
         fi
         
         echo "Processing up to $LIMIT videos from Grafana channel"
-        echo "Limit: $LIMIT" >> $GITHUB_OUTPUT
+        echo "limit=$LIMIT" >> $GITHUB_OUTPUT
         
         # Run the transcript script
         python3 transcripts.py -l $LIMIT
