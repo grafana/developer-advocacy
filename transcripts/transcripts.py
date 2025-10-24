@@ -29,12 +29,18 @@ def get_playlist_videos(playlist_id):
     # This returns a list of youtube:playlistItem with rate limiting
     while True:
         try:
-            request = youtube.playlistItems().list(
-                part='snippet',
-                playlistId=playlist_id,
-                maxResults=50,  # Increased from 10 for better efficiency
-                pageToken=next_page_token
-            )
+            # Build request parameters
+            request_params = {
+                'part': 'snippet',
+                'playlistId': playlist_id,
+                'maxResults': 50
+            }
+            
+            # Only add pageToken if it's not None
+            if next_page_token:
+                request_params['pageToken'] = next_page_token
+                
+            request = youtube.playlistItems().list(**request_params)
             response = request.execute()
 
             for item in response['items']:
@@ -45,7 +51,7 @@ def get_playlist_videos(playlist_id):
                 break
                 
             # Rate limiting between pagination requests
-            time.sleep(0.1)  # 100ms delay
+            time.sleep(0.5)  # 500ms delay between API pages
             
         except HttpError as e:
             if e.resp.status == 403 and 'quota' in str(e).lower():
@@ -96,16 +102,22 @@ def get_channel_videos(channel_id, start_date, end_date):
 
     while True:
         try:
-            request = youtube.search().list(
-                part='snippet',
-                channelId=channel_id,
-                maxResults=50,  # Increased from 10 for better efficiency
-                order='date',
-                publishedAfter=start_date,
-                publishedBefore=end_date,
-                type='video',
-                pageToken=next_page_token
-            )
+            # Build request parameters
+            request_params = {
+                'part': 'snippet',
+                'channelId': channel_id,
+                'maxResults': 50,
+                'order': 'date',
+                'publishedAfter': start_date,
+                'publishedBefore': end_date,
+                'type': 'video'
+            }
+            
+            # Only add pageToken if it's not None
+            if next_page_token:
+                request_params['pageToken'] = next_page_token
+                
+            request = youtube.search().list(**request_params)
             response = request.execute()
 
             for item in response['items']:
@@ -116,7 +128,7 @@ def get_channel_videos(channel_id, start_date, end_date):
                 break
                 
             # Rate limiting between pagination requests
-            time.sleep(0.1)  # 100ms delay
+            time.sleep(0.5)  # 500ms delay between API pages
             
         except HttpError as e:
             if e.resp.status == 403 and 'quota' in str(e).lower():
@@ -170,7 +182,9 @@ def fetch_transcripts(args, videos):
             
         # Rate limiting between transcript fetches
         if i < len(videos) - 1:  # Don't sleep after the last video
-            time.sleep(0.5)  # 500ms delay between transcript fetches
+            delay = random.uniform(1, 10)  # Random delay between 1-10 seconds
+            print(f"Waiting {delay:.1f} seconds before next video...")
+            time.sleep(delay)
     
     return processed
 
@@ -248,6 +262,40 @@ def openai_cleanup(transcript, video_id):
 
     return [summary, cleaned_up]
 
+def create_chapters(transcript, video_id):
+    """
+    Create timestamps and chapters for a YouTube video transcript.
+    @param transcript: The raw transcript of a YouTube video
+    @param video_id: The YouTube video ID
+    @return: A string containing formatted timestamps and chapters
+    """
+    if openai_key == "":
+        print("No OpenAI API key found in .env file; skipping chapter creation.")
+        return "Chapters not available"
+
+    client = openai.OpenAI(api_key=openai_key)
+
+    chapters_prompt = """
+    This is a transcript of a YouTube livestream. Could you please identify up to 10 key moments in the stream and give me the timestamps in the format for YouTube like this?: 
+    00:00:00 Introductions 
+    00:01:30 What is structured metadata?
+
+    Always start with 00:00:00 and use simple but descriptive language that makes it easier for users to understand what is being spoken about.
+    """
+
+    print(f"Creating chapters for video {video_id}")
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": chapters_prompt},
+            {"role": "user", "content": transcript}
+        ],
+        temperature=0.7,
+    )
+
+    chapters = response.choices[0].message.content
+    return chapters
+
 def write_markdown(args, video):
     video_id = get_id(video)
     
@@ -270,6 +318,7 @@ def write_markdown(args, video):
 
     filename = file_for_video(args, video)
     [summary, cleaned_up] = openai_cleanup(transcript, video_id)
+    chapters = create_chapters(transcript, video_id)
 
     with open(filename, "w") as file:
         file.write(f"# {title}\n\n")
@@ -279,6 +328,9 @@ def write_markdown(args, video):
     
         file.write("## Summary\n\n") 
         file.write(f"{summary}\n\n")
+        
+        file.write("## Chapters\n\n")
+        file.write(f"{chapters}\n\n")
         
         if cleaned_up:
             # Don't write a heading because OpenAI was instructed to output markdown.
@@ -408,7 +460,7 @@ if __name__ == "__main__":
                         # default='PLDGkOdUX1UjrEOz4fOB4UZW8m-hx8_mtb')
     parser.add_argument('-s', '--start', required=False,
                         help='Start date for videos; Must be in ISO 8601 format. defaults to 2024-01-01T00:00:00Z',
-                        default='2025-04-01T00:00:00Z')
+                        default='2024-01-01T00:00:00Z')
     parser.add_argument('-e', '--end', required=False,
                         help='End date for videos; Must be in ISO 8601 format. defaults to 2030-12-31T00:00:00Z to get all',
                         default='2030-12-31T00:00:00Z')
