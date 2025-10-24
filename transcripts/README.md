@@ -86,37 +86,6 @@ python3 transcripts.py -p PLAYLIST_ID
 - `-s, --start`: Start date (ISO 8601 format)
 - `-e, --end`: End date (ISO 8601 format)
 
-## GitHub Action Automation
-
-The repository includes a GitHub Action workflow that automatically runs the transcript fetching process.
-
-### Schedule
-- **Automatic**: Every Friday at 8 PM UTC
-- **Manual**: Can be triggered anytime from the Actions tab
-
-### Manual Trigger
-1. Go to the **Actions** tab in your GitHub repository
-2. Select **"Fetch YouTube Transcripts"** workflow
-3. Click **"Run workflow"**
-4. Optionally set the **Limit** parameter (default: 10 videos)
-5. Click **"Run workflow"** to start
-
-### Required Secrets
-The GitHub Action requires these secrets to be configured in your repository:
-
-1. Go to **Settings** → **Secrets and variables** → **Actions**
-2. Add the following secrets:
-   - `YOUTUBE_API_KEY`: Your YouTube Data API v3 key
-   - `OPENAI_API_KEY`: Your OpenAI API key
-
-### Workflow Features
-- **Timeout Protection**: 60-minute timeout to prevent hanging
-- **Dependency Caching**: Speeds up subsequent runs
-- **Error Handling**: Comprehensive error logging and recovery
-- **Automatic Commits**: New transcript files are automatically committed
-- **Workflow Summaries**: Detailed execution summaries
-- **Smart Processing**: Only processes videos that don't already have transcripts
-
 ## Output Files
 
 Transcript files are saved in the `transcripts/` directory with the format:
@@ -144,4 +113,3 @@ The script includes aggressive rate limiting to handle API quotas:
 - Initial delay of 5-15 seconds before starting
 
 If you still encounter rate limiting issues, try reducing the limit or waiting between runs.
-
