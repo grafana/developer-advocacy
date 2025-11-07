@@ -1,31 +1,31 @@
 ---
-url: https://youtube.com/live/TODO
+url: https://www.youtube.com/live/cX74hkdI1zM
 date: 2025-11-19
 ---
 
 # [[02 - Lightweight Open-Source APM with OpenTelemetry Demo]]
 
-[Link to YouTube video]()
+[Link to YouTube video](ttps://www.youtube.com/live/cX74hkdI1zM)
 
 Guest:: "Cyrille Le Clerc"
 
 ## Pre-show checklist
 
-- [ ] Create a new `.md` file and copy this template into it. Check things off as you work through it.
-- [ ] Update [Grafana OTel Community Call Readme](/projects/Grafana%20OTel%20Community%20Call.md) to add the new file to the `Upcoming` section.
-- [ ] Contact the guest and tell them about Grafana OTel Community Call.
+- [x] Create a new `.md` file and copy this template into it. Check things off as you work through it.
+- [x] Update [Grafana OTel Community Call Readme](/projects/Grafana%20OTel%20Community%20Call.md) to add the new file to the `Upcoming` section.
+- [x] Contact the guest and tell them about Grafana OTel Community Call.
 	> At Grafana Labs, we do a livestream called [Grafana OTel Community Call](https://www.youtube.com/watch?v=uk7NoagbJ28&list=PLDGkOdUX1Ujrrse-cdj20RRah9hyHdxBu) - TODO, where we have guests on to talk about OpenTelemetry and Grafana working together to provide observability. I saw your [blog post/video/post] on [source] and I think it would be great to have you on the show to share your experience about [topic].
 	Grafana OTel Community Call is an hour-long live conversation that is streamed to the [Grafana YouTube channel](https://youtube.com/@grafana). It's very casual, and you can also share your screen if you'd like to do a demo (not required). If you'd like to join, I'd love to have you!
-- [ ] If the guest agrees, choose a date for the Grafana OTel Community Call session. Check [the Monday board](https://grafana-labs.monday.com/boards/5724430500) to make sure no other livestream is scheduled for that day. Add a card for that date and time to save the spot.
-- [ ] Confirm the time with the guest. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
-- [ ] Invite them to the Grafana OTel Community Call calendar invite (choose "this instance only", not the whole series). Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours total. Explain this to them.
-- [ ] Create a thumbnail on [Canva](https://canva.com) using the Grafana OTel Community Call thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices. [Here are some guidelines for creating thumbnails](https://notes.nicolevanderhoeven.com/Create+engaging+thumbnails).
-- [ ] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
-	- [ ] In the title, include the instance of Grafana OTel Community Call, i.e. `Declarative Configuration (Grafana OTel Community Call #01)`. Including the number or the date (such as `All About Explore Logs (Loki Community Call November 2024`) helps people remember it.
-	- [ ] Add the standard description as per previous Grafana OTel Community Call shows. Check the video description and add guests' contact details.
-- [ ] Get familiar with how to use Streamyard. [Here's a crash course on how to use Streamyard](https://drive.google.com/file/d/1hb8FeoO88zinZu638MfnBwGctyspgfm0/view?usp=drive_link) and [here's a second recorded call with the Grafana Campfire hosts](https://drive.google.com/file/d/1hdX4SvDM67KRwGkzA6HWEETK1-gy8iUk/view?usp=drive_link) to get them onboarded with Streamyard. These include how to create the stream on Streamyard.
-- [ ] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
-- [ ] Get the YouTube link to the show. Put the link on this page, in the URL property above.
+- [x] If the guest agrees, choose a date for the Grafana OTel Community Call session. Check [the Monday board](https://grafana-labs.monday.com/boards/5724430500) to make sure no other livestream is scheduled for that day. Add a card for that date and time to save the spot.
+- [x] Confirm the time with the guest. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
+- [x] Invite them to the Grafana OTel Community Call calendar invite (choose "this instance only", not the whole series). Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours total. Explain this to them.
+- [x] Create a thumbnail on [Canva](https://canva.com) using the Grafana OTel Community Call thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices. [Here are some guidelines for creating thumbnails](https://notes.nicolevanderhoeven.com/Create+engaging+thumbnails).
+- [x] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
+	- [x] In the title, include the instance of Grafana OTel Community Call, i.e. `Declarative Configuration (Grafana OTel Community Call #01)`. Including the number or the date (such as `All About Explore Logs (Loki Community Call November 2024`) helps people remember it.
+	- [x] Add the standard description as per previous Grafana OTel Community Call shows. Check the video description and add guests' contact details.
+- [x] Get familiar with how to use Streamyard. [Here's a crash course on how to use Streamyard](https://drive.google.com/file/d/1hb8FeoO88zinZu638MfnBwGctyspgfm0/view?usp=drive_link) and [here's a second recorded call with the Grafana Campfire hosts](https://drive.google.com/file/d/1hdX4SvDM67KRwGkzA6HWEETK1-gy8iUk/view?usp=drive_link) to get them onboarded with Streamyard. These include how to create the stream on Streamyard.
+- [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
+- [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
 - [ ] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
 - [ ] Schedule posts on socials just when the show begins to say "We're live now!" [Buffer](https://buffer.com/) is a good free tool to use for this. Set it up for your socials and be sure to tag/mention the official Grafana account-- they'll usually boost/repost it if you do.
 - [ ] Schedule a Slack message on the internal Grafana workspace (in `#community`, `#content-video`, `#video-offsite-2025-futurism`, and anywhere else you think it might be relevant). Yes this is excessive. Let's change this process!
@@ -109,4 +109,3 @@ Guest:: "Cyrille Le Clerc"
 
 - [Opentelemetry Demo](https://opentelemetry.io/ecosystem/demo/)
 - [Lightweight APM dashboard](https://github.com/cyrille-leclerc/opentelemetry-service-dashboard) with more improvements coming to [the demmo](https://github.com/open-telemetry/opentelemetry-helm-charts/pull/1884)
-- [ ] TODO: add links to good videos about APM and infra monitoring
