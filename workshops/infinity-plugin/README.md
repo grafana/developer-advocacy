@@ -72,9 +72,77 @@ You can also find a [CSV file](https://tfl.gov.uk/bus-stops.csv) of all naptan I
 
 ## Let's build a dashboard!
 
-We will freestyle this section. 😎
+### Create a dashboard 
 
-But, here's an [example dashboard](https://play.grafana.org/d/ec0c1486-03e6-4b64-bc80-11e764466e66/london-transport-tfl) which includes live bus arrivals, tube line status updates, and current service disruptions.
+Please follow the instructions [here](https://grafana.com/docs/learning-journeys/visualization-metrics/add-visualization/) to create a new dashboard.
+
+On step 5 (Search for and select a data source), select the Infinity data source that you just added.
+
+### Write a query
+
+Let's write a query to [get status of tube lines](#get-status-of-tube-lines).
+
+1. Under the **Queries** tab, scroll down to the **URL** field and add `https://api.tfl.gov.uk/Line/victoria/Status/${__from:date:YYYY-MM-DD}/to/${__to:date:YYYY-MM-DD}?detail=true`.
+
+    > [!NOTE] 
+    >
+    > Grafana has a built-in `${__from:date}` and `${__to:date}` variable that represents the start time and end time of the current dashboard or panel time range
+
+1. Click the **Headers, Request params** button.
+1. Under **HTTP Headers**, click **Add header** button.
+1. Under **Key** field, add the value `User-Agent`.
+1. Under **Value** field, add the value `Grafana`.
+
+    > [!NOTE]
+    >
+    > TfL's API requires a user agent for security purposes and to identify the application making the request.
+
+1. To transform the query to only return the line status, expand **Parsing options & Result fields** tab. On the **Rows/Root**, add `.[].lineStatuses`.
+1. To verify your query, click the **Query Inspector** button, followed by the **Data** tab. You should see the query result.
+
+### Select a visualization type
+
+Grafana comes with different [visualization types](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/). For this workshop, we will be using the stat, bar gauge, table, and a text panel. 
+
+> [!NOTE] 
+>
+> - A [stat](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/stat/) visualization is used for displaying single values of interest.
+> - A [bar gauge](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/bar-gauge/) is used for displaying one or more numeric values as horizontal or vertical bars, similar to progress bars or battery indicators.
+> - A [table](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/table/) visualization is used for displaying data in one or more columns and rows.
+> - Finally, a [text](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/text/) visualization displays additional text or information about your dashboard using markdown or HTML.
+
+To display the status of tube lines, we'll use the stat visualization.
+
+1. Under the **Visualization** section, select **Stat** from the dropdown.
+1. Scroll down to **Fields** and select `StatusSeverityDescription`.
+1. Give your panel a title and description
+1. Click **Save dashboard** to save all the changes.
+
+Now, have a go at doing the same visualization for other tube lines!
+
+## Using Transformations
+
+Now that you know the basics of Grafana, it's time to introduce you to some Grafana [transformations](https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/transform-data/). A transformation is a data-processing step that Grafana applies after your queries return data. 
+
+You can apply transformations by clicking the **Transformations** tab.
+
+  > [!NOTE]
+  >
+  > We will be using the following transformations:
+  >
+  > - **Filter fields by name** to remove unwanted fields or columns.
+  > - **Sort by field** to sort your query based on a specified field.
+  > - **Convert field type** to convert a field from one type to another. 
+  > - **Organized fields by name** to rename, reorder, or hide fields returned by your query,
+
+Have a go at visualising the other API responses, starting with:
+
+- [Get real-time travel disruptions](#get-real-time-travel-disruptions) using the table panel.
+- [Get real-time arrivals](#get-real-time-arrivals) using a bar gauge visualization.
+
+We'll be here to assist you if you get stuck along the way.
+
+Here's an [example dashboard](https://play.grafana.org/d/ec0c1486-03e6-4b64-bc80-11e764466e66/london-transport-tfl) which includes live bus arrivals, tube line status updates, and current service disruptions.
 
 ![TfL dashboard](../../projects/Play/images/featured-dashboards/tfl.png)
 
