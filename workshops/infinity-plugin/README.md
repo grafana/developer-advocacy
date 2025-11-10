@@ -66,7 +66,7 @@ where:
 
 - {{NaptanID}} is a unique ID for every public transport access point in Great Britain.
 
-Please visit https://raw.githubusercontent.com/ZackaryH8/tube-naptan/refs/heads/master/data/naptan.json to find all the naptan IDs for all tube station in London.
+Please visit https://raw.githubusercontent.com/ZackaryH8/tube-naptan/refs/heads/master/data/naptan.json to find all the naptan IDs for all tube stations in London.
 
 You can also find a [CSV file](https://tfl.gov.uk/bus-stops.csv) of all naptan IDs for different bus stops in London.
 
