@@ -1,6 +1,6 @@
-# Visualise your APIs with Grafana Infinity Plugin
+# Visualise your APIs with the Grafana Infinity Plugin
 
-In this Grafana workshop, we will transform our API data to beautiful Grafana dashboards, using the versatile Infinity data source plugin! 📊
+In this Grafana workshop, we will transform our API data into beautiful Grafana dashboards, using the versatile Infinity data source plugin! 📊
 
 ![Infinity workshop](images/infinity-workshop.png)
 
@@ -18,13 +18,13 @@ To make it easier for everyone to start learning about Grafana, please sign up t
 
 Infinity is not installed by default.
 
-Please follow the instructions [here](https://grafana.com/docs/learning-journeys/infinity-json/install-data-source/) on how to install the Infinity plugin.
+Please follow the instructions [here](https://grafana.com/docs/learning-journeys/infinity-json/install-data-source/) to install the Infinity plugin.
 
 ## Add the Infinity data source plugin
 
 Once the plugin is installed, Infinity has to be added as a data source.
 
-Please follow the instructions [here](https://grafana.com/docs/learning-journeys/infinity-json/add-data-source/) on how to add the Infinity plugin.
+Please follow the instructions [here](https://grafana.com/docs/learning-journeys/infinity-json/add-data-source/) to add the Infinity plugin.
 
 ## Explore the TfL API
 
@@ -36,9 +36,9 @@ Feel free to explore the TfL API! Since these are all basic GET requests, you ca
 
 where:
 
-- {{tubeLine}} - victoria, district, bakerloo
-- {{fromDate}} - YYYY-MM-DD
-- {{toDate}} - YYYY-MM-DD
+- `{{tubeLine}}` - victoria, district, bakerloo
+- `{{fromDate}}` - YYYY-MM-DD
+- `{{toDate}}` - YYYY-MM-DD
 
 example:
 
@@ -50,9 +50,9 @@ https://api.tfl.gov.uk/Line/victoria/Status/2025-11-05/to/2025-11-06
 
 where:
 
-- {{mode}} - bus, tube, dlr
+- `{{mode}}` - bus, tube, dlr
 
-Please visit https://api.tfl.gov.uk/Line/Meta/Modes to find all the available modes (`modeName`)
+Please visit https://api.tfl.gov.uk/Line/Meta/Modes to find all the available modes (`modeName`).
 
 example:
 
@@ -68,7 +68,7 @@ where:
 
 Please visit https://raw.githubusercontent.com/ZackaryH8/tube-naptan/refs/heads/master/data/naptan.json to find all the naptan IDs for all tube stations in London.
 
-You can also find a [CSV file](https://tfl.gov.uk/bus-stops.csv) of all naptan IDs for different bus stops in London.
+You can also use this [CSV file](https://tfl.gov.uk/bus-stops.csv) containing all the naptan IDs for different bus stops in London.
 
 ## Let's build a dashboard!
 
@@ -76,17 +76,17 @@ You can also find a [CSV file](https://tfl.gov.uk/bus-stops.csv) of all naptan I
 
 Please follow the instructions [here](https://grafana.com/docs/learning-journeys/visualization-metrics/add-visualization/) to create a new dashboard.
 
-On step 5 (Search for and select a data source), select the Infinity data source that you just added.
+On step 5 (Search for and select a data source), select the **Infinity data source** that you just added.
 
 ### Write a query
 
-Let's write a query to [get status of tube lines](#get-status-of-tube-lines).
+Let's write a query to [get the status of the tube lines](#get-status-of-tube-lines).
 
-1. Under the **Queries** tab, scroll down to the **URL** field and add `https://api.tfl.gov.uk/Line/victoria/Status/${__from:date:YYYY-MM-DD}/to/${__to:date:YYYY-MM-DD}?detail=true`.
+1. Under the **Queries** tab, scroll down to the **URL** field and add: `https://api.tfl.gov.uk/Line/victoria/Status/${__from:date:YYYY-MM-DD}/to/${__to:date:YYYY-MM-DD}?detail=true`.
 
 > [!NOTE] 
 >
-> Grafana has a built-in `${__from:date}` and `${__to:date}` variable that represents the start time and end time of the current dashboard or panel time range
+> Grafana has a built-in `${__from:date}` and `${__to:date}` variable that represents the start time and end time of the current dashboard or panel time range.
 
 2. Click the **Headers, Request params** button.
 3. Under **HTTP Headers**, click **Add header** button.
@@ -97,12 +97,12 @@ Let's write a query to [get status of tube lines](#get-status-of-tube-lines).
 >
 > TfL's API requires a user agent for security purposes and to identify the application making the request.
 
-6. To transform the query to only return the line status, expand **Parsing options & Result fields** tab. On the **Rows/Root**, add `.[].lineStatuses`.
+6. To transform the query to only return the line status, expand the **Parsing options & Result fields** tab. On the **Rows/Root**, add `.[].lineStatuses`.
 7. To verify your query, click the **Query Inspector** button, followed by the **Data** tab. You should see the query result.
 
 ### Select a visualization type
 
-Grafana comes with different [visualization types](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/). For this workshop, we will be using the stat, bar gauge, table, and a text panel. 
+Grafana comes with different [visualization types](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/). For this workshop, we will be using the stat, bar gauge, table, and text panels. 
 
 > [!NOTE] 
 >
@@ -111,7 +111,7 @@ Grafana comes with different [visualization types](https://grafana.com/docs/graf
 > - A [table](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/table/) visualization is used for displaying data in one or more columns and rows.
 > - Finally, a [text](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/text/) visualization displays additional text or information about your dashboard using markdown or HTML.
 
-To display the status of tube lines, we'll use the stat visualization.
+To display the status of the tube lines, we'll use the stat visualization.
 
 1. Under the **Visualization** section, select **Stat** from the dropdown.
 1. Scroll down to **Fields** and select `StatusSeverityDescription`.
