@@ -8,7 +8,7 @@ In this Grafana workshop, we will transform our API data into beautiful Grafana 
 
 For this workshop, we will use the [TfL API](https://api-portal.tfl.gov.uk/apis), but any public APIs can also be used.
 
-## Install Grafana Cloud
+## Sign up for Grafana Cloud
 
 To make it easier for everyone to start learning about Grafana, please sign up to a [Grafana Cloud account](https://grafana.com/auth/sign-up/create-user) and start with the free forever plan.
 
