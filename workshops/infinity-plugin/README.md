@@ -92,23 +92,37 @@ On step 5 (Search for and select a data source), select the **Infinity data sour
 
 Let's write a query to [get the status of the tube lines](#get-status-of-tube-lines).
 
-1. Under the **Queries** tab, scroll down to the **URL** field and add: `https://api.tfl.gov.uk/Line/victoria/Status/${__from:date:YYYY-MM-DD}/to/${__to:date:YYYY-MM-DD}?detail=true`.
+1. Under the **Queries** tab, change the **Parser** from `JSONata` to `jq`.
+
+> [!NOTE] 
+>
+> [jq](https://jqlang.org/) is a command-line processor for JSON data. It lets you parse, filter, transform, and extract JSON using a simple, expressive query language. 
+>
+> To get started with jq, try out the [JQ Playground](https://play.jqlang.org/) - an online sandbox where you can write, test, and visualize jq filters without installing jq locally.
+
+2. Scroll down to the **URL** field and add: `https://api.tfl.gov.uk/Line/victoria/Status/${__from:date:YYYY-MM-DD}/to/${__to:date:YYYY-MM-DD}?detail=true`.
 
 > [!NOTE] 
 >
 > Grafana has a built-in `${__from:date}` and `${__to:date}` variable that represents the start time and end time of the current dashboard or panel time range.
 
-2. Click the **Headers, Request params** button.
-3. Under **HTTP Headers**, click **Add header** button.
-4. Under **Key** field, add the value `User-Agent`.
-5. Under **Value** field, add the value `Grafana`.
+3. Set the time range to **Last 24 Hours**
+
+> [!NOTE] 
+>
+> The TfL API throws an error if the from date and to date are the same date. For this example, we will set the dashboard time range to the last 24 hours.
+
+4. Click the **Headers, Request params** button.
+5. Under **HTTP Headers**, click **Add header** button.
+6. Under **Key** field, add the value `User-Agent`.
+7. Under **Value** field, add the value `Grafana`.
 
 > [!NOTE]
 >
 > TfL's API requires a user agent for security purposes and to identify the application making the request.
 
-6. To transform the query to only return the line status, expand the **Parsing options & Result fields** tab. On the **Rows/Root**, add `.[].lineStatuses`.
-7. To verify your query, click the **Query Inspector** button, followed by the **Data** tab. You should see the query result.
+8. To transform the query to only return the line status, expand the **Parsing options & Result fields** tab. On the **Rows/Root**, add `.[].lineStatuses`.
+9. To verify your query, click the **Query Inspector** button, followed by the **Data** tab. You should see the query result.
 
 ### Select a visualization type
 
