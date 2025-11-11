@@ -84,21 +84,21 @@ Let's write a query to [get status of tube lines](#get-status-of-tube-lines).
 
 1. Under the **Queries** tab, scroll down to the **URL** field and add `https://api.tfl.gov.uk/Line/victoria/Status/${__from:date:YYYY-MM-DD}/to/${__to:date:YYYY-MM-DD}?detail=true`.
 
-    > [!NOTE] 
-    >
-    > Grafana has a built-in `${__from:date}` and `${__to:date}` variable that represents the start time and end time of the current dashboard or panel time range
+> [!NOTE] 
+>
+> Grafana has a built-in `${__from:date}` and `${__to:date}` variable that represents the start time and end time of the current dashboard or panel time range
 
-1. Click the **Headers, Request params** button.
-1. Under **HTTP Headers**, click **Add header** button.
-1. Under **Key** field, add the value `User-Agent`.
-1. Under **Value** field, add the value `Grafana`.
+2. Click the **Headers, Request params** button.
+3. Under **HTTP Headers**, click **Add header** button.
+4. Under **Key** field, add the value `User-Agent`.
+5. Under **Value** field, add the value `Grafana`.
 
-    > [!NOTE]
-    >
-    > TfL's API requires a user agent for security purposes and to identify the application making the request.
+> [!NOTE]
+>
+> TfL's API requires a user agent for security purposes and to identify the application making the request.
 
-1. To transform the query to only return the line status, expand **Parsing options & Result fields** tab. On the **Rows/Root**, add `.[].lineStatuses`.
-1. To verify your query, click the **Query Inspector** button, followed by the **Data** tab. You should see the query result.
+6. To transform the query to only return the line status, expand **Parsing options & Result fields** tab. On the **Rows/Root**, add `.[].lineStatuses`.
+7. To verify your query, click the **Query Inspector** button, followed by the **Data** tab. You should see the query result.
 
 ### Select a visualization type
 
