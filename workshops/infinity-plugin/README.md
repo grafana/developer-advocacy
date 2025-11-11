@@ -32,7 +32,9 @@ Feel free to explore the TfL API! Since these are all basic GET requests, you ca
 
 ### Get status of tube lines
 
-[https://api.tfl.gov.uk/Line/{{tubeLine}}/Status/{{fromDate}}/to/{{toDate}}]()
+```
+https://api.tfl.gov.uk/Line/{{tubeLine}}/Status/{{fromDate}}/to/{{toDate}}
+```
 
 where:
 
@@ -46,7 +48,9 @@ https://api.tfl.gov.uk/Line/victoria/Status/2025-11-05/to/2025-11-06
 
 ### Get real-time travel disruptions
 
-[https://api.tfl.gov.uk/Line/Mode/{{mode}}/Disruption]()
+```
+https://api.tfl.gov.uk/Line/Mode/{{mode}}/Disruption
+```
 
 where:
 
@@ -60,13 +64,19 @@ https://api.tfl.gov.uk/Line/Mode/bus/Disruption
 
 ### Get real-time arrivals
 
-[https://api.tfl.gov.uk/StopPoint/{{NaptanID}}/Arrivals]()
+```
+https://api.tfl.gov.uk/StopPoint/{{NaptanID}}/Arrivals
+```
 
 where:
 
 - {{NaptanID}} is a unique ID for every public transport access point in Great Britain.
 
 Please visit https://raw.githubusercontent.com/ZackaryH8/tube-naptan/refs/heads/master/data/naptan.json to find all the naptan IDs for all tube stations in London.
+
+example:
+
+https://api.tfl.gov.uk/StopPoint/940GZZLUKSX/Arrivals
 
 You can also use this [CSV file](https://tfl.gov.uk/bus-stops.csv) containing all the naptan IDs for different bus stops in London.
 
