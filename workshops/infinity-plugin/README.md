@@ -143,7 +143,7 @@ You can apply transformations by clicking the **Transformations** tab.
   > - **Filter fields by name** to remove unwanted fields or columns.
   > - **Sort by field** to sort your query based on a specified field.
   > - **Convert field type** to convert a field from one type to another. 
-  > - **Organized fields by name** to rename, reorder, or hide fields returned by your query,
+  > - **Organize fields by name** to rename, reorder, or hide fields returned by your query,
 
 Have a go at visualising the other API responses, starting with:
 
