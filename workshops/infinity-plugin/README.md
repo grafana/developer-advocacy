@@ -140,7 +140,7 @@ To display the status of the tube lines, we'll use the stat visualization.
 1. Under the **Visualization** section, select **Stat** from the dropdown.
 1. Scroll down to **Fields** and select `StatusSeverityDescription`.
 1. Give your panel a title and description
-1. Click **Save dashboard** to save all the changes.
+1. Click **Save dashboard** to save all the changes and make sure that the **Update default time range** is checked.
 
 Now, have a go at doing the same visualization for other tube lines!
 
