@@ -50,4 +50,4 @@ typing_extensions==4.12.2
 tzlocal==5.2
 uritemplate==4.1.1
 urllib3==2.2.3
-youtube-transcript-api==1.1.0
+youtube-transcript-api==1.2.3
