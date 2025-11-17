@@ -20,3 +20,5 @@
 - ?: intro to instrumentation with OTel logging - Liudmila as guest, to go over semantic conventions + different ways to instrument in different languages
 - ?: Tom Donohue - best practices of ingest, war stories with customers?
 - December: Adaptive Logs finally, with Travis?
+- Loki object storage: what it is, options now after Minio
+- How to reduce your spend/telemetry with Loki. 
