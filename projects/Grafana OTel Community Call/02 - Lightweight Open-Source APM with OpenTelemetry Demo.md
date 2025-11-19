@@ -27,7 +27,7 @@ Guest:: "Cyrille Le Clerc"
 - [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
 - [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
 - [x] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
-- [ ] Schedule posts on socials just when the show begins to say "We're live now!" [Buffer](https://buffer.com/) is a good free tool to use for this. Set it up for your socials and be sure to tag/mention the official Grafana account-- they'll usually boost/repost it if you do.
+- [x] Schedule posts on socials just when the show begins to say "We're live now!" [Buffer](https://buffer.com/) is a good free tool to use for this. Set it up for your socials and be sure to tag/mention the official Grafana account-- they'll usually boost/repost it if you do.
 - [x] Schedule a Slack message on the internal Grafana workspace (in `#opentelemetry`, `#content-video`)!
 - [x] Schedule a Slack message on the public Grafana Slack workspace (in the appropriate channel, such as `#opentelemetry`).
 - [x] Add your call to the Community Calendar (ask David, Richi, Nicole, Usman, and Liudmila).
@@ -38,7 +38,7 @@ Guest:: "Cyrille Le Clerc"
 > Enumerate talking points for the show. It's better to keep these as bullet points to encourage a more casual, rather than scripted, conversation.
 
 - Intro
-	- *Hello and welcome to Grafana Grafana OTel Community Call. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
+	- *Hello and welcome to Grafana OTel Community Call. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
 	- TODO
 - Introduce guest: Cyrille Le Clerk
@@ -95,7 +95,7 @@ Guest:: "Cyrille Le Clerc"
 - [ ] Add timestamps to the video (at least four).
 - [ ] Add any links shared to the description of the video.
 - [ ] Add YouTube cards when relevant to certain points during the video.
-- [ ] Add the video to video playlists that make sense (at the very least, the "Grafana Grafana OTel Community Call" one.)
+- [ ] Add the video to video playlists that make sense (at the very least, the "Grafana OTel Community Call" one.)
 - [ ] Download all videos for the recording on Streamyard and upload it [to this shared drive](https://drive.google.com/drive/folders/1sLnnYzmphet7K7QwogcZrYDI-Re07HS4) in the appropriate folder.
 - [ ] Think about how you could repurpose this content. [This Loki Community Call](https://youtube.com/live/XJMQbEuBeMc) on Explore Logs was turned into [these](https://youtube.com/shorts/6RfI5UeJo08) [two shorts](https://youtube.com/shorts/jx1DATkGIz4) (*Short - Grafana Cloud Explore Apps for no-code querying of Loki, Mimir, Tempo, Pyroscope* and *Short - How to enable Explore Logs app for Grafana*) and [this shorter video](https://youtu.be/eXwE2vqLcyY) (*How to use the Explore Logs app for Grafana*) + docs.
 - [ ] Update [Advocate Contributions sheet](https://docs.google.com/spreadsheets/d/1LataDRRX4DZy8VnCiBDXmynjmpOJdibM7ek_uvpim4Y/edit?gid=0#gid=0) with your work.
