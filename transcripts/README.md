@@ -24,7 +24,26 @@ The `transcripts.py` script performs the following operations:
    - Cleaned-up transcript
    - Raw YouTube transcript
 
-## Local Setup
+## Quickstart
+
+The easiest way to get started is to use the provided setup script:
+
+```bash
+cd transcripts
+./run.sh
+```
+
+This script will automatically:
+- Verify all required files exist (requirements.txt, transcripts.py, .env)
+- Create and activate a virtual environment
+- Install dependencies
+- Run the transcripts script
+
+If any required files are missing, the script will provide helpful instructions.
+
+## Local Setup (Manual)
+
+If you prefer to set things up manually or want more control:
 
 ### 1. Create Virtual Environment
 ```bash
