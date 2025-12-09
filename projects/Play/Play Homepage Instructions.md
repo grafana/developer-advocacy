@@ -90,7 +90,7 @@ Once saved, the image link will be `https://raw.githubusercontent.com/grafana/de
     <a href="https://play.grafana.org/d/mabqw4b/tripadvisor" class="launchpad-tile">
             <!-- Update dashboard name and image -->
             <div class="tile-title">London Trip Advisor</div>
-            <img src="https://raw.githubusercontent.com/grafana/developer-advocacy/refs/heads/main/projects/Play/images/trip-advisor.png" alt="London Trip Advisor" />
+            <img src="https://raw.githubusercontent.com/grafana/developer-advocacy/refs/heads/main/projects/Play/images/featured-dashboards/trip-advisor.png" alt="London Trip Advisor" />
           </a>
     ```
 1. Save the changes and update the [dashboard's JSON model](https://github.com/grafana/grafana-play/blob/main/play-frontend/dashboards/examples/homepage-featured-dashboards.json) in the Grafana Play repo.
