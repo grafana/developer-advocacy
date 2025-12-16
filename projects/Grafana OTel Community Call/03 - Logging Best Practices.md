@@ -27,13 +27,13 @@ Guests:: "Jack Berg, Ed Welch"
 - [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guest.
 - [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
 - [x] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
-- [ ] Schedule posts on socials just when the show begins to say "We're live now!" [Buffer](https://buffer.com/) is a good free tool to use for this. Set it up for your socials and be sure to tag/mention the official Grafana account-- they'll usually boost/repost it if you do.
-- [ ] Schedule a Slack messages:
-  - [ ] internal slack: `#opentelemetry`, `#content-video`
-- [ ] Announce in `#community-champions` and `#opentelemetry` community slack channels and ask for questions.  Yes this is excessive. Let's change this process!
-- [ ] Schedule a Slack message on the public Grafana Slack workspace (`#opentelemetry`).
-- [ ] Add your call to the Community Calendar
-- [ ] Think of any reference links you might want to give the audience. Add it to the YouTube description.
+- [x] Schedule posts on socials just when the show begins to say "We're live now!" [Buffer](https://buffer.com/) is a good free tool to use for this. Set it up for your socials and be sure to tag/mention the official Grafana account-- they'll usually boost/repost it if you do.
+- [x] Schedule a Slack messages:
+  - [x] internal slack: `#opentelemetry`, `#content-video`
+- [x] Announce in `#community-champions` and `#opentelemetry` community slack channels and ask for questions.  Yes this is excessive. Let's change this process!
+- [x] Schedule a Slack message on the public Grafana Slack workspace (`#opentelemetry`).
+- [x] Add your call to the Community Calendar
+- [x] Think of any reference links you might want to give the audience. Add it to the YouTube description.
 
 ## Talking points
 
@@ -43,34 +43,23 @@ Guests:: "Jack Berg, Ed Welch"
 	- *Hello and welcome to Grafana Grafana OTel Community Call. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
 	- Register for [OpenTelemetry Unplugged](https://events.humanitix.com/otelunplugged-eu2026)
-	- [GrafanaCon - we're looking for commuinity presenters!](https://grafana.com/events/grafanacon/)
-	- ?
+	- Participate in [Observability Survey 2026](https://grafana.com/observability-survey/)
 - Introduce guest: Jack Berg and Ed Welch
 	- Who are you?
 	- What do you do?
 	- How did you get into OpenTelemetry?
 - [ ] Should we still use logs in 2025? Are they still relevant? What should we record?
-  - [ ] Business observability
-  - [ ] Point in time things: not possible to describe something like user behavior, scrolling timeline with spans alone
+    - [ ] Point in time things: not possible to describe something like user behavior, scrolling timeline with spans alone
+    - [ ] Business observability
 - [ ] What are the common ways to log things today?
   - [ ] Using logging facade like slf4j, slog, python logging, .NET ILogger
+  - [ ] Configuring logging framework to write logs to stdout/err or file and send to log management system 
   - [ ] Writing logs to stdout/err and scraping k8s/container logs
-  - [ ] Also writing to a file / sending to log management system
-- [ ] Why does OTel need to be in this business, aren’t there enough APIs?
+- [ ] Why does OTel need to be in this business, aren’t there enough logging frameworks?
+  - [ ] Give API that promotes structured logs - current logging APIs are optimized for string formatting 
   - [ ] Correlation between signals
   - [ ] Semantical, structured, well-known events, like page view
   - [ ] Emit events/logs from instrumentation libraries and native instrumentations
-  - [ ] Give API that promotes structured logs - current logging APIs are optimized for string formatting
-- [ ] How do I write logs?
-  - [ ] Human-readable logs vs structured vs both?
-  - [ ] Why are structured logs important?
-  - [ ] Impossible to query human-readable text messages
-  - [ ] Impossible to parse multi-line logs
-  - [ ] Logs should have the same context and attributes as spans, metrics, should be correlated
-- [ ] What are the other properties of good logs
-  - [ ] Severity
-  - [ ] Identifiable in a stream of other logs
-  - [ ] Consistent structure
 - [ ] Where are we on the Grafana side?
   - [ ] What are the typical ways to send logs to Grafana? What do we support?
   - [ ] What do we recommend?
@@ -80,7 +69,19 @@ Guests:: "Jack Berg, Ed Welch"
   - [ ] Find what user X was doing from timestamp 1 to 2
   - [ ] Find all logs related to order X spread across multiple traces
   - [ ] Find users that tried feature X and got an error Y
+- [ ] Lightning round questions [deck](https://docs.google.com/presentation/d/1wSnDPmcbLgMT__snhKO7x1A2L3WrcizspW5IAVl3yAY/edit?usp=sharing)
+  - [ ] Human-readable logs vs structured vs both?
+  - [ ] Why are structured logs important?
+  - [ ] Impossible to query human-readable text messages
+  - [ ] Impossible to parse multi-line logs
+  - [ ] Logs should have the same context and attributes as spans, metrics, should be correlated
+- [ ] What are the other properties of good logs
+  - [ ] Severity
+  - [ ] Identifiable in a stream of other logs
+  - [ ] Consistent structure
 - [ ] If people want to learn more, where should they go?
+  - [Send data to Loki](https://grafana.com/docs/loki/latest/send-data/)
+  - [OTel Logging and You](https://opentelemetry.io/blog/2025/opentelemetry-logging-and-you/) (blog), [spec](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/README.md)
 
 ### Just before the show
 
@@ -111,8 +112,3 @@ Guests:: "Jack Berg, Ed Welch"
 
 00:00:00 Introductions
 
-### Reference links
-
-- [OTel Log Blog](https://opentelemetry.io/blog/2025/opentelemetry-logging-and-you/)
-- [Send data to loki](https://grafana.com/docs/loki/latest/send-data/)
-- [Structured metadata](https://grafana.com/docs/loki/latest/get-started/labels/structured-metadata/)
