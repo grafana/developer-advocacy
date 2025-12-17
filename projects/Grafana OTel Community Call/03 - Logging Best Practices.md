@@ -60,6 +60,7 @@ Guests:: "Jack Berg, Ed Welch"
   - [ ] Correlation between signals
   - [ ] Semantical, structured, well-known events, like page view
   - [ ] Emit events/logs from instrumentation libraries and native instrumentations
+- [ ] Demo time
 - [ ] Where are we on the Grafana side?
   - [ ] What are the typical ways to send logs to Grafana? What do we support?
   - [ ] What do we recommend?
@@ -69,16 +70,12 @@ Guests:: "Jack Berg, Ed Welch"
   - [ ] Find what user X was doing from timestamp 1 to 2
   - [ ] Find all logs related to order X spread across multiple traces
   - [ ] Find users that tried feature X and got an error Y
-- [ ] Lightning round questions [deck](https://docs.google.com/presentation/d/1wSnDPmcbLgMT__snhKO7x1A2L3WrcizspW5IAVl3yAY/edit?usp=sharing)
-  - [ ] Human-readable logs vs structured vs both?
-  - [ ] Why are structured logs important?
-  - [ ] Impossible to query human-readable text messages
-  - [ ] Impossible to parse multi-line logs
-  - [ ] Logs should have the same context and attributes as spans, metrics, should be correlated
-- [ ] What are the other properties of good logs
-  - [ ] Severity
-  - [ ] Identifiable in a stream of other logs
-  - [ ] Consistent structure
+- [ ] Share your 3 points
+  - [ ] Ed
+  - [ ] Jack
+  - [ ] Nicole
+  - [ ] Optional: Liudmila
+- [ ] Lightning round questions [deck](https://docs.google.com/presentation/d/1wSnDPmcbLgMT__snhKO7x1A2L3WrcizspW5IAVl3yAY/edit?usp=sharing
 - [ ] If people want to learn more, where should they go?
   - [Send data to Loki](https://grafana.com/docs/loki/latest/send-data/)
   - [OTel Logging and You](https://opentelemetry.io/blog/2025/opentelemetry-logging-and-you/) (blog), [spec](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/logs/README.md)
