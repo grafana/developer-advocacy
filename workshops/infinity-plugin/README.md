@@ -6,7 +6,7 @@ In this Grafana workshop, we will transform our API data into beautiful Grafana 
 
 **No prior knowledge of Grafana is required as this workshop is beginner-friendly, but bring your laptops as this will be a hands-on workshop!**
 
-For this workshop, we will use the [TfL API](https://api-portal.tfl.gov.uk/apis), but any public APIs can also be used.
+For this workshop, we will use the [TfL API](https://api-portal.tfl.gov.uk/apis), but other public APIs can also be used.
 
 ## Sign up for Grafana Cloud
 
@@ -70,15 +70,15 @@ https://api.tfl.gov.uk/StopPoint/{{NaptanID}}/Arrivals
 
 where:
 
-- {{NaptanID}} is a unique ID for every public transport access point in Great Britain.
+- `{{NaptanID}}` is a unique ID for every public transport access point in Great Britain.
 
-Please visit https://raw.githubusercontent.com/ZackaryH8/tube-naptan/refs/heads/master/data/naptan.json to find all the naptan IDs for all tube stations in London.
+Please visit https://raw.githubusercontent.com/ZackaryH8/tube-naptan/refs/heads/master/data/naptan.json to find all the Naptan IDs for all tube stations in London.
 
 example:
 
 https://api.tfl.gov.uk/StopPoint/940GZZLUKSX/Arrivals
 
-You can also use this [CSV file](https://tfl.gov.uk/bus-stops.csv) containing all the naptan IDs for different bus stops in London.
+You can also use this [CSV file](https://tfl.gov.uk/bus-stops.csv) containing all the Naptan IDs for different bus stops in London.
 
 ## Let's build a dashboard!
 
@@ -138,9 +138,9 @@ Grafana comes with different [visualization types](https://grafana.com/docs/graf
 To display the status of the tube lines, we'll use the stat visualization.
 
 1. Under the **Visualization** section, select **Stat** from the dropdown.
-1. Scroll down to **Fields** and select `StatusSeverityDescription`.
-1. Give your panel a title and description
-1. Click **Save dashboard** to save all the changes and make sure that the **Update default time range** is checked.
+2. Scroll down to **Fields** and select `StatusSeverityDescription`.
+3. Give your panel a title and description.
+4. Click **Save dashboard** to save all the changes and make sure that the **Update default time range** is checked.
 
 Now, have a go at doing the same visualization for other tube lines!
 
@@ -150,14 +150,14 @@ Now that you know the basics of Grafana, it's time to introduce you to some Graf
 
 You can apply transformations by clicking the **Transformations** tab.
 
-  > [!NOTE]
-  >
-  > We will be using the following transformations:
-  >
-  > - **Filter fields by name** to remove unwanted fields or columns.
-  > - **Sort by field** to sort your query based on a specified field.
-  > - **Convert field type** to convert a field from one type to another. 
-  > - **Organize fields by name** to rename, reorder, or hide fields returned by your query,
+> [!NOTE]
+>
+> We will be using the following transformations:
+>
+> - **Filter fields by name** to remove unwanted fields or columns.
+> - **Sort by field** to sort your query based on a specified field.
+> - **Convert field type** to convert a field from one type to another.
+> - **Organize fields by name** to rename, reorder, or hide fields returned by your query.
 
 Have a go at visualising the other API responses, starting with:
 
