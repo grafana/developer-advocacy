@@ -14,17 +14,17 @@ To make it easier for everyone to start learning about Grafana, please sign up t
 
 ![Grafana Cloud signup](images/grafana-cloud-signup.png)
 
-## Install Infinity data source plugin
+After completing the sign-up process, click the **Get started** button.
 
-Infinity is not installed by default.
+![Grafana Cloud setup](images/grafana-cloud-setup.png)
 
-Please follow the instructions [here](https://grafana.com/docs/learning-journeys/infinity-json/install-data-source/) to install the Infinity plugin.
+## Explore the Infinity data source plugin
 
-## Add the Infinity data source plugin
+By default, Infinity is installed as a Grafana data source. To check, open the navigation menu and navigate to **Connections > Data sources**. You should see `grafanacloud-infinity`.
 
-Once the plugin is installed, Infinity has to be added as a data source.
+![Infinity data source](images/infinity-ds.png)
 
-Please follow the instructions [here](https://grafana.com/docs/learning-journeys/infinity-json/add-data-source/) to add the Infinity plugin.
+Without any additional configuration, this data source can work straight away. Optionally, you can configure any of the settings you see on the left side, such as `Authentication` if needed.
 
 ## Explore the TfL API
 
@@ -84,9 +84,27 @@ You can also use this [CSV file](https://tfl.gov.uk/bus-stops.csv) containing al
 
 ### Create a dashboard 
 
-Please follow the instructions [here](https://grafana.com/docs/learning-journeys/visualization-metrics/add-visualization/) to create a new dashboard.
+To create a dashboard and add a visualization, perform the following steps:
 
-On step 5 (Search for and select a data source), select the **Infinity data source** that you just added.
+1. On the Grafana Cloud home page, open the navigation menu on the left side of the page and click **Dashboards**.
+2. Click **New > New Dashboard**.
+3. Click **Add visualization**.
+4. Search for and select `grafanacloud-infinity`.
+
+![Grafana Cloud Infinity](images/grafanacloud-infinity.png)
+
+### Display JSON data with thr Infinity plugin
+
+By default, a [sample JSON file](https://github.com/grafana/grafana-infinity-datasource/blob/main/testdata/users.json) is provided when you use Infinity for the first time in Grafana Cloud. 
+
+To visualize this JSON data, perform the following steps:
+
+1. Change the visualization type from `Time series` to `Table`.
+2. Click **Refresh** to get the latest data.
+
+You should see a new panel with the data visualized as a table.
+
+![Infinity sample query](images/infinity-sample-query.png)
 
 ### Write a query
 
