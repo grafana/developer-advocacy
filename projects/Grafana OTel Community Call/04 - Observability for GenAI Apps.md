@@ -42,7 +42,6 @@ Guests:: "Ishan Jain, Luccas Quadros"
 	- *Hello and welcome to Grafana Grafana OTel Community Call. I'm `<name>`, a `<position>` at Grafana Labs and today, we're going to talk about `<topic>`.*
 - Announcements
 	- Register for [OpenTelemetry Unplugged](https://events.humanitix.com/otelunplugged-eu2026)
-	- TODO
 - Introduce guest: Ishan Jain, Luccas Quadros
 	- Who are you?
 	- What do you do?
@@ -65,7 +64,7 @@ Guests:: "Ishan Jain, Luccas Quadros"
 - [ ] Demo (Ishan)
   - Show trace of a couple of agents working on a problem
   - Exploring traces and AI dashboard in Grafana Cloud
--  [] Debugging and data retention challenges
+- [ ] Debugging and data retention challenges
    - Debugging individual operations often depends on prompts and completions being recorded. Also needed for evals and sometimes audit
    - How to handle sensitive user inputs?
    - Volume is a real problem. Do we record images or videos as telemetry?
