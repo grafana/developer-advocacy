@@ -1,0 +1,40 @@
+text/x-c	.c, .h	C
+text/x-c++	.cpp, .cc, .cxx, .hpp, .h	C++
+text/x-java	.java	Java
+text/x-csharp	.cs	C#
+text/x-go	.go	Go
+text/x-rust	.rs	Rust
+text/x-swift	.swift	Swift
+text/x-kotlin	.kt, .kts	Kotlin
+text/x-python	.py	Python
+text/x-script.python	.py	Python (alternate scripting MIME)
+text/x-perl	.pl, .pm	Perl
+text/x-ruby	.rb, .rbw	Ruby
+text/x-php	.php	PHP
+text/x-bash	.sh	Bash / shell script
+text/x-shellscript	.sh	Generic shell script
+text/x-tcl	.tcl	Tcl
+text/x-lua	.lua	Lua
+text/x-r	.r	R
+text/x-julia	.jl	Julia
+text/x-elixir	.ex, .exs	Elixir
+text/x-erlang	.erl, .hrl	Erlang
+text/x-clojure	.clj, .cljs, .cljc	Clojure
+text/x-ocaml	.ml, .mli	OCaml
+text/x-lisp	.lisp, .lsp, .cl	Lisp / Common Lisp
+text/x-haskell	.hs	Haskell
+text/x-ada	.adb, .ads	Ada
+text/x-assembly	.asm, .s	Assembly
+text/x-visual-basic	.vb, .vba	Visual Basic
+text/x-scheme	.scm, .ss	Scheme
+text/html	.html, .htm	HTML markup
+text/css	.css	CSS
+application/javascript	.js	JavaScript
+application/x-javascript	.js	JavaScript (legacy)
+application/typescript	.ts, .tsx	TypeScript
+application/x-typescript	.ts, .tsx	TypeScript (legacy)
+application/json	.json	JSON
+application/xml	.xml	XML
+application/x-toml	.toml	TOML
+application/x-yaml	.yaml, .yml	YAML / YML
+application/x-properties	.properties	Java properties
