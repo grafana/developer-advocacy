@@ -89,12 +89,13 @@ To create a dashboard and add a visualization, perform the following steps:
 
 1. On the Grafana Cloud home page, open the navigation menu on the left side of the page and click **Dashboards**.
 2. Click **New > New Dashboard**.
-3. Click **Add visualization**.
-4. Search for and select `grafanacloud-infinity`.
+3. On the right-hand side, drag or click to add a panel.
+4. Click **Configure**.
+5. Search for and select `grafanacloud-infinity`.
 
 ![Grafana Cloud Infinity](images/grafanacloud-infinity.png)
 
-### Display JSON data with thr Infinity plugin
+### Display JSON data with the Infinity plugin
 
 By default, a [sample JSON file](https://github.com/grafana/grafana-infinity-datasource/blob/main/testdata/users.json) is provided when you use Infinity for the first time in Grafana Cloud. 
 
@@ -141,7 +142,7 @@ Let's write a query to [get the status of the tube lines](#get-status-of-tube-li
 > TfL's API requires a user agent for security purposes and to identify the application making the request.
 
 8. To transform the query to only return the line status, expand the **Parsing options & Result fields** tab. On the **Rows/Root**, add `.[].lineStatuses`.
-9. To verify your query, click the **Query Inspector** button, followed by the **Data** tab. You should see the query result.
+9. To verify your query, click the **Refresh** button. You should see the query result.
 
 ### Select a visualization type
 
@@ -156,12 +157,17 @@ Grafana comes with different [visualization types](https://grafana.com/docs/graf
 
 To display the status of the tube lines, we'll use the stat visualization.
 
-1. Under the **Visualization** section, select **Stat** from the dropdown.
+1. On the right-hand side, click **Change** to change the visualization type and then select or find the **Stat** visualization.
 2. Scroll down to **Fields** and select `StatusSeverityDescription`.
 3. Give your panel a title and description.
-4. Click **Save dashboard** to save all the changes and make sure that the **Update default time range** is checked.
+4. Click **Save dashboard** to save all the changes and give your dashboard a name.
 
 Now, have a go at doing the same visualization for other tube lines!
+
+> [!TIP]
+>
+> You can duplicate a panel easily by hovering over the panel and clicking the three-dot vertical icon and then selecting **More > Duplicate**.
+> To edit the panel, hover over the panel again and click the three-dot vertical icon and select **Edit**. 
 
 ## Using Transformations
 
