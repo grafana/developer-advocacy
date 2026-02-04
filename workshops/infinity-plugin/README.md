@@ -77,6 +77,7 @@ Please visit https://raw.githubusercontent.com/ZackaryH8/tube-naptan/refs/heads/
 example:
 
 https://api.tfl.gov.uk/StopPoint/940GZZLUKSX/Arrivals
+https://api.tfl.gov.uk/StopPoint/490001089E7/Arrivals
 
 You can also use this [CSV file](https://tfl.gov.uk/bus-stops.csv) containing all the Naptan IDs for different bus stops in London.
 
