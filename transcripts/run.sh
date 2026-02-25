@@ -47,7 +47,7 @@ pip3 install -r requirements.txt
 
 echo ""
 echo "Running transcripts.py..."
-python3 transcripts.py
+PYTHONUNBUFFERED=1 python3 transcripts.py
 
 echo ""
 echo "✅ Done!"
