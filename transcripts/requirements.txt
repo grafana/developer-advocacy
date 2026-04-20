@@ -25,7 +25,7 @@ lxml==5.3.0
 lxml_html_clean==0.4.4
 markdownify==0.14.1
 openai==1.54.5
-proto-plus==1.27.1
+proto-plus==1.27.2
 protobuf==6.33.5
 pyasn1==0.6.3
 pyasn1_modules==0.4.1
