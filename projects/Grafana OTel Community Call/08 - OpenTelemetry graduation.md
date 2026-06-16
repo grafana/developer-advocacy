@@ -28,12 +28,13 @@ Guests: "Ted Young", "Marylia Gutierrez", "Tiffany Hrabusa"
 - [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guests.
 - [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
 - [ ] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
-- [ ] Create an event and announce it on the [Grafana & Friends Virtual Community Events calenadr ](https://luma.com/grafana-and-friends-virtual)
+- [ ] Create an event and announce it on the [Grafana & Friends Virtual Community Events calendar](https://luma.com/grafana-and-friends-virtual)
 - [ ] Schedule a Slack message:
   - [ ] internal Slack: `#opentelemetry`
 - [ ] Announce in `#community-champions` and `#opentelemetry` community Slack channels and ask for questions.  Yes, this is excessive. Let's change this process!
 - [ ] Schedule a Slack message on the public Grafana Slack workspace (`#opentelemetry`).
 - [ ] Add your call to the Community Calendar
+  - [x] Monthly calendar in the forum, e.g., for June at https://community.grafana.com/t/grafana-community-events-june/148715.
 - [ ] Think of any reference links you might want to give the audience. Add it to the YouTube description.
 
 ## Talking points
