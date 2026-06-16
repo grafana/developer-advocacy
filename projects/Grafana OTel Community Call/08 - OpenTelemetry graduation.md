@@ -27,8 +27,8 @@ Guests: "Ted Young", "Marylia Gutierrez", "Tiffany Hrabusa"
 - [ ] Get familiar with how to use Streamyard. [Here's a crash course on how to use Streamyard](https://drive.google.com/file/d/1hb8FeoO88zinZu638MfnBwGctyspgfm0/view?usp=drive_link) and [here's a second recorded call with the Grafana Campfire hosts](https://drive.google.com/file/d/1hdX4SvDM67KRwGkzA6HWEETK1-gy8iUk/view?usp=drive_link) to get them onboarded with Streamyard. These include how to create the stream on Streamyard.
 - [x] Get the Streamyard invite link and put it in the "location" of the calendar invite to the guests.
 - [x] Get the YouTube link to the show. Put the link on this page, in the URL property above.
-- [ ] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/).
-- [ ] Create an event and announce it on the [Grafana & Friends Virtual Community Events calendar](https://luma.com/grafana-and-friends-virtual)
+- [x] Create an event and announce it [on the Grafana Meetup page](https://www.meetup.com/grafana-friends-virtual-meetup-group/): https://www.meetup.com/grafana-friends-virtual-meetup-group/events/315282232/
+- [x] Create an event and announce it on the Luma [Grafana & Friends Virtual Community Events calendar](https://luma.com/grafana-and-friends-virtual): https://luma.com/zgpb5y34
 - [ ] Schedule a Slack message:
   - [ ] internal Slack: `#opentelemetry`
 - [ ] Announce in `#community-champions` and `#opentelemetry` community Slack channels and ask for questions.  Yes, this is excessive. Let's change this process!
