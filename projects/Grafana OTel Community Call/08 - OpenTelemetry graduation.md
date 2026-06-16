@@ -18,7 +18,7 @@ Guests: "Ted Young", "Marylia Gutierrez", "Tiffany Hrabusa"
 	> At Grafana Labs, we do a livestream called [Grafana OTel Community Call](https://www.youtube.com/watch?v=uk7NoagbJ28&list=PLDGkOdUX1Ujrrse-cdj20RRah9hyHdxBu) - TODO, where we have guests on to talk about OpenTelemetry and Grafana working together to provide observability. I saw your [blog post/video/post] on [source] and I think it would be great to have you on the show to share your experience about [topic].
 	Grafana OTel Community Call is an hour-long live conversation that is streamed to the [Grafana YouTube channel](https://youtube.com/@grafana). It's very casual, and you can also share your screen if you'd like to do a demo (not required). If you'd like to join, I'd love to have you!
 - [x] If the guests agree, choose a date for the Grafana OTel Community Call session. Check [the Monday board](https://grafana-labs.monday.com/boards/5724430500) to make sure no other livestream is scheduled for that day. Add a card for that date and time to save the spot.
-- [ ] Confirm the time with the guests. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
+- [x] Confirm the time with the guests. Ask them for a photo you can use for promotion, or ask for permission to use their profile pic on social media.
 - [x] Invite them to the Grafana OTel Community Call calendar invite (choose "this instance only", not the whole series). Schedule the invite for 15 minutes before the stream (to do a tech check) until 15 minutes after the stream (to debrief). The invite should be for 1.5 hours total. Explain this to them.
 - [x] Create a thumbnail on [Canva](https://canva.com) using the Grafana OTel Community Call thumbnail format. Use [thumbsup.tv](https://thumbsup.tv) to check how the thumbnail looks on different devices. [Here are some guidelines for creating thumbnails](https://notes.nicolevanderhoeven.com/Create+engaging+thumbnails).
 - [x] Schedule the broadcast on [Streamyard](https://streamyard.com), and select the Grafana YouTube channel as the destination.
@@ -31,10 +31,11 @@ Guests: "Ted Young", "Marylia Gutierrez", "Tiffany Hrabusa"
 - [x] Create an event and announce it on the Luma [Grafana & Friends Virtual Community Events calendar](https://luma.com/grafana-and-friends-virtual): https://luma.com/zgpb5y34
 - [ ] Schedule a Slack message:
   - [ ] internal Slack: `#opentelemetry`
-- [ ] Announce in `#community-champions` and `#opentelemetry` community Slack channels and ask for questions.  Yes, this is excessive. Let's change this process!
-- [ ] Schedule a Slack message on the public Grafana Slack workspace (`#opentelemetry`).
+- [ ] Announce in `#community-champions` and `#opentelemetry` community Slack channels and ask for questions.
+- [ ] Schedule a Slack message on the public Grafana Slack workspace (`#opentelemetry` and `events`).
 - [ ] Add your call to the Community Calendar
   - [x] Monthly calendar in the forum, e.g., for June at https://community.grafana.com/t/grafana-community-events-june/148715.
+  - [ ] Google Calendar, need access.
 - [ ] Create a thread in the community forums similar to https://community.grafana.com/t/grafana-otel-community-call-observability-for-genai-apps/161050 
 [ ] Think of any reference links you might want to give the audience. Add it to the YouTube description.
 
