@@ -35,7 +35,8 @@ Guests: "Ted Young", "Marylia Gutierrez", "Tiffany Hrabusa"
 - [ ] Schedule a Slack message on the public Grafana Slack workspace (`#opentelemetry`).
 - [ ] Add your call to the Community Calendar
   - [x] Monthly calendar in the forum, e.g., for June at https://community.grafana.com/t/grafana-community-events-june/148715.
-- [ ] Think of any reference links you might want to give the audience. Add it to the YouTube description.
+- [ ] Create a thread in the community forums similar to https://community.grafana.com/t/grafana-otel-community-call-observability-for-genai-apps/161050 
+[ ] Think of any reference links you might want to give the audience. Add it to the YouTube description.
 
 ## Talking points
 
