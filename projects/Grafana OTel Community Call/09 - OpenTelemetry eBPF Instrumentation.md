@@ -76,7 +76,7 @@ Reference links to gather ahead of time:
   - The hardest part of maintaining something used across many companies/vendors now
   - Nikola's GPU/eBPF auto-instrumentation work (SREcon25 EMEA talk) — anything crossing over into OBI?
 - Where it's headed
-  - 2026 goals for OBI
+  - 2026 goals for OBI, what's the [roadmap](https://github.com/orgs/open-telemetry/projects/187): stable v1.0...
   - Language/runtime coverage gaps today
   - How it plays with SDK-based instrumentation and Grafana Alloy/Tempo/Pyroscope
 - The human side
