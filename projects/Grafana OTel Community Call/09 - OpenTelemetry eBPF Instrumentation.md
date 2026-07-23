@@ -68,6 +68,7 @@ Reference links to gather ahead of time:
     - Protocol coverage growth (HTTP/HTTPS + gRPC → Kafka, MongoDB, SQL, Redis)
     - Deployment shape (DaemonSet?, ...)
   - What you get "for free" vs. what still needs an SDK
+  - Metrics are the easy win. What about traces, logs, and continuous profiling? 
   - Live demo? instrumenting a service with zero code changes
 - Maintaining an OTel SIG day-to-day
   - What does a maintainer actually do — triage, review, roadmap calls?
