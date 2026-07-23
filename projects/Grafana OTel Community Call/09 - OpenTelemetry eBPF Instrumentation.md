@@ -64,8 +64,11 @@ Reference links to gather ahead of time:
   - Who's contributing now — Grafana, Splunk, Odigos, Coralogix, others
 - How eBPF instrumentation actually works
   - Zero-code, out-of-process instrumentation at the protocol level vs. library-level instrumentation
+    - Java, .NET, Go, Python, Ruby, Node.js, C, C++, Rust - concrete example of what "protocol-level, not library-level" buys you
+    - Protocol coverage growth (HTTP/HTTPS + gRPC → Kafka, MongoDB, SQL, Redis)
+    - Deployment shape (DaemonSet?, ...)
   - What you get "for free" vs. what still needs an SDK
-  - Live demo: instrumenting a service with zero code changes
+  - Live demo? instrumenting a service with zero code changes
 - Maintaining an OTel SIG day-to-day
   - What does a maintainer actually do — triage, review, roadmap calls?
   - How the eBPF Instrumentation SIG runs (weekly community call, CNCF Slack `#otel-ebpf-instrumentation`)
