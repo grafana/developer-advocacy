@@ -79,19 +79,19 @@ Reference links to gather ahead of time:
   - Context propagation — how trace context flows through `http.RoundTripper` / middleware
   - Metrics & the `Labeler` — how custom attributes get attached without blowing up cardinality
   - Route/path cardinality pitfalls in production — what goes wrong when people don't set `WithRouteTag` (or similar) correctly
-  - Live demo? (open to whatever Sonal wants to show — could be otelhttp, could be something else)
 - Semantic conventions & evolution
   - The `error.type` metric attribute work (#8801) — why HTTP semconv keeps evolving, and what that means for a stable library
   - How otelhttp balances shipping semconv changes with not breaking existing users
-- PR review & backwards compatibility in go-contrib
-  - What she looks for when reviewing a PR to otelhttp
+- PR review process
+  - What she looks for when reviewing a PR to otelhttp.
+  - How has AI changed your review process?
   - Deprecation as a pattern (not deletion) — how the project keeps compatibility promises
   - Working with other approvers/codeowners — how decisions get made when people disagree
 - Where otelhttp is headed
   - The open `Labeler` redesign (#8688) — scoped context keys, function-based API — what problem does this solve?
   - What's on the roadmap for otelhttp / semconv alignment
   - How semconv, go-contrib, and other language SIGs coordinate on HTTP instrumentation
-- Mention: Sonal's upcoming IndiaFOSS talk, "How OTel instrumentation works under the hood" — quick plug if timing allows
+- Sonal's IndiaFOSS talk, "How OTel instrumentation works under the hood" — quick plug if timing allows, share live demo if there is time.
 - The human side
   - Favorite "aha" moment maintaining otelhttp
   - What keeps her motivated to keep contributing
