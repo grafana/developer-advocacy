@@ -5,11 +5,11 @@ date: September 28th 2026, 14:00 CEST
 
 # [[10 - Becoming a Codeowner - Inside OpenTelemetry's otelhttp]]
 
-[Link to YouTube video]()
+[Link to YouTube video](https://www.youtube.com/live/s6pQ-Taj2u0?si=RKpSPQrlF9We5elN)
 
 Guests:: Sonal Gaud
 
-**Title:** Becoming a Codeowner: Inside OpenTelemetry's otelhttp (Grafana ❤️‍🔥 OTel Community Call #10)
+**Title:** Path to OTel Code Owner: Lessons from otelhttp (Grafana ❤️‍🔥 OpenTelemetry Community Call #10)
 
 **Description:**
 
@@ -17,10 +17,12 @@ In this episode of the Grafana OTel Community Call, we're joined by Sonal Gaud, 
 
 We'll also talk about what it's like reviewing PRs and protecting backwards compatibility in a widely-used contrib package, and where otelhttp is headed next.
 
-Guests: Sonal Gaud (https://www.linkedin.com/in/sonal-gaud/, https://github.com/sonalgaud12)
-Hosts: Imma Valls (https://www.linkedin.com/in/imma-valls/)
+Guest: 
+ · Sonal Gaud (https://www.linkedin.com/in/sonal-gaud/, https://sonalgaud12.github.io/)
+Hosts: 
+ · Imma Valls (https://www.linkedin.com/in/imma-valls/)
 
-Join the conversation, bring your questions, and learn how this project evolves with contributions from across the community.
+Join the conversation, bring your questions, and learn how OpenTelemetry evolves with contributions from across the community.
 
 #opentelemetry #golang #http #grafana #observability
 
@@ -28,21 +30,21 @@ Join the conversation, bring your questions, and learn how this project evolves 
 
 - [x] Create a new `.md` file and copy this template into it. Check things off as you work through it.
 - [x] Update [Grafana OTel Community Call Readme](/projects/Grafana%20OTel%20Community%20Call.md) to add this file to the table.
-- [ ] Contact Sonal about the show (internal — just a Slack ping, not a cold outreach).
-- [ ] Date/time already agreed with Sonal: September 28th 2026, 14:00 CEST. Double check [the Monday board](https://grafana-labs.monday.com/boards/5724430500) to avoid clashing with another livestream.
-- [ ] Confirm the time with Sonal (1.5 hours total: 15 min tech check + 1hr stream + 15 min debrief).
-- [ ] Send the calendar invite ("this instance only").
-- [ ] Create a thumbnail on Canva using the standard format; check on thumbsup.tv.
-- [ ] Schedule the broadcast on Streamyard → Grafana YouTube channel.
-  - [ ] Title: Becoming a Codeowner: Inside OpenTelemetry's otelhttp (Grafana ❤️‍🔥 OTel Community Call #10)
-  - [ ] Add standard description + guest's contact/social links.
-- [ ] Get the Streamyard invite link into the calendar invite location field.
-- [ ] Announce on the Grafana Meetup page and the Luma Grafana & Friends calendar.
+- [x] Contact Sonal about the show.
+- [x] Date/time already agreed with Sonal: September 28th 2026, 14:00 CEST. Double check [the Monday board](https://grafana-labs.monday.com/boards/5724430500) to avoid clashing with another livestream.
+- [x] Confirm the time with Sonal (1.5 hours total: 15 min tech check + 1hr stream + 15 min debrief).
+- [x] Create a thumbnail on Canva using the standard format; check on thumbsup.tv.
+- [x] Schedule the broadcast on Streamyard → Grafana YouTube channel.
+  - [x] Title: "Path to OTel Code Owner: Lessons from otelhttp (Grafana ❤️‍🔥 OpenTelemetry Community Call #10)"
+  - [x] Add standard description + guest's contact/social links.
+- [x] Send the calendar invite ("this instance only").
+- [x] Get the Streamyard invite link into the calendar invite location field.
+- [x] Announce on the Grafana Meetup page and the Luma Grafana & Friends calendar.
 - [ ] Slack: `#opentelemetry`, `#community-champions` (internal); public Grafana Slack `#opentelemetry` + events.
 - [ ] Add to the monthly Community Calendar forum thread (community.grafana.com) and Google Calendar.
 - [ ] Create a community forum thread for the episode (same pattern as past ones, e.g. the GenAI apps thread).
 - [ ] Ask Sonal if she wants to do a live demo (otelhttp or otherwise), and if so, do a quick screen-share check beforehand.
-- [ ] Confirm whether Sonal's IndiaFOSS talk ("How OTel instrumentation works under the hood") lands on/around the same day — mention it briefly, don't cross-promote if it's not out yet.
+- [x] Confirm whether Sonal's IndiaFOSS talk ("How OTel instrumentation works under the hood") lands on/around the same day. Previous day, so we can mention the talk and reuse the demo, if there is time. 
 
 Reference links to gather ahead of time:
 
@@ -96,7 +98,7 @@ Reference links to gather ahead of time:
   - Favorite "aha" moment maintaining otelhttp
   - What keeps her motivated to keep contributing
 - Outro
-  - Where should people go to start contributing to otelhttp?
+  - Where should people go to start contributing to `otelhttp`?
 
 ### Just before the show
 
