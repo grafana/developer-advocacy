@@ -1,4 +1,4 @@
-annotated-types==0.7.0
+annotated-types==0.8.0
 anyio==4.6.2.post1
 babel==2.18.0
 beautifulsoup4==4.15.0
