@@ -40,10 +40,10 @@ Join the conversation, bring your questions, and learn how OpenTelemetry evolves
 - [x] Send the calendar invite ("this instance only").
 - [x] Get the Streamyard invite link into the calendar invite location field.
 - [x] Announce on the Grafana Meetup page and the Luma Grafana & Friends calendar.
-- [ ] Slack: `#opentelemetry`, `#community-champions` (internal); public Grafana Slack `#opentelemetry` + events.
-- [ ] Add to the monthly Community Calendar forum thread (community.grafana.com) and Google Calendar.
-- [ ] Create a community forum thread for the episode (same pattern as past ones, e.g. the GenAI apps thread).
-- [ ] Ask Sonal if she wants to do a live demo (otelhttp or otherwise), and if so, do a quick screen-share check beforehand.
+- [x] Slack: `#opentelemetry`, `#community-champions` (internal); public Grafana Slack `#opentelemetry` + events.
+- [x] Add to the monthly Community Calendar forum thread (community.grafana.com) and Google Calendar.
+- [x] Create a community forum thread for the episode (same pattern as past ones, e.g. the GenAI apps thread).
+- [x] Ask Sonal if she wants to do a live demo (otelhttp or otherwise), and if so, do a quick screen-share check beforehand.
 - [x] Confirm whether Sonal's IndiaFOSS talk ("How OTel instrumentation works under the hood") lands on/around the same day. Previous day, so we can mention the talk and reuse the demo, if there is time. 
 
 Reference links to gather ahead of time:
@@ -112,12 +112,12 @@ Reference links to gather ahead of time:
 
 ## Post-show checklist
 
-- [ ] Add timestamps (at least four).
-- [ ] Add shared links to the video description.
+- [x] Add timestamps (at least four).
+- [x] Add shared links to the video description.
 - [ ] Add YouTube cards at relevant points.
-- [ ] Add to the "Grafana OTel Community Call" playlist.
-- [ ] Upload recording to the shared Drive folder.
-- [ ] Consider repurposing into shorts (e.g., "what is otelhttp in 60 seconds", "how to become an OTel codeowner").
+- [x] Add to the "Grafana OTel Community Call" playlist.
+- [x] Upload recording to the shared Drive folder.
+- [x] Consider repurposing into shorts (e.g., "what is otelhttp in 60 seconds", "how to become an OTel codeowner").
 - [ ] Update the Advocate Contributions sheet.
 - [ ] Promote on Grafana socials (X, Bluesky, LinkedIn).
 
