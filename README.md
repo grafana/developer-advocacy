@@ -20,7 +20,7 @@ We are the Developer Advocacy team at Grafana Labs, dedicated to empowering deve
 - [Café con Grafana](projects/CafeConGrafana/README.md) - Spanish-language program showcasing Grafana and related products
 - [Adobo and Avocados](projects/Adobo%20and%20Avocados/Adobo%20and%20Avocados%20README.md) - Weekly livestream about intersectionality in tech, diversity, and making tech welcoming for everyone
 - [Loki Community Calls](projects/Loki%20Community%20Calls/Loki%20Community%20Calls.md) - Community calls focused on Grafana Loki
-- [Grafana OTel Community Call](projects/Grafana%20OTel%20Community%20Call/Grafana%20OTel%20Community%20Call.md) - Community calls focused on OpenTelemetry
+- [Grafana OTel Community Call](projects/Grafana%20OTel%20Community%20Call/README.md) - Community calls focused on OpenTelemetry
 
 ### Educational & Tutorial Content
 - [Visualize CSV](projects/Visualize%20CSV/README.md) - Complete tutorial on visualizing CSV data with Grafana using the Infinity datasource
