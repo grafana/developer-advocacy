@@ -80,13 +80,13 @@ Reference links to gather ahead of time:
   - Still pre-release: latest is v0.20.0 (Aug 2026), five prereleases since Feb 2026
   - Recent changes worth mentioning **[VERIFY which matter to Fleet Management]**: duplicate `instance_uid` detection (v0.17), transport message size limits and `ComponentHealth.attributes` (v0.19), config map semantics ("file" renamed to "object") (v0.20)
   - What contributing upstream looks like: opamp-spec and opamp-go, who maintains and approves, how to get a proposal accepted
-  - What's working well in the spec, and what's still hard or unsolved **[Paschalis to bring the concrete list]**
+  - What's working well in the spec, and what's still hard or unsolved 
 - Building on a pre-release spec
-  - How do you ship something production-grade on a spec that can still change? **[VERIFY how compatibility is handled, don't claim practices that aren't real]**
+  - How do you ship something production-grade on a spec that can still change? 
   - Where the project and the spec disagree, or the spec is silent
 - Adding OpAMP to Alloy's OTel Engine (Bejal)
   - Why #6632 was needed and how it relates to the OpAMP supervisor
-  - What it took to integrate `opampextension` from collector-contrib, testing and edge cases **[Bejal to bring specifics]**
+  - What it took to integrate `opampextension` from collector-contrib, testing and edge cases 
   - What users can do now: manage Alloy and upstream Collectors from one place
   - What Bejal would do differently
 - What does "GA" mean here?
@@ -95,7 +95,7 @@ Reference links to gather ahead of time:
   - Scale: Fleet Management is managing roughly 500k concurrent collectors, up from about 150k on Jan 1 2026 **[VERIFY: not in the GA announcement, confirm the numbers and approved wording]**
   - What's working well in production, and the known rough edges
 - Where is it headed?
-  - The built-in / Alloy-native OpAMP solution that #6632 is a prerequisite for **[VERIFY what can be said publicly]**
+  - The built-in / Alloy-native OpAMP solution that #6632 is a prerequisite for.
   - What Grafana would like to see upstream
   - How people can contribute: spec issues, opamp-go, testing against real fleets
 - Community questions to seed the discussion
