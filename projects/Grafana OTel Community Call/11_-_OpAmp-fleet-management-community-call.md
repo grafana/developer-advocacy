@@ -1,94 +1,131 @@
-# Grafana OpenTelemetry Community Call: OpAMP & Fleet Management
+---
+url:
+date: TBD
+---
 
-> DRAFT. Items marked **[VERIFY]** need confirmation before publishing.
+# [[11 - OpAMP and Fleet Management]]
 
-## 1. Title
+Link to YouTube video: TBD
 
-**Managing Collectors at Scale: OpAMP, Fleet Management, and Building on a Pre-1.0 Spec**
+Guests:: [Bejal Lewis](https://www.linkedin.com/in/bejal-lewis/), [Paschalis Tsilias](https://www.linkedin.com/in/tsilias/)
 
-Alternates:
-- OpAMP in Production: What Works, What's Missing, What's Next
-- "GA" on a Pre-Release Spec: Lessons from Running OpAMP at Scale
+**Title:** Managing Collectors at Scale: OpAMP and Fleet Management (Grafana ❤️‍🔥 OpenTelemetry Community Call #11)
 
-## 2. Public description
+**Description:**
 
-Managing a handful of OpenTelemetry Collectors is easy. Managing thousands is a different problem. OpAMP, the Open Agent Management Protocol, is the vendor-neutral answer, but the spec is still pre-release (v0.20.0 at the time of writing). In this community call, two Grafana Labs engineers walk through what it took to ship remote management for upstream OTel Collectors and Grafana Alloy on top of OpAMP, what we learned running it in production, and where the spec still has gaps. Bring your questions, war stories, and opinions on where OpAMP should go next.
+In this episode of the Grafana OTel Community Call, we're joined by Bejal Lewis and Paschalis Tsilias from Grafana Labs to talk about OpAMP, the Open Agent Management Protocol, and what it takes to manage OpenTelemetry Collectors at scale. We'll cover what OpAMP is and why fleet management matters, where the spec stands today (it's still pre-release), and what it was like building production tooling on top of it.
 
-## 3. Speakers
+We'll also look at what went into adding the OpAMP extension to Grafana Alloy's OTel Engine, what "GA" means for Grafana Fleet Management versus the maturity of the upstream spec, and where OpAMP is headed next.
 
-**Paschalis Tsilias**, Principal Software Engineer, Grafana Labs (Greece)
-Paschalis works on Grafana's Fleet Management team and contributes upstream to open-telemetry/opamp-spec and open-telemetry/opamp-go, where they are among the top contributors. They also registered Grafana Labs as an OpenTelemetry vendor/distributor on opentelemetry.io. Paschalis brings the upstream and spec perspective.
+Guests:
+ · Bejal Lewis (https://www.linkedin.com/in/bejal-lewis/)
+ · Paschalis Tsilias (https://www.linkedin.com/in/tsilias/)
+Hosts:
+ · Imma Valls (https://www.linkedin.com/in/imma-valls/)
 
-**Bejal Lewis**, Staff Software Engineer, Grafana Labs (Berlin, Germany)
-Bejal works on Grafana Alloy and authored the change that added the OpAMP extension to Alloy's OpenTelemetry Engine (grafana/alloy#6632). That work lets users manage Alloy and upstream Collector distributions via the OpAMP supervisor. Bejal brings the hands-on implementation perspective.
+Join the conversation, bring your questions, and learn how OpenTelemetry evolves with contributions from across the community.
 
-**Host / moderator:** Imma Valls **[VERIFY: confirm hosts, add co-host/OTel community guest if any]**
+#opentelemetry #opamp #collector #grafana #observability
 
-*Suggestion:* invite an upstream OpAMP maintainer or approver (non-Grafana) for a short segment or as a Q&A panelist. It strengthens the community-first framing, but they must opt in.
+## Pre-show checklist
 
-## 4. Agenda (60 min)
+- [x] Create a new `.md` file and copy this template into it. Check things off as you work through it.
+- [x] Update [Grafana OTel Community Call Readme](README.md) to add this file to the table.
+- [ ] Contact Paschalis and Bejal about the show.
+- [ ] Choose a date/time with both guests (date is TBD). Check [the Monday board](https://grafana-labs.monday.com/boards/5724430500) to avoid clashing with another livestream.
+- [ ] Confirm the time with the guests (1.5 hours total: 15 min tech check + 1hr stream + 15 min debrief).
+- [ ] Create a thumbnail on Canva using the standard format; check on thumbsup.tv.
+- [ ] Schedule the broadcast on Streamyard → Grafana YouTube channel.
+  - [ ] Title: "Managing Collectors at Scale: OpAMP and Fleet Management (Grafana ❤️‍🔥 OpenTelemetry Community Call #11)"
+  - [ ] Add standard description + guests' contact/social links.
+- [ ] Send the calendar invite ("this instance only").
+- [ ] Get the Streamyard invite link into the calendar invite location field.
+- [ ] Announce on the Grafana Meetup page and the Luma Grafana & Friends calendar.
+- [ ] Slack: `#opentelemetry`, `#community-champions` (internal); public Grafana Slack `#opentelemetry` + events.
+- [ ] Add to the monthly Community Calendar forum thread (community.grafana.com) and Google Calendar.
+- [ ] Create a community forum thread for the episode (same pattern as past ones).
+- [ ] Ask the guests if they want to do a live demo (e.g. onboarding a collector in Fleet Management and rolling out a config with attribute matchers), and if so, do a quick screen-share check beforehand.
+- [ ] Get the LinkedIn profile URLs for Paschalis and Bejal and add them above and to the README.
+- [ ] Re-check the latest opamp-spec release the day before the call (v0.20.0, Aug 12 2026, as of Oct 6 2026).
+- [ ] Confirm with the Fleet Management team what can be said publicly: the collector scale numbers (see below) and anything about the Alloy-native OpAMP solution.
+- [ ] Optional: ask if an upstream OpAMP maintainer or approver (not from Grafana) would like to join for a short segment or Q&A.
 
-| Time | Section | Lead |
-|---|---|---|
-| 0:00–0:05 | Welcome & framing | Host |
-| 0:05–0:15 | OpAMP 101: why fleet management matters | Paschalis |
-| 0:15–0:27 | The spec today: state, process, and gaps | Paschalis |
-| 0:27–0:40 | Building and shipping on OpAMP | Bejal |
-| 0:40–0:47 | What GA means (and doesn't) | Both |
-| 0:47–0:52 | What's next | Both |
-| 0:52–1:00 | Community Q&A | Host |
+Reference links to gather ahead of time:
 
-### 0:00–0:05 Welcome & framing
-- Introduce speakers and the format: community call, not a product demo.
-- State the goal: share what's built, where the spec is heading, and hear from the community.
-- Quick poll or chat prompt: who is running more than 10 / 100 / 1000 collectors?
-- Point to the upstream repos and the #otel-opamp channel for follow-up **[VERIFY channel name]**.
+- https://grafana.com/whats-new/2026-07-08-remote-management-of-opentelemetry-collectors-is-generally-available/ (Fleet Management GA announcement, July 8 2026)
+- https://github.com/open-telemetry/opamp-spec (OpAMP spec)
+- https://github.com/open-telemetry/opamp-spec/releases (releases; latest checked: v0.20.0, Aug 12 2026, prerelease)
+- https://github.com/open-telemetry/opamp-go (Go implementation)
+- https://github.com/grafana/alloy/pull/6632 (Add OpAMP Extension to OTel Engine, merged July 3 2026)
+- https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/opampextension (opampextension)
+- Link to the Grafana Fleet Management docs (TODO)
+- Guests' LinkedIn profiles (TODO)
 
-### 0:05–0:15 OpAMP 101: why fleet management matters
-- The problem: config drift, no visibility into which collectors are healthy, and risky manual rollouts once a fleet grows.
-- What OpAMP is: a vendor-agnostic protocol for agents to report status, receive remote config, and receive package updates.
-- The value of a single pane of glass across mixed fleets, not just one vendor's agents.
-- The supervisor model: why a separate process manages the Collector rather than the Collector managing itself.
-- Where OpAMP sits relative to what people do today (config management tools, GitOps, custom control planes).
+## Talking points
 
-### 0:15–0:27 The spec today: state, process, and gaps
-- Maturity: still pre-release (latest is v0.20.0, Aug 12 2026; 5 prereleases since Feb 2026: v0.16 to v0.20), so breaking changes remain possible.
-- Recent spec movement worth discussing: v0.17 (duplicate `instance_uid` detection, default OpAMP port, HTTP routing through the Collector), v0.19 (transport message size limits, `ComponentHealth.attributes`, role support in agent config, proto folder restructure), v0.20 (config map semantics: "file" renamed to "object", empty keys allowed). **[VERIFY with Paschalis which of these matter in practice for Fleet Management]**
-- Cadence: roughly one release every 1 to 3 months; ask how that affects compatibility pinning.
-- How the spec and opamp-go evolve: who maintains and approves, and how contributors can get involved.
-- Paschalis's experience contributing upstream: what the process is like, what a good proposal looks like.
-- What's working well in the spec and what's still hard or unsolved. **[Paschalis to supply the concrete list; e.g. areas such as capabilities, auth, large-fleet behavior, if accurate]**
-- The tension: shipping production tooling against a moving spec, and how to manage compatibility risk.
+> Tentative bullet points, not a script. Keep it casual and adjust with the guests. Items marked **[VERIFY]** need confirming with them first.
 
-### 0:27–0:40 Building and shipping on OpAMP
-- Why add the OpAMP extension to Alloy's OTel Engine (#6632), and how it relates to the OpAMP supervisor path.
-- What it took in practice: integrating `opampextension` from collector-contrib, testing, and edge cases. **[Bejal to supply specifics]**
-- What users can do now: manage Alloy and upstream Collectors from one place.
-- Short demo or screenshot walk-through (optional, max 3 min): onboard a collector, push a config, use attribute matchers for a targeted rollout.
-- Lessons learned and things Bejal would do differently.
+- Intro
+  - *Hello and welcome to Grafana OTel Community Call. I'm `<name>`, a `<position>` at Grafana Labs, and today we're talking about OpAMP and managing OpenTelemetry Collectors at scale.*
+- Introduce guests: Paschalis Tsilias and Bejal Lewis
+  - Who are you, and what do you work on day to day?
+  - How did you each end up working on OpAMP / fleet management?
+- What is OpAMP and why does it matter?
+  - The problem at scale: config drift, no visibility into which collectors are healthy, risky manual rollouts
+  - What OpAMP is: a vendor-agnostic protocol for agents to report status, receive remote config and receive package updates
+  - Why a supervisor process manages the Collector, rather than the Collector managing itself
+  - Mixed fleets: one place to manage Alloy and upstream Collectors
+- The spec today (Paschalis)
+  - Still pre-release: latest is v0.20.0 (Aug 2026), five prereleases since Feb 2026
+  - Recent changes worth mentioning **[VERIFY which matter to Fleet Management]**: duplicate `instance_uid` detection (v0.17), transport message size limits and `ComponentHealth.attributes` (v0.19), config map semantics ("file" renamed to "object") (v0.20)
+  - What contributing upstream looks like: opamp-spec and opamp-go, who maintains and approves, how to get a proposal accepted
+  - What's working well in the spec, and what's still hard or unsolved **[Paschalis to bring the concrete list]**
+- Building on a pre-release spec
+  - How do you ship something production-grade on a spec that can still change? **[VERIFY how compatibility is handled, don't claim practices that aren't real]**
+  - Where the project and the spec disagree, or the spec is silent
+- Adding OpAMP to Alloy's OTel Engine (Bejal)
+  - Why #6632 was needed and how it relates to the OpAMP supervisor
+  - What it took to integrate `opampextension` from collector-contrib, testing and edge cases **[Bejal to bring specifics]**
+  - What users can do now: manage Alloy and upstream Collectors from one place
+  - What Bejal would do differently
+- What does "GA" mean here?
+  - Grafana Fleet Management GA (July 8 2026): health monitoring, centralized configuration, attribute matchers for targeted rollouts, standard OTel YAML pipelines
+  - Product GA is not spec stability. How do we talk about that honestly with users?
+  - Scale: Fleet Management is managing roughly 500k concurrent collectors, up from about 150k on Jan 1 2026 **[VERIFY: not in the GA announcement, confirm the numbers and approved wording]**
+  - What's working well in production, and the known rough edges
+- Where is it headed?
+  - The built-in / Alloy-native OpAMP solution that #6632 is a prerequisite for **[VERIFY what can be said publicly]**
+  - What Grafana would like to see upstream
+  - How people can contribute: spec issues, opamp-go, testing against real fleets
+- Community questions to seed the discussion
+  - What would make you comfortable adopting OpAMP in production while the spec is pre-release?
+  - What do you need from fleet management that the spec doesn't cover yet (auth, rollout strategies, rollback, non-Collector agents)?
+  - How do you manage collector config today (GitOps, Ansible, Helm, custom control plane), and what would it take to move to OpAMP?
+- Outro
+  - Where should people go to get started with OpAMP and to contribute?
 
-### 0:40–0:47 What GA means (and doesn't)
-- Grafana's GA: Fleet Management support for remote management of OTel Collectors is production-ready, with health monitoring, centralized config, and attribute matchers.
-- Not the same as spec maturity: GA of a product feature does not make the OpAMP spec stable.
-- How Grafana handles the gap: version pinning, compatibility testing, upstream engagement. **[VERIFY with speakers; don't claim practices that aren't real]**
-- Scale signal: Fleet Management is managing roughly 500k concurrent collectors, up from about 150k on Jan 1 2026. **[VERIFY: not in the GA announcement; confirm figure and approved wording for public use]**
-- What's working well in production, and honest limits or known rough edges.
+### Just before the show
 
-### 0:47–0:52 What's next
-- The Alloy-native/built-in OpAMP solution that #6632 was a prerequisite for. **[VERIFY what can be said publicly; keep to what's approved]**
-- Upstream priorities Grafana would like to see in the spec.
-- How community members can contribute: spec issues, opamp-go, testing against real fleets.
+> Here are some points to discuss with the guests in the 15 minutes before the stream begins.
 
-### 0:52–1:00 Community Q&A
-Suggested seed questions if the room is quiet:
-1. What would make you comfortable adopting OpAMP in production while the spec is pre-release? What's the blocker today?
-2. What do you need from fleet management that today's OpAMP spec doesn't cover (auth models, rollout strategies, rollback, non-Collector agents)?
-3. How do you manage collector config today (GitOps, Ansible, Helm, custom control plane), and what would it take to move to OpAMP?
+- [ ] How do you pronounce your name?
+- [ ] Pronouns?
+- [ ] Reassure: talking points are a guide, not a script.
+- [ ] Screen-share check if doing a live demo.
+- [ ] Standard streaming logistics reminder (comments via private chat, can pivot away from any topic, stick around after for debrief, stall if host disconnects).
 
-## 5. Notes before publishing
+## Post-show checklist
 
-- **Source check:** The GA page confirms GA, health monitoring, centralized config, attribute matchers, Alloy plus upstream Collector support, mixed fleets, standard OTel YAML pipelines, and the OpAMP supervisor. It does **not** include scale numbers or supervisor implementation details, so the ~500k/150k figures and any technical depth must come from you or the speakers.
-- **Dates:** Your brief has #6632 merged July 3, 2026 and GA on July 8, 2026. Spec version checked against opamp-spec releases on Oct 6, 2026: latest is v0.20.0 (Aug 12, 2026, prerelease). The brief said v0.18.0, which is now two releases behind. Re-check the day before the call.
-- **Internal details left out:** Engineering managers and squad names are intentionally not in the public bios.
-- **Pronouns:** Bios avoid pronouns; add them if the speakers want.
-- **Tone check:** Consider running the public description through brand review.
+- [ ] Add timestamps (at least four).
+- [ ] Add shared links to the video description.
+- [ ] Add YouTube cards at relevant points.
+- [ ] Add to the "Grafana OTel Community Call" playlist.
+- [ ] Upload recording to the shared Drive folder.
+- [ ] Consider repurposing into shorts (e.g., "what is OpAMP in 60 seconds", "what does GA mean on a pre-release spec").
+- [ ] Update the Advocate Contributions sheet.
+- [ ] Promote on Grafana socials (X, Bluesky, LinkedIn).
+- [ ] Update the README table with the date and YouTube link.
+
+### Timestamps
+
+00:00:00 Introductions
