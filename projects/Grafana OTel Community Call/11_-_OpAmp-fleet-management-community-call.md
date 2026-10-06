@@ -18,10 +18,10 @@ In this episode of the Grafana OTel Community Call, we're joined by Bejal Lewis 
 We'll also look at what went into adding the OpAMP extension to Grafana Alloy's OTel Engine, what "GA" means for Grafana Fleet Management versus the maturity of the upstream spec, and where OpAMP is headed next.
 
 Guests:
- · Bejal Lewis (https://www.linkedin.com/in/bejal-lewis/)
- · Paschalis Tsilias (https://www.linkedin.com/in/tsilias/)
+- Bejal Lewis (https://www.linkedin.com/in/bejal-lewis/)
+- Paschalis Tsilias (https://www.linkedin.com/in/tsilias/)
 Hosts:
- · Imma Valls (https://www.linkedin.com/in/imma-valls/)
+- Imma Valls (https://www.linkedin.com/in/imma-valls/)
 
 Join the conversation, bring your questions, and learn how OpenTelemetry evolves with contributions from across the community.
 
