@@ -20,6 +20,7 @@ We'll also look at what went into adding the OpAMP extension to Grafana Alloy's 
 Guests:
 - Bejal Lewis (https://www.linkedin.com/in/bejal-lewis/)
 - Paschalis Tsilias (https://www.linkedin.com/in/tsilias/)
+
 Hosts:
 - Imma Valls (https://www.linkedin.com/in/imma-valls/)
 
