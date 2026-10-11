@@ -1,11 +1,11 @@
 ---
-url:
-date: TBD
+url: https://www.youtube.com/watch?v=bYLxme3CoZg
+date: 21-10-2026
 ---
 
 # [[11 - OpAMP and Fleet Management]]
 
-Link to YouTube video: TBD
+Link to YouTube video: https://www.youtube.com/watch?v=bYLxme3CoZg
 
 Guests:: [Bejal Lewis](https://www.linkedin.com/in/bejal-lewis/), [Paschalis Tsilias](https://www.linkedin.com/in/tsilias/)
 
@@ -32,21 +32,21 @@ Join the conversation, bring your questions, and learn how OpenTelemetry evolves
 
 - [x] Create a new `.md` file and copy this template into it. Check things off as you work through it.
 - [x] Update [Grafana OTel Community Call Readme](README.md) to add this file to the table.
-- [ ] Contact Paschalis and Bejal about the show.
-- [ ] Choose a date/time with both guests (date is TBD). Check [the Monday board](https://grafana-labs.monday.com/boards/5724430500) to avoid clashing with another livestream.
-- [ ] Confirm the time with the guests (1.5 hours total: 15 min tech check + 1hr stream + 15 min debrief).
-- [ ] Create a thumbnail on Canva using the standard format; check on thumbsup.tv.
-- [ ] Schedule the broadcast on Streamyard → Grafana YouTube channel.
-  - [ ] Title: "Managing Collectors at Scale: OpAMP and Fleet Management (Grafana ❤️‍🔥 OpenTelemetry Community Call #11)"
-  - [ ] Add standard description + guests' contact/social links.
-- [ ] Send the calendar invite ("this instance only").
-- [ ] Get the Streamyard invite link into the calendar invite location field.
-- [ ] Announce on the Grafana Meetup page and the Luma Grafana & Friends calendar.
+- [x] Contact Paschalis and Bejal about the show.
+- [x] Choose a date/time with both guests (date is TBD). Check [the Monday board](https://grafana-labs.monday.com/boards/5724430500) to avoid clashing with another livestream.
+- [x] Confirm the time with the guests (1.5 hours total: 15 min tech check + 1hr stream + 15 min debrief).
+- [x] Create a thumbnail on Canva using the standard format; check on thumbsup.tv.
+- [x] Schedule the broadcast on Streamyard → Grafana YouTube channel.
+  - [x] Title: "Managing Collectors at Scale: OpAMP and Fleet Management (Grafana ❤️‍🔥 OpenTelemetry Community Call #11)"
+  - [x] Add standard description + guests' contact/social links.
+- [x] Send the calendar invite ("this instance only").
+- [x] Get the Streamyard invite link into the calendar invite location field.
+- [x] Announce on the Grafana Meetup page and the Luma Grafana & Friends calendar.
 - [ ] Slack: `#opentelemetry`, `#community-champions` (internal); public Grafana Slack `#opentelemetry` + events.
 - [ ] Add to the monthly Community Calendar forum thread (community.grafana.com) and Google Calendar.
 - [ ] Create a community forum thread for the episode (same pattern as past ones).
 - [ ] Ask the guests if they want to do a live demo (e.g. onboarding a collector in Fleet Management and rolling out a config with attribute matchers), and if so, do a quick screen-share check beforehand.
-- [ ] Get the LinkedIn profile URLs for Paschalis and Bejal and add them above and to the README.
+- [x] Get the LinkedIn profile URLs for Paschalis and Bejal and add them above and to the README.
 - [ ] Re-check the latest opamp-spec release the day before the call (v0.20.0, Aug 12 2026, as of Oct 6 2026).
 - [ ] Confirm with the Fleet Management team what can be said publicly: the collector scale numbers (see below) and anything about the Alloy-native OpAMP solution.
 - [ ] Optional: ask if an upstream OpAMP maintainer or approver (not from Grafana) would like to join for a short segment or Q&A.
