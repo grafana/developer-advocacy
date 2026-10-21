@@ -7,19 +7,19 @@ date: 21-10-2026
 
 Link to YouTube video: https://www.youtube.com/watch?v=bYLxme3CoZg
 
-Guests:: [Bejal Lewis](https://www.linkedin.com/in/bejal-lewis/), [Paschalis Tsilias](https://www.linkedin.com/in/tsilias/)
+Guests:: [Bejal Lewis](https://www.linkedin.com/in/bejal-lewis/), [Marko Bachvarovski](https://www.linkedin.com/in/markobachvarovski/)
 
 **Title:** Managing Collectors at Scale: OpAMP and Fleet Management (Grafana ❤️‍🔥 OpenTelemetry Community Call #11)
 
 **Description:**
 
-In this episode of the Grafana OTel Community Call, we're joined by Bejal Lewis and Paschalis Tsilias from Grafana Labs to talk about OpAMP, the Open Agent Management Protocol, and what it takes to manage OpenTelemetry Collectors at scale. We'll cover what OpAMP is and why fleet management matters, where the spec stands today (it's still pre-release), and what it was like building production tooling on top of it.
+In this episode of the Grafana OTel Community Call, we're joined by Bejal Lewis and Marko Bachvarovski from Grafana Labs to talk about OpAMP, the Open Agent Management Protocol, and what it takes to manage OpenTelemetry Collectors at scale. We'll cover what OpAMP is and why fleet management matters, where the spec stands today (it's still pre-release), and what it was like building production tooling on top of it.
 
 We'll also look at what went into adding the OpAMP extension to Grafana Alloy's OTel Engine, what "GA" means for Grafana Fleet Management versus the maturity of the upstream spec, and where OpAMP is headed next.
 
 Guests:
 - Bejal Lewis (https://www.linkedin.com/in/bejal-lewis/)
-- Paschalis Tsilias (https://www.linkedin.com/in/tsilias/)
+- Marko Bachvarovski ([https://www.linkedin.com/in/tsilias/](https://www.linkedin.com/in/markobachvarovski/))
 
 Hosts:
 - Imma Valls (https://www.linkedin.com/in/imma-valls/)
@@ -42,14 +42,13 @@ Join the conversation, bring your questions, and learn how OpenTelemetry evolves
 - [x] Send the calendar invite ("this instance only").
 - [x] Get the Streamyard invite link into the calendar invite location field.
 - [x] Announce on the Grafana Meetup page and the Luma Grafana & Friends calendar.
-- [ ] Slack: `#opentelemetry`, `#community-champions` (internal); public Grafana Slack `#opentelemetry` + events.
+- [x] Slack: `#opentelemetry`, `#community-champions` (internal); public Grafana Slack `#opentelemetry` + events.
 - [ ] Add to the monthly Community Calendar forum thread (community.grafana.com) and Google Calendar.
 - [ ] Create a community forum thread for the episode (same pattern as past ones).
-- [ ] Ask the guests if they want to do a live demo (e.g. onboarding a collector in Fleet Management and rolling out a config with attribute matchers), and if so, do a quick screen-share check beforehand.
+- [x] Ask the guests if they want to do a live demo (e.g. onboarding a collector in Fleet Management and rolling out a config with attribute matchers), and if so, do a quick screen-share check beforehand.
 - [x] Get the LinkedIn profile URLs for Paschalis and Bejal and add them above and to the README.
-- [ ] Re-check the latest opamp-spec release the day before the call (v0.20.0, Aug 12 2026, as of Oct 6 2026).
-- [ ] Confirm with the Fleet Management team what can be said publicly: the collector scale numbers (see below) and anything about the Alloy-native OpAMP solution.
-- [ ] Optional: ask if an upstream OpAMP maintainer or approver (not from Grafana) would like to join for a short segment or Q&A.
+- [x] Re-check the latest opamp-spec release the day before the call (v0.20.0, Aug 12 2026, as of Oct 6 2026).
+- [x] Confirm with the Fleet Management team what can be said publicly: the collector scale numbers (see below) and anything about the Alloy-native OpAMP solution.
 
 Reference links to gather ahead of time:
 
@@ -59,8 +58,6 @@ Reference links to gather ahead of time:
 - https://github.com/open-telemetry/opamp-go (Go implementation)
 - https://github.com/grafana/alloy/pull/6632 (Add OpAMP Extension to OTel Engine, merged July 3 2026)
 - https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/opampextension (opampextension)
-- Link to the Grafana Fleet Management docs (TODO)
-- Guests' LinkedIn profiles (TODO)
 
 ## Talking points
 
@@ -117,15 +114,15 @@ Reference links to gather ahead of time:
 
 ## Post-show checklist
 
-- [ ] Add timestamps (at least four).
-- [ ] Add shared links to the video description.
+- [x] Add timestamps (at least four).
+- [x] Add shared links to the video description.
 - [ ] Add YouTube cards at relevant points.
-- [ ] Add to the "Grafana OTel Community Call" playlist.
-- [ ] Upload recording to the shared Drive folder.
-- [ ] Consider repurposing into shorts (e.g., "what is OpAMP in 60 seconds", "what does GA mean on a pre-release spec").
+- [x] Add to the "Grafana OTel Community Call" playlist.
+- [x] Upload recording to the shared Drive folder.
+- [x] Consider repurposing into shorts (e.g., "what is OpAMP in 60 seconds", "what does GA mean on a pre-release spec").
 - [ ] Update the Advocate Contributions sheet.
 - [ ] Promote on Grafana socials (X, Bluesky, LinkedIn).
-- [ ] Update the README table with the date and YouTube link.
+- [x] Update the README table with the date and YouTube link.
 
 ### Timestamps
 
