@@ -1,3 +1,4 @@
+📺 [Watch the full playlist on YouTube](https://www.youtube.com/playlist?list=PLDGkOdUX1Ujr6_60Q5zR7L3bwrx0pMDFH)
 
 | # | Title | Date | Guest(s) | Topic summary | YouTube |
 |---|-------|------|----------|---------------|---------|

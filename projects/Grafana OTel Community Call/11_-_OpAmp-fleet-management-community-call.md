@@ -106,11 +106,11 @@ Reference links to gather ahead of time:
 
 > Here are some points to discuss with the guests in the 15 minutes before the stream begins.
 
-- [ ] How do you pronounce your name?
-- [ ] Pronouns?
-- [ ] Reassure: talking points are a guide, not a script.
-- [ ] Screen-share check if doing a live demo.
-- [ ] Standard streaming logistics reminder (comments via private chat, can pivot away from any topic, stick around after for debrief, stall if host disconnects).
+- [x] How do you pronounce your name?
+- [x] Pronouns?
+- [x] Reassure: talking points are a guide, not a script.
+- [x] Screen-share check if doing a live demo.
+- [x] Standard streaming logistics reminder (comments via private chat, can pivot away from any topic, stick around after for debrief, stall if host disconnects).
 
 ## Post-show checklist
 
@@ -120,8 +120,7 @@ Reference links to gather ahead of time:
 - [x] Add to the "Grafana OTel Community Call" playlist.
 - [x] Upload recording to the shared Drive folder.
 - [x] Consider repurposing into shorts (e.g., "what is OpAMP in 60 seconds", "what does GA mean on a pre-release spec").
-- [ ] Update the Advocate Contributions sheet.
-- [ ] Promote on Grafana socials (X, Bluesky, LinkedIn).
+- [x] Promote on Grafana socials (X, Bluesky, LinkedIn).
 - [x] Update the README table with the date and YouTube link.
 
 ### Timestamps
