@@ -23,7 +23,7 @@ jiter==0.18.0
 jusText==3.0.2
 lxml==6.1.1
 lxml_html_clean==0.4.6
-markdownify==0.14.1
+markdownify==1.2.3
 openai==1.109.1
 proto-plus==1.29.0
 protobuf==6.33.5
