@@ -35,7 +35,7 @@ pyparsing==3.3.3
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.4
 python-slugify==8.0.4
-pytz==2024.2
+pytz==2026.6
 regex==2024.11.6
 requests==2.34.2
 rsa==4.9
