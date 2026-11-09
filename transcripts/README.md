@@ -117,16 +117,16 @@ Each file contains:
 - Cleaned-up transcript
 - Raw YouTube transcript
 
-## Community Calls Index
+## Recurring Shows Index
 
-`community-calls.md` is a single index of all community calls (Loki, Tempo, Mimir, Alloy, Beyla, Pyroscope, OnCall, OpenTelemetry and Campfire), grouped by show and listed newest first, with the date, title, a one-line topic and the YouTube link. It is generated from the transcript files and should not be edited by hand.
+`recurring-shows.md` is a single index of every recurring show on the channel: all community calls (Loki, Tempo, Mimir, Alloy, Beyla, Pyroscope, OnCall, OpenTelemetry and Campfire), Office Hours, The Context Window, Grafana for Beginners, Zero to Hero: Loki, Café con Grafana and other series. Shows are grouped by show, episodes are listed newest first, and each line has the date, title, a one-line topic and the YouTube link. The file is generated from the transcript files and should not be edited by hand. `community-calls.md` is a short generated file that points to the community call sections.
 
-A transcript counts as a community call when its title contains "community call". Office Hours episodes are not included unless they are titled as community calls.
+The show-detection rules (title patterns) are listed at the top of `recurring_shows_index.py`. A title containing "community call" is a community call; other series are recognised by title patterns such as "Office Hours" or "The Context Window". To add a new show, add a pattern to `SERIES_SHOWS` (or a product to `COMMUNITY_CALL_SHOWS`). The script prints any title that looks like an episode of an unknown series ("Ep 3", "#12", "Part 2") on stderr so new shows are noticed.
 
 After fetching new transcripts, regenerate the index (standard library only, no API keys or virtual environment needed):
 
 ```bash
-python3 community_calls_index.py
+python3 recurring_shows_index.py
 ```
 
 ## Troubleshooting
