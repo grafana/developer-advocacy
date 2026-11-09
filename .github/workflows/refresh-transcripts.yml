@@ -100,6 +100,7 @@ jobs:
           add-paths: transcripts/*.md
           branch: automation/refresh-transcripts
           delete-branch: true
+          sign-commits: true
           commit-message: "Refresh transcripts and recurring shows index"
           title: "Refresh transcripts and recurring shows index"
           labels: devrel
