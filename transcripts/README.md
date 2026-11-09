@@ -117,6 +117,18 @@ Each file contains:
 - Cleaned-up transcript
 - Raw YouTube transcript
 
+## Community Calls Index
+
+`community-calls.md` is a single index of all community calls (Loki, Tempo, Mimir, Alloy, Beyla, Pyroscope, OnCall, OpenTelemetry and Campfire), grouped by show and listed newest first, with the date, title, a one-line topic and the YouTube link. It is generated from the transcript files and should not be edited by hand.
+
+A transcript counts as a community call when its title contains "community call". Office Hours episodes are not included unless they are titled as community calls.
+
+After fetching new transcripts, regenerate the index (standard library only, no API keys or virtual environment needed):
+
+```bash
+python3 community_calls_index.py
+```
+
 ## Troubleshooting
 
 ### Common Issues
