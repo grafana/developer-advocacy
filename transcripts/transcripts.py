@@ -11,6 +11,7 @@ import openai
 import sys
 import time
 import random
+import re
 
 load_dotenv()
 
@@ -102,7 +103,7 @@ def get_channel_videos(channel_id, start_date, end_date):
     videos = []
     next_page_token = None
     page_count = 0
-    max_pages = 1  # Limit to 1 page (50 videos max) to avoid pagination issues
+    max_pages = 20  # Safety limit: 20 pages of 50 videos
 
     while page_count < max_pages:
         try:
@@ -112,7 +113,9 @@ def get_channel_videos(channel_id, start_date, end_date):
                 'channelId': channel_id,
                 'maxResults': 50,
                 'order': 'date',
-                'type': 'video'
+                'type': 'video',
+                'publishedAfter': start_date,
+                'publishedBefore': end_date
             }
             
             # Only add pageToken if it's not None
@@ -178,10 +181,11 @@ def fetch_transcripts(args, videos):
         print(f"Processing video {i+1}/{len(videos)}: {video_id}")
         
         # Use improved transcript fetching with retry logic
-        transcript_text = get_video_transcript_with_retry(video_id)
+        transcript_text, timestamped_text = get_video_transcript_with_retry(video_id)
         
         if transcript_text:
             video['transcript'] = transcript_text
+            video['timestamped'] = timestamped_text
             processed.append(video)
             write_markdown(args, video)
         else:
@@ -211,68 +215,186 @@ def file_for_video(args, video):
     filename = f"{args.path}/{published}-{slug}.md"
     return filename
 
-def openai_cleanup(transcript, video_id):
+MODEL = "gpt-4o-mini"
+
+# Used by the summary, cleanup and chapter prompts so product names are spelled consistently.
+GLOSSARY = """
+Glossary of correct spellings (fix only obvious mishearings of these, for example "O Tel" or
+"otel" -> OpenTelemetry/OTel, "Loci" -> Loki):
+OpenTelemetry (OTel), OpAmp, Grafana, Grafana Alloy, Grafana Agent, Grafana Cloud, Grafana Labs,
+Loki, Tempo, Mimir, Pyroscope, Beyla, OnCall, k6, Faro, Fleet Management, Prometheus, PromQL,
+LogQL, TraceQL, Grafana Assistant, Grafana Mimir, Kubernetes, eBPF, GrafanaCON, ObservabilityCON,
+Drilldown, Explore Logs, Alertmanager, Grafana Incident, Grafana Machine Learning, LGTM stack.
+"""
+
+CONTEXT_RULES = """
+Use the video title and description (given below the instructions) for the show name, date and the
+spelling of speaker names. Never guess a spelling that is not in the title or description; if a
+name is uncertain, leave it as it is heard.
+"""
+
+# Keep each cleanup request well inside the model's output limit.
+CLEANUP_CHUNK_CHARS = 8000
+# A cleanup that returns much less text than it was given has probably been truncated or summarised.
+MIN_CLEANUP_RATIO = 0.6
+# Put a [HH:MM:SS] marker in the chapter input at least this often.
+TIMESTAMP_INTERVAL_SECONDS = 45
+
+
+def format_timestamp(seconds):
+    seconds = int(seconds)
+    return f"{seconds // 3600:02d}:{(seconds % 3600) // 60:02d}:{seconds % 60:02d}"
+
+
+def build_timestamped_text(entries, interval=TIMESTAMP_INTERVAL_SECONDS):
+    """Join caption entries into text with a [HH:MM:SS] marker at least every `interval` seconds."""
+    parts = []
+    last_marker = None
+    for entry in entries:
+        text, start = entry["text"], entry["start"]
+        if last_marker is None or start - last_marker >= interval:
+            parts.append(f"\n[{format_timestamp(start)}] ")
+            last_marker = start
+        parts.append(text + " ")
+    return "".join(parts).strip()
+
+
+def chunk_text(text, limit=CLEANUP_CHUNK_CHARS):
+    """Split text into chunks of at most `limit` characters, breaking on word boundaries."""
+    chunks, current, size = [], [], 0
+    for word in text.split():
+        if size + len(word) + 1 > limit and current:
+            chunks.append(" ".join(current))
+            current, size = [], 0
+        current.append(word)
+        size += len(word) + 1
+    if current:
+        chunks.append(" ".join(current))
+    return chunks
+
+
+def video_context(video):
+    snippet = video["snippet"]
+    return (
+        f"Video title: {snippet['title']}\n"
+        f"Published: {get_publish(video)}\n"
+        f"Description: {snippet['description']}"
+    )
+
+
+def chat(client, system, user, temperature):
+    response = client.chat.completions.create(
+        model=MODEL,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        temperature=temperature,
+    )
+    return response.choices[0].message.content
+
+
+def openai_cleanup(video, transcript, video_id):
     """
-    Take a messy raw YouTube transcript and return a concise summary + a cleaned up version.
-    This only works if OPENAI_API_KEY is set in the environment. 
-    @param transcript: The raw transcript of a YouTube video
-    @return: A tuple containing the summary of the video and the cleaned up transcript
+    Take a messy raw YouTube transcript and return a summary + a cleaned up version.
+    This only works if OPENAI_API_KEY is set in the environment.
+    @param video: The video object (title, date and description give context)
+    @param transcript: The raw transcript of a YouTube video, as plain text
+    @return: A list containing the summary of the video and the cleaned up transcript
     """
     if openai_key == "":
         print("No OpenAI API key found in .env file; skipping summary and cleanup.")
         return ["Summary not available", None]
 
     client = openai.OpenAI(api_key=openai_key)
+    context = video_context(video)
 
-    summarize_pls = """
-    You are a helpful assistant that summarizes YouTube transcripts.
-    You will be given a transcript of a YouTube video, and you will need to summarize it.
-    The summary should contain a brief overview of the subject matter of the video, names of people
-    who were present, and a brief overview of the main points of the video and topics explored.  
-    Make the summary no more than one paragraph
+    summarize_pls = f"""
+    You will be given the transcript of a Grafana Labs community call, livestream or talk.
+    Write a summary of 3 to 5 sentences that names the show and its date, the speakers with their
+    roles (only where the transcript, title or description gives them), the Grafana and open source
+    projects and features discussed, and the key takeaways. Then add a final line starting with
+    "Topics:" followed by a comma-separated list of the main topics.
+    {CONTEXT_RULES}
+    {GLOSSARY}
+    {context}
     """
 
     print(f"Summarizing transcript for video {video_id}")
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": summarize_pls},
-            {"role": "user", "content": transcript}
-        ],
-        temperature=0.7,
-    )
+    summary = chat(client, summarize_pls, transcript, temperature=0.3)
 
-    summary = response.choices[0].message.content
+    cleanup_transcript_prompt = f"""
+    You will be given part of a messy transcript of a Grafana Labs community call, livestream or
+    talk. It has few sentence breaks, indications of music, and filler words. Clean it up into
+    logical sentences and paragraphs.
 
-    cleanup_transcript_prompt = """
-    You are a helpful assistant that cleans up YouTube transcripts. You will be given a messy
-    transcript that contains few sentence breaks, indications of music in the video, and filler words.  
-    You will need to clean up the transcript into a set of logical sentences and paragraphs.
+    Output markdown text; you may use markdown formatting for emphasis, bold, bulleting, and so on.
 
-    Please output your results as markdown text; you may use markdown formatting for emphasis, bold,
-    bulleting, and so on. 
-
-    Stay as close to the original transcript as possible but make it more readable. Do not interpret,
-    add, or remove any words unless they are filler words.  
+    Stay as close to the original transcript as possible but make it more readable. Do not
+    interpret, summarise, add, or remove any words unless they are filler words. Fix only obvious
+    mishearings of product and project names. Output the whole part you were given and nothing else.
+    {CONTEXT_RULES}
+    {GLOSSARY}
+    {context}
     """
 
     print(f"Cleaning up transcript for video {video_id}")
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": cleanup_transcript_prompt},
-            {"role": "user", "content": transcript}
-        ],
-        temperature=0.7,
-    )
-    cleaned_up = response.choices[0].message.content
+    cleaned_chunks = []
+    for chunk in chunk_text(transcript):
+        cleaned = chat(client, cleanup_transcript_prompt, chunk, temperature=0.1)
+        if len(cleaned) < MIN_CLEANUP_RATIO * len(chunk):
+            print(f"Cleanup of a chunk of {video_id} looks truncated; retrying once.")
+            cleaned = chat(client, cleanup_transcript_prompt, chunk, temperature=0.1)
+            if len(cleaned) < MIN_CLEANUP_RATIO * len(chunk):
+                print(f"WARNING: cleanup of a chunk of {video_id} is much shorter than its input.")
+        cleaned_chunks.append(cleaned.strip())
 
-    return [summary, cleaned_up]
+    return [summary, "\n\n".join(cleaned_chunks)]
 
-def create_chapters(transcript, video_id):
+
+def valid_chapters(chapters, timestamped):
+    """Keep only chapter lines whose timestamp appears in the input and that strictly increase."""
+    allowed = set(re.findall(r"\[(\d\d:\d\d:\d\d)\]", timestamped))
+    allowed.add("00:00:00")
+    kept, last = [], -1
+    for line in chapters.splitlines():
+        line = re.sub(r"^\s*\[(\d\d:\d\d:\d\d)\]", r"\1", line)
+        match = re.match(r"^\s*(\d\d):(\d\d):(\d\d)\s+\S", line)
+        if not match:
+            continue
+        stamp = ":".join(match.groups())
+        seconds = int(match.group(1)) * 3600 + int(match.group(2)) * 60 + int(match.group(3))
+        if stamp in allowed and seconds > last:
+            kept.append(line.strip())
+            last = seconds
+    return "\n".join(kept) or None
+
+
+def split_windows(timestamped, count):
+    """Split marker-annotated text into `count` windows of roughly equal duration.
+    Returns a list of (first marker in the window, window text)."""
+    pieces = re.split(r"(?=\[\d\d:\d\d:\d\d\] )", timestamped)
+    pieces = [p for p in pieces if p.strip()]
+    marked = [(p[1:9], p) for p in pieces if p.startswith("[")]
+    if not marked:
+        return []
+    def secs(stamp):
+        h, m, s = stamp.split(":")
+        return int(h) * 3600 + int(m) * 60 + int(s)
+    total = secs(marked[-1][0]) + 1
+    windows = [[] for _ in range(count)]
+    for stamp, text in marked:
+        windows[min(count - 1, secs(stamp) * count // total)].append((stamp, text))
+    return [(w[0][0], " ".join(t for _, t in w)) for w in windows if w]
+
+
+def create_chapters(video, timestamped, video_id):
     """
     Create timestamps and chapters for a YouTube video transcript.
-    @param transcript: The raw transcript of a YouTube video
+    The transcript is split into equal time windows (about 10 per hour, at least 3) and the model
+    names one chapter per window, so the chapters cover the whole video.
+    @param video: The video object (title, date and description give context)
+    @param timestamped: The transcript with [HH:MM:SS] markers
     @param video_id: The YouTube video ID
     @return: A string containing formatted timestamps and chapters
     """
@@ -282,26 +404,42 @@ def create_chapters(transcript, video_id):
 
     client = openai.OpenAI(api_key=openai_key)
 
-    chapters_prompt = """
-    This is a transcript of a YouTube livestream. Could you please identify up to 10 key moments in the stream and give me the timestamps in the format for YouTube like this?: 
-    00:00:00 Introductions 
-    00:01:30 What is structured metadata?
+    markers = re.findall(r"\[(\d\d):(\d\d):(\d\d)\]", timestamped)
+    hours = (int(markers[-1][0]) * 3600 + int(markers[-1][1]) * 60 + int(markers[-1][2])) / 3600 if markers else 0
+    count = max(3, round(10 * hours))
 
-    Always start with 00:00:00 and use simple but descriptive language that makes it easier for users to understand what is being spoken about.
+    chapter_prompt = f"""
+    This is one part of a transcript of a Grafana Labs community call, livestream or talk. It
+    contains [HH:MM:SS] markers. Write the title of ONE YouTube chapter for the main topic of this
+    part, and the timestamp where that topic starts.
+
+    Rules:
+    - The timestamp must be one of the [HH:MM:SS] markers in this part. Never invent one.
+    - The title is a short, searchable sentence-case phrase that says what is being discussed.
+    - Output one line only, in the form: HH:MM:SS Title
+    {CONTEXT_RULES}
+    {GLOSSARY}
+    {video_context(video)}
     """
 
     print(f"Creating chapters for video {video_id}")
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": chapters_prompt},
-            {"role": "user", "content": transcript}
-        ],
-        temperature=0.7,
-    )
+    lines = []
+    for index, (first_marker, text) in enumerate(split_windows(timestamped, count)):
+        line = None
+        for attempt in range(2):
+            candidate = valid_chapters(chat(client, chapter_prompt, text, temperature=0.1), text)
+            if candidate:
+                line = candidate.splitlines()[0]
+                break
+        if line is None:
+            line = f"{first_marker} Discussion"
+        # The first chapter always starts at 00:00:00 for YouTube.
+        if index == 0:
+            line = "00:00:00" + line[8:]
+        lines.append(line)
+    chapters = valid_chapters("\n".join(lines), timestamped)
+    return chapters or "Chapters not available"
 
-    chapters = response.choices[0].message.content
-    return chapters
 
 def write_markdown(args, video):
     video_id = get_id(video)
@@ -324,8 +462,8 @@ def write_markdown(args, video):
     url = f"https://www.youtube.com/watch?v={video_id}"
 
     filename = file_for_video(args, video)
-    [summary, cleaned_up] = openai_cleanup(transcript, video_id)
-    chapters = create_chapters(transcript, video_id)
+    [summary, cleaned_up] = openai_cleanup(video, transcript, video_id)
+    chapters = create_chapters(video, video.get('timestamped', transcript), video_id)
 
     with open(filename, "w") as file:
         file.write(f"# {title}\n\n")
@@ -357,7 +495,8 @@ def get_video_transcript_with_retry(video_id, max_retries=3):
     """
     Fetch transcript with retry logic and exponential backoff.
     Uses the new youtube-transcript-api 1.x API with fallback to deprecated static methods.
-    Returns cleaned transcript text or None if unavailable.
+    Returns a tuple of the plain transcript text and the text with [HH:MM:SS] markers,
+    or (None, None) if unavailable.
     """
     for attempt in range(max_retries):
         try:
@@ -382,10 +521,11 @@ def get_video_transcript_with_retry(video_id, max_retries=3):
             # Validate transcript structure
             if not transcript or not isinstance(transcript, list):
                 print(f"Invalid transcript format for video {video_id}")
-                return None
+                return None, None
                 
             # Safely extract and clean text
             text_parts = []
+            kept_entries = []
             for entry in transcript:
                 if isinstance(entry, dict) and 'text' in entry:
                     text = entry['text']
@@ -394,29 +534,30 @@ def get_video_transcript_with_retry(video_id, max_retries=3):
                         # Filter out common non-content entries
                         if text and text not in ['[Music]', '[Applause]', '[Laughter]']:
                             text_parts.append(text)
+                            kept_entries.append({'text': text, 'start': float(entry.get('start', 0))})
             
             if not text_parts:
                 print(f"No valid text found in transcript for video {video_id}")
-                return None
+                return None, None
                 
             full_text = ' '.join(text_parts)
             
             # Minimum length validation
             if len(full_text.strip()) < 50:
                 print(f"Transcript too short for video {video_id}: {len(full_text)} characters")
-                return None
+                return None, None
                 
-            return full_text
+            return full_text, build_timestamped_text(kept_entries)
             
         except TranscriptsDisabled:
             print(f"Transcripts are disabled for video {video_id}")
-            return None
+            return None, None
         except NoTranscriptFound:
             print(f"No transcript found for video {video_id}")
-            return None
+            return None, None
         except VideoUnavailable:
             print(f"Video {video_id} is unavailable")
-            return None
+            return None, None
         except Exception as e:
             if attempt < max_retries - 1:
                 # Exponential backoff with jitter
@@ -425,9 +566,9 @@ def get_video_transcript_with_retry(video_id, max_retries=3):
                 time.sleep(wait_time)
             else:
                 print(f"All {max_retries} attempts failed for video {video_id}: {str(e)}")
-                return None
+                return None, None
     
-    return None
+    return None, None
 
 def main(args):
     # Add initial delay to let API "cool down"
