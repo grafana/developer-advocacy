@@ -17,14 +17,6 @@ on:
         description: "Fetch and regenerate, but do not open a PR"
         type: boolean
         default: false
-  # TEMPORARY: lets the Vault access be tested from this branch. Always a dry run (no PR).
-  # Remove this trigger before the real PR is merged.
-  push:
-    branches:
-      - fm/devrel-transcripts-auto
-    paths:
-      - .github/workflows/refresh-transcripts.yml
-      - transcripts/**
 
 permissions: {}
 
@@ -41,8 +33,8 @@ jobs:
       pull-requests: write # ... and opens the PR
       id-token: write # GitHub OIDC, used by get-vault-secrets
     env:
-      # Never open a PR from a push (test) run or when asked for a dry run.
-      DRY_RUN: ${{ github.event_name == 'push' || inputs.dry_run == true }}
+      # Scheduled runs always open a PR; a manual run can be a dry run.
+      DRY_RUN: ${{ inputs.dry_run == true }}
       DAYS: ${{ inputs.days || '14' }}
     steps:
       - name: Check out the repository
