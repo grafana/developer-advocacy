@@ -1,0 +1,3 @@
+# Owners of the transcript automation and its generated files.
+/transcripts/ @nicolevanderhoeven @moxious
+/.github/workflows/refresh-transcripts.yml @nicolevanderhoeven @moxious

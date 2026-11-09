@@ -12,6 +12,9 @@ import sys
 import time
 import random
 import re
+from datetime import datetime, timedelta, timezone
+
+import captions_api
 
 load_dotenv()
 
@@ -20,9 +23,33 @@ load_dotenv()
 youtube_key = os.environ.get('API_KEY')
 # Second one is optional, but if it's missing, we'll skip the summary and cleanup.
 openai_key = os.environ.get("OPENAI_API_KEY","")
+# Optional. With OAuth credentials of a channel manager (see README.md, "How this runs") transcripts
+# come from the official captions API, which works from cloud runners. Without them the unofficial
+# youtube_transcript_api is used, which only works from a normal home or office connection.
+oauth_credentials = captions_api.credentials_from_env()
+
+_captions_client = None
+
+
+def get_captions_client():
+    """The shared official-API client, or None when no OAuth credentials are configured."""
+    global _captions_client
+    if oauth_credentials and _captions_client is None:
+        _captions_client = captions_api.CaptionsClient(
+            captions_api.build_youtube_client(*oauth_credentials),
+            captions_api.QuotaTracker(captions_api.budget_from_env()))
+    return _captions_client
+
+
+def build_youtube():
+    """A YouTube Data API client: the OAuth one when configured (no API_KEY needed), else the key."""
+    client = get_captions_client()
+    if client:
+        return client.youtube
+    return build('youtube', 'v3', developerKey=youtube_key)
 
 def get_playlist_videos(playlist_id):
-    youtube = build('youtube', 'v3', developerKey=youtube_key)
+    youtube = build_youtube()
     
     video_ids = []
     next_page_token = None
@@ -98,57 +125,55 @@ def get_playlist_videos(playlist_id):
     return videos
 
 def get_channel_videos(channel_id, start_date, end_date):
-    youtube = build('youtube', 'v3', developerKey=youtube_key)
-    
+    """Videos published between start_date and end_date (ISO 8601), newest first.
+
+    Reads the channel's uploads playlist (1 quota unit per page of 50) instead of search.list
+    (100 units per page), and stops paging once it is past start_date. Full video details,
+    including the whole description, come from videos.list.
+    """
+    youtube = build_youtube()
+    # A channel's uploads playlist ID is its channel ID with the "UC" prefix replaced by "UU".
+    uploads = "UU" + channel_id[2:]
     videos = []
     next_page_token = None
     page_count = 0
-    max_pages = 20  # Safety limit: 20 pages of 50 videos
+    max_pages = 40  # Safety limit: 40 pages of 50 videos
+    done = False
 
-    while page_count < max_pages:
+    while not done and page_count < max_pages:
         try:
-            # Build request parameters
-            request_params = {
-                'part': 'snippet',
-                'channelId': channel_id,
-                'maxResults': 50,
-                'order': 'date',
-                'type': 'video',
-                'publishedAfter': start_date,
-                'publishedBefore': end_date
-            }
-            
-            # Only add pageToken if it's not None
+            params = {'part': 'snippet,contentDetails', 'playlistId': uploads, 'maxResults': 50}
             if next_page_token:
-                request_params['pageToken'] = next_page_token
-                
-            request = youtube.search().list(**request_params)
-            print(f"Making API request with params: {request_params}")
-            response = request.execute()
-            print(f"API request successful, got {len(response.get('items', []))} videos")
-
-            for item in response['items']:
-                videos.append(item)            
-
-            next_page_token = response.get('nextPageToken')
-            if not next_page_token:
-                break
-                
-            # Rate limiting between pagination requests
-            delay = random.uniform(5, 15)  # Random delay between 5-15 seconds
-            print(f"Waiting {delay:.1f} seconds before next page...")
-            time.sleep(delay)
-            page_count += 1
-            
+                params['pageToken'] = next_page_token
+            print(f"Listing uploads page {page_count + 1}")
+            response = youtube.playlistItems().list(**params).execute()
         except HttpError as e:
             if e.resp.status == 403 and 'quota' in str(e).lower():
-                print("Quota exceeded while searching channel videos. Waiting before retry...")
-                time.sleep(60)  # Wait 1 minute
+                print("Quota exceeded while listing channel uploads. Waiting before retry...")
+                time.sleep(60)
                 continue
-            else:
-                print(f"Error searching channel videos: {e}")
-                raise
-    
+            print(f"Error listing channel uploads: {e}")
+            raise
+
+        ids = []
+        for item in response['items']:
+            published = item['contentDetails'].get('videoPublishedAt') or item['snippet']['publishedAt']
+            if published < start_date:
+                done = True  # Uploads are newest first, so everything after this is older.
+                continue
+            if published <= end_date:
+                ids.append(item['contentDetails']['videoId'])
+
+        if ids:
+            details = youtube.videos().list(part='snippet', id=','.join(ids)).execute()
+            videos.extend(details['items'])
+
+        next_page_token = response.get('nextPageToken')
+        if not next_page_token:
+            break
+        page_count += 1
+
+    print(f"Found {len(videos)} videos between {start_date} and {end_date}")
     return videos
 
 def get_publish(video):
@@ -181,7 +206,12 @@ def fetch_transcripts(args, videos):
         print(f"Processing video {i+1}/{len(videos)}: {video_id}")
         
         # Use improved transcript fetching with retry logic
-        transcript_text, timestamped_text = get_video_transcript_with_retry(video_id)
+        try:
+            transcript_text, timestamped_text = get_transcript(video_id)
+        except captions_api.QuotaExhausted as e:
+            print(f"STOPPING EARLY: {e}")
+            print(f"{len(processed)} transcripts written; the remaining videos will be picked up on the next run.")
+            break
         
         if transcript_text:
             video['transcript'] = transcript_text
@@ -491,6 +521,57 @@ def write_markdown(args, video):
 def have_transcript_file(args, video):
     return os.path.isfile(file_for_video(args, video))
 
+SKIPPED_CAPTION_TEXT = ['[Music]', '[Applause]', '[Laughter]']
+
+
+def entries_to_transcript(transcript, video_id):
+    """Turn caption entries ([{"text", "start"}, ...]) from either source into the plain transcript
+    text and the text with [HH:MM:SS] markers, or (None, None) if there is too little usable text."""
+    # Validate transcript structure
+    if not transcript or not isinstance(transcript, list):
+        print(f"Invalid transcript format for video {video_id}")
+        return None, None
+
+    # Safely extract and clean text
+    text_parts = []
+    kept_entries = []
+    for entry in transcript:
+        if isinstance(entry, dict) and 'text' in entry:
+            text = entry['text']
+            if text and isinstance(text, str):
+                text = text.strip()
+                # Filter out common non-content entries
+                if text and text not in SKIPPED_CAPTION_TEXT:
+                    text_parts.append(text)
+                    kept_entries.append({'text': text, 'start': float(entry.get('start', 0))})
+
+    if not text_parts:
+        print(f"No valid text found in transcript for video {video_id}")
+        return None, None
+
+    full_text = ' '.join(text_parts)
+
+    # Minimum length validation
+    if len(full_text.strip()) < 50:
+        print(f"Transcript too short for video {video_id}: {len(full_text)} characters")
+        return None, None
+
+    return full_text, build_timestamped_text(kept_entries)
+
+
+def get_transcript(video_id):
+    """Fetch a transcript from the official captions API when OAuth credentials are configured,
+    otherwise from the unofficial youtube_transcript_api. Returns (text, timestamped) or (None, None).
+    Raises captions_api.QuotaExhausted when the official API's quota budget is spent."""
+    client = get_captions_client()
+    if client is None:
+        return get_video_transcript_with_retry(video_id)
+    entries = client.fetch_entries(video_id)
+    if entries is None:
+        return None, None
+    return entries_to_transcript(entries, video_id)
+
+
 def get_video_transcript_with_retry(video_id, max_retries=3):
     """
     Fetch transcript with retry logic and exponential backoff.
@@ -518,37 +599,8 @@ def get_video_transcript_with_retry(video_id, max_retries=3):
                     languages=('en', 'es', 'fr', 'de', 'ja')
                 )
             
-            # Validate transcript structure
-            if not transcript or not isinstance(transcript, list):
-                print(f"Invalid transcript format for video {video_id}")
-                return None, None
-                
-            # Safely extract and clean text
-            text_parts = []
-            kept_entries = []
-            for entry in transcript:
-                if isinstance(entry, dict) and 'text' in entry:
-                    text = entry['text']
-                    if text and isinstance(text, str):
-                        text = text.strip()
-                        # Filter out common non-content entries
-                        if text and text not in ['[Music]', '[Applause]', '[Laughter]']:
-                            text_parts.append(text)
-                            kept_entries.append({'text': text, 'start': float(entry.get('start', 0))})
-            
-            if not text_parts:
-                print(f"No valid text found in transcript for video {video_id}")
-                return None, None
-                
-            full_text = ' '.join(text_parts)
-            
-            # Minimum length validation
-            if len(full_text.strip()) < 50:
-                print(f"Transcript too short for video {video_id}: {len(full_text)} characters")
-                return None, None
-                
-            return full_text, build_timestamped_text(kept_entries)
-            
+            return entries_to_transcript(transcript, video_id)
+
         except TranscriptsDisabled:
             print(f"Transcripts are disabled for video {video_id}")
             return None, None
@@ -629,6 +681,21 @@ if __name__ == "__main__":
     parser.add_argument('-l', '--limit', 
                         help='Limit the number of videos to transcribe; defaults to no limit',
                         required=False, default=None, type=int)
+    parser.add_argument('--days', type=int, required=False, default=None,
+                        help='Only videos published in the last N days (overrides --start and --end); '
+                             'used by the weekly GitHub Actions run')
     args = parser.parse_args()
 
-    main(args)
+    if args.days is not None:
+        now = datetime.now(timezone.utc)
+        args.start = (now - timedelta(days=args.days)).strftime('%Y-%m-%dT%H:%M:%SZ')
+        # A day ahead so a video published just now is included.
+        args.end = (now + timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+    try:
+        main(args)
+    except captions_api.CaptionsAuthError as e:
+        sys.exit(f"ERROR: {e}")
+    except captions_api.QuotaExhausted as e:
+        # Raised while listing videos, before any transcript was fetched.
+        sys.exit(f"ERROR: {e}")

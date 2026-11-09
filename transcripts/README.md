@@ -24,6 +24,42 @@ The `transcripts.py` script performs the following operations:
    - Cleaned-up transcript
    - Raw YouTube transcript
 
+## How this runs
+
+The transcripts are refreshed automatically every week by the GitHub Actions workflow
+[`.github/workflows/refresh-transcripts.yml`](../.github/workflows/refresh-transcripts.yml).
+
+- **Owners:** [@nicolevanderhoeven](https://github.com/nicolevanderhoeven) and [@moxious](https://github.com/moxious) (David Allen), listed in `.github/CODEOWNERS`.
+- **Schedule:** Mondays at 06:17 UTC.
+- **What it does:** fetches transcripts of videos published in the last 14 days (the official YouTube captions API; auto-generated English captions are used when there is no manual track), writes summaries, chapters and cleaned-up text with OpenAI, regenerates `recurring-shows.md` and `community-calls.md`, and opens a pull request labelled `devrel`. It never commits directly. Review the PR (skim the new transcripts) and merge it.
+- **Secrets:** none are stored in GitHub. The workflow reads them from Vault (`ci/repo/grafana/developer-advocacy/`) at run time with `grafana/shared-workflows/actions/get-vault-secrets` and GitHub OIDC: `youtube-transcripts` (`client_id`, `client_secret`, `refresh_token`) and `openai` (`api_key`).
+- **Why the official API:** YouTube blocks cloud runners (and now many home connections) from the unofficial `youtube_transcript_api` the script used before. The official `captions.list` + `captions.download` calls cost 250 quota units per video, so a normal week (about 10 videos) uses roughly 2,700 of the 10,000 daily units. The run stops cleanly with a message when it nears the budget (`YOUTUBE_QUOTA_BUDGET`, default 9000); the videos left over are picked up next week.
+
+### Run it manually
+
+Actions tab, "Refresh YouTube transcripts", "Run workflow". Set `days` to go further back and tick `dry_run` to fetch and regenerate without opening a PR. Or from a terminal: `gh workflow run refresh-transcripts.yml -f days=30`.
+
+### If it fails
+
+GitHub emails the people who last changed the schedule or triggered the run when a scheduled run fails. Check the run log:
+
+- **`YouTube rejected the OAuth refresh token`**: the token was revoked (the channel manager who signed in left, changed their password or removed the app). Sign in again with the steps below and replace `refresh_token` in Vault.
+- **`Stopping to stay under the YouTube API quota`**: normal after a large backfill. Re-run after midnight Pacific time.
+- **Vault errors**: check the secrets still exist under `ci/repo/grafana/developer-advocacy/` and ask the platform team.
+- **PR step fails**: the repo setting "Allow GitHub Actions to create and approve pull requests" must be on, and the `devrel` label must exist.
+- **Not allowed to download captions for video ...**: the signed-in account must be a manager of the channel that owns the video.
+
+### One-time OAuth setup (channel manager)
+
+The OAuth consent screen of the Google Cloud project is "In production" (checked 2026-11-09), so refresh tokens do not expire after 7 days.
+
+1. In the Google Cloud project (YouTube Data API v3 enabled), create an OAuth client of type **Desktop app**. Note the client ID and secret.
+2. As a person who can edit the channel's videos, run `python3 get_refresh_token.py` in this directory (standard library only). It asks for the client ID and secret, opens your browser, and prints a refresh token to the terminal. Nothing is written to disk.
+3. Give the client ID, client secret and refresh token to the platform team to store in Vault (never in the repo, an issue, chat or a GitHub secret).
+4. Run the workflow manually with `dry_run` ticked to check it works.
+
+To use the official API locally, set `YOUTUBE_OAUTH_CLIENT_ID`, `YOUTUBE_OAUTH_CLIENT_SECRET` and `YOUTUBE_OAUTH_REFRESH_TOKEN` in `.env`. Without them the script falls back to the unofficial API, which only works from some home or office connections. Use `python3 transcripts.py --days 14` for the same window as the weekly run, and `python3 -m unittest discover -s tests` for the tests.
+
 ## Quickstart
 
 The easiest way to get started is to use the provided setup script:

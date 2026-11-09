@@ -1,0 +1,112 @@
+name: Refresh YouTube transcripts
+
+# Weekly: fetch transcripts of videos published in the last 14 days with the official YouTube
+# captions API, regenerate transcripts/recurring-shows.md and community-calls.md, and open a PR.
+# See transcripts/README.md ("How this runs") for owners, manual runs and what to do on failure.
+
+on:
+  schedule:
+    - cron: "17 6 * * 1" # Mondays 06:17 UTC
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Fetch videos published in the last N days"
+        required: false
+        default: "14"
+      dry_run:
+        description: "Fetch and regenerate, but do not open a PR"
+        type: boolean
+        default: false
+
+permissions: {}
+
+concurrency:
+  group: refresh-transcripts
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: write # create-pull-request pushes the automation branch
+      pull-requests: write # ... and opens the PR
+      id-token: write # GitHub OIDC, used by get-vault-secrets
+    env:
+      # Scheduled runs always open a PR; a manual run can be a dry run.
+      DRY_RUN: ${{ inputs.dry_run == true }}
+      DAYS: ${{ inputs.days || '14' }}
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: transcripts/requirements.txt
+
+      - name: Install dependencies
+        working-directory: transcripts
+        run: pip install -r requirements.txt
+
+      - name: Run the unit tests
+        working-directory: transcripts
+        run: python -m unittest discover -s tests
+
+      # Secrets live in Vault under ci/repo/grafana/developer-advocacy/, not in GitHub secrets.
+      - name: Get secrets from Vault
+        id: get-secrets
+        uses: grafana/shared-workflows/actions/get-vault-secrets@2f1ddaf3ce1aa677356243d0dd584be33cfa35e3 # get-vault-secrets/v2.1.0
+        with:
+          repo_secrets: |
+            YOUTUBE_OAUTH_CLIENT_ID=youtube-transcripts:client_id
+            YOUTUBE_OAUTH_CLIENT_SECRET=youtube-transcripts:client_secret
+            YOUTUBE_OAUTH_REFRESH_TOKEN=youtube-transcripts:refresh_token
+            OPENAI_API_KEY=openai:api_key
+
+      - name: Fetch transcripts
+        working-directory: transcripts
+        env:
+          YOUTUBE_OAUTH_CLIENT_ID: ${{ fromJSON(steps.get-secrets.outputs.secrets).YOUTUBE_OAUTH_CLIENT_ID }}
+          YOUTUBE_OAUTH_CLIENT_SECRET: ${{ fromJSON(steps.get-secrets.outputs.secrets).YOUTUBE_OAUTH_CLIENT_SECRET }}
+          YOUTUBE_OAUTH_REFRESH_TOKEN: ${{ fromJSON(steps.get-secrets.outputs.secrets).YOUTUBE_OAUTH_REFRESH_TOKEN }}
+          OPENAI_API_KEY: ${{ fromJSON(steps.get-secrets.outputs.secrets).OPENAI_API_KEY }}
+          PYTHONUNBUFFERED: "1"
+        run: python transcripts.py --days "$DAYS"
+
+      - name: Regenerate the recurring shows index
+        working-directory: transcripts
+        run: python recurring_shows_index.py
+
+      - name: Summarise changes
+        run: |
+          {
+            echo "### Transcript refresh"
+            echo "Dry run: \`$DRY_RUN\`"
+            echo '```'
+            git status --short transcripts | head -50
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open a pull request
+        if: env.DRY_RUN != 'true'
+        uses: peter-evans/create-pull-request@15733dbdfeedb4f7fdb73d13c6f5ac83b710fab8 # v8.1.2
+        with:
+          token: ${{ github.token }}
+          add-paths: transcripts/*.md
+          branch: automation/refresh-transcripts
+          delete-branch: true
+          sign-commits: true
+          commit-message: "Refresh transcripts and recurring shows index"
+          title: "Refresh transcripts and recurring shows index"
+          labels: devrel
+          body: |
+            Automated weekly refresh from `.github/workflows/refresh-transcripts.yml`: new transcripts from the
+            last ${{ inputs.days || '14' }} days and a regenerated `recurring-shows.md` / `community-calls.md`.
+
+            Please skim the new transcripts and the summaries, then merge. See `transcripts/README.md`
+            ("How this runs") for owners and what to do if a run fails.
