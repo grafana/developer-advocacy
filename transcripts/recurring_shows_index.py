@@ -56,6 +56,7 @@ SERIES_SHOWS = [
     ("Ask the Experts", r"ask the experts", None),
     ("Grafana Release TL;DR", r"tl;dr", None),
     ("Observability as Code with Grafana Foundation SDK", r"observability as code with grafana foundation sdk", None),
+    ("When to Use Grafana Assistant vs. MCP vs. gcx", r"grafana assistant vs\. mcp vs\. gcx", None),
     ("Big Tent (Podcast)", r"big tent", None),
     ("The Story of Grafana (Documentary)", r"story of grafana", None),
     ("Grafana & Friends and Grafana Meetups", r"grafana (&|and) friends|grafana meetup", None),
