@@ -16,7 +16,11 @@ The `transcripts.py` script performs the following operations:
    - 5-15 second random delays between pagination requests
    - 10-30 second random delays between video processing
    - Initial 5-15 second delay before starting
-5. **Smart Skipping**: Automatically skips videos that already have transcript files
+5. **Smart Skipping**: Skips videos that already have a transcript (matched on the YouTube video ID in the
+   `URL:` line, so retitled or republished videos are not added twice) and videos whose description still has
+   template placeholders such as `[INSERT DESCRIPTION]` (picked up on a later run once the metadata is filled in).
+   `python check_duplicates.py --base origin/main` fails if a newly added transcript duplicates an existing video;
+   the `Check transcripts` workflow runs it on pull requests.
 6. **Markdown Generation**: Creates comprehensive markdown files with:
    - Video title, description, and URL
    - AI-generated summary

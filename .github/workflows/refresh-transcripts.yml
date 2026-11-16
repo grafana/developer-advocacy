@@ -1,7 +1,7 @@
 name: Refresh YouTube transcripts
 
 # Weekly: fetch transcripts of videos published in the last 14 days with the official YouTube
-# captions API, regenerate transcripts/recurring-shows.md and community-calls.md, and open a PR.
+# captions API, refresh the recurring shows / community calls indexes if they changed, and open a PR.
 # See transcripts/README.md ("How this runs") for owners, manual runs and what to do on failure.
 
 on:
@@ -82,6 +82,12 @@ jobs:
         working-directory: transcripts
         run: python recurring_shows_index.py
 
+      # Belt and braces: the generator dedupes on video ID, but fail the run rather than open a PR
+      # with a transcript for a video that already has one.
+      - name: Check for duplicate transcripts
+        working-directory: transcripts
+        run: python check_duplicates.py --base HEAD
+
       - name: Summarise changes
         run: |
           {
@@ -106,7 +112,8 @@ jobs:
           labels: devrel
           body: |
             Automated weekly refresh from `.github/workflows/refresh-transcripts.yml`: new transcripts from the
-            last ${{ inputs.days || '14' }} days and a regenerated `recurring-shows.md` / `community-calls.md`.
+            last ${{ inputs.days || '14' }} days. The recurring shows and community calls indexes are
+            regenerated too and only appear in this PR's diff when they changed.
 
             Please skim the new transcripts and the summaries, then merge. See `transcripts/README.md`
             ("How this runs") for owners and what to do if a run fails.
