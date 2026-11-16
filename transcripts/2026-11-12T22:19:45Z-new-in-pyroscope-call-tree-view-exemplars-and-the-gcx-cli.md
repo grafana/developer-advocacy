@@ -17,11 +17,6 @@ Links/resources:
 Get started with the Grafana Cloud forever-free tier: https://grafana.com/g/cloud
 Have a question? Ask Grot, your AI helper: https://grafana.com/grot/
 Reach out in our community forums: https://gra.fan/communityyf
-[Add Pyroscope/GCX docs and blog links]
-
-Thanks for watching!
-
-#Grafana #Observability #Pyroscope #ContinuousProfiling #GCX #Exemplars
 
 ---
 Thanks for watching! 
@@ -33,7 +28,7 @@ X: (https://www.twitter.com/grafana)
 LinkedIn: (https://www.linkedin.com/company/grafana-labs/)
 Facebook: (https://www.facebook.com/grafana)
 
-#Grafana #Observability
+#Grafana #Observability #Pyroscope #ContinuousProfiling #GCX #Exemplars
 
 URL: https://www.youtube.com/watch?v=NlBwPm-_1s0
 

@@ -1,20 +1,10 @@
-# 01   Grafana ObservabilityCON 26   London   Building an Observable Enterprise for AI Driven Operatio
+# Grafana ObservabilityCON 26 London: Building an Observable Enterprise for AI Driven Operations
 
 Published on 2026-11-12T15:56:49Z
 
 ## Description
 
-[INSTRUCTIONS: EDIT ANY AREA THAT CONTAINS BRACKETS. FEEL FREE TO DELETE IF NOT APPLICABLE. INSERT @ LEAST 3 MORE HASHTAGS AT THE BOTTOM OF THE DESCRIPTION; UPLOAD SRT FOR TRANSCRIPTS (GOOD FOR SEO)] 
-
-[INSERT DESCRIPTION - ~250 CHARACTERS; KEYWORDS IN FIRST TWO LINES]
-
-Timestamps: 
-[INSERT TIMESTAMPS IF VIDEO IS 5 MIN OR MORE] 
-
 Links/resources: 
-Learn about [PRODUCT/SOLUTION]: [INSERT LINK TO PRODUCT PAGE] 
-Read the announcement blog: [INSERT LINK TO ANNOUNCEMENT BLOG]
-Read this blog post for more info: [INSERT A RELEVANT, NON-ANNOUNCEMENT BLOG]
 Get started with the Grafana Cloud forever-free tier: https://grafana.com/g/cloud
 Have a question? Ask Grot, your AI helper: https://grafana.com/grot/
 Reach out in our community forums: https://gra.fan/communityyf

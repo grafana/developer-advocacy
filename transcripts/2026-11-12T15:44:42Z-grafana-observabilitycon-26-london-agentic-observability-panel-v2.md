@@ -1,20 +1,10 @@
-# 02   Grafana   ObservabilityCON 26   London   Agentic Observability Panel V2
+# Grafana ObservabilityCON 26 London: Agentic Observability Panel V2
 
 Published on 2026-11-12T15:44:42Z
 
 ## Description
 
-[INSTRUCTIONS: EDIT ANY AREA THAT CONTAINS BRACKETS. FEEL FREE TO DELETE IF NOT APPLICABLE. INSERT @ LEAST 3 MORE HASHTAGS AT THE BOTTOM OF THE DESCRIPTION; UPLOAD SRT FOR TRANSCRIPTS (GOOD FOR SEO)] 
-
-[INSERT DESCRIPTION - ~250 CHARACTERS; KEYWORDS IN FIRST TWO LINES]
-
-Timestamps: 
-[INSERT TIMESTAMPS IF VIDEO IS 5 MIN OR MORE] 
-
 Links/resources: 
-Learn about [PRODUCT/SOLUTION]: [INSERT LINK TO PRODUCT PAGE] 
-Read the announcement blog: [INSERT LINK TO ANNOUNCEMENT BLOG]
-Read this blog post for more info: [INSERT A RELEVANT, NON-ANNOUNCEMENT BLOG]
 Get started with the Grafana Cloud forever-free tier: https://grafana.com/g/cloud
 Have a question? Ask Grot, your AI helper: https://grafana.com/grot/
 Reach out in our community forums: https://gra.fan/communityyf
@@ -45,88 +35,6 @@ Topics: Grafana Cloud, observability, AI integration, standardization, cost cont
 00:06:59 Using AI for observability improvements
 00:13:11 Success stories in using Grafana Cloud and AI
 00:19:19 Incorporating AI in observability and deployment
-
-All right. So, we're on the final stretch, as Carl mentioned. I have the pleasure of speaking with Mark and Theo here today. As we've been getting to know each other a bit since we met for the first time yesterday, we've had some very interesting conversations out in the exhibition hall and just now. I've been telling them I always look forward to these sessions because I think there's so much learning to be had listening to how our customers are actually applying the products we like to talk about, but how they're actually being applied in real-world use cases. That's many times where I think people in the audience can see themselves and feel a familiarity in both successes and struggles.
-
-So, thank you, Mark and Theo, for joining me today. We're going to start off by having you introduce yourselves so we know who you are.
-
-**Theo:**  
-Hello everyone. I'm Theo. I'm an SRE at Thread, and basically my role is to make sure that all our products are reliable, observable, and ready for production. I work a lot with different engineering teams to improve the developer experience. We work in the payment industry, so of course reliability is the most important thing for both us and our clients.
-
-**Mark:**  
-My name is Mark Swarbrick. I'm the Senior Platform Engineering Manager here at Thread. My responsibility is looking after the platform engineering team, but I'm also trying to build out the SRE function and look after application support. The company I work for, Thread, is an AI-first issuer processor. For our customers, if you tap your card, we process the authorization and clearing transactions. We have some customers where we literally drop two or three authorizations, and we had them on the phone. So, the focus on quality, observability, and uptime is paramount for what I've come into.
-
-My background includes working for fintech startups and in the open-source space with MySQL. I was really spoiled at my last place, which was a greenfield fintech startup. I had everything I could want: time, money, and no live customers. I was introduced to what Grafana could do while working with some really good DevOps engineers. Now, at Thread, we've had the typical problems of migrating from bare metal and dealing with the issues that come with legacy systems as we move to cloud-native. The journey we're on now is to bring ourselves up to speed and leverage what we can do with Grafana.
-
-**Robin:**  
-Great. Amazing. We're going to learn a little bit about what your journey has looked like as you've overcome some of those challenges. Just to introduce myself, my name is Robin, and I lead the product organization at Grafana Labs. If you have any questions throughout the session, you have a QR code as you've had for the other sessions, so please add any questions, and we'll get to that towards the end.
-
-Before we get into the AI and agentic side of things, maybe you can start by telling us how you got started with Grafana Cloud and where you're at today with Grafana Cloud.
-
-**Mark:**  
-Absolutely. I came in and looked at the platform and what we had. We were rebuilding some of our legacy services on a new AWS cloud-native platform. We ended up with a lot of siloed teams that had all implemented observability in slightly different ways based on their needs. We had a mix of AWS Grafana, X-Ray, CloudWatch, and various different technologies all implemented differently. We had legacy Coralogic for our legacy stack, so we had a massive mix of different technologies that were disjointed. We didn't have the traceability I wanted or the right metrics and observability, and we were very log-focused.
-
-One of the key things we needed to address quickly was to pick an observability platform and try to unify the whole company in different areas on that platform. This is where Theo and the rest of the team came in, trying to pick that platform. Based on my previous experience, I was really happy that everyone agreed Grafana was the obvious choice. The feedback from developers has been really good as well.
-
-**Theo:**  
-From my perspective as an SRE, we were coming from a lot of legacy tools for observability. Our goal was to have one tool for observability. We started with a pilot trial with Grafana Cloud, where we took one engineering team, put them into Grafana Cloud, and assessed if the features we thought were useful were indeed valuable. While I can say from a technical point of view that the features are great, it's most important to hear from the engineering side.
-
-Our idea was to pilot with one engineering team testing Grafana Cloud for everything, and the success was great, which led us to continue with more teams. The initial success built credibility, allowing us to roll it out to more of the organization. What was even better was that we had a fixed budget for that. Every day, Theo would find cost reductions, and we ended up getting more products adopted onto Grafana under the same budget before I had to go to the begging bowl to change our vendor and get more funding.
-
-**Mark:**  
-Yeah, that's great. I think everyone has started to use more and more LLMs and agents in our work. What has that looked like at Thread? Have you seen any changes in approach? What are the differences?
-
-**Mark:**  
-I'll start at the beginning in terms of Thread and then go into specifics. Like any company, there was the rush to adopt AI. There was a scramble among the security operations team, and we wanted to drive adoption while also trying to be AI-first and use it in the right way. Luckily, we managed to adopt quite quickly and establish a proper security operations policy around the adoption of AI. We chose to use Claude for that, but at the same time, as we were building our observability out, we realized we could start leveraging the Grafana side as well, which is what Theo has been looking into.
-
-**Theo:**  
-I think we were just lucky with timing because we wanted to migrate from many different tools to one tool at the same time as the rise of AI.
-
-the metrics, we realize that the collector is not working. The team had pushed the change that removed the worker ID label, and it turned out that this label was crucial for their monitoring setup. Without it, they lost visibility into the performance of their workers, which led to the incident.
-
-This experience taught us a valuable lesson about the importance of understanding the context of our telemetry data. While the AI suggested dropping the label based on cost and cardinality, it didn't account for how that label was being used in their specific monitoring setup. This highlighted the need for better communication between teams and a more thorough understanding of how observability practices can vary across different services.
-
-In the end, we were able to roll back the change and restore the label, which resolved the issue. However, it was a stark reminder that while AI can provide valuable insights, it’s essential to have human oversight and context to make informed decisions about observability practices. 
-
-Overall, our journey with observability has been a mix of successes and learning experiences. As we continue to refine our processes and leverage AI, we are becoming more adept at managing incidents and improving our overall observability strategy.
-
-That every metric was not broken in the terms that they were not working, but the values were so high it made no sense. We launched another investigation and discovered that removing that worker ID made it so that the four workers, when they were sending the metrics, were sending to the same metric stream and basically overwriting each other. This led to some numbers going into wrong places. 
-
-The solution we quickly found was to assign specific numbers so that they don't go into out-of-bounds numbers and that cardinality doesn't go high. The whole idea was that AI gave us a good solution on the cost control side, but we didn't know about the technical cutoff that we would have. Now, with the use of MCP and having all the context, this is why context is important. Without context, we couldn't understand why some decisions are bad or not needed. You can come to the wrong conclusions.
-
-I want to make sure we get to this very important bit, which is drawing the line between how far you go with using AI and agentic approaches and where you say, "This is something that humans need to still be responsible for or do." Have you found that kind of line, that kind of trade-off? 
-
-I think at the moment we're still very much getting closer to that line. In my view, I think we still have far too many people who have to stare at dashboards or look at alerts. For me, I know it's such a cliched phrase, but I want to almost get to the art of the possible and try to do it in a structured way. 
-
-At the moment, there's a lot of talk about, "Oh, we could use Claude for this," but it's almost like what AI you connect to, what and where's the context, and how far we can go. I want to get to the point where we're not replacing people's jobs with AI. What we're doing is giving them more context. If there is an issue, I want as much context related to that alert. I want them to be prepared and almost get to the point of preparing a PR. 
-
-For me, the line is to give people as much information as they can to do root cause analysis and fixes as quickly as they can. I'm still at the point where I don't want to just let it push releases and do everything automatically. I'm old enough and gray enough to still not trust the machine. I remember *Terminator 2*. I'm still a little bit nervous about how far we take it. But I think there's still a lot we can do, especially in our domain where we are in payments. Risk and security are very important, and we are trying to make sure that we treat this very carefully.
-
-The way I see it, and how our developers are using it every day, is that they are using AI to improve things from dashboards to code reviews to everything that can be done without touching production. Everything related to deployment and anything that could cause problems on the customer side should be handled by humans. 
-
-I think for observability and the way we are doing stuff, dashboards are good and amazing when you have the skill to know where to look, and AI is useful when you don't know. Basically, we are trying to incorporate AI at a very careful pace, but it's becoming part of our daily life and routine more and more every day.
-
-I see we're rapidly running out of time, so I want to make sure we get to some questions. We have a few questions here, and if there are any more, please submit them. Let's start with the first one: Do you use agentic observability during testing? 
-
-We do for some teams, but it's still something we are testing right now. We want to explore this part and make it a standard for each team before they go into production. But I think we are still a bit early on that road.
-
-Another question here: How would you advise alleviating management's concerns about ballooning costs when trying to get them to go all in on Grafana? 
-
-Oh, what a good question. I would almost argue that for us, Grafana helped us control costs a lot more. The fact that we could build cost dashboards and allocate costs to teams is significant. Token usage is always an interesting one. We've had the same thing where we've got a token budget, and the people that have adopted it have blown through their token budget in a couple of days. 
-
-So I think it's about managing those cost controls but also relating back what the benefits are and what you've achieved, allowing your budget to grow as the benefits come out. For example, we were hitting our cost cap at Coralogic about two-thirds of the way through the month. I've argued that with adaptive telemetry, adaptive metrics, and actually having control of those costs, we can then spend on AI tokens, whether it's in Grafana or Claude or whatever we're using to add value. 
-
-It's just about demonstrating the value, and I found management has actually been incredibly supportive as long as we can demonstrate the value and we're not just blowing a load of tokens on porting some game across to a different platform. We're actually doing something useful. You can show that there's some control on the cost, etc., and then you can show the value.
-
-Can you describe the path process to standardization that you described? Pain, toil, and a lot of graft, to be honest. A lot of it was once you'd won the mind share of those individual development teams. People were actually coming to you and saying, "What do we do? How do we adopt this?"
-
-It was also about thinking about what we should do on both the engineering side and the platform side. We started by using the auto standard for naming and stuff. Then we looked at different teams and noticed bad practices, like Mark mentioned with adding specific prefixes to some metrics, which made us very upset. 
-
-Then we tagged everything so that it has the specific metadata that we want. We ensured that we have metrics, traces, and logs in every team because before, we had teams with just metrics or just logs or just not everything that we should have. It was really just a lot of toil to get to the point where we can leverage the features. 
-
-I think that's the realistic view. There's the unsexy stuff that we've had to wade through to be able to now just get to the point where we've got observability to a point where we have the raw data there in a standardized way that we can start leveraging all the cool stuff.
-
-Thank you so much, Mark and Theo. Round of applause for Mark and Theo here.
 
 ## Raw YouTube Transcript
 
