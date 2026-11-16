@@ -224,19 +224,18 @@ def find_placeholder(description):
     return match.group(0) if match else None
 
 
-def should_skip(args, video, known_ids, quiet=False):
+def should_skip(args, video, known_ids):
     """Why this video should not be transcribed now, or None. Logs the reason."""
     video_id = get_id(video)
-    log = (lambda *a: None) if quiet else print
     if video_id in known_ids:
-        log(f"Skipping video {video_id} because it already has a transcript.")
+        print(f"Skipping video {video_id} because it already has a transcript.")
         return "duplicate"
     if os.path.isfile(file_for_video(args, video)):
-        log(f"Skipping video {video_id} because it already has a transcript.")
+        print(f"Skipping video {video_id} because it already has a transcript.")
         return "duplicate"
     placeholder = find_placeholder(video['snippet'].get('description', ''))
     if placeholder:
-        log(f"Skipping video {video_id} ({clean_title(video['snippet']['title'])}) because its "
+        print(f"Skipping video {video_id} ({clean_title(video['snippet']['title'])}) because its "
               f"description still has a template placeholder: {placeholder[:60]}. "
               f"It will be picked up once the metadata is filled in.")
         return "placeholder"
@@ -782,7 +781,7 @@ def main(args):
         print(f"Found {len(channel_videos)} videos in the specified date range.")
 
     known_ids = existing_video_ids(args.path)
-    videos_to_transcribe = [v for v in videos_to_transcribe if not should_skip(args, v, known_ids, quiet=True)]
+    videos_to_transcribe = [v for v in videos_to_transcribe if not should_skip(args, v, known_ids)]
     print(f"Found {len(videos_to_transcribe)} videos to transcribe, after filtering out those that already have transcripts.")
 
     if args.limit:

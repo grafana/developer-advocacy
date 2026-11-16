@@ -73,15 +73,19 @@ class PlaceholderTests(DirTestCase):
         self.assertIsNone(t.find_placeholder(""))
         self.assertIsNone(t.find_placeholder(None))
 
-    def test_video_with_placeholder_is_skipped_and_logged(self):
+    def test_placeholder_video_is_skipped_and_logged_once_by_main(self):
         draft = video("draft1", description="[INSERT DESCRIPTION HERE]")
-        with mock.patch.object(t, "get_transcript") as get_transcript, \
+        args = argparse.Namespace(path=self.dir, playlist=None, channel="chan", start=None,
+                                  end=None, limit=None)
+        with mock.patch.object(t, "get_channel_videos", return_value=[draft]), \
+                mock.patch.object(t, "get_transcript") as get_transcript, \
+                mock.patch.object(t.time, "sleep"), mock.patch.object(t.random, "uniform", return_value=0), \
                 mock.patch("builtins.print") as printed:
-            processed = t.fetch_transcripts(self.args, [draft])
-        self.assertEqual(processed, [])
+            t.main(args)
         get_transcript.assert_not_called()
-        self.assertTrue(any("template placeholder" in str(c) and "draft1" in str(c)
-                            for c in printed.call_args_list))
+        logged = [c for c in printed.call_args_list
+                  if "template placeholder" in str(c) and "draft1" in str(c)]
+        self.assertEqual(len(logged), 1)
 
 
 STAMPED = ("[00:00:00] a " + " ".join(f"\n[00:{m:02d}:00] w" for m in range(1, 10)))
