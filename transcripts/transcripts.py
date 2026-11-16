@@ -215,7 +215,7 @@ def existing_video_ids(directory):
 
 # An unfilled YouTube description template, e.g. "[INSTRUCTIONS: EDIT ANY AREA...]",
 # "[INSERT DESCRIPTION ...]" or "[Add Pyroscope/GCX docs and blog links]".
-PLACEHOLDER = re.compile(r"\[\s*(?:INSTRUCTIONS|INSERT|ADD|TODO|TBD|PLACEHOLDER)\b[^\]]*\]?", re.IGNORECASE)
+PLACEHOLDER = re.compile(r"\[\s*(?:INSTRUCTIONS|INSERT|ADD)\b[^\]]*\]?", re.IGNORECASE)
 
 
 def find_placeholder(description):
@@ -224,18 +224,19 @@ def find_placeholder(description):
     return match.group(0) if match else None
 
 
-def should_skip(args, video, known_ids):
+def should_skip(args, video, known_ids, quiet=False):
     """Why this video should not be transcribed now, or None. Logs the reason."""
     video_id = get_id(video)
+    log = (lambda *a: None) if quiet else print
     if video_id in known_ids:
-        print(f"Skipping video {video_id} because it already has a transcript.")
+        log(f"Skipping video {video_id} because it already has a transcript.")
         return "duplicate"
     if os.path.isfile(file_for_video(args, video)):
-        print(f"Skipping video {video_id} because it already has a transcript.")
+        log(f"Skipping video {video_id} because it already has a transcript.")
         return "duplicate"
     placeholder = find_placeholder(video['snippet'].get('description', ''))
     if placeholder:
-        print(f"Skipping video {video_id} ({clean_title(video['snippet']['title'])}) because its "
+        log(f"Skipping video {video_id} ({clean_title(video['snippet']['title'])}) because its "
               f"description still has a template placeholder: {placeholder[:60]}. "
               f"It will be picked up once the metadata is filled in.")
         return "placeholder"
@@ -579,7 +580,8 @@ def create_chapters(video, timestamped, video_id):
 
     print(f"Creating chapters for video {video_id}")
     lines = []
-    for first_marker, text in split_windows(timestamped, count):
+    first_window_kept = False
+    for index, (first_marker, text) in enumerate(split_windows(timestamped, count)):
         line = None
         for attempt in range(2):
             candidate = valid_chapters(chat(client, chapter_prompt, text, temperature=0.1), text)
@@ -591,7 +593,9 @@ def create_chapters(video, timestamped, video_id):
         # No usable title: drop the chapter rather than write "Discussion".
         if line is not None:
             lines.append(line)
-    if lines:
+            if index == 0:
+                first_window_kept = True
+    if lines and first_window_kept:
         # The first chapter always starts at 00:00:00 for YouTube.
         lines[0] = "00:00:00" + lines[0][8:]
     chapters = valid_chapters("\n".join(lines), timestamped)
@@ -778,7 +782,7 @@ def main(args):
         print(f"Found {len(channel_videos)} videos in the specified date range.")
 
     known_ids = existing_video_ids(args.path)
-    videos_to_transcribe = [v for v in videos_to_transcribe if not should_skip(args, v, known_ids)]
+    videos_to_transcribe = [v for v in videos_to_transcribe if not should_skip(args, v, known_ids, quiet=True)]
     print(f"Found {len(videos_to_transcribe)} videos to transcribe, after filtering out those that already have transcripts.")
 
     if args.limit:

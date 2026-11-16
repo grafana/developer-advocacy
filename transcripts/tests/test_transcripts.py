@@ -69,6 +69,7 @@ class PlaceholderTests(DirTestCase):
 
     def test_ordinary_brackets_are_fine(self):
         self.assertIsNone(t.find_placeholder("See [the docs](https://grafana.com) and [Addendum] [1]"))
+        self.assertIsNone(t.find_placeholder("Date: [TBD] and [TODO] later"))
         self.assertIsNone(t.find_placeholder(""))
         self.assertIsNone(t.find_placeholder(None))
 
@@ -152,8 +153,7 @@ class ChapterTests(unittest.TestCase):
                 mock.patch.object(t, "chat", side_effect=fake_chat):
             out = t.create_chapters(video(), stamped, "vid")
         self.assertNotIn("Discussion", out)
-        self.assertTrue(out.startswith("00:00:00 "))
-        self.assertIn("Setting up Alloy", out)
+        self.assertNotIn("00:00:00 Setting up Alloy", out)
 
     def test_generic_title_detection(self):
         self.assertTrue(t.is_generic_title("Discussion"))
