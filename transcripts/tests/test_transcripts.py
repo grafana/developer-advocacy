@@ -13,8 +13,10 @@ import transcripts as t
 
 
 def video(video_id="abc123DEF_-", title="A title", description="Plain description",
-          published="2026-11-03T18:58:57Z"):
-    return {"id": video_id, "snippet": {"title": title, "description": description, "publishedAt": published}}
+          published="2026-11-03T18:58:57Z", privacy="public"):
+    return {"id": video_id, "status": {"privacyStatus": privacy},
+            "snippet": {"title": title, "description": description, "publishedAt": published,
+                        "liveBroadcastContent": "none"}}
 
 
 def write_transcript(directory, name, video_id, body="text"):
@@ -59,6 +61,52 @@ class DedupeByVideoIdTests(DirTestCase):
             processed = t.fetch_transcripts(self.args, [video("fresh")])
         self.assertEqual(len(processed), 1)
         write.assert_called_once()
+
+
+class PublicOnlyTests(DirTestCase):
+    def skipped(self, v):
+        with mock.patch.object(t, "get_transcript") as get_transcript, \
+                mock.patch("builtins.print") as printed:
+            processed = t.fetch_transcripts(self.args, [v])
+        get_transcript.assert_not_called()
+        self.assertEqual(processed, [])
+        return " ".join(str(c) for c in printed.call_args_list)
+
+    def test_private_and_unlisted_videos_are_skipped_without_their_title(self):
+        for privacy in ("private", "unlisted", "privacyStatusUnspecified"):
+            log = self.skipped(video("secret1", "Secret Roadmap Title", privacy=privacy))
+            self.assertIn("secret1", log)
+            self.assertIn(privacy, log)
+            self.assertNotIn("Secret Roadmap Title", log)
+
+    def test_video_without_status_is_not_published(self):
+        v = video("nostatus")
+        del v["status"]
+        self.assertIn("unknown", self.skipped(v))
+
+    def test_upcoming_and_live_broadcasts_wait_until_they_air(self):
+        for state in ("upcoming", "live"):
+            v = video("stream1")
+            v["snippet"]["liveBroadcastContent"] = state
+            self.assertIn(state, self.skipped(v))
+
+    def test_finished_public_video_is_processed(self):
+        v = video("ok1")
+        v["snippet"]["liveBroadcastContent"] = "none"
+        with mock.patch.object(t, "get_transcript", return_value=("x" * 80, "[00:00:00] x")), \
+                mock.patch.object(t, "write_markdown"):
+            self.assertEqual(len(t.fetch_transcripts(self.args, [v])), 1)
+
+    def test_video_lists_request_the_status_part(self):
+        youtube = mock.Mock()
+        youtube.playlistItems().list().execute.return_value = {
+            "items": [{"contentDetails": {"videoId": "v1", "videoPublishedAt": "2026-11-05T00:00:00Z"},
+                       "snippet": {"publishedAt": "2026-11-05T00:00:00Z"}}]}
+        youtube.videos().list().execute.return_value = {"items": [video("v1")]}
+        youtube.videos().list.reset_mock()
+        with mock.patch.object(t, "build_youtube", return_value=youtube):
+            t.get_channel_videos("UCabc", "2026-11-01T00:00:00Z", "2026-11-30T00:00:00Z")
+        self.assertEqual(youtube.videos().list.call_args.kwargs["part"], "snippet,status")
 
 
 class PlaceholderTests(DirTestCase):

@@ -101,7 +101,7 @@ def get_playlist_videos(playlist_id):
         
         try:
             request = youtube.videos().list(
-                part='snippet',
+                part='snippet,status',
                 id=','.join(batch_ids)
             )
             response = request.execute()
@@ -165,7 +165,7 @@ def get_channel_videos(channel_id, start_date, end_date):
                 ids.append(item['contentDetails']['videoId'])
 
         if ids:
-            details = youtube.videos().list(part='snippet', id=','.join(ids)).execute()
+            details = youtube.videos().list(part='snippet,status', id=','.join(ids)).execute()
             videos.extend(details['items'])
 
         next_page_token = response.get('nextPageToken')
@@ -224,9 +224,28 @@ def find_placeholder(description):
     return match.group(0) if match else None
 
 
+def not_public_reason(video):
+    """Why a video must not be published, or None when it is public and already aired.
+
+    The repository is public, and with a channel manager's OAuth credentials the uploads list also
+    holds private and unlisted videos and livestreams that have not started yet."""
+    privacy = (video.get('status') or {}).get('privacyStatus')
+    if privacy != 'public':
+        return f"it is not public (privacy status: {privacy or 'unknown'})"
+    broadcast = video['snippet'].get('liveBroadcastContent')
+    if broadcast in ('upcoming', 'live'):
+        return f"it is a livestream or premiere that has not finished ({broadcast})"
+    return None
+
+
 def should_skip(args, video, known_ids):
     """Why this video should not be transcribed now, or None. Logs the reason."""
     video_id = get_id(video)
+    # Check this first and log the ID only: titles of non-public videos must not reach public logs.
+    reason = not_public_reason(video)
+    if reason:
+        print(f"Skipping video {video_id} because {reason}.")
+        return "not_public"
     if video_id in known_ids:
         print(f"Skipping video {video_id} because it already has a transcript.")
         return "duplicate"
