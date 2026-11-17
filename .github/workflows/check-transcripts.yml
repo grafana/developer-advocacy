@@ -1,0 +1,46 @@
+name: Check transcripts
+
+# On pull requests that touch transcripts/: run the unit tests and fail when a newly added transcript
+# is for a YouTube video that already has a transcript file (a retitled or republished video).
+
+on:
+  pull_request:
+    paths:
+      - "transcripts/**"
+      - ".github/workflows/check-transcripts.yml"
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: transcripts/requirements.txt
+
+      - name: Install dependencies
+        working-directory: transcripts
+        run: pip install -r requirements.txt
+
+      - name: Run the unit tests
+        working-directory: transcripts
+        run: python -m unittest discover -s tests
+
+      - name: No new transcript duplicates an existing video
+        working-directory: transcripts
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: python check_duplicates.py --base "origin/$BASE_REF"

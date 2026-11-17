@@ -10,13 +10,23 @@ The `transcripts.py` script performs the following operations:
 2. **Downloads Transcripts**: Gets raw transcripts from YouTube's automatic captions
 3. **AI Processing**: Uses OpenAI to:
    - Generate concise summaries of each video
-   - Clean up and improve transcript readability
-   - Create YouTube-style chapters with timestamps
+   - Clean up and improve transcript readability (if the cleaned text is still much shorter than the original after a retry, only the raw transcript is written)
+   - Create YouTube-style chapters with timestamps (human-written timestamps in the description are reused; no generic "Discussion" chapters; none for very short videos)
 4. **Rate Limiting**: Includes built-in delays to respect API limits:
    - 5-15 second random delays between pagination requests
    - 10-30 second random delays between video processing
    - Initial 5-15 second delay before starting
-5. **Smart Skipping**: Automatically skips videos that already have transcript files
+5. **Smart Skipping**: Skips videos that already have a transcript (matched on the YouTube video ID in the
+   `URL:` line, so retitled or republished videos are not added twice) and videos whose description still has
+   template placeholders such as `[INSERT DESCRIPTION]` (picked up on a later run once the metadata is filled in).
+   Only public, finished videos are processed: private and unlisted videos and livestreams or premieres that have
+   not aired yet are skipped (logged with the video ID and reason only, never the title), because this repository is public.
+   Skips for template placeholders, non-public videos and livestreams that have not aired are only retried while the
+   video is inside the run's window (14 days for the weekly run). To backfill an older video once it is public or its
+   metadata is fixed, run `python3 transcripts.py --start <ISO date> --end <ISO date>` (for example
+   `--start 2026-11-01T00:00:00Z --end 2026-11-30T00:00:00Z`) and open a PR with the result.
+   `python check_duplicates.py --base origin/main` fails if a newly added transcript duplicates an existing video;
+   the `Check transcripts` workflow runs it on pull requests.
 6. **Markdown Generation**: Creates comprehensive markdown files with:
    - Video title, description, and URL
    - AI-generated summary
@@ -180,3 +190,10 @@ The script includes aggressive rate limiting to handle API quotas:
 - Initial delay of 5-15 seconds before starting
 
 If you still encounter rate limiting issues, try reducing the limit or waiting between runs.
+
+### Filenames, titles and ordering
+Files are named `<publish time>-<title slug>.md`, so a directory listing is in publish order. When several videos of
+a series are uploaded out of order (for example `02` published before `01`), they sort in the order they were
+published; that is intentional and not rewritten. YouTube cuts titles at 100 characters: a title that long is
+completed from the first line of the description when that line continues it, otherwise a warning is logged.
+Repeated lines in a description (such as a doubled "Thanks for watching!") are written once.

@@ -101,13 +101,14 @@ def get_playlist_videos(playlist_id):
         
         try:
             request = youtube.videos().list(
-                part='snippet',
+                part='snippet,status',
                 id=','.join(batch_ids)
             )
             response = request.execute()
             
             for item in response['items']:
-                print(f"Found video: {item['snippet']['title']}")
+                # The ID only: this runs before the public check and logs are visible.
+                print(f"Found video: {item['id']}")
                 videos.append(item)
                 
             # Rate limiting between batches
@@ -165,7 +166,7 @@ def get_channel_videos(channel_id, start_date, end_date):
                 ids.append(item['contentDetails']['videoId'])
 
         if ids:
-            details = youtube.videos().list(part='snippet', id=','.join(ids)).execute()
+            details = youtube.videos().list(part='snippet,status', id=','.join(ids)).execute()
             videos.extend(details['items'])
 
         next_page_token = response.get('nextPageToken')
@@ -189,8 +190,88 @@ def get_id(video):
     
     return video['id']['videoId']
 
+URL_LINE = re.compile(r"^URL:\s*https?://(?:www\.)?youtube\.com/watch\?v=([A-Za-z0-9_-]+)", re.MULTILINE)
+
+
+def video_ids_in_file(path):
+    """The YouTube video ID of a transcript file: its last `URL:` line, because the generator writes
+    its own URL line after the description, which can contain a `URL:` line of its own."""
+    try:
+        with open(path, encoding="utf-8") as file:
+            matches = URL_LINE.findall(file.read())
+        return {matches[-1]} if matches else set()
+    except OSError:
+        return set()
+
+
+def existing_video_ids(directory):
+    """The YouTube video IDs of every transcript already written to `directory`.
+
+    The ID is stable when a channel retitles or republishes a video, unlike the
+    publish time + title slug in the filename."""
+    ids = set()
+    for name in os.listdir(directory):
+        if name.endswith(".md"):
+            ids |= video_ids_in_file(os.path.join(directory, name))
+    return ids
+
+
+# An unfilled YouTube description template, e.g. "[INSTRUCTIONS: EDIT ANY AREA...]",
+# "[INSERT DESCRIPTION ...]" or "[Add Pyroscope/GCX docs and blog links]".
+# Uppercase INSTRUCTIONS / INSERT / ADD, as in YouTube's own template ("[INSERT DESCRIPTION - ...]"), or a
+# title-case/lowercase form with at least three more words ("[Add Pyroscope/GCX docs and blog links]").
+# "[Add-on]" and "[Insert coin]" are ordinary text.
+PLACEHOLDER = re.compile(
+    r"\[\s*(?:(?:INSTRUCTIONS|INSERT|ADD)\b(?!-)|(?i:instructions|insert|add)(?:\s+[^\s\]]+){3,})[^\]]*\]?")
+
+
+def find_placeholder(description):
+    """The first template placeholder left in a video description, or None."""
+    match = PLACEHOLDER.search(description or "")
+    return match.group(0) if match else None
+
+
+def not_public_reason(video):
+    """Why a video must not be published, or None when it is public and already aired.
+
+    The repository is public, and with a channel manager's OAuth credentials the uploads list also
+    holds private and unlisted videos and livestreams that have not started yet."""
+    privacy = (video.get('status') or {}).get('privacyStatus')
+    if privacy != 'public':
+        return f"it is not public (privacy status: {privacy or 'unknown'})"
+    broadcast = video['snippet'].get('liveBroadcastContent')
+    if broadcast in ('upcoming', 'live'):
+        return f"it is a livestream or premiere that has not finished ({broadcast})"
+    return None
+
+
+def should_skip(args, video, known_ids):
+    """Why this video should not be transcribed now, or None. Logs the reason."""
+    video_id = get_id(video)
+    # Check this first and log the ID only: titles of non-public videos must not reach public logs.
+    reason = not_public_reason(video)
+    if reason:
+        print(f"Skipping video {video_id} because {reason}.")
+        return "not_public"
+    if video_id in known_ids:
+        print(f"Skipping video {video_id} because it already has a transcript.")
+        return "duplicate"
+    if os.path.isfile(file_for_video(args, video)):
+        print(f"Skipping video {video_id} because it already has a transcript.")
+        return "duplicate"
+    placeholder = find_placeholder(video['snippet'].get('description', ''))
+    if placeholder:
+        print(f"Skipping video {video_id} ({video_title(video)}) because its "
+              f"description still has a template placeholder: {placeholder[:60]}. "
+              f"It will be picked up once the metadata is filled in.")
+        return "placeholder"
+    return None
+
+
 def fetch_transcripts(args, videos):
     processed = []
+    # Dedupe on the video ID, including videos handled earlier in this same run.
+    known_ids = existing_video_ids(args.path)
     for i, video in enumerate(videos):
         video_id = get_id(video)
         
@@ -199,8 +280,7 @@ def fetch_transcripts(args, videos):
             print(json.dumps(video, indent=2))
             continue
 
-        if os.path.isfile(file_for_video(args, video)):
-            print(f"Skipping video {video_id} because it already has a transcript.")
+        if should_skip(args, video, known_ids):
             continue
 
         print(f"Processing video {i+1}/{len(videos)}: {video_id}")
@@ -218,6 +298,7 @@ def fetch_transcripts(args, videos):
             video['timestamped'] = timestamped_text
             processed.append(video)
             write_markdown(args, video)
+            known_ids.add(video_id)
         else:
             print(f"Skipping video {video_id} due to transcript issues.")
             
@@ -228,6 +309,63 @@ def fetch_transcripts(args, videos):
             time.sleep(delay)
     
     return processed
+
+# YouTube cuts titles at 100 characters, so a longer title is stored (and returned by the API) truncated.
+YOUTUBE_TITLE_LIMIT = 100
+# A title completed from the description is cut here (at a word boundary), and the filename slug is
+# capped separately, so the filename always stays well under the 255 byte limit.
+MAX_COMPLETED_TITLE_CHARS = 150
+MAX_SLUG_CHARS = 120
+
+
+def video_title(video):
+    """The clean title of a video. YouTube's stored title can be cut at its 100 character limit
+    ("...AI Driven Operatio"); when it is, the first line of the description is used if it starts with
+    the title and continues it, otherwise a warning is logged and the title is used as it is."""
+    raw = video['snippet']['title'] or ""
+    title = clean_title(raw)
+    if len(raw) < YOUTUBE_TITLE_LIMIT:
+        return title
+    first_line = next((clean_title(line) for line in (video['snippet'].get('description') or "").splitlines()
+                       if line.strip()), "")
+    if len(first_line) > len(title) and first_line.lower().startswith(title.lower()):
+        return truncate_at_word(first_line, MAX_COMPLETED_TITLE_CHARS)
+    print(f"WARNING: the title of video {get_id(video)} is {len(raw)} characters, YouTube's limit, so it is "
+          f"probably truncated: {title}")
+    return title
+
+
+def truncate_at_word(text, limit):
+    """`text` cut to at most `limit` characters at a word boundary."""
+    if len(text) <= limit:
+        return text
+    return text[:limit].rsplit(" ", 1)[0].rstrip(" ,;:-\u2013\u2014") or text[:limit]
+
+
+REPEATABLE_LINE_MIN_CHARS = 10
+
+
+def dedupe_description(description):
+    """Drop lines that repeat an earlier line of the description (YouTube's default footer often
+    repeats a "Thanks for watching!" the author already wrote). Short lines, such as "---" or
+    "0:00 Intro", lines with no letter or digit, and blank lines are kept."""
+    seen, kept = set(), []
+    for line in (description or "").splitlines():
+        key = " ".join(line.split())
+        # Lines without a letter or digit (markdown rules such as "----------") are layout, not text.
+        if len(key) >= REPEATABLE_LINE_MIN_CHARS and any(ch.isalnum() for ch in key):
+            if key in seen:
+                continue
+            seen.add(key)
+        kept.append(line)
+    # Removing a line can leave a run of blank lines behind.
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(kept))
+
+
+def clean_title(title):
+    """Collapse the runs of spaces YouTube titles can carry ("02   Grafana   ObservabilityCON")."""
+    return re.sub(r"\s+", " ", title or "").strip()
+
 
 def file_for_video(args, video):
     """Determines a reasonable local filename for a given video.
@@ -240,8 +378,8 @@ def file_for_video(args, video):
     if published == '':
         raise Exception("Could not find publish time for video")
 
-    title = video['snippet']['title']
-    slug = slugify(title)
+    title = video_title(video)
+    slug = slugify(title, max_length=MAX_SLUG_CHARS, word_boundary=True)
     filename = f"{args.path}/{published}-{slug}.md"
     return filename
 
@@ -269,6 +407,12 @@ CLEANUP_CHUNK_CHARS = 8000
 MIN_CLEANUP_RATIO = 0.6
 # Put a [HH:MM:SS] marker in the chapter input at least this often.
 TIMESTAMP_INTERVAL_SECONDS = 45
+# Videos whose last [HH:MM:SS] marker is earlier than this are about a minute or two long: chapters
+# and a cleaned-up copy would only repeat the raw transcript, so they are left out.
+SHORT_VIDEO_SECONDS = 120
+# Chapter titles that say nothing; the model is asked again and the chapter is dropped if it persists.
+GENERIC_CHAPTER_TITLES = {"discussion", "conversation", "talk", "chat", "intro", "introduction",
+                          "overview", "q&a", "qa", "outro", "conclusion"}
 
 
 def format_timestamp(seconds):
@@ -306,7 +450,7 @@ def chunk_text(text, limit=CLEANUP_CHUNK_CHARS):
 def video_context(video):
     snippet = video["snippet"]
     return (
-        f"Video title: {snippet['title']}\n"
+        f"Video title: {video_title(video)}\n"
         f"Published: {get_publish(video)}\n"
         f"Description: {snippet['description']}"
     )
@@ -376,7 +520,10 @@ def openai_cleanup(video, transcript, video_id):
             print(f"Cleanup of a chunk of {video_id} looks truncated; retrying once.")
             cleaned = chat(client, cleanup_transcript_prompt, chunk, temperature=0.1)
             if len(cleaned) < MIN_CLEANUP_RATIO * len(chunk):
-                print(f"WARNING: cleanup of a chunk of {video_id} is much shorter than its input.")
+                # Summarised text must not be presented as the verbatim transcript.
+                print(f"WARNING: cleanup of a chunk of {video_id} is still much shorter than its input; "
+                      f"falling back to the raw transcript only.")
+                return [summary, None]
         cleaned_chunks.append(cleaned.strip())
 
     return [summary, "\n\n".join(cleaned_chunks)]
@@ -418,6 +565,52 @@ def split_windows(timestamped, count):
     return [(w[0][0], " ".join(t for _, t in w)) for w in windows if w]
 
 
+def timestamp_seconds(stamp):
+    parts = [int(p) for p in stamp.split(":")]
+    seconds = 0
+    for part in parts:
+        seconds = seconds * 60 + part
+    return seconds
+
+
+def last_marker_seconds(timestamped):
+    markers = re.findall(r"\[(\d\d:\d\d:\d\d)\]", timestamped or "")
+    return timestamp_seconds(markers[-1]) if markers else 0
+
+
+def is_short_video(timestamped):
+    if not re.search(r"\[\d\d:\d\d:\d\d\]", timestamped or ""):
+        return False  # No timing information, so no way to tell.
+    return last_marker_seconds(timestamped) < SHORT_VIDEO_SECONDS
+
+
+def is_generic_title(title):
+    return re.sub(r"[^a-z&]", "", title.lower()) in GENERIC_CHAPTER_TITLES
+
+
+DESCRIPTION_CHAPTER = re.compile(
+    r"^\s*(?:[-*\u2022]\s*)?[\[(]?((?:\d{1,2}:)?\d{1,2}:\d\d)[\])]?\s*[-\u2013\u2014:|]?\s*(\S.*?)\s*$")
+
+
+def description_chapters(description):
+    """Human-written chapters from a video description, as "HH:MM:SS Title" lines, or None.
+
+    Follows YouTube's own rules for chapters: at least three, starting at 0:00, increasing."""
+    entries, last = [], -1
+    for line in (description or "").splitlines():
+        match = DESCRIPTION_CHAPTER.match(line)
+        if not match:
+            continue
+        seconds = timestamp_seconds(match.group(1))
+        if seconds <= last:
+            continue
+        entries.append((seconds, match.group(2)))
+        last = seconds
+    if len(entries) < 3 or entries[0][0] != 0:
+        return None
+    return "\n".join(f"{format_timestamp(sec)} {title}" for sec, title in entries)
+
+
 def create_chapters(video, timestamped, video_id):
     """
     Create timestamps and chapters for a YouTube video transcript.
@@ -428,6 +621,15 @@ def create_chapters(video, timestamped, video_id):
     @param video_id: The YouTube video ID
     @return: A string containing formatted timestamps and chapters
     """
+    if is_short_video(timestamped):
+        print(f"Video {video_id} is very short; skipping chapters.")
+        return None
+
+    human = description_chapters(video['snippet'].get('description', ''))
+    if human:
+        print(f"Using the chapters from the description of video {video_id}.")
+        return human
+
     if openai_key == "":
         print("No OpenAI API key found in .env file; skipping chapter creation.")
         return "Chapters not available"
@@ -446,6 +648,7 @@ def create_chapters(video, timestamped, video_id):
     Rules:
     - The timestamp must be one of the [HH:MM:SS] markers in this part. Never invent one.
     - The title is a short, searchable sentence-case phrase that says what is being discussed.
+    - Never use a generic title such as "Discussion", "Introduction" or "Overview"; name the topic.
     - Output one line only, in the form: HH:MM:SS Title
     {CONTEXT_RULES}
     {GLOSSARY}
@@ -454,19 +657,24 @@ def create_chapters(video, timestamped, video_id):
 
     print(f"Creating chapters for video {video_id}")
     lines = []
+    first_window_kept = False
     for index, (first_marker, text) in enumerate(split_windows(timestamped, count)):
         line = None
         for attempt in range(2):
             candidate = valid_chapters(chat(client, chapter_prompt, text, temperature=0.1), text)
             if candidate:
-                line = candidate.splitlines()[0]
-                break
-        if line is None:
-            line = f"{first_marker} Discussion"
+                first = candidate.splitlines()[0]
+                if not is_generic_title(first.split(" ", 1)[1]):
+                    line = first
+                    break
+        # No usable title: drop the chapter rather than write "Discussion".
+        if line is not None:
+            lines.append(line)
+            if index == 0:
+                first_window_kept = True
+    if lines and first_window_kept:
         # The first chapter always starts at 00:00:00 for YouTube.
-        if index == 0:
-            line = "00:00:00" + line[8:]
-        lines.append(line)
+        lines[0] = "00:00:00" + lines[0][8:]
     chapters = valid_chapters("\n".join(lines), timestamped)
     return chapters or "Chapters not available"
 
@@ -480,8 +688,8 @@ def write_markdown(args, video):
         return 
 
     published = get_publish(video)
-    title = video['snippet']['title']
-    description = video['snippet']['description']
+    title = video_title(video)
+    description = dedupe_description(video['snippet']['description'])
     transcript = video.get('transcript', '')
 
     if transcript == '':
@@ -492,8 +700,12 @@ def write_markdown(args, video):
     url = f"https://www.youtube.com/watch?v={video_id}"
 
     filename = file_for_video(args, video)
+    timestamped = video.get('timestamped', transcript)
+    short = is_short_video(timestamped)
     [summary, cleaned_up] = openai_cleanup(video, transcript, video_id)
-    chapters = create_chapters(video, video.get('timestamped', transcript), video_id)
+    if short:
+        cleaned_up = None  # A cleaned copy of a one-minute video just repeats the raw transcript.
+    chapters = create_chapters(video, timestamped, video_id)
 
     with open(filename, "w") as file:
         file.write(f"# {title}\n\n")
@@ -504,8 +716,9 @@ def write_markdown(args, video):
         file.write("## Summary\n\n") 
         file.write(f"{summary}\n\n")
         
-        file.write("## Chapters\n\n")
-        file.write(f"{chapters}\n\n")
+        if chapters:
+            file.write("## Chapters\n\n")
+            file.write(f"{chapters}\n\n")
         
         if cleaned_up:
             # Don't write a heading because OpenAI was instructed to output markdown.
@@ -517,9 +730,6 @@ def write_markdown(args, video):
         file.write(f"{transcript}\n\n")
 
     print(f"Successfully wrote transcript for video {video_id} to {filename}")
-
-def have_transcript_file(args, video):
-    return os.path.isfile(file_for_video(args, video))
 
 SKIPPED_CAPTION_TEXT = ['[Music]', '[Applause]', '[Laughter]']
 
@@ -648,8 +858,17 @@ def main(args):
         videos_to_transcribe = videos_to_transcribe + channel_videos
         print(f"Found {len(channel_videos)} videos in the specified date range.")
 
-    videos_to_transcribe = [v for v in videos_to_transcribe if not have_transcript_file(args, v)]
+    known_ids = existing_video_ids(args.path)
+    videos_to_transcribe = [v for v in videos_to_transcribe if not should_skip(args, v, known_ids)]
     print(f"Found {len(videos_to_transcribe)} videos to transcribe, after filtering out those that already have transcripts.")
+
+    # The same video can come from both the playlist and the channel; it must not count twice toward --limit.
+    seen_ids, unique = set(), []
+    for v in videos_to_transcribe:
+        if get_id(v) not in seen_ids:
+            seen_ids.add(get_id(v))
+            unique.append(v)
+    videos_to_transcribe = unique
 
     if args.limit:
         videos_to_transcribe = videos_to_transcribe[:args.limit]
