@@ -1,0 +1,56 @@
+name: Audit transcripts are public
+
+# Weekly, after the refresh: check with the YouTube Data API that every transcript in the repository is
+# for a public video, in case one was added by hand or a video was made private afterwards.
+# The repository is public, so the logs only ever show counts. See transcripts/README.md ("Audit").
+
+on:
+  schedule:
+    - cron: "17 8 * * 1" # Mondays 08:17 UTC, two hours after the refresh
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write # GitHub OIDC, used by get-vault-secrets
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+
+      # Secrets live in Vault under ci/repo/grafana/developer-advocacy/, not in GitHub secrets.
+      # If the YouTube API key is not stored there (yet), this step fails but the run skips cleanly below.
+      - name: Get the YouTube API key from Vault
+        id: get-secrets
+        continue-on-error: true
+        uses: grafana/shared-workflows/actions/get-vault-secrets@2f1ddaf3ce1aa677356243d0dd584be33cfa35e3 # get-vault-secrets/v2.1.0
+        with:
+          repo_secrets: |
+            YOUTUBE_API_KEY=youtube-transcripts:api_key
+
+      - name: Check that every transcript video is public
+        if: steps.get-secrets.outcome == 'success'
+        working-directory: transcripts
+        env:
+          YOUTUBE_API_KEY: ${{ fromJSON(steps.get-secrets.outputs.secrets).YOUTUBE_API_KEY }}
+        run: |
+          if [ -z "$YOUTUBE_API_KEY" ]; then
+            echo "::notice::The YouTube API key in Vault is empty; skipping the audit."
+            exit 0
+          fi
+          python audit_public.py
+
+      - name: Skip, no API key available
+        if: steps.get-secrets.outcome != 'success'
+        run: echo "::notice::No YouTube API key (youtube-transcripts:api_key) in Vault; skipping the public-video audit."

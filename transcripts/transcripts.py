@@ -15,6 +15,7 @@ import re
 from datetime import datetime, timedelta, timezone
 
 import captions_api
+from check_duplicates import video_id_in_text
 
 load_dotenv()
 
@@ -190,16 +191,12 @@ def get_id(video):
     
     return video['id']['videoId']
 
-URL_LINE = re.compile(r"^URL:\s*https?://(?:www\.)?youtube\.com/watch\?v=([A-Za-z0-9_-]+)", re.MULTILINE)
-
-
 def video_ids_in_file(path):
-    """The YouTube video ID of a transcript file: its last `URL:` line, because the generator writes
-    its own URL line after the description, which can contain a `URL:` line of its own."""
+    """The YouTube video ID of a transcript file, as a set of zero or one ID."""
     try:
         with open(path, encoding="utf-8") as file:
-            matches = URL_LINE.findall(file.read())
-        return {matches[-1]} if matches else set()
+            video_id = video_id_in_text(file.read())
+        return {video_id} if video_id else set()
     except OSError:
         return set()
 
@@ -276,8 +273,7 @@ def fetch_transcripts(args, videos):
         video_id = get_id(video)
         
         if video_id == '':
-            print(f"Could not find video ID for video ")
-            print(json.dumps(video, indent=2))
+            print(f"Could not find video ID for video {i+1} of {len(videos)} (fields: {sorted(video)}).")
             continue
 
         if should_skip(args, video, known_ids):
@@ -468,12 +464,13 @@ def chat(client, system, user, temperature):
     return response.choices[0].message.content
 
 
-def openai_cleanup(video, transcript, video_id):
+def openai_cleanup(video, transcript, video_id, clean=True):
     """
     Take a messy raw YouTube transcript and return a summary + a cleaned up version.
     This only works if OPENAI_API_KEY is set in the environment.
     @param video: The video object (title, date and description give context)
     @param transcript: The raw transcript of a YouTube video, as plain text
+    @param clean: False to only summarise (the cleaned copy would be thrown away, so skip its calls)
     @return: A list containing the summary of the video and the cleaned up transcript
     """
     if openai_key == "":
@@ -496,6 +493,9 @@ def openai_cleanup(video, transcript, video_id):
 
     print(f"Summarizing transcript for video {video_id}")
     summary = chat(client, summarize_pls, transcript, temperature=0.3)
+
+    if not clean:
+        return [summary, None]
 
     cleanup_transcript_prompt = f"""
     You will be given part of a messy transcript of a Grafana Labs community call, livestream or
@@ -683,8 +683,7 @@ def write_markdown(args, video):
     video_id = get_id(video)
     
     if video_id == '':
-        print(f"Could not write markdown for video")
-        print(json.dumps(video, indent=2))
+        print("Could not write markdown for a video without an ID.")
         return 
 
     published = get_publish(video)
@@ -693,8 +692,7 @@ def write_markdown(args, video):
     transcript = video.get('transcript', '')
 
     if transcript == '':
-        print(f"Skipping video {video_id} / {title} because it has no transcript.")
-        print(json.dumps(video, indent=2))
+        print(f"Skipping video {video_id} because it has no transcript.")
         return 
 
     url = f"https://www.youtube.com/watch?v={video_id}"
@@ -702,12 +700,16 @@ def write_markdown(args, video):
     filename = file_for_video(args, video)
     timestamped = video.get('timestamped', transcript)
     short = is_short_video(timestamped)
-    [summary, cleaned_up] = openai_cleanup(video, transcript, video_id)
+    # A cleaned copy of a one-minute video just repeats the raw transcript, so do not pay for one.
+    [summary, cleaned_up] = openai_cleanup(video, transcript, video_id, clean=not short)
     if short:
-        cleaned_up = None  # A cleaned copy of a one-minute video just repeats the raw transcript.
+        cleaned_up = None
     chapters = create_chapters(video, timestamped, video_id)
 
-    with open(filename, "w") as file:
+    # Write to a temp file in the same directory and rename it into place: dedupe on the video ID means a
+    # partial file left by a crash would block the video for good.
+    temp_name = f"{filename}.tmp"
+    with open(temp_name, "w") as file:
         file.write(f"# {title}\n\n")
         file.write(f"Published on {published}\n\n")
         file.write(f"## Description\n\n{description}\n\n")
@@ -728,6 +730,9 @@ def write_markdown(args, video):
         # The YouTube transcripts are uhm ah well excessively uhm ah accurate.
         file.write("## Raw YouTube Transcript\n\n")
         file.write(f"{transcript}\n\n")
+        file.flush()
+        os.fsync(file.fileno())
+    os.replace(temp_name, filename)
 
     print(f"Successfully wrote transcript for video {video_id} to {filename}")
 

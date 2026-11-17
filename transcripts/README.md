@@ -45,6 +45,12 @@ The transcripts are refreshed automatically every week by the GitHub Actions wor
 - **Secrets:** none are stored in GitHub. The workflow reads them from Vault (`ci/repo/grafana/developer-advocacy/`) at run time with `grafana/shared-workflows/actions/get-vault-secrets` and GitHub OIDC: `youtube-transcripts` (`client_id`, `client_secret`, `refresh_token`) and `openai` (`api_key`).
 - **Why the official API:** YouTube blocks cloud runners (and now many home connections) from the unofficial `youtube_transcript_api` the script used before. The official `captions.list` + `captions.download` calls cost 250 quota units per video, so a normal week (about 10 videos) uses roughly 2,700 of the 10,000 daily units. The run stops cleanly with a message when it nears the budget (`YOUTUBE_QUOTA_BUDGET`, default 9000); the videos left over are picked up next week.
 
+### Audit: every transcript is for a public video
+
+[`.github/workflows/audit-transcripts.yml`](../.github/workflows/audit-transcripts.yml) runs Mondays at 08:17 UTC (after the refresh) and runs `python audit_public.py`. It asks the YouTube Data API, with a plain API key read from Vault (`youtube-transcripts`, `api_key`), whether the video of every transcript is public, and fails when one is not (for example a file added by hand, or a video made private later). If the key is not in Vault, the run skips with a notice.
+
+The repository is public, so the logs show **counts only**. To see which files are affected, run it privately: `YOUTUBE_API_KEY=... python audit_public.py --details`. Then delete those transcripts and re-run `python recurring_shows_index.py`.
+
 ### Run it manually
 
 Actions tab, "Refresh YouTube transcripts", "Run workflow". Set `days` to go further back and tick `dry_run` to fetch and regenerate without opening a PR. Or from a terminal: `gh workflow run refresh-transcripts.yml -f days=30`.
