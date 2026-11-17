@@ -19,8 +19,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def video_ids(path):
+    """The video of a transcript file: its last `URL:` line, since the generator writes its own after the
+    description, which can contain a `URL:` line of its own."""
     with open(path, encoding="utf-8") as file:
-        return set(URL_LINE.findall(file.read()))
+        matches = URL_LINE.findall(file.read())
+    return {matches[-1]} if matches else set()
 
 
 def find_duplicates(directory, new_files=None):

@@ -109,6 +109,96 @@ class PublicOnlyTests(DirTestCase):
         self.assertEqual(youtube.videos().list.call_args.kwargs["part"], "snippet,status")
 
 
+class PlaylistLoggingTests(unittest.TestCase):
+    def test_playlist_path_never_prints_a_title(self):
+        youtube = mock.Mock()
+        youtube.playlistItems().list().execute.return_value = {
+            "items": [{"snippet": {"resourceId": {"videoId": "priv1"}}}]}
+        secret = video("priv1", "Secret Roadmap Title", privacy="private")
+        youtube.videos().list().execute.return_value = {"items": [secret]}
+        with mock.patch.object(t, "build_youtube", return_value=youtube), \
+                mock.patch.object(t.time, "sleep"), mock.patch("builtins.print") as printed:
+            videos = t.get_playlist_videos("PLx")
+        log = " ".join(str(c) for c in printed.call_args_list)
+        self.assertEqual([v["id"] for v in videos], ["priv1"])
+        self.assertIn("priv1", log)
+        self.assertNotIn("Secret Roadmap Title", log)
+
+
+class LongTitleTests(DirTestCase):
+    def long_video(self):
+        raw = "x" * 100
+        first = raw + " " + " ".join(["wordy"] * 200)
+        return video(title=raw, description=first + "\nmore")
+
+    def test_completed_title_is_capped_at_a_word_boundary(self):
+        title = t.video_title(self.long_video())
+        self.assertLessEqual(len(title), t.MAX_COMPLETED_TITLE_CHARS)
+        self.assertTrue(title.endswith("wordy"))
+        self.assertTrue(title.startswith("x" * 100))
+
+    def test_filename_stays_well_under_255_bytes(self):
+        name = os.path.basename(t.file_for_video(self.args, self.long_video()))
+        self.assertLess(len(name.encode()), 200)
+        # Any long title, not just completed ones, gets a capped slug.
+        huge = video(title="word " * 200)
+        self.assertLess(len(os.path.basename(t.file_for_video(self.args, huge)).encode()), 200)
+
+    def test_markdown_for_a_very_long_title_can_be_written(self):
+        v = self.long_video()
+        v["transcript"], v["timestamped"] = "x " * 100, "[00:00:00] x\n[00:05:00] y"
+        with mock.patch.object(t, "openai_key", ""):
+            t.write_markdown(self.args, v)
+        self.assertTrue(os.path.isfile(t.file_for_video(self.args, v)))
+
+
+class UrlLineInDescriptionTests(DirTestCase):
+    def test_last_url_line_is_the_videos_own(self):
+        with open(os.path.join(self.dir, "a.md"), "w") as f:
+            f.write("# T\n\n## Description\n\nURL: https://www.youtube.com/watch?v=OTHERvideo1\n\n"
+                    "URL: https://www.youtube.com/watch?v=REALvideo_01\n\n## Summary\n")
+        self.assertEqual(t.existing_video_ids(self.dir), {"REALvideo_01"})
+
+    def test_duplicate_check_uses_the_last_url_line_too(self):
+        with open(os.path.join(self.dir, "new.md"), "w") as f:
+            f.write("URL: https://www.youtube.com/watch?v=OTHERvideo1\n\nURL: https://www.youtube.com/watch?v=NEWvideo_001\n")
+        write_transcript(self.dir, "old.md", "OTHERvideo1")
+        self.assertEqual(check_duplicates.find_duplicates(self.dir, ["new.md"]), {})
+
+
+class PlaceholderEdgeTests(unittest.TestCase):
+    def test_ordinary_bracketed_text_is_not_a_placeholder(self):
+        for text in ("[Add-on]", "[Insert coin]", "[Add to calendar]", "[ADD-ON]", "[Instructions]"):
+            self.assertIsNone(t.find_placeholder(f"x {text} y"), text)
+
+    def test_template_forms_still_match(self):
+        for text in ("[Add Pyroscope/GCX docs and blog links]", "[INSTRUCTIONS: EDIT ANY AREA]",
+                     "[INSERT TIMESTAMPS IF VIDEO IS 5 MIN OR MORE]", "[ADD LINKS]", "[add the docs and blog links]"):
+            self.assertIsNotNone(t.find_placeholder(f"x {text} y"), text)
+
+
+class DedupeRulesTests(unittest.TestCase):
+    def test_markdown_rules_are_not_collapsed(self):
+        desc = "Part one\n----------\nbody text here\n----------\nPart two\n==========\n==========\n"
+        self.assertEqual(t.dedupe_description(desc), desc.rstrip("\n"))
+
+    def test_repeated_text_lines_still_collapse(self):
+        self.assertEqual(t.dedupe_description("same long line\nsame long line").count("same long line"), 1)
+
+
+class BatchDuplicateLimitTests(DirTestCase):
+    def test_in_batch_duplicates_do_not_count_toward_the_limit(self):
+        a, a2, b, c = video("aaa"), video("aaa", "Renamed"), video("bbb"), video("ccc")
+        args = argparse.Namespace(path=self.dir, playlist="PLx", channel="UCx", start="s", end="e",
+                                  limit=2, days=None)
+        with mock.patch.object(t.time, "sleep"), \
+                mock.patch.object(t, "get_playlist_videos", return_value=[a, b]), \
+                mock.patch.object(t, "get_channel_videos", return_value=[a2, c]), \
+                mock.patch.object(t, "fetch_transcripts") as fetch:
+            t.main(args)
+        self.assertEqual([t.get_id(v) for v in fetch.call_args.args[1]], ["aaa", "bbb"])
+
+
 class PlaceholderTests(DirTestCase):
     def test_detects_youtube_template_text(self):
         for text in ("[INSTRUCTIONS: EDIT ANY AREA IN BRACKETS]", "[INSERT DESCRIPTION HERE]",

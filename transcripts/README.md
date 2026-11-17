@@ -21,6 +21,10 @@ The `transcripts.py` script performs the following operations:
    template placeholders such as `[INSERT DESCRIPTION]` (picked up on a later run once the metadata is filled in).
    Only public, finished videos are processed: private and unlisted videos and livestreams or premieres that have
    not aired yet are skipped (logged with the video ID and reason only, never the title), because this repository is public.
+   Skips for template placeholders, non-public videos and livestreams that have not aired are only retried while the
+   video is inside the run's window (14 days for the weekly run). To backfill an older video once it is public or its
+   metadata is fixed, run `python3 transcripts.py --start <ISO date> --end <ISO date>` (for example
+   `--start 2026-11-01T00:00:00Z --end 2026-11-30T00:00:00Z`) and open a PR with the result.
    `python check_duplicates.py --base origin/main` fails if a newly added transcript duplicates an existing video;
    the `Check transcripts` workflow runs it on pull requests.
 6. **Markdown Generation**: Creates comprehensive markdown files with:

@@ -107,7 +107,8 @@ def get_playlist_videos(playlist_id):
             response = request.execute()
             
             for item in response['items']:
-                print(f"Found video: {item['snippet']['title']}")
+                # The ID only: this runs before the public check and logs are visible.
+                print(f"Found video: {item['id']}")
                 videos.append(item)
                 
             # Rate limiting between batches
@@ -193,10 +194,12 @@ URL_LINE = re.compile(r"^URL:\s*https?://(?:www\.)?youtube\.com/watch\?v=([A-Za-
 
 
 def video_ids_in_file(path):
-    """The YouTube video IDs named on a transcript file's `URL:` line(s)."""
+    """The YouTube video ID of a transcript file: its last `URL:` line, because the generator writes
+    its own URL line after the description, which can contain a `URL:` line of its own."""
     try:
         with open(path, encoding="utf-8") as file:
-            return set(URL_LINE.findall(file.read()))
+            matches = URL_LINE.findall(file.read())
+        return {matches[-1]} if matches else set()
     except OSError:
         return set()
 
@@ -215,7 +218,11 @@ def existing_video_ids(directory):
 
 # An unfilled YouTube description template, e.g. "[INSTRUCTIONS: EDIT ANY AREA...]",
 # "[INSERT DESCRIPTION ...]" or "[Add Pyroscope/GCX docs and blog links]".
-PLACEHOLDER = re.compile(r"\[\s*(?:INSTRUCTIONS|INSERT|ADD)\b[^\]]*\]?", re.IGNORECASE)
+# Uppercase INSTRUCTIONS / INSERT / ADD, as in YouTube's own template ("[INSERT DESCRIPTION - ...]"), or a
+# title-case/lowercase form with at least three more words ("[Add Pyroscope/GCX docs and blog links]").
+# "[Add-on]" and "[Insert coin]" are ordinary text.
+PLACEHOLDER = re.compile(
+    r"\[\s*(?:(?:INSTRUCTIONS|INSERT|ADD)\b(?!-)|(?i:instructions|insert|add)(?:\s+[^\s\]]+){3,})[^\]]*\]?")
 
 
 def find_placeholder(description):
@@ -305,6 +312,10 @@ def fetch_transcripts(args, videos):
 
 # YouTube cuts titles at 100 characters, so a longer title is stored (and returned by the API) truncated.
 YOUTUBE_TITLE_LIMIT = 100
+# A title completed from the description is cut here (at a word boundary), and the filename slug is
+# capped separately, so the filename always stays well under the 255 byte limit.
+MAX_COMPLETED_TITLE_CHARS = 150
+MAX_SLUG_CHARS = 120
 
 
 def video_title(video):
@@ -318,10 +329,17 @@ def video_title(video):
     first_line = next((clean_title(line) for line in (video['snippet'].get('description') or "").splitlines()
                        if line.strip()), "")
     if len(first_line) > len(title) and first_line.lower().startswith(title.lower()):
-        return first_line
+        return truncate_at_word(first_line, MAX_COMPLETED_TITLE_CHARS)
     print(f"WARNING: the title of video {get_id(video)} is {len(raw)} characters, YouTube's limit, so it is "
           f"probably truncated: {title}")
     return title
+
+
+def truncate_at_word(text, limit):
+    """`text` cut to at most `limit` characters at a word boundary."""
+    if len(text) <= limit:
+        return text
+    return text[:limit].rsplit(" ", 1)[0].rstrip(" ,;:-\u2013\u2014") or text[:limit]
 
 
 REPEATABLE_LINE_MIN_CHARS = 10
@@ -330,11 +348,12 @@ REPEATABLE_LINE_MIN_CHARS = 10
 def dedupe_description(description):
     """Drop lines that repeat an earlier line of the description (YouTube's default footer often
     repeats a "Thanks for watching!" the author already wrote). Short lines, such as "---" or
-    "0:00 Intro", and blank lines are kept."""
+    "0:00 Intro", lines with no letter or digit, and blank lines are kept."""
     seen, kept = set(), []
     for line in (description or "").splitlines():
         key = " ".join(line.split())
-        if len(key) >= REPEATABLE_LINE_MIN_CHARS:
+        # Lines without a letter or digit (markdown rules such as "----------") are layout, not text.
+        if len(key) >= REPEATABLE_LINE_MIN_CHARS and any(ch.isalnum() for ch in key):
             if key in seen:
                 continue
             seen.add(key)
@@ -360,7 +379,7 @@ def file_for_video(args, video):
         raise Exception("Could not find publish time for video")
 
     title = video_title(video)
-    slug = slugify(title)
+    slug = slugify(title, max_length=MAX_SLUG_CHARS, word_boundary=True)
     filename = f"{args.path}/{published}-{slug}.md"
     return filename
 
@@ -842,6 +861,14 @@ def main(args):
     known_ids = existing_video_ids(args.path)
     videos_to_transcribe = [v for v in videos_to_transcribe if not should_skip(args, v, known_ids)]
     print(f"Found {len(videos_to_transcribe)} videos to transcribe, after filtering out those that already have transcripts.")
+
+    # The same video can come from both the playlist and the channel; it must not count twice toward --limit.
+    seen_ids, unique = set(), []
+    for v in videos_to_transcribe:
+        if get_id(v) not in seen_ids:
+            seen_ids.add(get_id(v))
+            unique.append(v)
+    videos_to_transcribe = unique
 
     if args.limit:
         videos_to_transcribe = videos_to_transcribe[:args.limit]
