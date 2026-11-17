@@ -184,3 +184,10 @@ The script includes aggressive rate limiting to handle API quotas:
 - Initial delay of 5-15 seconds before starting
 
 If you still encounter rate limiting issues, try reducing the limit or waiting between runs.
+
+### Filenames, titles and ordering
+Files are named `<publish time>-<title slug>.md`, so a directory listing is in publish order. When several videos of
+a series are uploaded out of order (for example `02` published before `01`), they sort in the order they were
+published; that is intentional and not rewritten. YouTube cuts titles at 100 characters: a title that long is
+completed from the first line of the description when that line continues it, otherwise a warning is logged.
+Repeated lines in a description (such as a doubled "Thanks for watching!") are written once.

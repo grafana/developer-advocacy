@@ -184,6 +184,52 @@ class TitleCleanTests(DirTestCase):
             self.assertEqual(f.readline().strip(), "# 02 Grafana ObservabilityCON 26 London")
 
 
+class DescriptionDedupeTests(DirTestCase):
+    DESC = ("Intro text here\n\nThanks for watching!\n\n#Grafana #Pyroscope\n---\nThanks for watching! \n\n"
+            "Like and subscribe\n\n#Grafana #Observability")
+
+    def test_repeated_lines_are_dropped_once_seen(self):
+        out = t.dedupe_description(self.DESC)
+        self.assertEqual(out.count("Thanks for watching!"), 1)
+        self.assertIn("#Grafana #Pyroscope", out)
+        self.assertIn("#Grafana #Observability", out)
+        self.assertNotIn("\n\n\n", out)
+
+    def test_short_and_blank_lines_are_kept(self):
+        self.assertEqual(t.dedupe_description("---\na\n---\n\n\nx\n---"), "---\na\n---\n\nx\n---")
+
+    def test_written_description_has_one_footer(self):
+        v = video(description=self.DESC)
+        v["transcript"], v["timestamped"] = "x " * 100, "[00:00:00] x\n[00:05:00] y"
+        with mock.patch.object(t, "openai_key", ""):
+            t.write_markdown(self.args, v)
+        with open(t.file_for_video(self.args, v)) as f:
+            self.assertEqual(f.read().count("Thanks for watching!"), 1)
+
+
+class TruncatedTitleTests(unittest.TestCase):
+    FULL = "Grafana ObservabilityCON 26 London: Building an Observable Enterprise for AI Driven Operations"
+    CUT = "01   Grafana ObservabilityCON 26   London   Building an Observable Enterprise for AI Driven Operatio"
+
+    def test_title_at_limit_is_completed_from_the_description_first_line(self):
+        raw = (self.FULL + " and more words to fill up")[:100]
+        self.assertEqual(len(raw), 100)
+        v = video(title=raw, description=f"\n{self.FULL} and more words to fill up and beyond\nMore")
+        self.assertEqual(t.video_title(v), f"{self.FULL} and more words to fill up and beyond")
+
+    def test_truncated_title_without_matching_description_warns(self):
+        self.assertEqual(len(self.CUT), 100)
+        v = video(title=self.CUT, description="[INSERT DESCRIPTION]")
+        with mock.patch("builtins.print") as printed:
+            self.assertEqual(t.video_title(v), t.clean_title(self.CUT))
+        self.assertTrue(any("probably truncated" in str(c) for c in printed.call_args_list))
+
+    def test_short_titles_are_untouched_and_silent(self):
+        with mock.patch("builtins.print") as printed:
+            self.assertEqual(t.video_title(video(title="Short   title")), "Short title")
+        printed.assert_not_called()
+
+
 class ShortVideoOutputTests(DirTestCase):
     def test_short_video_has_no_chapters_or_cleaned_copy(self):
         v = video(title="eBPF in 1 minute")

@@ -235,7 +235,7 @@ def should_skip(args, video, known_ids):
         return "duplicate"
     placeholder = find_placeholder(video['snippet'].get('description', ''))
     if placeholder:
-        print(f"Skipping video {video_id} ({clean_title(video['snippet']['title'])}) because its "
+        print(f"Skipping video {video_id} ({video_title(video)}) because its "
               f"description still has a template placeholder: {placeholder[:60]}. "
               f"It will be picked up once the metadata is filled in.")
         return "placeholder"
@@ -284,6 +284,46 @@ def fetch_transcripts(args, videos):
     
     return processed
 
+# YouTube cuts titles at 100 characters, so a longer title is stored (and returned by the API) truncated.
+YOUTUBE_TITLE_LIMIT = 100
+
+
+def video_title(video):
+    """The clean title of a video. YouTube's stored title can be cut at its 100 character limit
+    ("...AI Driven Operatio"); when it is, the first line of the description is used if it starts with
+    the title and continues it, otherwise a warning is logged and the title is used as it is."""
+    raw = video['snippet']['title'] or ""
+    title = clean_title(raw)
+    if len(raw) < YOUTUBE_TITLE_LIMIT:
+        return title
+    first_line = next((clean_title(line) for line in (video['snippet'].get('description') or "").splitlines()
+                       if line.strip()), "")
+    if len(first_line) > len(title) and first_line.lower().startswith(title.lower()):
+        return first_line
+    print(f"WARNING: the title of video {get_id(video)} is {len(raw)} characters, YouTube's limit, so it is "
+          f"probably truncated: {title}")
+    return title
+
+
+REPEATABLE_LINE_MIN_CHARS = 10
+
+
+def dedupe_description(description):
+    """Drop lines that repeat an earlier line of the description (YouTube's default footer often
+    repeats a "Thanks for watching!" the author already wrote). Short lines, such as "---" or
+    "0:00 Intro", and blank lines are kept."""
+    seen, kept = set(), []
+    for line in (description or "").splitlines():
+        key = " ".join(line.split())
+        if len(key) >= REPEATABLE_LINE_MIN_CHARS:
+            if key in seen:
+                continue
+            seen.add(key)
+        kept.append(line)
+    # Removing a line can leave a run of blank lines behind.
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(kept))
+
+
 def clean_title(title):
     """Collapse the runs of spaces YouTube titles can carry ("02   Grafana   ObservabilityCON")."""
     return re.sub(r"\s+", " ", title or "").strip()
@@ -300,7 +340,7 @@ def file_for_video(args, video):
     if published == '':
         raise Exception("Could not find publish time for video")
 
-    title = clean_title(video['snippet']['title'])
+    title = video_title(video)
     slug = slugify(title)
     filename = f"{args.path}/{published}-{slug}.md"
     return filename
@@ -372,7 +412,7 @@ def chunk_text(text, limit=CLEANUP_CHUNK_CHARS):
 def video_context(video):
     snippet = video["snippet"]
     return (
-        f"Video title: {clean_title(snippet['title'])}\n"
+        f"Video title: {video_title(video)}\n"
         f"Published: {get_publish(video)}\n"
         f"Description: {snippet['description']}"
     )
@@ -610,8 +650,8 @@ def write_markdown(args, video):
         return 
 
     published = get_publish(video)
-    title = clean_title(video['snippet']['title'])
-    description = video['snippet']['description']
+    title = video_title(video)
+    description = dedupe_description(video['snippet']['description'])
     transcript = video.get('transcript', '')
 
     if transcript == '':
