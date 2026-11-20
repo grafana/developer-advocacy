@@ -49,6 +49,32 @@ The transcripts are refreshed automatically every week by the GitHub Actions wor
 
 Actions tab, "Refresh YouTube transcripts", "Run workflow". Set `days` to go further back and tick `dry_run` to fetch and regenerate without opening a PR. Or from a terminal: `gh workflow run refresh-transcripts.yml -f days=30`.
 
+### Regenerate existing transcripts
+
+`transcripts.py` normally skips a video that already has a transcript. To rebuild existing ones with the
+current generator (for example after the generator improves), use regenerate mode. It overwrites the
+existing file in place, keeping its filename so links to it do not break, and uses exactly the same path as a
+new transcript: official captions API, OpenAI summary, cleanup and chapters. Non-public or unaired videos,
+videos with a template placeholder in the description, and videos without usable captions are skipped and their
+file is left untouched. It needs OpenAI credentials, because without them the files would be overwritten with
+"Summary not available".
+
+```bash
+# Specific videos
+python3 transcripts.py --regenerate --video-ids ID1,ID2
+# A batch: the 10 oldest transcripts (by filename, so publish time), then the next 10
+python3 transcripts.py --regenerate --limit 10
+python3 transcripts.py --regenerate --limit 10 --offset 10
+```
+
+Or run the workflow ("Run workflow" with `regenerate` ticked and `video_ids`, or `limit` and `offset`), which
+reads the credentials from Vault and opens a PR with the changed files. Scheduled runs are unchanged.
+
+**Quota maths:** each video costs 250 units (a `captions.list` at 50 plus a `captions.download` at 200) plus 1 unit
+per 50 videos for their details, against 10,000 a day. The run stops at `YOUTUBE_QUOTA_BUDGET` (default 9000), which
+is 36 videos per day. About 783 transcripts therefore take about 22 days of quota. Run a batch of at most 30
+a day (`--limit 30 --offset 30*N`) to leave room for the weekly refresh, and review the PR of each batch before the next.
+
 ### If it fails
 
 GitHub emails the people who last changed the schedule or triggered the run when a scheduled run fails. Check the run log:

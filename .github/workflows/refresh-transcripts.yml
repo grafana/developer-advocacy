@@ -17,6 +17,22 @@ on:
         description: "Fetch and regenerate, but do not open a PR"
         type: boolean
         default: false
+      regenerate:
+        description: "Rebuild transcripts that already exist (needs video_ids or limit); ignores days"
+        type: boolean
+        default: false
+      video_ids:
+        description: "With regenerate: comma-separated YouTube video IDs to rebuild"
+        required: false
+        default: ""
+      limit:
+        description: "With regenerate and no video_ids: rebuild this many, oldest first"
+        required: false
+        default: ""
+      offset:
+        description: "With regenerate and limit: skip this many of the oldest first (the next batch)"
+        required: false
+        default: "0"
 
 permissions: {}
 
@@ -36,6 +52,10 @@ jobs:
       # Scheduled runs always open a PR; a manual run can be a dry run.
       DRY_RUN: ${{ inputs.dry_run == true }}
       DAYS: ${{ inputs.days || '14' }}
+      REGENERATE: ${{ inputs.regenerate == true }}
+      VIDEO_IDS: ${{ inputs.video_ids }}
+      LIMIT: ${{ inputs.limit }}
+      OFFSET: ${{ inputs.offset || '0' }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -76,7 +96,20 @@ jobs:
           YOUTUBE_OAUTH_REFRESH_TOKEN: ${{ fromJSON(steps.get-secrets.outputs.secrets).YOUTUBE_OAUTH_REFRESH_TOKEN }}
           OPENAI_API_KEY: ${{ fromJSON(steps.get-secrets.outputs.secrets).OPENAI_API_KEY }}
           PYTHONUNBUFFERED: "1"
-        run: python transcripts.py --days "$DAYS"
+        run: |
+          if [ "$REGENERATE" = "true" ]; then
+            # Rebuild existing transcripts in place; each costs 250 quota units (see the README).
+            if [ -n "$VIDEO_IDS" ]; then
+              python transcripts.py --regenerate --video-ids "$VIDEO_IDS"
+            elif [ -n "$LIMIT" ]; then
+              python transcripts.py --regenerate --limit "$LIMIT" --offset "$OFFSET"
+            else
+              echo "regenerate needs video_ids or limit" >&2
+              exit 1
+            fi
+          else
+            python transcripts.py --days "$DAYS"
+          fi
 
       - name: Regenerate the recurring shows index
         working-directory: transcripts
@@ -107,12 +140,12 @@ jobs:
           branch: automation/refresh-transcripts
           delete-branch: true
           sign-commits: true
-          commit-message: "Refresh transcripts and recurring shows index"
-          title: "Refresh transcripts and recurring shows index"
+          commit-message: ${{ env.REGENERATE == 'true' && 'Regenerate transcripts' || 'Refresh transcripts and recurring shows index' }}
+          title: ${{ env.REGENERATE == 'true' && 'Regenerate transcripts' || 'Refresh transcripts and recurring shows index' }}
           labels: devrel
           body: |
-            Automated weekly refresh from `.github/workflows/refresh-transcripts.yml`: new transcripts from the
-            last ${{ inputs.days || '14' }} days. The recurring shows and community calls indexes are
+            ${{ env.REGENERATE == 'true' && format('Regeneration batch from `.github/workflows/refresh-transcripts.yml` (video_ids: `{0}`, limit: `{1}`, offset: `{2}`): existing transcripts rebuilt in place with the current generator.', inputs.video_ids, inputs.limit, inputs.offset || '0') || format('Automated weekly refresh from `.github/workflows/refresh-transcripts.yml`: new transcripts from the last {0} days.', inputs.days || '14') }}
+            The recurring shows and community calls indexes are
             regenerated too and only appear in this PR's diff when they changed.
 
             Please skim the new transcripts and the summaries, then merge. See `transcripts/README.md`
