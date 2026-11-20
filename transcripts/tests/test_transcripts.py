@@ -63,6 +63,85 @@ class DedupeByVideoIdTests(DirTestCase):
         write.assert_called_once()
 
 
+class RegenerateTests(DirTestCase):
+    def setUp(self):
+        super().setUp()
+        write_transcript(self.dir, "2024-02-01T00:00:00Z-b.md", "bbb", "OLD B")
+        write_transcript(self.dir, "2023-01-01T00:00:00Z-a.md", "aaa", "OLD A")
+        write_transcript(self.dir, "2025-03-01T00:00:00Z-c.md", "ccc", "OLD C")
+        self.args = argparse.Namespace(path=self.dir, video_ids=None, limit=None, offset=0)
+
+    def test_limit_takes_the_oldest_by_filename(self):
+        self.args.limit = 2
+        selected = t.select_regeneration(self.args, t.existing_files_by_id(self.dir))
+        self.assertEqual([v for v, _ in selected], ["aaa", "bbb"])
+
+    def test_offset_continues_the_next_batch(self):
+        self.args.limit, self.args.offset = 2, 2
+        selected = t.select_regeneration(self.args, t.existing_files_by_id(self.dir))
+        self.assertEqual([v for v, _ in selected], ["ccc"])
+
+    def test_video_ids_pick_those_videos_without_duplicates(self):
+        self.args.video_ids = "ccc, aaa,ccc"
+        selected = t.select_regeneration(self.args, t.existing_files_by_id(self.dir))
+        self.assertEqual([v for v, _ in selected], ["ccc", "aaa"])
+
+    def test_unknown_id_is_an_error_and_a_selection_is_required(self):
+        self.args.video_ids = "zzz"
+        with self.assertRaises(SystemExit):
+            t.select_regeneration(self.args, t.existing_files_by_id(self.dir))
+        self.args.video_ids = None
+        with self.assertRaises(SystemExit):
+            t.select_regeneration(self.args, t.existing_files_by_id(self.dir))
+
+    def regenerate(self, videos, ids, transcript=("new text " * 20, "[00:00:00] new text")):
+        selected = [(i, t.existing_files_by_id(self.dir)[i]) for i in ids]
+        with mock.patch.object(t.time, "sleep"), \
+                mock.patch.object(t, "get_transcript", return_value=transcript), \
+                mock.patch.object(t, "openai_cleanup", return_value=["NEW SUMMARY", None]), \
+                mock.patch.object(t, "create_chapters", return_value=None):
+            return t.regenerate_transcripts(self.args, selected, videos)
+
+    def read(self, name):
+        with open(os.path.join(self.dir, name)) as f:
+            return f.read()
+
+    def test_overwrites_the_existing_file_in_place_even_if_the_title_changed(self):
+        done = self.regenerate([video("aaa", title="Retitled", published="2023-01-01T00:00:00Z")], ["aaa"])
+        self.assertEqual(len(done), 1)
+        self.assertIn("NEW SUMMARY", self.read("2023-01-01T00:00:00Z-a.md"))
+        self.assertEqual(sorted(os.listdir(self.dir)),
+                         ["2023-01-01T00:00:00Z-a.md", "2024-02-01T00:00:00Z-b.md", "2025-03-01T00:00:00Z-c.md"])
+        self.assertIn("OLD B", self.read("2024-02-01T00:00:00Z-b.md"))
+        self.assertEqual(list(t.existing_video_ids(self.dir)).count("aaa"), 1)
+
+    def test_non_public_or_missing_or_captionless_videos_keep_their_file(self):
+        self.assertEqual(self.regenerate([video("aaa", privacy="private")], ["aaa"]), [])
+        self.assertEqual(self.regenerate([], ["aaa"]), [])
+        self.assertEqual(self.regenerate([video("aaa")], ["aaa"], transcript=(None, None)), [])
+        self.assertIn("OLD A", self.read("2023-01-01T00:00:00Z-a.md"))
+
+    def test_stops_when_the_quota_budget_is_spent(self):
+        selected = [(i, t.existing_files_by_id(self.dir)[i]) for i in ("aaa", "bbb")]
+        with mock.patch.object(t.time, "sleep"), \
+                mock.patch.object(t, "get_transcript", side_effect=t.captions_api.QuotaExhausted("budget")):
+            done = t.regenerate_transcripts(self.args, selected, [video("aaa"), video("bbb")])
+        self.assertEqual(done, [])
+        self.assertIn("OLD A", self.read("2023-01-01T00:00:00Z-a.md"))
+
+    def test_main_needs_openai_and_never_touches_files_without_it(self):
+        self.args.limit = 1
+        self.args.regenerate = True
+        with mock.patch.object(t.time, "sleep"), mock.patch.object(t, "openai_key", ""):
+            with self.assertRaises(SystemExit):
+                t.main(self.args)
+        self.assertIn("OLD A", self.read("2023-01-01T00:00:00Z-a.md"))
+
+    def test_regenerated_files_pass_the_duplicate_check(self):
+        self.regenerate([video("aaa", published="2023-01-01T00:00:00Z")], ["aaa"])
+        self.assertEqual(check_duplicates.find_duplicates(self.dir), {})
+
+
 class PublicOnlyTests(DirTestCase):
     def skipped(self, v):
         with mock.patch.object(t, "get_transcript") as get_transcript, \

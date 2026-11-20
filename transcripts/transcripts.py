@@ -310,6 +310,89 @@ def fetch_transcripts(args, videos):
     
     return processed
 
+def existing_files_by_id(directory):
+    """{video ID: path} of every transcript in `directory`, in filename (so publish time) order.
+    If two files claim one video, the first by filename is used."""
+    files = {}
+    for name in sorted(os.listdir(directory)):
+        if name.endswith(".md"):
+            path = os.path.join(directory, name)
+            for video_id in video_ids_in_file(path):
+                files.setdefault(video_id, path)
+    return files
+
+
+def select_regeneration(args, files):
+    """The video IDs to regenerate, in order, as a list of (video_id, path).
+
+    --video-ids picks those videos (each must already have a transcript); otherwise --limit takes the
+    first N transcripts by filename, which is oldest publish time first and does not change between
+    runs, so successive batches need `--offset` to continue where the last one stopped."""
+    if args.video_ids:
+        wanted = [v.strip() for v in args.video_ids.split(",") if v.strip()]
+        missing = [v for v in wanted if v not in files]
+        if missing:
+            raise SystemExit(f"ERROR: no existing transcript for: {', '.join(missing)}. "
+                             f"Regeneration only rebuilds transcripts that already exist.")
+        return [(v, files[v]) for v in dict.fromkeys(wanted)]
+    if not args.limit:
+        raise SystemExit("ERROR: --regenerate needs --video-ids or --limit.")
+    return list(files.items())[args.offset:args.offset + args.limit]
+
+
+def fetch_video_details(video_ids):
+    """videos.list details (snippet, status) for the given IDs, 50 per request (1 quota unit each).
+    IDs YouTube does not return (deleted or private to this account) are simply absent."""
+    youtube = build_youtube()
+    videos = []
+    for i in range(0, len(video_ids), 50):
+        response = youtube.videos().list(part='snippet,status', id=','.join(video_ids[i:i + 50])).execute()
+        videos.extend(response.get('items', []))
+    return videos
+
+
+def regenerate_transcripts(args, selected, videos):
+    """Rebuild the transcripts of `selected` [(video_id, path)] with the current generator and overwrite
+    each existing file in place. A video that is no longer public, has no usable captions, or whose
+    description still has a template placeholder leaves its file untouched."""
+    by_id = {get_id(v): v for v in videos}
+    regenerated = []
+    for i, (video_id, path) in enumerate(selected):
+        video = by_id.get(video_id)
+        if video is None:
+            print(f"Skipping video {video_id} because YouTube did not return it; its transcript is left as it is.")
+            continue
+        reason = not_public_reason(video)
+        if reason:
+            print(f"Skipping video {video_id} because {reason}; its transcript is left as it is.")
+            continue
+        placeholder = find_placeholder(video['snippet'].get('description', ''))
+        if placeholder:
+            print(f"Skipping video {video_id} because its description still has a template placeholder.")
+            continue
+
+        print(f"Regenerating video {i+1}/{len(selected)}: {video_id}")
+        try:
+            transcript_text, timestamped_text = get_transcript(video_id)
+        except captions_api.QuotaExhausted as e:
+            print(f"STOPPING EARLY: {e}")
+            print(f"{len(regenerated)} transcripts regenerated; run the rest after the quota resets.")
+            break
+        if not transcript_text:
+            print(f"Skipping video {video_id} due to transcript issues; its transcript is left as it is.")
+            continue
+        video['transcript'] = transcript_text
+        video['timestamped'] = timestamped_text
+        write_markdown(args, video, filename=path)
+        regenerated.append(video)
+
+        if i < len(selected) - 1:
+            delay = random.uniform(10, 30)
+            print(f"Waiting {delay:.1f} seconds before next video...")
+            time.sleep(delay)
+    return regenerated
+
+
 # YouTube cuts titles at 100 characters, so a longer title is stored (and returned by the API) truncated.
 YOUTUBE_TITLE_LIMIT = 100
 # A title completed from the description is cut here (at a word boundary), and the filename slug is
@@ -679,7 +762,9 @@ def create_chapters(video, timestamped, video_id):
     return chapters or "Chapters not available"
 
 
-def write_markdown(args, video):
+def write_markdown(args, video, filename=None):
+    """Write the transcript file; `filename` overrides the derived name (regeneration keeps the
+    existing file's name so links to it do not break)."""
     video_id = get_id(video)
     
     if video_id == '':
@@ -699,7 +784,7 @@ def write_markdown(args, video):
 
     url = f"https://www.youtube.com/watch?v={video_id}"
 
-    filename = file_for_video(args, video)
+    filename = filename or file_for_video(args, video)
     timestamped = video.get('timestamped', transcript)
     short = is_short_video(timestamped)
     [summary, cleaned_up] = openai_cleanup(video, transcript, video_id)
@@ -832,12 +917,27 @@ def get_video_transcript_with_retry(video_id, max_retries=3):
     
     return None, None
 
+def main_regenerate(args):
+    if not openai_key:
+        # Without OpenAI the file would be overwritten with "Summary not available".
+        raise SystemExit("ERROR: --regenerate needs OPENAI_API_KEY; without it every summary and cleanup "
+                         "would be replaced by a placeholder.")
+    selected = select_regeneration(args, existing_files_by_id(args.path))
+    print(f"Regenerating {len(selected)} existing transcripts.")
+    videos = fetch_video_details([v for v, _ in selected])
+    regenerated = regenerate_transcripts(args, selected, videos)
+    print(f"Done: {len(regenerated)} of {len(selected)} transcripts regenerated.")
+
+
 def main(args):
     # Add initial delay to let API "cool down"
     initial_delay = random.uniform(5, 15)
     print(f"Starting with {initial_delay:.1f} second delay to avoid rate limiting...")
     time.sleep(initial_delay)
     
+    if getattr(args, 'regenerate', False):
+        return main_regenerate(args)
+
     videos_to_transcribe = []
 
     if args.playlist:
@@ -903,7 +1003,17 @@ if __name__ == "__main__":
     parser.add_argument('--days', type=int, required=False, default=None,
                         help='Only videos published in the last N days (overrides --start and --end); '
                              'used by the weekly GitHub Actions run')
+    parser.add_argument('--regenerate', action='store_true',
+                        help='Rebuild transcripts that already exist, overwriting each file in place. '
+                             'Needs --video-ids or --limit (oldest first by filename; --offset skips '
+                             'the first N). Ignores --channel, --playlist, --start and --end.')
+    parser.add_argument('--video-ids', required=False, default=None,
+                        help='With --regenerate: comma-separated YouTube video IDs to rebuild')
+    parser.add_argument('--offset', type=int, required=False, default=0,
+                        help='With --regenerate and --limit: skip the first N transcripts (oldest first)')
     args = parser.parse_args()
+    if (args.video_ids or args.offset) and not args.regenerate:
+        parser.error('--video-ids and --offset only work with --regenerate')
 
     if args.days is not None:
         now = datetime.now(timezone.utc)
