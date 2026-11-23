@@ -12,5 +12,5 @@ Community call shows:
 - [Beyla Community Call](recurring-shows.md#beyla-community-call) (5 episodes)
 - [Pyroscope Community Call](recurring-shows.md#pyroscope-community-call) (8 episodes)
 - [OnCall Community Call](recurring-shows.md#oncall-community-call) (1 episodes)
-- [Grafana Campfire (Grafana Community Call)](recurring-shows.md#grafana-campfire-grafana-community-call) (16 episodes)
+- [Grafana Campfire (Grafana Community Call)](recurring-shows.md#grafana-campfire-grafana-community-call) (17 episodes)
 - [Other Community Calls](recurring-shows.md#other-community-calls) (2 episodes)
