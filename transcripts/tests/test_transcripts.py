@@ -15,6 +15,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 
 import audit_public
 import check_duplicates
+import recurring_shows_index as rsi
 import transcripts as t
 
 
@@ -28,6 +29,19 @@ def video(video_id="abc123DEF_-", title="A title", description="Plain descriptio
 def write_transcript(directory, name, video_id, body="text"):
     with open(os.path.join(directory, name), "w") as f:
         f.write(f"# T\n\nURL: https://www.youtube.com/watch?v={video_id}\n\n{body}\n")
+
+
+class IndexFirstSentenceTests(unittest.TestCase):
+    def test_abbreviation_periods_do_not_end_the_sentence(self):
+        for title in (
+            "Set up a new Grafana Cloud Account | Grafana for Beginners Ep. 5",
+            "The AI Software Engineering Revolution, feat. Anthropic | Big Tent S3E9",
+        ):
+            summary = f"The show is titled {title} and was held on February 8, 2024. More text follows."
+            self.assertEqual(
+                rsi.one_line(summary),
+                f"The show is titled {title} and was held on February 8, 2024.",
+            )
 
 
 class DirTestCase(unittest.TestCase):

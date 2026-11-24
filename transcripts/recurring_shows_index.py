@@ -84,10 +84,26 @@ def read_transcript(path):
     }
 
 
+ABBREVIATIONS = {"ep", "feat", "ft", "vs", "dr", "mr", "mrs", "ms", "prof", "no", "inc", "co", "ltd", "etc", "approx", "st"}
+
+
+def first_sentence(text):
+    """Text up to the first sentence end, ignoring periods in abbreviations and before digits."""
+    for m in re.finditer(r"[.!?]\s+", text):
+        word = re.search(r"(\w+)$", text[:m.start()])
+        if m.group()[0] == "." and (
+            (word and word.group(1).lower() in ABBREVIATIONS)
+            or text[m.end():m.end() + 1].isdigit()
+        ):
+            continue
+        return text[:m.start() + 1]
+    return text
+
+
 def one_line(summary, limit=220):
     """First sentence of the summary, shortened to a single line."""
     summary = html.unescape(" ".join(summary.split()))
-    sentence = re.split(r"(?<=[.!?])\s", summary, maxsplit=1)[0]
+    sentence = first_sentence(summary)
     if len(sentence) > limit:
         sentence = sentence[:limit].rsplit(" ", 1)[0].rstrip(",;:") + "..."
     return sentence

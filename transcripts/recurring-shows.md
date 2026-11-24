@@ -231,7 +231,7 @@ Per-show page: [Grafana Office Hours](../projects/Grafana%20Office%20Hours)
 - 2024-02-22 - [Most commonly used visualizations in Grafana | Grafana for Beginners Ep. 8](https://www.youtube.com/watch?v=JwF6FgeotaU)
 - 2024-02-07 - [Exploring logs, metrics, and traces with Grafana | Grafana for Beginners Ep. 7](https://www.youtube.com/watch?v=1q3YzX2DDM4)
 - 2024-01-25 - [Adding data sources to Grafana (Loki, Tempo, & Mimir) | Grafana for Beginners Ep. 6](https://www.youtube.com/watch?v=cqHO0oYW6Ic)
-- 2024-01-10 - [Set up a new Grafana Cloud Account | Grafana for Beginners Ep. 5](https://www.youtube.com/watch?v=nVdeKPRYmmQ): In the episode titled "Set up a new Grafana Cloud Account | Grafana for Beginners Ep.
+- 2024-01-10 - [Set up a new Grafana Cloud Account | Grafana for Beginners Ep. 5](https://www.youtube.com/watch?v=nVdeKPRYmmQ): In the episode titled "Set up a new Grafana Cloud Account | Grafana for Beginners Ep. 5," published on January 10, 2024, Senior Developer Advocate Lisa Jung guides viewers through the process of creating a Grafana Cloud...
 
 ## Zero to Hero: Loki
 
@@ -281,14 +281,14 @@ Per-show page: [CafeConGrafana](../projects/CafeConGrafana/README.md)
 
 ## When to Use Grafana Assistant vs. MCP vs. gcx
 
-- 2026-08-21 - [When to Use Grafana Assistant vs. MCP vs. gcx: Part 3](https://www.youtube.com/watch?v=bWtlNE8GdAI): The show is titled "When to Use Grafana Assistant vs.
-- 2026-08-19 - [When to Use Grafana Assistant vs. MCP vs. GCX: Part 2](https://www.youtube.com/watch?v=HDmJyo9cyf8): The video titled "When to Use Grafana Assistant vs.
-- 2026-08-17 - [When to Use Grafana Assistant vs. MCP vs. GCX: Part 1](https://www.youtube.com/watch?v=xo7meD4Yn0k): In the video titled "When to Use Grafana Assistant vs.
+- 2026-08-21 - [When to Use Grafana Assistant vs. MCP vs. gcx: Part 3](https://www.youtube.com/watch?v=bWtlNE8GdAI): The show is titled "When to Use Grafana Assistant vs. MCP vs. gcx: Part 3," published on August 21, 2026.
+- 2026-08-19 - [When to Use Grafana Assistant vs. MCP vs. GCX: Part 2](https://www.youtube.com/watch?v=HDmJyo9cyf8): The video titled "When to Use Grafana Assistant vs. MCP vs. GCX: Part 2," published on August 19, 2026, features a speaker discussing the Grafana MCP (Model Context Protocol) as part of Grafana's AI toolkit.
+- 2026-08-17 - [When to Use Grafana Assistant vs. MCP vs. GCX: Part 1](https://www.youtube.com/watch?v=xo7meD4Yn0k): In the video titled "When to Use Grafana Assistant vs. MCP vs. GCX: Part 1," published on August 17, 2026, Nicole discusses the distinctions between Grafana Assistant, Grafana MCP, and GCX, emphasizing that they are...
 
 ## Big Tent (Podcast)
 
 - 2026-07-10 - [An Anthropic Founder's Rule for When to Use an AI Agent | Big Tent S3 E9](https://www.youtube.com/watch?v=vE7Ks0C9fl0): In the Big Tent podcast episode titled "An Anthropic Founder's Rule for When to Use an AI Agent," published on July 10, 2026, speakers discuss the innovative use of AI agents in complex systems.
-- 2026-07-10 - [The AI Software Engineering Revolution, feat. Anthropic | Big Tent S3E9](https://www.youtube.com/watch?v=-bxMP9lbHG4): In the episode "The AI Software Engineering Revolution, feat.
+- 2026-07-10 - [The AI Software Engineering Revolution, feat. Anthropic | Big Tent S3E9](https://www.youtube.com/watch?v=-bxMP9lbHG4): In the episode "The AI Software Engineering Revolution, feat. Anthropic" of Grafana's Big Tent, published on July 10, 2026, hosts Mat Ryer (Senior Director of AI, Grafana Labs) and Tom Wilkie (CTO, Grafana Labs) engage...
 - 2026-07-10 - [Claude Writes Better MCP Servers Than Humans | Big Tent S3 E9](https://www.youtube.com/watch?v=fk7tsMGXR5k): In the Big Tent podcast episode titled "Claude Writes Better MCP Servers Than Humans," published on July 10, 2026, the speakers discuss the capabilities of AI in software development, specifically highlighting how...
 - 2026-02-11 - [Grafana's creator on why UI matters | Big Tent S3 E5](https://www.youtube.com/watch?v=QuHOIf5A4vg): In this podcast discussion, the hosts delve into the aesthetic aspects of user interface design, particularly in the context of the software Grafana, which has recently celebrated its 12th release.
 - 2025-12-17 - [Oops! The Dangers of Monitoring Candles... | Homelabs | Big Tent S3 Ep1|](https://www.youtube.com/watch?v=fPOUZanKcVY): In this video, the speaker shares their experience of attempting to create a candle monitoring system to track PM particles released when a candle is extinguished and to check if a candle is still burning while away...
