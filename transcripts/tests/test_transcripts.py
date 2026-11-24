@@ -1,5 +1,6 @@
 import argparse
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -341,6 +342,17 @@ class RepeatedChapterTitleTests(unittest.TestCase):
     def test_titles_differing_only_in_case_or_punctuation_count_as_repeats(self):
         self.assertEqual(t.chapter_key("Intro to Notebooks!"), t.chapter_key("intro to  notebooks"))
 
+    def test_different_non_latin_titles_are_all_kept(self):
+        names = {"00:00:00": "Введение", "00:09:00": "Обзор алертов", "00:15:00": "入门指南", "00:21:00": "告警规则"}
+
+        def fake_chat(client, system, text, temperature):
+            first = text.strip().split("]")[0].lstrip("[")
+            return f"{first} {names[first]}"
+        titles = self.titles(self.run_chapters(fake_chat))
+        self.assertEqual(titles, list(names.values()))
+        self.assertNotEqual(t.chapter_key("Grafana 入门"), t.chapter_key("Grafana 告警"))
+        self.assertEqual(t.chapter_key("Año"), t.chapter_key("año!"))
+
 
 class EventTypeTests(unittest.TestCase):
     """The summary must take the event type from the title and description, not assume a community call."""
@@ -447,7 +459,7 @@ class TruncatedTitleTests(unittest.TestCase):
         v["transcript"], v["timestamped"] = "x " * 100, "[00:00:00] x\n[00:05:00] y"
         with mock.patch.object(t, "openai_key", ""), mock.patch("builtins.print"):
             args = argparse.Namespace(path=tempfile.mkdtemp())
-            self.addCleanup(lambda: __import__("shutil").rmtree(args.path))
+            self.addCleanup(lambda: shutil.rmtree(args.path))
             t.write_markdown(args, v)
             with open(t.file_for_video(args, v)) as f:
                 heading = f.readline().rstrip("\n")

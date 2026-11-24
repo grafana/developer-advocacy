@@ -601,7 +601,8 @@ def is_short_video(timestamped):
 
 
 def chapter_key(title):
-    return re.sub(r"[^a-z0-9]", "", title.lower())
+    """Compare chapter titles ignoring case, spacing and punctuation, but keeping letters of any script."""
+    return re.sub(r"[\W_]+", "", title.casefold())
 
 
 def is_generic_title(title):
