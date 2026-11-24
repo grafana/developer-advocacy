@@ -6,7 +6,6 @@ from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api import TranscriptsDisabled, NoTranscriptFound, VideoUnavailable
 from dotenv import load_dotenv
 from slugify import slugify
-import json
 import openai
 import sys
 import time

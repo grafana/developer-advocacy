@@ -535,6 +535,42 @@ class AuditPublicTests(DirTestCase):
         self.assertEqual(code, 0)
         self.assertIn("all 1", out)
 
+    def test_unrecognized_source_files_fail_with_counts_only(self):
+        write_transcript(self.dir, "public.md", "PUB")
+        for name, content in (
+                ("short-secret-title.md", "URL: https://youtu.be/SECRETID"),
+                ("source-secret-title.md", "Source: https://www.youtube.com/watch?v=SECRETID"),
+                ("missing-secret-title.md", "# Secret title\nNo source URL")):
+            with open(os.path.join(self.dir, name), "w") as file:
+                file.write(content)
+        code, out = self.run_main({"PUB": "public"})
+        self.assertEqual(code, 1)
+        self.assertIn("UNVERIFIED: 3 transcript file(s)", out)
+        for leaked in ("OK:", "secret-title", "Secret title", "SECRETID"):
+            self.assertNotIn(leaked, out)
+        code, details = self.run_main({"PUB": "public"}, "--details")
+        self.assertEqual(code, 1)
+        self.assertIn("missing-secret-title.md", details)
+
+    def test_readme_and_generated_indexes_are_not_transcripts(self):
+        write_transcript(self.dir, "public.md", "PUB")
+        for name in ("README.md", "recurring-shows.md", "community-calls.md"):
+            with open(os.path.join(self.dir, name), "w") as file:
+                file.write("# Documentation or index\n")
+        self.assertEqual(self.run_main({"PUB": "public"})[0], 0)
+
+    def test_unreadable_files_fail_without_leaking_names_or_errors(self):
+        write_transcript(self.dir, "secret-title.md", "SECRETID")
+        for error in (PermissionError("secret-title.md"),
+                      UnicodeDecodeError("utf-8", b"\xff", 0, 1, "secret-title")):
+            with self.subTest(error=type(error).__name__), \
+                    mock.patch.object(audit_public, "video_ids", side_effect=error):
+                code, out = self.run_main({})
+                self.assertEqual(code, 1)
+                self.assertIn("UNVERIFIED: 1 transcript file(s)", out)
+                self.assertNotIn("secret-title", out)
+                self.assertNotIn("SECRETID", out)
+
     def test_unlisted_private_and_missing_videos_fail_with_counts_only(self):
         for name, vid in [("pub.md", "PUB"), ("unl-secret-title.md", "UNL"), ("priv-secret-title.md", "PRIV"),
                           ("gone-secret-title.md", "GONE")]:
@@ -578,6 +614,16 @@ class AuditPublicTests(DirTestCase):
         out = io.StringIO()
         with mock.patch.dict(os.environ, {}, clear=True), contextlib.redirect_stdout(out):
             self.assertEqual(audit_public.main(["--path", self.dir]), 2)
+
+    def test_connection_reset_while_reading_is_a_private_cannot_audit_error(self):
+        write_transcript(self.dir, "secret-title.md", "SECRETID")
+        with mock.patch.object(FakeResponse, "read", side_effect=ConnectionResetError(
+                "key-123 SECRETID secret-title.md")):
+            code, out = self.run_main({"SECRETID": "public"})
+        self.assertEqual(code, 2)
+        self.assertIn("ConnectionResetError", out)
+        for leaked in ("key-123", "SECRETID", "secret-title"):
+            self.assertNotIn(leaked, out)
 
 
 if __name__ == "__main__":

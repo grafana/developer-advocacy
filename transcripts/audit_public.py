@@ -5,13 +5,16 @@ video can be made private or unlisted after its transcript was committed. This a
 (plain API key, no OAuth) for the privacy status of every video ID found in the transcript files.
 
 A video the API does not return for an API key (private, deleted, or an invalid ID) counts as not public.
+Unreadable transcript files and files without a recognized source video ID also fail the audit.
+README.md and the two generated indexes are not transcripts and are excluded.
 
 The output is meant for public CI logs: it prints COUNTS ONLY, never IDs, titles or file names of
 non-public videos. To see which files are affected, run it locally with --details:
 
     YOUTUBE_API_KEY=... python audit_public.py --details
 
-Exit codes: 0 all public, 1 at least one transcript is not public, 2 the audit could not run.
+Exit codes: 0 all public, 1 at least one transcript is not public or could not be identified,
+2 the audit could not run.
 """
 import argparse
 import glob
@@ -26,6 +29,7 @@ from check_duplicates import HERE, video_ids
 
 API_URL = "https://www.googleapis.com/youtube/v3/videos"
 BATCH_SIZE = 50  # the API's limit of IDs per videos.list call
+NON_TRANSCRIPT_FILES = {"README.md", "recurring-shows.md", "community-calls.md"}
 
 
 class AuditError(Exception):
@@ -33,12 +37,22 @@ class AuditError(Exception):
 
 
 def transcript_videos(directory):
-    """{video_id: [file names]} for every transcript file in `directory`."""
+    """Return ({video_id: [file names]}, files that could not be read or identified)."""
     owners = {}
+    unidentified = []
     for path in sorted(glob.glob(os.path.join(directory, "*.md"))):
-        for video_id in video_ids(path):
-            owners.setdefault(video_id, []).append(os.path.basename(path))
-    return owners
+        name = os.path.basename(path)
+        if name in NON_TRANSCRIPT_FILES:
+            continue
+        try:
+            ids = video_ids(path)
+        except (OSError, UnicodeError):
+            ids = set()
+        if not ids:
+            unidentified.append(name)
+        for video_id in ids:
+            owners.setdefault(video_id, []).append(name)
+    return owners, unidentified
 
 
 def fetch_privacy(video_ids_, api_key, urlopen=urllib.request.urlopen):
@@ -55,7 +69,7 @@ def fetch_privacy(video_ids_, api_key, urlopen=urllib.request.urlopen):
                 body = json.load(response)
         except urllib.error.HTTPError as error:
             raise AuditError(f"the YouTube API answered HTTP {error.code}") from None
-        except (urllib.error.URLError, TimeoutError, ValueError) as error:
+        except (OSError, ValueError) as error:
             raise AuditError(f"the YouTube API request failed ({type(error).__name__})") from None
         for item in body.get("items", []):
             found[item["id"]] = (item.get("status") or {}).get("privacyStatus")
@@ -63,10 +77,11 @@ def fetch_privacy(video_ids_, api_key, urlopen=urllib.request.urlopen):
 
 
 def find_not_public(directory, api_key, urlopen=urllib.request.urlopen):
-    """(total number of videos checked, {video_id: [file names]} of those that are not public)."""
-    owners = transcript_videos(directory)
+    """Return (videos checked, {non-public video_id: [file names]}, unidentified files)."""
+    owners, unidentified = transcript_videos(directory)
     privacy = fetch_privacy(owners, api_key, urlopen)
-    return len(owners), {vid: names for vid, names in owners.items() if privacy.get(vid) != "public"}
+    not_public = {vid: names for vid, names in owners.items() if privacy.get(vid) != "public"}
+    return len(owners), not_public, unidentified
 
 
 def main(argv=None, urlopen=urllib.request.urlopen):
@@ -81,22 +96,29 @@ def main(argv=None, urlopen=urllib.request.urlopen):
         print("Cannot audit: set YOUTUBE_API_KEY (a YouTube Data API key).")
         return 2
     try:
-        total, not_public = find_not_public(args.path, api_key, urlopen)
+        total, not_public, unidentified = find_not_public(args.path, api_key, urlopen)
     except AuditError as error:
         print(f"Cannot audit: {error}.")
         return 2
 
-    if not not_public:
+    if not not_public and not unidentified:
         print(f"OK: all {total} transcript video(s) are public.")
         return 0
-    files = sum(len(names) for names in not_public.values())
-    print(f"NOT PUBLIC: {len(not_public)} of {total} transcript video(s) ({files} file(s)) are not public.")
+    if not_public:
+        files = sum(len(names) for names in not_public.values())
+        print(f"NOT PUBLIC: {len(not_public)} of {total} transcript video(s) ({files} file(s)) are not public.")
+    if unidentified:
+        print(f"UNVERIFIED: {len(unidentified)} transcript file(s) could not be read "
+              "or have no recognized video ID.")
     if args.details:
         for video_id, names in sorted(not_public.items()):
             print(f"  {video_id}: {', '.join(names)}")
+        for name in unidentified:
+            print(f"  Unverified: {name}")
     else:
         print("Details are left out because the logs of this repository are public. "
-              "Run `YOUTUBE_API_KEY=... python transcripts/audit_public.py --details` locally to list them.")
+              "From transcripts/, run `YOUTUBE_API_KEY=... python audit_public.py --details` "
+              "locally to list them.")
     return 1
 
 
