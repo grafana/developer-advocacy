@@ -188,6 +188,7 @@ python3 transcripts.py -p PLAYLIST_ID
 - `-p, --playlist`: YouTube playlist ID
 - `-s, --start`: Start date (ISO 8601 format)
 - `-e, --end`: End date (ISO 8601 format)
+- `--regenerate`, `--video-ids`, `--offset`: rebuild existing transcripts (see [Regenerate existing transcripts](#regenerate-existing-transcripts))
 
 ## Output Files
 
