@@ -380,7 +380,7 @@ class KnownNameTests(unittest.TestCase):
 
     def test_a_plural_of_a_known_name_is_left_alone(self):
         names = [("Grafana", []), ("Prometheus", []), ("Pyroscope", [])]
-        text = "Many Grafanas, two Pyroscopes and some prometheuss."
+        text = "Many Grafanas, two Pyroscopes, some prometheuss and Prometheans."
         self.assertEqual(guards.correct_known_names(text, "", names=names)[0], text)
         self.assertEqual(guards.correct_known_names("Grafanna and Pyrscope", "", names=names)[0],
                          "Grafana and Pyroscope")

@@ -64,6 +64,9 @@ def correct_known_names(text, reference="", names=None):
                     return word  # the name itself, or its plural ("Grafanas", "Pyroscopes")
                 if difflib.SequenceMatcher(None, word.lower(), lowered).ratio() < FUZZY_MIN_RATIO:
                     return word
+                if word.lower().endswith("s") and difflib.SequenceMatcher(None, word.lower()[:-1], lowered).ratio() >= 0.75 \
+                        and difflib.SequenceMatcher(None, word.lower()[:-1], lowered).ratio() < FUZZY_MIN_RATIO:
+                    return word  # a plural of a name-like word ("Prometheans"), not a misspelling of the name
                 if _present(word, reference):
                     return word
                 changes.append((word, name))
