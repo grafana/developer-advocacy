@@ -60,7 +60,7 @@ def correct_known_names(text, reference="", names=None):
 
             def close(match, name=name, lowered=lowered):
                 word = match.group(0)
-                if word == name or word[0].lower() != lowered[0]:
+                if word.lower() == lowered or word[0].lower() != lowered[0]:
                     return word
                 if difflib.SequenceMatcher(None, word.lower(), lowered).ratio() < FUZZY_MIN_RATIO:
                     return word
@@ -81,7 +81,11 @@ def known_names_prompt(names=None):
 _BRACKETED = re.compile(r"^[\[(][^\])]*[\])]$")
 _MUSIC_NOTES = re.compile(r"[♪♫♬♩]")
 # A short fragment repeated this many times within this many captions is a song hook, not speech.
-LYRIC_REPEATS = 3
+LYRIC_REPEATS = 5
+# Ordinary speech that is often repeated and is never a song hook.
+COMMON_SPEECH = {"thank you", "thanks", "yes", "yeah", "yep", "no", "okay", "ok", "all right", "alright", "right",
+                 "so", "well", "um", "uh", "mm", "hmm", "you know", "sure", "great", "cool", "good", "bye",
+                 "hello", "hi", "now", "and", "but", "the"}
 LYRIC_WINDOW = 8
 LYRIC_MAX_WORDS = 4
 
@@ -104,7 +108,7 @@ def noise_flags(texts):
     noise = [is_non_speech_caption(t) or not k for t, k in zip(texts, keys)]
     for index, key in enumerate(keys):
         words = key.split()
-        if noise[index] or not words or len(words) > LYRIC_MAX_WORDS:
+        if noise[index] or not words or len(words) > LYRIC_MAX_WORDS or key in COMMON_SPEECH:
             continue
         # A fragment that repeats ("respect respect respect") or recurs close by is a song hook.
         within = keys[max(0, index - LYRIC_WINDOW + 1):index + LYRIC_WINDOW]

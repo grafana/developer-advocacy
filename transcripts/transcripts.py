@@ -803,6 +803,8 @@ def write_markdown(args, video):
 # The captions dropped from each video's transcript (sound labels and song lyrics), by video ID.
 CAPTION_NOISE = {}
 
+SKIPPED_CAPTION_TEXT = ['[Music]', '[Applause]', '[Laughter]']
+
 
 def entries_to_transcript(transcript, video_id):
     """Turn caption entries ([{"text", "start"}, ...]) from either source into the plain transcript
@@ -822,12 +824,11 @@ def entries_to_transcript(transcript, video_id):
                 if text:
                     candidates.append({'text': text, 'start': float(entry.get('start', 0))})
 
-    # Drop sound labels ([Music], [Applause]), music notes and song lyrics (a hook sung over walk-up music), so
-    # they are neither summarised nor turned into chapters. What was dropped is remembered for the chapter check.
+    # The written transcript and the summary drop only the literal sound labels. Music notes and repeated lyric
+    # hooks are left out of the text chapters are made from only, and remembered for the chapter check.
     flags = transcript_guards.noise_flags([c['text'] for c in candidates])
-    kept_entries = [c for c, is_noise in zip(candidates, flags) if not is_noise]
     CAPTION_NOISE[video_id] = [c['text'] for c, is_noise in zip(candidates, flags) if is_noise]
-    text_parts = [entry['text'] for entry in kept_entries]
+    text_parts = [c['text'] for c in candidates if c['text'] not in SKIPPED_CAPTION_TEXT]
 
     if not text_parts:
         print(f"No valid text found in transcript for video {video_id}")
@@ -840,7 +841,8 @@ def entries_to_transcript(transcript, video_id):
         print(f"Transcript too short for video {video_id}: {len(full_text)} characters")
         return None, None
 
-    return full_text, build_timestamped_text(kept_entries)
+    chapter_entries = [c for c, is_noise in zip(candidates, flags) if not is_noise]
+    return full_text, build_timestamped_text(chapter_entries)
 
 
 def get_transcript(video_id):

@@ -369,6 +369,11 @@ class KnownNameTests(unittest.TestCase):
         self.assertEqual(self.fix("Host: Nicole Vanderhovven."), "Host: Nicole Vanderhoeven.")
         self.assertEqual(self.fix("Thanks, Vanderhoven!"), "Thanks, Vanderhoeven!")
 
+    def test_exact_names_in_addresses_and_files_are_not_rewritten(self):
+        text = "mail tom@grafana.com or run docker grafana/grafana; prometheus.yml"
+        names = self.NAMES + [("Grafana", []), ("Prometheus", [])]
+        self.assertEqual(guards.correct_known_names(text, "", names=names)[0], text)
+
     def test_ordinary_words_and_other_names_are_left_alone(self):
         text = "A periscope, a baa from a sheep, Pyroscope and Vanderhoeven are fine."
         self.assertEqual(self.fix(text), text)
@@ -425,14 +430,26 @@ class MusicCaptionTests(unittest.TestCase):
 
     SPEECH = ["welcome everyone to the keynote of this conference", "today we will talk about observability"]
 
-    def test_sound_labels_notes_and_repeated_lyrics_are_dropped_from_both_texts(self):
-        texts = ["[Music]", "\u266a \u266a", "[Applause]", "respect", "respect", "respect", "Heat", "heat",
-                 "heat", "heat"] + self.SPEECH
+    def test_only_literal_labels_leave_the_written_text_and_lyrics_leave_the_chapter_text(self):
+        texts = ["[Music]", "\u266a \u266a", "[Applause]", "heat", "heat", "heat", "heat", "heat"] + self.SPEECH
         text, stamped = t.entries_to_transcript(self.entries(texts), "keynote")
-        self.assertEqual(text, " ".join(self.SPEECH))
-        self.assertNotIn("respect", stamped.lower())
+        self.assertEqual(text, " ".join(["\u266a \u266a"] + ["heat"] * 5 + self.SPEECH))
         self.assertNotIn("heat", stamped.lower())
-        self.assertIn("respect", " ".join(t.CAPTION_NOISE["keynote"]))
+        self.assertNotIn("\u266a", stamped)
+        self.assertIn("welcome everyone", stamped)
+        self.assertIn("heat", " ".join(t.CAPTION_NOISE["keynote"]))
+
+    def test_ordinary_repeated_speech_is_kept_in_both_texts(self):
+        texts = ["thank you", "so", "thank you", "yes", "thank you"] + self.SPEECH
+        text, stamped = t.entries_to_transcript(self.entries(texts), "qa")
+        self.assertEqual(text, " ".join(texts))
+        for part in texts:
+            self.assertIn(part, stamped)
+
+    def test_a_phrase_repeated_fewer_than_five_times_is_kept(self):
+        texts = ["heat"] * 4 + self.SPEECH
+        _, stamped = t.entries_to_transcript(self.entries(texts), "four")
+        self.assertEqual(stamped.lower().count("heat"), 4)
 
     def test_a_word_said_once_in_speech_is_kept(self):
         texts = ["I want some respect for open source", "respect", "and so on today we will be learning more"]
@@ -441,7 +458,7 @@ class MusicCaptionTests(unittest.TestCase):
         self.assertEqual(text.count("respect"), 2)
 
     def test_a_chapter_named_from_the_music_is_not_written(self):
-        t.CAPTION_NOISE["keynote2"] = ["respect", "respect", "respect", "Heat", "heat"]
+        t.CAPTION_NOISE["keynote2"] = ["respect"] * 5 + ["Heat", "heat"]
         stamped = "\n".join(f"[00:{m:02d}:00] we talk about alerting rules" for m in range(0, 30, 3))
         calls = {}
 
