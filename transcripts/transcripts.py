@@ -316,12 +316,17 @@ YOUTUBE_TITLE_LIMIT = 100
 # capped separately, so the filename always stays well under the 255 byte limit.
 MAX_COMPLETED_TITLE_CHARS = 150
 MAX_SLUG_CHARS = 120
+# Added to a title that is cut at the limit and cannot be completed.
+TRUNCATION_MARK = "\u2026"
+# Videos whose truncated title has already been warned about in this run.
+_warned_truncated_titles = set()
 
 
 def video_title(video):
     """The clean title of a video. YouTube's stored title can be cut at its 100 character limit
     ("...AI Driven Operatio"); when it is, the first line of the description is used if it starts with
-    the title and continues it, otherwise a warning is logged and the title is used as it is."""
+    the title and continues it. Otherwise the title is marked with an ellipsis, so a reader can see it is
+    cut, and a warning is logged once per video (the title is read many times per video)."""
     raw = video['snippet']['title'] or ""
     title = clean_title(raw)
     if len(raw) < YOUTUBE_TITLE_LIMIT:
@@ -330,9 +335,12 @@ def video_title(video):
                        if line.strip()), "")
     if len(first_line) > len(title) and first_line.lower().startswith(title.lower()):
         return truncate_at_word(first_line, MAX_COMPLETED_TITLE_CHARS)
-    print(f"WARNING: the title of video {get_id(video)} is {len(raw)} characters, YouTube's limit, so it is "
-          f"probably truncated: {title}")
-    return title
+    video_id = get_id(video)
+    if video_id not in _warned_truncated_titles:
+        _warned_truncated_titles.add(video_id)
+        print(f"WARNING: the title of video {video_id} is {len(raw)} characters, YouTube's limit, so it is "
+              f"probably truncated and no first line of the description completes it: {title}")
+    return title if title.endswith(TRUNCATION_MARK) else title + TRUNCATION_MARK
 
 
 def truncate_at_word(text, limit):
@@ -396,9 +404,17 @@ Drilldown, Explore Logs, Alertmanager, Grafana Incident, Grafana Machine Learnin
 """
 
 CONTEXT_RULES = """
-Use the video title and description (given below the instructions) for the show name, date and the
+Use the video title and description (given below the instructions) for the show name, event date and the
 spelling of speaker names. Never guess a spelling that is not in the title or description; if a
 name is uncertain, leave it as it is heard.
+"""
+
+# The summary must not call a customer talk or a fireside chat a "community call", or invent a date.
+EVENT_TYPE_RULES = """
+Take the type of the event (for example community call, livestream, webinar, customer talk, fireside
+chat, conference session) from the video title and description only. If they do not say what type of
+event it is, do not name one: call it a video or a talk. Never state an event date, a show name or an
+episode number that is not in the title or description; the published date is not the event date.
 """
 
 # Keep each cleanup request well inside the model's output limit.
@@ -484,11 +500,12 @@ def openai_cleanup(video, transcript, video_id):
     context = video_context(video)
 
     summarize_pls = f"""
-    You will be given the transcript of a Grafana Labs community call, livestream or talk.
-    Write a summary of 3 to 5 sentences that names the show and its date, the speakers with their
-    roles (only where the transcript, title or description gives them), the Grafana and open source
-    projects and features discussed, and the key takeaways. Then add a final line starting with
-    "Topics:" followed by a comma-separated list of the main topics.
+    You will be given the transcript of a Grafana Labs video.
+    Write a summary of 3 to 5 sentences that names the show or event when the title or description
+    does, the speakers with their roles (only where the transcript, title or description gives them),
+    the Grafana and open source projects and features discussed, and the key takeaways. Then add a
+    final line starting with "Topics:" followed by a comma-separated list of the main topics.
+    {EVENT_TYPE_RULES}
     {CONTEXT_RULES}
     {GLOSSARY}
     {context}
@@ -498,8 +515,7 @@ def openai_cleanup(video, transcript, video_id):
     summary = chat(client, summarize_pls, transcript, temperature=0.3)
 
     cleanup_transcript_prompt = f"""
-    You will be given part of a messy transcript of a Grafana Labs community call, livestream or
-    talk. It has few sentence breaks, indications of music, and filler words. Clean it up into
+    You will be given part of a messy transcript of a Grafana Labs video. It has few sentence breaks, indications of music, and filler words. Clean it up into
     logical sentences and paragraphs.
 
     Output markdown text; you may use markdown formatting for emphasis, bold, bulleting, and so on.
@@ -584,6 +600,10 @@ def is_short_video(timestamped):
     return last_marker_seconds(timestamped) < SHORT_VIDEO_SECONDS
 
 
+def chapter_key(title):
+    return re.sub(r"[^a-z0-9]", "", title.lower())
+
+
 def is_generic_title(title):
     return re.sub(r"[^a-z&]", "", title.lower()) in GENERIC_CHAPTER_TITLES
 
@@ -641,7 +661,7 @@ def create_chapters(video, timestamped, video_id):
     count = max(3, round(10 * hours))
 
     chapter_prompt = f"""
-    This is one part of a transcript of a Grafana Labs community call, livestream or talk. It
+    This is one part of a transcript of a Grafana Labs video. It
     contains [HH:MM:SS] markers. Write the title of ONE YouTube chapter for the main topic of this
     part, and the timestamp where that topic starts.
 
@@ -649,6 +669,7 @@ def create_chapters(video, timestamped, video_id):
     - The timestamp must be one of the [HH:MM:SS] markers in this part. Never invent one.
     - The title is a short, searchable sentence-case phrase that says what is being discussed.
     - Never use a generic title such as "Discussion", "Introduction" or "Overview"; name the topic.
+    - Never repeat the title of an earlier chapter; name what is different in this part.
     - Output one line only, in the form: HH:MM:SS Title
     {CONTEXT_RULES}
     {GLOSSARY}
@@ -657,17 +678,24 @@ def create_chapters(video, timestamped, video_id):
 
     print(f"Creating chapters for video {video_id}")
     lines = []
+    used = {}
     first_window_kept = False
     for index, (first_marker, text) in enumerate(split_windows(timestamped, count)):
         line = None
         for attempt in range(2):
-            candidate = valid_chapters(chat(client, chapter_prompt, text, temperature=0.1), text)
+            prompt = chapter_prompt
+            if used:
+                prompt += "\nTitles of the earlier chapters (do not repeat any): " + "; ".join(used.values())
+            candidate = valid_chapters(chat(client, prompt, text, temperature=0.1), text)
             if candidate:
                 first = candidate.splitlines()[0]
-                if not is_generic_title(first.split(" ", 1)[1]):
+                title = first.split(" ", 1)[1]
+                if not is_generic_title(title) and chapter_key(title) not in used:
                     line = first
+                    used[chapter_key(title)] = title
                     break
-        # No usable title: drop the chapter rather than write "Discussion".
+        # No usable title: drop the chapter rather than write "Discussion" or repeat an earlier title
+        # (the earlier chapter then simply runs on over this part).
         if line is not None:
             lines.append(line)
             if index == 0:

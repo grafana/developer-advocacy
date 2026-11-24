@@ -303,6 +303,75 @@ class ChapterTests(unittest.TestCase):
         self.assertFalse(t.is_generic_title("Discussion of Tempo sampling"))
 
 
+class RepeatedChapterTitleTests(unittest.TestCase):
+    STAMPED = "\n".join(f"[00:{m:02d}:00] words" for m in range(0, 30, 3))
+
+    def run_chapters(self, fake_chat):
+        with mock.patch.object(t, "openai_key", "k"), mock.patch.object(t.openai, "OpenAI"), \
+                mock.patch.object(t, "chat", side_effect=fake_chat):
+            return t.create_chapters(video(), self.STAMPED, "vid")
+
+    def titles(self, out):
+        return [line.split(" ", 1)[1] for line in out.splitlines()]
+
+    def test_repeated_title_is_asked_again_with_the_earlier_titles_and_gets_a_specific_one(self):
+        prompts, calls = [], {}
+
+        def fake_chat(client, system, text, temperature):
+            prompts.append(system)
+            first = text.strip().split("]")[0].lstrip("[")
+            calls[first] = calls.get(first, 0) + 1
+            if first == "00:00:00" or calls[first] == 1:
+                return f"{first} Introduction to Grafana Notebooks"  # the first answer repeats chapter one
+            return f"{first} Notebook cells in practice at {first}"
+        titles = self.titles(self.run_chapters(fake_chat))
+        self.assertEqual(len(titles), len({title.lower() for title in titles}))
+        self.assertEqual(titles[0], "Introduction to Grafana Notebooks")
+        self.assertIn("Notebook cells in practice at 00:09:00", titles)
+        self.assertTrue(any("Introduction to Grafana Notebooks" in p and "do not repeat" in p for p in prompts))
+
+    def test_a_title_the_model_keeps_repeating_is_dropped_not_written_twice(self):
+        def fake_chat(client, system, text, temperature):
+            first = text.strip().split("]")[0].lstrip("[")
+            return f"{first} Introduction to Grafana Notebooks"
+        out = self.run_chapters(fake_chat)
+        self.assertEqual(self.titles(out), ["Introduction to Grafana Notebooks"])
+        self.assertTrue(out.startswith("00:00:00 "))
+
+    def test_titles_differing_only_in_case_or_punctuation_count_as_repeats(self):
+        self.assertEqual(t.chapter_key("Intro to Notebooks!"), t.chapter_key("intro to  notebooks"))
+
+
+class EventTypeTests(unittest.TestCase):
+    """The summary must take the event type from the title and description, not assume a community call."""
+
+    def prompts(self, **video_kwargs):
+        seen = []
+
+        def fake_chat(client, system, user, temperature):
+            seen.append(system)
+            return "text " * 20
+        v = video(**video_kwargs)
+        stamped = "\n".join(f"[00:{m:02d}:00] words" for m in range(0, 30, 3))
+        with mock.patch.object(t, "openai_key", "k"), mock.patch.object(t.openai, "OpenAI"), \
+                mock.patch.object(t, "chat", side_effect=fake_chat), mock.patch("builtins.print"):
+            t.openai_cleanup(v, "words " * 50, "vid")
+            t.create_chapters(v, stamped, "vid")
+        return seen
+
+    def test_no_prompt_assumes_a_community_call(self):
+        for prompt in self.prompts(title="How Bayer runs Grafana: a customer presentation",
+                                   description="Bayer talks about their setup."):
+            self.assertNotIn("community call", prompt.replace(t.EVENT_TYPE_RULES, ""))
+
+    def test_summary_prompt_takes_event_type_from_title_and_description_and_gives_both(self):
+        summary = self.prompts(title="Fireside chat with thredd", description="A chat about payments.")[0]
+        self.assertIn("title and description only", summary)
+        self.assertIn("not the event date", summary)
+        self.assertIn("Video title: Fireside chat with thredd", summary)
+        self.assertIn("Description: A chat about payments.", summary)
+
+
 class TitleCleanTests(DirTestCase):
     RAW = "02   Grafana   ObservabilityCON 26   London"
 
@@ -355,12 +424,35 @@ class TruncatedTitleTests(unittest.TestCase):
         v = video(title=raw, description=f"\n{self.FULL} and more words to fill up and beyond\nMore")
         self.assertEqual(t.video_title(v), f"{self.FULL} and more words to fill up and beyond")
 
-    def test_truncated_title_without_matching_description_warns(self):
+    def setUp(self):
+        t._warned_truncated_titles.clear()
+
+    def test_truncated_title_without_matching_description_is_marked_and_warns(self):
         self.assertEqual(len(self.CUT), 100)
         v = video(title=self.CUT, description="[INSERT DESCRIPTION]")
         with mock.patch("builtins.print") as printed:
-            self.assertEqual(t.video_title(v), t.clean_title(self.CUT))
+            self.assertEqual(t.video_title(v), t.clean_title(self.CUT) + "\u2026")
         self.assertTrue(any("probably truncated" in str(c) for c in printed.call_args_list))
+
+    def test_truncated_title_warns_once_per_video_however_often_it_is_read(self):
+        v = video(title=self.CUT, description="[INSERT DESCRIPTION]")
+        with mock.patch("builtins.print") as printed:
+            titles = {t.video_title(v) for _ in range(5)}
+            t.video_title(video(video_id="other_id_11", title=self.CUT, description=""))
+        self.assertEqual(len(titles), 1)
+        self.assertEqual(len([c for c in printed.call_args_list if "probably truncated" in str(c)]), 2)
+
+    def test_marked_title_reaches_the_heading_and_the_marker_is_not_doubled(self):
+        v = video(title=self.CUT, description="[INSERT DESCRIPTION]")
+        v["transcript"], v["timestamped"] = "x " * 100, "[00:00:00] x\n[00:05:00] y"
+        with mock.patch.object(t, "openai_key", ""), mock.patch("builtins.print"):
+            args = argparse.Namespace(path=tempfile.mkdtemp())
+            self.addCleanup(lambda: __import__("shutil").rmtree(args.path))
+            t.write_markdown(args, v)
+            with open(t.file_for_video(args, v)) as f:
+                heading = f.readline().rstrip("\n")
+        self.assertTrue(heading.endswith("Operatio\u2026"))
+        self.assertFalse(heading.endswith("\u2026\u2026"))
 
     def test_short_titles_are_untouched_and_silent(self):
         with mock.patch("builtins.print") as printed:
