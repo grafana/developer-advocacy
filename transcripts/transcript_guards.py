@@ -112,7 +112,7 @@ def noise_flags(texts):
             continue
         # A fragment that repeats ("respect respect respect") or recurs close by is a song hook.
         within = keys[max(0, index - LYRIC_WINDOW + 1):index + LYRIC_WINDOW]
-        if len(set(words)) == 1 and len(words) >= LYRIC_REPEATS or within.count(key) >= LYRIC_REPEATS:
+        if within.count(key) >= LYRIC_REPEATS:
             noise[index] = True
     return noise
 
