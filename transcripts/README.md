@@ -67,7 +67,7 @@ file is left untouched. It needs OpenAI credentials, because without them the fi
 
 ```bash
 # Specific videos
-python3 transcripts.py --regenerate --video-ids ID1,ID2
+python3 transcripts.py --regenerate --video-ids=ID1,ID2
 # A batch: the 10 oldest transcripts (by filename, so publish time), then the next 10
 python3 transcripts.py --regenerate --limit 10
 python3 transcripts.py --regenerate --limit 10 --offset 10
@@ -78,8 +78,13 @@ reads the credentials from Vault and opens a PR with the changed files. Schedule
 
 **Quota maths:** each video costs 250 units (a `captions.list` at 50 plus a `captions.download` at 200) plus 1 unit
 per 50 videos for their details, against 10,000 a day. The run stops at `YOUTUBE_QUOTA_BUDGET` (default 9000), which
-is 36 videos per day. About 783 transcripts therefore take about 22 days of quota. Run a batch of at most 30
-a day (`--limit 30 --offset 30*N`) to leave room for the weekly refresh, and review the PR of each batch before the next.
+is 36 videos per day. About 783 transcripts therefore take about 22 days of quota if nothing else uses it. The
+weekly refresh needs about 2,700 units (see above), so on a day with both, a batch of 30 would use
+30 x 250 = 7,500 + 2,700 = 10,200, over the 10,000 limit. Run a batch of at most 28 a day
+(`--limit 28 --offset 28*N`): 28 x 250 = 7,000 + 2,700 = 9,700. Review the PR of each batch before the next.
+Pass the IDs with `=` (`--video-ids=ID1,ID2`): some video IDs start with `-`, which argparse would otherwise read
+as an option. Regeneration PRs use their own branch, `automation/regenerate-transcripts`, so they never overwrite
+the weekly refresh PR.
 
 ### If it fails
 

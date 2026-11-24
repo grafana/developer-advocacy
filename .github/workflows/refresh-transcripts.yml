@@ -100,7 +100,7 @@ jobs:
           if [ "$REGENERATE" = "true" ]; then
             # Rebuild existing transcripts in place; each costs 250 quota units (see the README).
             if [ -n "$VIDEO_IDS" ]; then
-              python transcripts.py --regenerate --video-ids "$VIDEO_IDS"
+              python transcripts.py --regenerate --video-ids="$VIDEO_IDS"
             elif [ -n "$LIMIT" ]; then
               python transcripts.py --regenerate --limit "$LIMIT" --offset "$OFFSET"
             else
@@ -137,7 +137,7 @@ jobs:
         with:
           token: ${{ github.token }}
           add-paths: transcripts/*.md
-          branch: automation/refresh-transcripts
+          branch: ${{ env.REGENERATE == 'true' && 'automation/regenerate-transcripts' || 'automation/refresh-transcripts' }}
           delete-branch: true
           sign-commits: true
           commit-message: ${{ env.REGENERATE == 'true' && 'Regenerate transcripts' || 'Refresh transcripts and recurring shows index' }}

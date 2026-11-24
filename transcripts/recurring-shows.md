@@ -98,7 +98,7 @@ Per-show page: [Loki Community Calls](../projects/Loki%20Community%20Calls/Loki%
 - 2024-05-10 - [Grafana Tempo Community Call 2025-05-10](https://www.youtube.com/watch?v=wejNoDf21j0)
 - 2024-04-11 - [Grafana Tempo Community call 2024-04-11](https://www.youtube.com/watch?v=HS54B0IrOyk)
 - 2024-03-14 - [Grafana Tempo Community Call 2024-03-14](https://www.youtube.com/watch?v=nSV8tKSMBvI)
-- 2024-02-08 - [Grafana Tempo Community Call 2024-02-08](https://www.youtube.com/watch?v=Q2m13LO-5pA)
+- 2024-02-08 - [Grafana Tempo Community Call 2024-02-08](https://www.youtube.com/watch?v=Q2m13LO-5pA): The show is titled "Grafana Tempo Community Call" and was held on February 8, 2024.
 
 ## Mimir Community Call
 
@@ -203,7 +203,7 @@ Per-show page: [Grafana Office Hours](../projects/Grafana%20Office%20Hours)
 - 2025-05-15 - [State of the Observability Databases with Dee Kitchen (Grafana Office Hours #30)](https://www.youtube.com/watch?v=6Ph5nvicm6M)
 - 2024-11-09 - [AI Observability with Grafana with Ishan Jain (Grafana Office Hours #29)](https://www.youtube.com/watch?v=9X7M-bvnZG0)
 - 2024-07-13 - [API monitoring with Traefik, Grafana, and OpenTelemetry (Grafana Office Hours #28)](https://www.youtube.com/watch?v=1Buk3wPpJdY)
-- 2024-06-08 - [Grafana Loki design basics with Ed Welch (Grafana Office Hours #27)](https://www.youtube.com/watch?v=3uFMJLufgSo)
+- 2024-06-08 - [Grafana Loki design basics with Ed Welch (Grafana Office Hours #27)](https://www.youtube.com/watch?v=3uFMJLufgSo): In the Grafana Office Hours #27, aired on June 8, 2024, Ed Welch, Principal Engineer on the Loki team, discussed the fundamentals of Grafana Loki, a log aggregation system designed for simplicity and scalability.
 - 2024-01-20 - [How to do continuous profiling right with Grafana Pyroscope's Ryan Perry (Grafana Office Hours #26)](https://www.youtube.com/watch?v=pzNRvMQzrJ0)
 - 2024-01-06 - [Introduction to eBPF with Grafana Beyla, with Nikola Grcevski (Grafana Office Hours #25)](https://www.youtube.com/watch?v=ZEUzucqXUnQ)
 
@@ -231,7 +231,7 @@ Per-show page: [Grafana Office Hours](../projects/Grafana%20Office%20Hours)
 - 2024-02-22 - [Most commonly used visualizations in Grafana | Grafana for Beginners Ep. 8](https://www.youtube.com/watch?v=JwF6FgeotaU)
 - 2024-02-07 - [Exploring logs, metrics, and traces with Grafana | Grafana for Beginners Ep. 7](https://www.youtube.com/watch?v=1q3YzX2DDM4)
 - 2024-01-25 - [Adding data sources to Grafana (Loki, Tempo, & Mimir) | Grafana for Beginners Ep. 6](https://www.youtube.com/watch?v=cqHO0oYW6Ic)
-- 2024-01-10 - [Set up a new Grafana Cloud Account  | Grafana for Beginners Ep. 5](https://www.youtube.com/watch?v=nVdeKPRYmmQ)
+- 2024-01-10 - [Set up a new Grafana Cloud Account | Grafana for Beginners Ep. 5](https://www.youtube.com/watch?v=nVdeKPRYmmQ): In the episode titled "Set up a new Grafana Cloud Account | Grafana for Beginners Ep.
 
 ## Zero to Hero: Loki
 
@@ -249,7 +249,7 @@ Per-show page: [CafeConGrafana](../projects/CafeConGrafana/README.md)
 
 - 2024-01-26 - [(Spanish) Comida para perros! (Café con Grafana #010)](https://www.youtube.com/watch?v=nY7d3ch9kd4)
 - 2024-01-19 - [(Spanish) Kuberneteando con k6 (Café con Grafana #009)](https://www.youtube.com/watch?v=GCQHZR_cgHo)
-- 2024-01-12 - [(Spanish) Entendiendo los Sintéticos (Café con Grafana #008)](https://www.youtube.com/watch?v=fXNSqrUtiJo)
+- 2024-01-12 - [(Spanish) Entendiendo los Sintéticos (Café con Grafana #008)](https://www.youtube.com/watch?v=fXNSqrUtiJo): The show "Entendiendo los Sintéticos (Café con Grafana #008)" aired on January 12, 2024.
 
 ## Ask the Experts
 
@@ -288,7 +288,7 @@ Per-show page: [CafeConGrafana](../projects/CafeConGrafana/README.md)
 ## Big Tent (Podcast)
 
 - 2026-07-10 - [An Anthropic Founder's Rule for When to Use an AI Agent | Big Tent S3 E9](https://www.youtube.com/watch?v=vE7Ks0C9fl0): In the Big Tent podcast episode titled "An Anthropic Founder's Rule for When to Use an AI Agent," published on July 10, 2026, speakers discuss the innovative use of AI agents in complex systems.
-- 2026-07-10 - [The AI Software Engineering Revolution, feat. Anthropic | Big Tent S3E9](https://www.youtube.com/watch?v=-bxMP9lbHG4): In the episode titled "The AI Software Engineering Revolution, feat.
+- 2026-07-10 - [The AI Software Engineering Revolution, feat. Anthropic | Big Tent S3E9](https://www.youtube.com/watch?v=-bxMP9lbHG4): In the episode "The AI Software Engineering Revolution, feat.
 - 2026-07-10 - [Claude Writes Better MCP Servers Than Humans | Big Tent S3 E9](https://www.youtube.com/watch?v=fk7tsMGXR5k): In the Big Tent podcast episode titled "Claude Writes Better MCP Servers Than Humans," published on July 10, 2026, the speakers discuss the capabilities of AI in software development, specifically highlighting how...
 - 2026-02-11 - [Grafana's creator on why UI matters | Big Tent S3 E5](https://www.youtube.com/watch?v=QuHOIf5A4vg): In this podcast discussion, the hosts delve into the aesthetic aspects of user interface design, particularly in the context of the software Grafana, which has recently celebrated its 12th release.
 - 2025-12-17 - [Oops! The Dangers of Monitoring Candles... | Homelabs | Big Tent S3 Ep1|](https://www.youtube.com/watch?v=fPOUZanKcVY): In this video, the speaker shares their experience of attempting to create a candle monitoring system to track PM particles released when a candle is extinguished and to check if a candle is still burning while away...
@@ -296,7 +296,7 @@ Per-show page: [CafeConGrafana](../projects/CafeConGrafana/README.md)
 ## The Story of Grafana (Documentary)
 
 - 2024-02-06 - [The Story of Grafana | Episode 4: Evolution | Grafana Documentary](https://www.youtube.com/watch?v=Iy-3A10QPIo)
-- 2024-01-18 - [The Story of Grafana | Episode 3: Open (Source) for Business | Grafana Documentary](https://www.youtube.com/watch?v=Q0q0pBnO-6E)
+- 2024-01-18 - [The Story of Grafana | Episode 3: Open (Source) for Business | Grafana Documentary](https://www.youtube.com/watch?v=Q0q0pBnO-6E): The show is titled "The Story of Grafana | Episode 3: Open (Source) for Business," published on January 18, 2024.
 
 ## Grafana & Friends and Grafana Meetups
 

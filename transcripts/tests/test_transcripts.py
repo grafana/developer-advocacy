@@ -148,6 +148,19 @@ class RegenerateTests(DirTestCase):
         self.assertEqual(check_duplicates.find_duplicates(self.dir), {})
 
 
+class CommandLineTests(unittest.TestCase):
+    def test_video_ids_accepts_an_id_that_starts_with_a_dash(self):
+        # Real IDs can start with "-" (for example -bxMP9lbHG4); the "=" form keeps argparse from
+        # reading them as an option, which is how the workflow and the README pass them.
+        args = t.build_parser().parse_args(["--regenerate", "--video-ids=-bxMP9lbHG4,abc123DEF_-"])
+        self.assertEqual(args.video_ids, "-bxMP9lbHG4,abc123DEF_-")
+
+    def test_video_ids_with_a_space_before_a_leading_dash_is_rejected(self):
+        # Documents why the "=" form is required.
+        with mock.patch("sys.stderr"), self.assertRaises(SystemExit):
+            t.build_parser().parse_args(["--regenerate", "--video-ids", "-bxMP9lbHG4"])
+
+
 class PublicOnlyTests(DirTestCase):
     def skipped(self, v):
         with mock.patch.object(t, "get_transcript") as get_transcript, \

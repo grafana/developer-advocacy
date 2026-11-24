@@ -981,7 +981,7 @@ def main(args):
     videos = fetch_transcripts(args, videos_to_transcribe)
     print("Done")
 
-if __name__ == "__main__":
+def build_parser():
     parser = argparse.ArgumentParser(
             prog='transcripts',
             description='Extracts Transcripts from YouTube and writes them as local markdown files')
@@ -1015,6 +1015,11 @@ if __name__ == "__main__":
                         help='With --regenerate: comma-separated YouTube video IDs to rebuild')
     parser.add_argument('--offset', type=int, required=False, default=0,
                         help='With --regenerate and --limit: skip the first N transcripts (oldest first)')
+    return parser
+
+
+if __name__ == "__main__":
+    parser = build_parser()
     args = parser.parse_args()
     if (args.video_ids or args.offset) and not args.regenerate:
         parser.error('--video-ids and --offset only work with --regenerate')
