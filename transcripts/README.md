@@ -198,3 +198,9 @@ published; that is intentional and not rewritten. YouTube cuts titles at 100 cha
 completed from the first line of the description when that line continues it, otherwise it is marked with an
 ellipsis (…) and a warning is logged once per video.
 Repeated lines in a description (such as a doubled "Thanks for watching!") are written once.
+
+### Checks on what the model writes
+The prompts ask the model to be careful, and `transcript_guards.py` checks the result as well, so the rules do not depend on the model:
+- **Names.** `known_names.txt` lists product and people names (Beyla, Alloy, Mimir, Loki, Tempo, Pyroscope, the host) and common misspellings of them. A misspelling in the summary, the cleaned text or the chapters is replaced, unless the video's own title or description spells it that way. Add a line to the file to teach the generator a new name; the format is described at the top of the file. The raw YouTube transcript is never changed.
+- **Music.** Captions that are only a sound label (`[Music]`, `[Applause]`), contain music notes, or are a short fragment repeated like a song hook are dropped before the summary and chapters are written. A chapter whose title only comes from those captions is not used.
+- **Email addresses and URLs.** An address or URL in the summary, cleaned text or chapters that is not in the captions, title or description is removed. If the cleanup invented one, that part of the text falls back to the raw captions.
