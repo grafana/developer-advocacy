@@ -378,6 +378,13 @@ class KnownNameTests(unittest.TestCase):
         text = "A periscope, a baa from a sheep, Pyroscope and Vanderhoeven are fine."
         self.assertEqual(self.fix(text), text)
 
+    def test_a_plural_of_a_known_name_is_left_alone(self):
+        names = [("Grafana", []), ("Prometheus", []), ("Pyroscope", [])]
+        text = "Many Grafanas, two Pyroscopes and some prometheuss."
+        self.assertEqual(guards.correct_known_names(text, "", names=names)[0], text)
+        self.assertEqual(guards.correct_known_names("Grafanna and Pyrscope", "", names=names)[0],
+                         "Grafana and Pyroscope")
+
     def test_the_authors_own_spelling_in_the_description_is_kept(self):
         self.assertEqual(self.fix("Grafana Baa is a band.", reference="Live with Grafana Baa"),
                          "Grafana Baa is a band.")
@@ -422,6 +429,23 @@ class KnownNameTests(unittest.TestCase):
         self.assertIn("Using Beyla", chapters)
         self.assertNotIn("Grafana Baa", chapters)
         self.assertIn("Grafana Baa is great", written.split("## Raw YouTube Transcript")[1])
+
+
+class ChapterAddressTests(unittest.TestCase):
+    def test_a_chapter_left_with_no_title_after_an_invented_address_is_removed(self):
+        stamped = "\n".join(f"[00:{m:02d}:00] words" for m in range(0, 30, 3))
+
+        def fake_chat(client, system, text, temperature):
+            first = text.strip().split("]")[0].lstrip("[")
+            return f"{first} tom@grano.com" if first == "00:09:00" else f"{first} Topic at {first}"
+        with mock.patch.object(t, "openai_key", "k"), mock.patch.object(t.openai, "OpenAI"), \
+                mock.patch.object(t, "chat", side_effect=fake_chat), mock.patch("builtins.print"):
+            out = t.create_chapters(video(), stamped, "vid")
+        self.assertNotIn("grano", out)
+        self.assertNotIn("00:09:00", out)
+        for line in out.splitlines():
+            self.assertRegex(line, r"^\d\d:\d\d:\d\d \S")
+        self.assertIn("Topic at 00:15:00", out)
 
 
 class MusicCaptionTests(unittest.TestCase):

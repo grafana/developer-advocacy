@@ -745,6 +745,8 @@ def create_chapters(video, timestamped, video_id):
     chapters = valid_chapters("\n".join(lines), timestamped)
     if chapters:
         chapters = guard_model_text(chapters, video, timestamped)
+        # Removing an unsupported address can leave a chapter with a timestamp and no title.
+        chapters = valid_chapters(chapters, timestamped)
     return chapters or "Chapters not available"
 
 

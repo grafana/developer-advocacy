@@ -60,8 +60,8 @@ def correct_known_names(text, reference="", names=None):
 
             def close(match, name=name, lowered=lowered):
                 word = match.group(0)
-                if word.lower() == lowered or word[0].lower() != lowered[0]:
-                    return word
+                if word.lower() in (lowered, lowered + "s") or word[0].lower() != lowered[0]:
+                    return word  # the name itself, or its plural ("Grafanas", "Pyroscopes")
                 if difflib.SequenceMatcher(None, word.lower(), lowered).ratio() < FUZZY_MIN_RATIO:
                     return word
                 if _present(word, reference):
