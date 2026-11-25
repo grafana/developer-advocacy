@@ -1,4 +1,8 @@
-# Owners of the transcript automation and its generated files.
+# Owners of the transcript automation, its generated files, and the agent-steering files.
 /transcripts/ @nicolevanderhoeven @moxious
 /.github/workflows/refresh-transcripts.yml @nicolevanderhoeven @moxious
 /.github/workflows/audit-transcripts.yml @nicolevanderhoeven @moxious
+/AGENTS.md @nicolevanderhoeven @moxious
+/CLAUDE.md @nicolevanderhoeven @moxious
+/.no-mistakes.yaml @nicolevanderhoeven @moxious
+/.agents/ @nicolevanderhoeven @moxious
