@@ -1,13 +1,19 @@
 import argparse
+import contextlib
+import io
+import json
 import os
 import subprocess
 import sys
 import tempfile
 import unittest
+import urllib.error
+import urllib.parse
 from unittest import mock
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
+import audit_public
 import check_duplicates
 import transcripts as t
 
@@ -416,6 +422,208 @@ class CheckDuplicatesTests(DirTestCase):
             write_transcript(self.dir, "fresh.md", "VID2")  # untracked and unique
             self.git("commit", "-qam", "drop dup")
             self.assertEqual(check_duplicates.main(["--base", "main", "--path", self.dir]), 0)
+
+
+class AnchoredUrlLineTests(DirTestCase):
+    def write(self, name, text):
+        with open(os.path.join(self.dir, name), "w") as f:
+            f.write(text)
+
+    def test_url_line_in_the_summary_or_transcript_is_not_the_videos(self):
+        self.write("a.md", "# T\n\n## Description\n\nhi\n\nURL: https://www.youtube.com/watch?v=REALvideo_01\n\n"
+                   "## Summary\n\nsum\n\nURL: https://www.youtube.com/watch?v=SPOKENvideo1\n\n"
+                   "## Raw YouTube Transcript\n\nURL: https://www.youtube.com/watch?v=LATERvideo_1\n")
+        self.assertEqual(t.existing_video_ids(self.dir), {"REALvideo_01"})
+        self.assertEqual(check_duplicates.video_ids(os.path.join(self.dir, "a.md")), {"REALvideo_01"})
+
+    def test_generated_file_round_trips(self):
+        v = video("ROUNDtrip_01", description="URL: https://www.youtube.com/watch?v=OTHERvideo1")
+        v["transcript"], v["timestamped"] = "word " * 80, "[00:30:00] word"
+        with mock.patch.object(t, "openai_key", ""):
+            t.write_markdown(self.args, v)
+        self.assertEqual(t.existing_video_ids(self.dir), {"ROUNDtrip_01"})
+
+
+class AtomicWriteTests(DirTestCase):
+    def test_a_crash_while_writing_leaves_no_transcript_behind(self):
+        v = video("CRASHvideo_1")
+        v["transcript"], v["timestamped"] = "word " * 80, "[00:30:00] word"
+        with mock.patch.object(t, "openai_key", ""), \
+                mock.patch.object(t.os, "replace", side_effect=KeyboardInterrupt):
+            with self.assertRaises(KeyboardInterrupt):
+                t.write_markdown(self.args, v)
+        self.assertEqual([n for n in os.listdir(self.dir) if n.endswith(".md")], [])
+        self.assertEqual(t.existing_video_ids(self.dir), set())
+
+    def test_a_finished_write_leaves_only_the_transcript(self):
+        v = video("DONEvideo_001")
+        v["transcript"], v["timestamped"] = "word " * 80, "[00:30:00] word"
+        with mock.patch.object(t, "openai_key", ""):
+            t.write_markdown(self.args, v)
+        self.assertEqual(len(os.listdir(self.dir)), 1)
+
+
+class RedactedLoggingTests(DirTestCase):
+    def test_nothing_with_a_title_or_description_is_printed_for_a_bad_video(self):
+        secret = "Secret launch title"
+        bad = {"id": "", "snippet": {"title": secret, "description": "Secret description"}}
+        with mock.patch("builtins.print") as printed:
+            t.fetch_transcripts(self.args, [bad])
+            t.write_markdown(self.args, bad)
+            no_transcript = video("NOTRANSCRIPT1", title=secret)
+            no_transcript["transcript"] = ""
+            t.write_markdown(self.args, no_transcript)
+        output = " ".join(str(a) for call in printed.call_args_list for a in call.args)
+        self.assertNotIn("Secret", output)
+        self.assertTrue(printed.called)
+
+
+class ShortVideoCostTests(DirTestCase):
+    def test_short_video_asks_openai_for_a_summary_only(self):
+        v = video(title="eBPF in 1 minute")
+        v["transcript"], v["timestamped"] = "so what is ebpf " * 10, "[00:00:00] so what is ebpf"
+        with mock.patch.object(t, "openai_cleanup", return_value=["Sum", None]) as cleanup:
+            t.write_markdown(self.args, v)
+        self.assertIs(cleanup.call_args.kwargs["clean"], False)
+
+    def test_long_video_still_gets_the_cleanup(self):
+        v = video()
+        v["transcript"], v["timestamped"] = "word " * 80, "[00:30:00] word"
+        with mock.patch.object(t, "openai_cleanup", return_value=["Sum", "clean"]) as cleanup:
+            t.write_markdown(self.args, v)
+        self.assertIs(cleanup.call_args.kwargs["clean"], True)
+
+    def test_summary_only_makes_one_model_call(self):
+        with mock.patch.object(t, "openai_key", "k"), mock.patch.object(t.openai, "OpenAI"), \
+                mock.patch.object(t, "chat", return_value="Summary") as chat:
+            self.assertEqual(t.openai_cleanup(video(), "word " * 50, "vid", clean=False), ["Summary", None])
+        self.assertEqual(chat.call_count, 1)
+
+
+class FakeResponse:
+    def __init__(self, payload):
+        self.payload = payload
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        return False
+
+    def read(self, *args):
+        return json.dumps(self.payload).encode()
+
+
+class AuditPublicTests(DirTestCase):
+    def api(self, statuses):
+        def urlopen(request, timeout=None):
+            self.requested = request
+            ids = urllib.parse.parse_qs(urllib.parse.urlparse(request.full_url).query)["id"][0].split(",")
+            return FakeResponse({"items": [{"id": i, "status": {"privacyStatus": statuses[i]}}
+                                           for i in ids if i in statuses]})
+        return urlopen
+
+    def run_main(self, statuses, *extra):
+        out = io.StringIO()
+        with mock.patch.dict(os.environ, {"YOUTUBE_API_KEY": "key-123"}), contextlib.redirect_stdout(out):
+            code = audit_public.main(["--path", self.dir, *extra], urlopen=self.api(statuses))
+        return code, out.getvalue()
+
+    def test_all_public_passes(self):
+        write_transcript(self.dir, "a.md", "AAA")
+        code, out = self.run_main({"AAA": "public"})
+        self.assertEqual(code, 0)
+        self.assertIn("all 1", out)
+
+    def test_unrecognized_source_files_fail_with_counts_only(self):
+        write_transcript(self.dir, "public.md", "PUB")
+        for name, content in (
+                ("short-secret-title.md", "URL: https://youtu.be/SECRETID"),
+                ("source-secret-title.md", "Source: https://www.youtube.com/watch?v=SECRETID"),
+                ("missing-secret-title.md", "# Secret title\nNo source URL")):
+            with open(os.path.join(self.dir, name), "w") as file:
+                file.write(content)
+        code, out = self.run_main({"PUB": "public"})
+        self.assertEqual(code, 1)
+        self.assertIn("UNVERIFIED: 3 transcript file(s)", out)
+        for leaked in ("OK:", "secret-title", "Secret title", "SECRETID"):
+            self.assertNotIn(leaked, out)
+        code, details = self.run_main({"PUB": "public"}, "--details")
+        self.assertEqual(code, 1)
+        self.assertIn("missing-secret-title.md", details)
+
+    def test_readme_and_generated_indexes_are_not_transcripts(self):
+        write_transcript(self.dir, "public.md", "PUB")
+        for name in ("README.md", "recurring-shows.md", "community-calls.md"):
+            with open(os.path.join(self.dir, name), "w") as file:
+                file.write("# Documentation or index\n")
+        self.assertEqual(self.run_main({"PUB": "public"})[0], 0)
+
+    def test_unreadable_files_fail_without_leaking_names_or_errors(self):
+        write_transcript(self.dir, "secret-title.md", "SECRETID")
+        for error in (PermissionError("secret-title.md"),
+                      UnicodeDecodeError("utf-8", b"\xff", 0, 1, "secret-title")):
+            with self.subTest(error=type(error).__name__), \
+                    mock.patch.object(audit_public, "video_ids", side_effect=error):
+                code, out = self.run_main({})
+                self.assertEqual(code, 1)
+                self.assertIn("UNVERIFIED: 1 transcript file(s)", out)
+                self.assertNotIn("secret-title", out)
+                self.assertNotIn("SECRETID", out)
+
+    def test_unlisted_private_and_missing_videos_fail_with_counts_only(self):
+        for name, vid in [("pub.md", "PUB"), ("unl-secret-title.md", "UNL"), ("priv-secret-title.md", "PRIV"),
+                          ("gone-secret-title.md", "GONE")]:
+            write_transcript(self.dir, name, vid)
+        code, out = self.run_main({"PUB": "public", "UNL": "unlisted", "PRIV": "private"})  # GONE: not returned
+        self.assertEqual(code, 1)
+        self.assertIn("3 of 4", out)
+        for leaked in ("UNL", "PRIV", "GONE", "secret-title"):
+            self.assertNotIn(leaked, out)
+
+    def test_details_flag_lists_files_for_private_use(self):
+        write_transcript(self.dir, "unl.md", "UNL")
+        code, out = self.run_main({"UNL": "unlisted"}, "--details")
+        self.assertEqual(code, 1)
+        self.assertIn("unl.md", out)
+
+    def test_ids_are_sent_in_batches_and_the_key_stays_out_of_the_url(self):
+        for i in range(120):
+            write_transcript(self.dir, f"{i:03}.md", f"V{i:03}")
+        calls = []
+        def urlopen(request, timeout=None):
+            calls.append(request)
+            return FakeResponse({"items": []})
+        audit_public.find_not_public(self.dir, "key-123", urlopen)
+        self.assertEqual(len(calls), 3)
+        self.assertNotIn("key-123", calls[0].full_url)
+        self.assertEqual(calls[0].get_header("X-goog-api-key"), "key-123")
+
+    def test_api_errors_cannot_leak_the_key_or_pass_silently(self):
+        write_transcript(self.dir, "a.md", "AAA")
+        def urlopen(request, timeout=None):
+            raise urllib.error.HTTPError(request.full_url, 403, "quota", {}, None)
+        out = io.StringIO()
+        with mock.patch.dict(os.environ, {"YOUTUBE_API_KEY": "key-123"}), contextlib.redirect_stdout(out):
+            code = audit_public.main(["--path", self.dir], urlopen=urlopen)
+        self.assertEqual(code, 2)
+        self.assertIn("403", out.getvalue())
+        self.assertNotIn("key-123", out.getvalue())
+
+    def test_missing_key_is_a_cannot_audit_not_a_pass(self):
+        out = io.StringIO()
+        with mock.patch.dict(os.environ, {}, clear=True), contextlib.redirect_stdout(out):
+            self.assertEqual(audit_public.main(["--path", self.dir]), 2)
+
+    def test_connection_reset_while_reading_is_a_private_cannot_audit_error(self):
+        write_transcript(self.dir, "secret-title.md", "SECRETID")
+        with mock.patch.object(FakeResponse, "read", side_effect=ConnectionResetError(
+                "key-123 SECRETID secret-title.md")):
+            code, out = self.run_main({"SECRETID": "public"})
+        self.assertEqual(code, 2)
+        self.assertIn("ConnectionResetError", out)
+        for leaked in ("key-123", "SECRETID", "secret-title"):
+            self.assertNotIn(leaked, out)
 
 
 if __name__ == "__main__":

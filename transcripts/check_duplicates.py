@@ -14,16 +14,29 @@ import re
 import subprocess
 import sys
 
-URL_LINE = re.compile(r"^URL:\s*https?://(?:www\.)?youtube\.com/watch\?v=([A-Za-z0-9_-]+)", re.MULTILINE)
+# The generator writes its own URL line right before "## Summary". The description above it can hold
+# `URL:` lines of its own, and the summary, cleaned text and raw transcript below it can too, so
+# "the last URL line in the file" is not reliable.
+URL_LINE = re.compile(
+    r"^URL:\s*https?://(?:www\.)?youtube\.com/watch\?v=([A-Za-z0-9_-]+)[ \t]*\n\s*\n## Summary\b", re.MULTILINE)
+# Fallback for a file without a "## Summary" heading (for example written by hand).
+ANY_URL_LINE = re.compile(r"^URL:\s*https?://(?:www\.)?youtube\.com/watch\?v=([A-Za-z0-9_-]+)", re.MULTILINE)
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
+def video_id_in_text(text):
+    """The video ID of a transcript's text: the URL line directly before `## Summary`, or, in a file
+    without that heading, the last `URL:` line. None when there is no URL line."""
+    matches = URL_LINE.findall(text) or ANY_URL_LINE.findall(text)
+    return matches[-1] if matches else None
+
+
 def video_ids(path):
-    """The video of a transcript file: its last `URL:` line, since the generator writes its own after the
-    description, which can contain a `URL:` line of its own."""
+    """The video of a transcript file: the generator's `URL:` line directly before `## Summary`, since the
+    description above it and the text below it can contain `URL:` lines of their own."""
     with open(path, encoding="utf-8") as file:
-        matches = URL_LINE.findall(file.read())
-    return {matches[-1]} if matches else set()
+        video_id = video_id_in_text(file.read())
+    return {video_id} if video_id else set()
 
 
 def find_duplicates(directory, new_files=None):
