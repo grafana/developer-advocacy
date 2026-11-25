@@ -3,6 +3,8 @@
 # - A name of 6 or more letters on one word (Pyroscope, Vanderhoeven) is also fixed when the model writes a
 #   close misspelling of it (Vanderhovven). Shorter names are only fixed through the wrong spellings after `|`,
 #   because a fuzzy match on a short word would change ordinary words.
+# - A word that is the name plus "s" (Grafanas) or looks like a plural of another word (Prometheans) is left alone,
+#   so a mistyped name that ends in "s" (Promethues) must be listed after `|`.
 # - Wrong spellings are whole words or phrases, matched ignoring case. Give enough context to be safe, such as
 #   "Grafana Baa" rather than "Baa".
 # - A wrong spelling that the video's own title or description uses is left alone.
@@ -13,7 +15,7 @@ Mimir | Grafana Mimer; Grafana Meemir
 Loki | Grafana Lowkey; Grafana Loci
 Tempo
 Pyroscope
-Prometheus
+Prometheus | Promethues
 OpenTelemetry
 Grafana
 Vanderhoeven

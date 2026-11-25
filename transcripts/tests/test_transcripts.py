@@ -385,6 +385,13 @@ class KnownNameTests(unittest.TestCase):
         self.assertEqual(guards.correct_known_names("Grafanna and Pyrscope", "", names=names)[0],
                          "Grafana and Pyroscope")
 
+    def test_a_transposed_spelling_that_ends_in_s_is_still_corrected(self):
+        # "Promethues" ends in "s", so the plural guard skips it; it is listed in known_names.txt instead.
+        names = guards.load_known_names()
+        text = "Promethues and Promethues's alerts, but Grafanas, Prometheans and Pyroscopes stay."
+        self.assertEqual(guards.correct_known_names(text, "", names=names)[0],
+                         "Prometheus and Prometheus's alerts, but Grafanas, Prometheans and Pyroscopes stay.")
+
     def test_the_authors_own_spelling_in_the_description_is_kept(self):
         self.assertEqual(self.fix("Grafana Baa is a band.", reference="Live with Grafana Baa"),
                          "Grafana Baa is a band.")
