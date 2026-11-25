@@ -7,19 +7,19 @@ date: TBD
 
 Link to YouTube video:
 
-Guests:: [Victoria Nduka](https://www.linkedin.com/in/victorianduka/), Andrej Kiripolsky (Grafana Labs) **[VERIFY LinkedIn URL]**
+Guests:: [Victoria Nduka](https://www.linkedin.com/in/victorianduka/), [Andrej Kiripolsky](https://www.linkedin.com/in/andrejkiripolsky/) (Grafana Labs) 
 
 **Title:** From Mentorship to Better OTel Developer Experience: UX Research and Surveys (Grafana ❤️‍🔥 OpenTelemetry Community Call #12) **[VERIFY title with guests]**
 
 **Description:**
 
-In this episode of the Grafana OTel Community Call, we're joined by Victoria Nduka and Andrej Kiripolsky from Grafana Labs to talk about what happens when UX research meets open source. Victoria completed an LFX mentorship doing UX research on how Prometheus should handle OpenTelemetry resource attributes, with Andrej as one of the mentors, and kept contributing to the OpenTelemetry End User SIG long after it ended.
+In this episode of the Grafana OTel Community Call, we're joined by Victoria Nduka from VictoriaMetrics and Andrej Kiripolsky from Grafana Labs to talk about what happens when UX research meets open source. Victoria completed an LFX mentorship doing UX research on how Prometheus should handle OpenTelemetry resource attributes, with Andrej as one of the mentors, and kept contributing to the OpenTelemetry End User SIG long after it ended.
 
 We'll look at what the research found, what the mentorship made possible, and how the End User SIG uses surveys to hear from the people using OpenTelemetry. Andrej will also tell us what has been going on with the OTel surveys, and what is coming next.
 
 Guests:
 - Victoria Nduka (https://www.linkedin.com/in/victorianduka/)
-- Andrej Kiripolsky (LinkedIn: TBD)
+- Andrej Kiripolsky (https://www.linkedin.com/in/andrejkiripolsky/)
 
 Hosts:
 - Imma Valls (https://www.linkedin.com/in/imma-valls/)
