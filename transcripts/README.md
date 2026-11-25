@@ -65,6 +65,14 @@ videos with a template placeholder in the description, and videos without usable
 file is left untouched. It needs OpenAI credentials, because without them the files would be overwritten with
 "Summary not available".
 
+A failure on one video (an OpenAI or YouTube error) is logged by video ID and does not stop the batch; that video
+keeps its old file and the IDs are listed at the end so you can rerun them with `--video-ids=`. A result that is
+worse than the existing file (the "Summary not available" fallback, no chapters, or no cleaned-up text where the
+file had them) is not written either. `--regenerate` refuses `--days`, `--start`, `--end`, `--channel` and
+`--playlist` (it would ignore them), `--video-ids` together with `--limit` or `--offset`, and a `--limit` below 1 or
+a negative `--offset`. Always read the regenerated text against its raw transcript before merging: the cleanup
+can invent speaker labels, sentences and headings that the captions do not have.
+
 ```bash
 # Specific videos
 python3 transcripts.py --regenerate --video-ids=ID1,ID2

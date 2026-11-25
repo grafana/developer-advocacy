@@ -352,6 +352,7 @@ def regenerate_transcripts(args, selected, videos):
     description still has a template placeholder leaves its file untouched."""
     by_id = {get_id(v): v for v in videos}
     regenerated = []
+    failed = []
     for i, (video_id, path) in enumerate(selected):
         video = by_id.get(video_id)
         if video is None:
@@ -369,22 +370,35 @@ def regenerate_transcripts(args, selected, videos):
         print(f"Regenerating video {i+1}/{len(selected)}: {video_id}")
         try:
             transcript_text, timestamped_text = get_transcript(video_id)
+            if not transcript_text:
+                print(f"Skipping video {video_id} due to transcript issues; its transcript is left as it is.")
+                continue
+            video['transcript'] = transcript_text
+            video['timestamped'] = timestamped_text
+            write_markdown(args, video, filename=path, regenerating=True)
+            regenerated.append(video)
         except captions_api.QuotaExhausted as e:
             print(f"STOPPING EARLY: {e}")
             print(f"{len(regenerated)} transcripts regenerated; run the rest after the quota resets.")
             break
-        if not transcript_text:
-            print(f"Skipping video {video_id} due to transcript issues; its transcript is left as it is.")
-            continue
-        video['transcript'] = transcript_text
-        video['timestamped'] = timestamped_text
-        write_markdown(args, video, filename=path)
-        regenerated.append(video)
+        except captions_api.CaptionsAuthError:
+            raise
+        except DegradedRegeneration as e:
+            print(f"Skipping video {video_id}: {e}; its transcript is left as it is.")
+            failed.append(video_id)
+        except Exception as e:
+            # One video's OpenAI or YouTube error must not discard the rest of the batch. Only the
+            # video ID and the error type are logged, never the title or the response.
+            print(f"Failed to regenerate video {video_id} ({type(e).__name__}); its transcript is left as it is.")
+            failed.append(video_id)
 
         if i < len(selected) - 1:
             delay = random.uniform(10, 30)
             print(f"Waiting {delay:.1f} seconds before next video...")
             time.sleep(delay)
+    if failed:
+        print(f"{len(failed)} videos were not regenerated and keep their old file: {', '.join(failed)}. "
+              f"Rerun them with --video-ids=...")
     return regenerated
 
 
@@ -761,9 +775,35 @@ def create_chapters(video, timestamped, video_id):
     return chapters or "Chapters not available"
 
 
-def write_markdown(args, video, filename=None):
+class DegradedRegeneration(Exception):
+    """The regenerated text is worse than what the existing file already has."""
+
+
+RAW_HEADING = "## Raw YouTube Transcript"
+
+
+def degraded_reason(existing, summary, cleaned_up, chapters, transcript, short):
+    """Why replacing `existing` (the current file text) with this result would lose content, or None.
+    A failed OpenAI call falls back to a placeholder summary, no cleaned text or "Chapters not available";
+    none of those may replace a good section."""
+    before_raw = existing.split(RAW_HEADING)[0]
+    old_summary = before_raw.split("## Summary", 1)[1] if "## Summary" in before_raw else ""
+    if summary == "Summary not available" and old_summary.strip() and "Summary not available" not in old_summary:
+        return "the new summary is the 'Summary not available' fallback"
+    if "## Chapters" in before_raw and not short and (not chapters or chapters == "Chapters not available"):
+        return "the existing chapters would be lost"
+    # Cleaned text is about as long as the raw transcript, while the summary and chapters after the URL line
+    # are short, so a long remainder means the file has cleaned text that the new result lacks.
+    remainder = before_raw.split("\nURL: ", 1)[-1]
+    if not cleaned_up and not short and len(remainder) > 0.5 * len(transcript):
+        return "the existing cleaned-up text would be lost"
+    return None
+
+
+def write_markdown(args, video, filename=None, regenerating=False):
     """Write the transcript file; `filename` overrides the derived name (regeneration keeps the
-    existing file's name so links to it do not break)."""
+    existing file's name so links to it do not break). With `regenerating`, a result that is worse than
+    the existing file raises DegradedRegeneration and the file is left untouched."""
     video_id = get_id(video)
     
     if video_id == '':
@@ -789,6 +829,12 @@ def write_markdown(args, video, filename=None):
     if short:
         cleaned_up = None
     chapters = create_chapters(video, timestamped, video_id)
+
+    if regenerating and os.path.exists(filename):
+        with open(filename, encoding="utf-8") as existing_file:
+            reason = degraded_reason(existing_file.read(), summary, cleaned_up, chapters, transcript, short)
+        if reason:
+            raise DegradedRegeneration(reason)
 
     # Write to a temp file in the same directory and rename it into place: dedupe on the video ID means a
     # partial file left by a crash would block the video for good.
@@ -1018,11 +1064,31 @@ def build_parser():
     return parser
 
 
+def validate_args(parser, args):
+    """Reject option combinations that would silently do something other than what was asked."""
+    if (args.video_ids or args.offset) and not args.regenerate:
+        parser.error('--video-ids and --offset only work with --regenerate')
+    if args.limit is not None and args.limit < 1:
+        parser.error('--limit must be at least 1')
+    if args.offset < 0:
+        parser.error('--offset must not be negative')
+    if args.regenerate:
+        ignored = [flag for flag, dest in (('--days', 'days'), ('--start', 'start'), ('--end', 'end'),
+                                           ('--channel', 'channel'), ('--playlist', 'playlist'))
+                   if getattr(args, dest) != parser.get_default(dest)]
+        if ignored:
+            parser.error(f"--regenerate rebuilds existing transcripts and ignores {', '.join(ignored)}; "
+                         f"remove them (select with --video-ids or --limit)")
+        if args.video_ids and args.limit is not None:
+            parser.error('--video-ids and --limit cannot be combined; use one to select videos')
+        if args.video_ids and args.offset:
+            parser.error('--offset only works with --limit')
+
+
 if __name__ == "__main__":
     parser = build_parser()
     args = parser.parse_args()
-    if (args.video_ids or args.offset) and not args.regenerate:
-        parser.error('--video-ids and --offset only work with --regenerate')
+    validate_args(parser, args)
 
     if args.days is not None:
         now = datetime.now(timezone.utc)

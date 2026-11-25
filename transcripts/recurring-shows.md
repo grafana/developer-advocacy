@@ -98,7 +98,7 @@ Per-show page: [Loki Community Calls](../projects/Loki%20Community%20Calls/Loki%
 - 2024-05-10 - [Grafana Tempo Community Call 2025-05-10](https://www.youtube.com/watch?v=wejNoDf21j0)
 - 2024-04-11 - [Grafana Tempo Community call 2024-04-11](https://www.youtube.com/watch?v=HS54B0IrOyk)
 - 2024-03-14 - [Grafana Tempo Community Call 2024-03-14](https://www.youtube.com/watch?v=nSV8tKSMBvI)
-- 2024-02-08 - [Grafana Tempo Community Call 2024-02-08](https://www.youtube.com/watch?v=Q2m13LO-5pA): The show is titled "Grafana Tempo Community Call" and was held on February 8, 2024.
+- 2024-02-08 - [Grafana Tempo Community Call 2024-02-08](https://www.youtube.com/watch?v=Q2m13LO-5pA)
 
 ## Mimir Community Call
 

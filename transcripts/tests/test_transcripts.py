@@ -149,6 +149,49 @@ class RegenerateTests(DirTestCase):
         self.assertEqual(done, [])
         self.assertIn("OLD A", self.read("2023-01-01T00:00:00Z-a.md"))
 
+    def test_one_failing_video_does_not_discard_the_rest_of_the_batch(self):
+        selected = [(i, t.existing_files_by_id(self.dir)[i]) for i in ("aaa", "bbb")]
+        calls = []
+
+        def cleanup(video, *a, **k):
+            calls.append(get_video_id(video))
+            if get_video_id(video) == "aaa":
+                raise RuntimeError("OpenAI is down")
+            return ["NEW SUMMARY", None]
+
+        def get_video_id(v):
+            return v["id"]
+
+        with mock.patch.object(t.time, "sleep"), \
+                mock.patch.object(t, "get_transcript", return_value=("new text " * 20, "[00:00:00] new text")), \
+                mock.patch.object(t, "openai_cleanup", side_effect=cleanup), \
+                mock.patch.object(t, "create_chapters", return_value=None):
+            done = t.regenerate_transcripts(self.args, selected, [video("aaa"), video("bbb")])
+        self.assertEqual(calls, ["aaa", "bbb"])
+        self.assertEqual([get_video_id(v) for v in done], ["bbb"])
+        self.assertIn("OLD A", self.read("2023-01-01T00:00:00Z-a.md"))
+        self.assertIn("NEW SUMMARY", self.read("2024-02-01T00:00:00Z-b.md"))
+
+    def test_a_degraded_result_does_not_replace_a_good_existing_file(self):
+        good = ("# T\n\nURL: https://www.youtube.com/watch?v=aaa\n\n## Summary\n\nA real summary.\n\n"
+                "## Chapters\n\n00:00:00 Intro\n\n" + "Cleaned text. " * 40 + "\n\n## Raw YouTube Transcript\n\nraw\n")
+        path = os.path.join(self.dir, "2023-01-01T00:00:00Z-a.md")
+        with open(path, "w") as f:
+            f.write(good)
+        transcript = ("word " * 120, "[00:00:00] " + "word " * 120)
+        selected = [("aaa", path)]
+        for summary, cleaned, chapters in (("Summary not available", "cleaned", "00:00:00 Intro"),
+                                           ("New summary", "cleaned", "Chapters not available"),
+                                           ("New summary", None, "00:00:00 Intro")):
+            with mock.patch.object(t.time, "sleep"), \
+                    mock.patch.object(t, "is_short_video", return_value=False), \
+                    mock.patch.object(t, "get_transcript", return_value=transcript), \
+                    mock.patch.object(t, "openai_cleanup", return_value=[summary, cleaned]), \
+                    mock.patch.object(t, "create_chapters", return_value=chapters):
+                done = t.regenerate_transcripts(self.args, selected, [video("aaa")])
+            self.assertEqual(done, [], (summary, cleaned, chapters))
+            self.assertEqual(self.read("2023-01-01T00:00:00Z-a.md"), good)
+
     def test_main_needs_openai_and_never_touches_files_without_it(self):
         self.args.limit = 1
         self.args.regenerate = True
@@ -173,6 +216,41 @@ class CommandLineTests(unittest.TestCase):
         # Documents why the "=" form is required.
         with mock.patch("sys.stderr"), self.assertRaises(SystemExit):
             t.build_parser().parse_args(["--regenerate", "--video-ids", "-bxMP9lbHG4"])
+
+
+class ValidateArgsTests(unittest.TestCase):
+    def check(self, *argv):
+        parser = t.build_parser()
+        args = parser.parse_args(list(argv))
+        with mock.patch("sys.stderr"):
+            t.validate_args(parser, args)
+
+    def rejected(self, *argv):
+        with self.assertRaises(SystemExit):
+            self.check(*argv)
+
+    def test_valid_regeneration_commands_are_accepted(self):
+        self.check("--regenerate", "--video-ids=-bxMP9lbHG4")
+        self.check("--regenerate", "--limit", "5", "--offset", "5")
+        self.check("--days", "14")
+
+    def test_regenerate_rejects_options_it_would_ignore(self):
+        for extra in (["--days", "14"], ["--start", "2024-01-01T00:00:00Z"], ["--end", "2024-02-01T00:00:00Z"],
+                      ["--channel", "UCother"], ["--playlist", "PLabc"]):
+            self.rejected("--regenerate", "--limit", "5", *extra)
+
+    def test_video_ids_cannot_be_combined_with_limit_or_offset(self):
+        self.rejected("--regenerate", "--video-ids=abc", "--limit", "5")
+        self.rejected("--regenerate", "--video-ids=abc", "--offset", "5")
+
+    def test_negative_or_zero_numbers_are_rejected(self):
+        self.rejected("--regenerate", "--limit", "-1")
+        self.rejected("--regenerate", "--limit", "0")
+        self.rejected("--regenerate", "--limit", "5", "--offset", "-2")
+
+    def test_regenerate_only_options_need_regenerate(self):
+        self.rejected("--video-ids=abc")
+        self.rejected("--offset", "5")
 
 
 class PublicOnlyTests(DirTestCase):
