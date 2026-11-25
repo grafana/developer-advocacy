@@ -1,11 +1,11 @@
 ---
 url:
-date: TBD
+date: December 16th, 11:00 CET
 ---
 
 # [[12 - Mentorship, UX Research and OTel Surveys]]
 
-Link to YouTube video:
+Link to YouTube video: TBC
 
 Guests:: [Victoria Nduka](https://www.linkedin.com/in/victorianduka/), [Andrej Kiripolsky](https://www.linkedin.com/in/andrejkiripolsky/) (Grafana Labs) 
 
