@@ -6,3 +6,5 @@
 /CLAUDE.md @nicolevanderhoeven @moxious
 /.no-mistakes.yaml @nicolevanderhoeven @moxious
 /.agents/ @nicolevanderhoeven @moxious
+/.github/CODEOWNERS @nicolevanderhoeven @moxious
+/.github/workflows/check-transcripts.yml @nicolevanderhoeven @moxious

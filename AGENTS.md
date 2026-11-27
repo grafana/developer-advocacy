@@ -11,7 +11,7 @@ This repository is **public**. It holds the Grafana Developer Advocacy team's pr
 | `templates/` | Checklists for shows (`GOH checklist.md`, `A&A checklist.md`) | Yes |
 | `projects/` | One folder per program or tutorial (Office Hours, Café con Grafana, Adobo and Avocados, Loki and OTel community calls, Play, Visualize CSV, Kapa-Summarize, Talks, ...) | Yes |
 | `workshops/`, `code-examples/` | Workshop material and example code | Yes |
-| `transcripts/` | Python tooling plus about 780 generated transcript `.md` files (see below) | Tooling yes; transcripts: regenerate with the script, hand-edit only to remove invented or private content |
+| `transcripts/` | Python tooling plus about 780 generated transcript `.md` files (see below) | Tooling yes; transcripts: regenerate with the script, hand-edit only to remove invented content. Transcripts of non-public videos are deleted, not edited, and PR text and diffs must not quote the removed private text |
 | `.github/workflows/` | `refresh-transcripts.yml` (weekly), `audit-transcripts.yml` (weekly public-video audit), `check-transcripts.yml` (PR checks) | Yes |
 | `.github/CODEOWNERS` | Owners of `transcripts/`, the refresh and audit workflows, and the agent-steering files (`AGENTS.md`, `CLAUDE.md`, `.no-mistakes.yaml`, `.agents/`) | Yes |
 

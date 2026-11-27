@@ -45,7 +45,7 @@ Skip checks that do not apply. A docs-only PR under `processes/` or `projects/` 
 
 - Actions pinned to a full SHA with a version comment. Top-level `permissions: {}`, with minimal per-job permissions. Untrusted inputs go through `env:`, never interpolated into `run:`.
 - Secrets come from Vault via `get-vault-secrets`, not GitHub secrets, and must not reach logs or URLs.
-- **No silent green.** A scheduled audit or refresh that skips its real work (empty key, failed Vault step) and still exits 0 is a finding. Require a visible failure or notification. One known exception: `audit-transcripts.yml` skips with a notice when the Vault key is missing (see `transcripts/README.md`). Treat that run as having checked nothing, not as a pass, and ask for the key to be fixed.
+- **No silent green.** A scheduled audit or refresh that skips its real work (empty key, failed Vault step) and still exits 0 is a finding. Require a visible failure or notification. One known exception: `audit-transcripts.yml` skips with a notice when the Vault key is missing or the Vault step failed (see `transcripts/README.md`; the Vault step has `continue-on-error: true`, so a broken role binding or a Vault outage also gives a green run). Treat that run as having checked nothing, not as a pass, and ask for the key to be fixed.
 - `concurrency` must queue (`cancel-in-progress: false`) for jobs that write.
 
 ## Dependency PRs (Renovate)
