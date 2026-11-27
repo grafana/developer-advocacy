@@ -55,6 +55,46 @@ The repository is public, so the logs show **counts only**. To see which files a
 
 Actions tab, "Refresh YouTube transcripts", "Run workflow". Set `days` to go further back and tick `dry_run` to fetch and regenerate without opening a PR. Or from a terminal: `gh workflow run refresh-transcripts.yml -f days=30`.
 
+### Regenerate existing transcripts
+
+`transcripts.py` normally skips a video that already has a transcript. To rebuild existing ones with the
+current generator (for example after the generator improves), use regenerate mode. It overwrites the
+existing file in place, keeping its filename so links to it do not break, and uses exactly the same path as a
+new transcript: official captions API, OpenAI summary, cleanup and chapters. Non-public or unaired videos,
+videos with a template placeholder in the description, and videos without usable captions are skipped and their
+file is left untouched. It needs OpenAI credentials, because without them the files would be overwritten with
+"Summary not available".
+
+A failure on one video (an OpenAI or YouTube error) is logged by video ID and does not stop the batch; that video
+keeps its old file and the IDs are listed at the end so you can rerun them with `--video-ids=`. A result that is
+worse than the existing file (the "Summary not available" fallback, no chapters, or no cleaned-up text where the
+file had them) is not written either. `--regenerate` refuses `--days`, `--start`, `--end`, `--channel` and
+`--playlist` (it would ignore them), `--video-ids` together with `--limit` or `--offset`, and a `--limit` below 1 or
+a negative `--offset`. Always read the regenerated text against its raw transcript before merging: the cleanup
+can invent speaker labels, sentences and headings that the captions do not have.
+
+```bash
+# Specific videos
+python3 transcripts.py --regenerate --video-ids=ID1,ID2
+# A batch: the 10 oldest transcripts (by filename, so publish time), then the next 10
+python3 transcripts.py --regenerate --limit 10
+python3 transcripts.py --regenerate --limit 10 --offset 10
+```
+
+Or run the workflow ("Run workflow" with `regenerate` ticked and `video_ids`, or `limit` and `offset`), which
+reads the credentials from Vault and opens a PR with the changed files. Scheduled runs are unchanged.
+
+**Quota maths:** each video costs 250 units (a `captions.list` at 50 plus a `captions.download` at 200) plus 1 unit
+per 50 videos for their details, against 10,000 a day. The run stops at `YOUTUBE_QUOTA_BUDGET` (default 9000), which
+is 36 videos per day. The tree has 780 transcript files but only 749 unique video IDs, so about 750 videos; at 36 a day
+that is about 21 days if nothing else uses the quota. The
+weekly refresh needs about 2,700 units (see above), so on a day with both, a batch of 30 would use
+30 x 250 = 7,500 + 2,700 = 10,200, over the 10,000 limit. Run a batch of at most 28 a day
+(`--limit 28 --offset 28*N`): 28 x 250 = 7,000 + 2,700 = 9,700. At 28 a day, about 750 videos take about 27 days. Review the PR of each batch before the next.
+Pass the IDs with `=` (`--video-ids=ID1,ID2`): some video IDs start with `-`, which argparse would otherwise read
+as an option. Regeneration PRs use their own branch, `automation/regenerate-transcripts`, so they never overwrite
+the weekly refresh PR.
+
 ### If it fails
 
 GitHub emails the people who last changed the schedule or triggered the run when a scheduled run fails. Check the run log:
@@ -156,6 +196,7 @@ python3 transcripts.py -p PLAYLIST_ID
 - `-p, --playlist`: YouTube playlist ID
 - `-s, --start`: Start date (ISO 8601 format)
 - `-e, --end`: End date (ISO 8601 format)
+- `--regenerate`, `--video-ids`, `--offset`: rebuild existing transcripts (see [Regenerate existing transcripts](#regenerate-existing-transcripts))
 
 ## Output Files
 

@@ -15,6 +15,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 
 import audit_public
 import check_duplicates
+import recurring_shows_index as rsi
 import transcripts as t
 
 
@@ -28,6 +29,19 @@ def video(video_id="abc123DEF_-", title="A title", description="Plain descriptio
 def write_transcript(directory, name, video_id, body="text"):
     with open(os.path.join(directory, name), "w") as f:
         f.write(f"# T\n\nURL: https://www.youtube.com/watch?v={video_id}\n\n{body}\n")
+
+
+class IndexFirstSentenceTests(unittest.TestCase):
+    def test_abbreviation_periods_do_not_end_the_sentence(self):
+        for title in (
+            "Set up a new Grafana Cloud Account | Grafana for Beginners Ep. 5",
+            "The AI Software Engineering Revolution, feat. Anthropic | Big Tent S3E9",
+        ):
+            summary = f"The show is titled {title} and was held on February 8, 2024. More text follows."
+            self.assertEqual(
+                rsi.one_line(summary),
+                f"The show is titled {title} and was held on February 8, 2024.",
+            )
 
 
 class DirTestCase(unittest.TestCase):
@@ -67,6 +81,176 @@ class DedupeByVideoIdTests(DirTestCase):
             processed = t.fetch_transcripts(self.args, [video("fresh")])
         self.assertEqual(len(processed), 1)
         write.assert_called_once()
+
+
+class RegenerateTests(DirTestCase):
+    def setUp(self):
+        super().setUp()
+        write_transcript(self.dir, "2024-02-01T00:00:00Z-b.md", "bbb", "OLD B")
+        write_transcript(self.dir, "2023-01-01T00:00:00Z-a.md", "aaa", "OLD A")
+        write_transcript(self.dir, "2025-03-01T00:00:00Z-c.md", "ccc", "OLD C")
+        self.args = argparse.Namespace(path=self.dir, video_ids=None, limit=None, offset=0)
+
+    def test_limit_takes_the_oldest_by_filename(self):
+        self.args.limit = 2
+        selected = t.select_regeneration(self.args, t.existing_files_by_id(self.dir))
+        self.assertEqual([v for v, _ in selected], ["aaa", "bbb"])
+
+    def test_offset_continues_the_next_batch(self):
+        self.args.limit, self.args.offset = 2, 2
+        selected = t.select_regeneration(self.args, t.existing_files_by_id(self.dir))
+        self.assertEqual([v for v, _ in selected], ["ccc"])
+
+    def test_video_ids_pick_those_videos_without_duplicates(self):
+        self.args.video_ids = "ccc, aaa,ccc"
+        selected = t.select_regeneration(self.args, t.existing_files_by_id(self.dir))
+        self.assertEqual([v for v, _ in selected], ["ccc", "aaa"])
+
+    def test_unknown_id_is_an_error_and_a_selection_is_required(self):
+        self.args.video_ids = "zzz"
+        with self.assertRaises(SystemExit):
+            t.select_regeneration(self.args, t.existing_files_by_id(self.dir))
+        self.args.video_ids = None
+        with self.assertRaises(SystemExit):
+            t.select_regeneration(self.args, t.existing_files_by_id(self.dir))
+
+    def regenerate(self, videos, ids, transcript=("new text " * 20, "[00:00:00] new text")):
+        selected = [(i, t.existing_files_by_id(self.dir)[i]) for i in ids]
+        with mock.patch.object(t.time, "sleep"), \
+                mock.patch.object(t, "get_transcript", return_value=transcript), \
+                mock.patch.object(t, "openai_cleanup", return_value=["NEW SUMMARY", None]), \
+                mock.patch.object(t, "create_chapters", return_value=None):
+            return t.regenerate_transcripts(self.args, selected, videos)
+
+    def read(self, name):
+        with open(os.path.join(self.dir, name)) as f:
+            return f.read()
+
+    def test_overwrites_the_existing_file_in_place_even_if_the_title_changed(self):
+        done = self.regenerate([video("aaa", title="Retitled", published="2023-01-01T00:00:00Z")], ["aaa"])
+        self.assertEqual(len(done), 1)
+        self.assertIn("NEW SUMMARY", self.read("2023-01-01T00:00:00Z-a.md"))
+        self.assertEqual(sorted(os.listdir(self.dir)),
+                         ["2023-01-01T00:00:00Z-a.md", "2024-02-01T00:00:00Z-b.md", "2025-03-01T00:00:00Z-c.md"])
+        self.assertIn("OLD B", self.read("2024-02-01T00:00:00Z-b.md"))
+        self.assertEqual(list(t.existing_video_ids(self.dir)).count("aaa"), 1)
+
+    def test_non_public_or_missing_or_captionless_videos_keep_their_file(self):
+        self.assertEqual(self.regenerate([video("aaa", privacy="private")], ["aaa"]), [])
+        self.assertEqual(self.regenerate([], ["aaa"]), [])
+        self.assertEqual(self.regenerate([video("aaa")], ["aaa"], transcript=(None, None)), [])
+        self.assertIn("OLD A", self.read("2023-01-01T00:00:00Z-a.md"))
+
+    def test_stops_when_the_quota_budget_is_spent(self):
+        selected = [(i, t.existing_files_by_id(self.dir)[i]) for i in ("aaa", "bbb")]
+        with mock.patch.object(t.time, "sleep"), \
+                mock.patch.object(t, "get_transcript", side_effect=t.captions_api.QuotaExhausted("budget")):
+            done = t.regenerate_transcripts(self.args, selected, [video("aaa"), video("bbb")])
+        self.assertEqual(done, [])
+        self.assertIn("OLD A", self.read("2023-01-01T00:00:00Z-a.md"))
+
+    def test_one_failing_video_does_not_discard_the_rest_of_the_batch(self):
+        selected = [(i, t.existing_files_by_id(self.dir)[i]) for i in ("aaa", "bbb")]
+        calls = []
+
+        def cleanup(video, *a, **k):
+            calls.append(get_video_id(video))
+            if get_video_id(video) == "aaa":
+                raise RuntimeError("OpenAI is down")
+            return ["NEW SUMMARY", None]
+
+        def get_video_id(v):
+            return v["id"]
+
+        with mock.patch.object(t.time, "sleep"), \
+                mock.patch.object(t, "get_transcript", return_value=("new text " * 20, "[00:00:00] new text")), \
+                mock.patch.object(t, "openai_cleanup", side_effect=cleanup), \
+                mock.patch.object(t, "create_chapters", return_value=None):
+            done = t.regenerate_transcripts(self.args, selected, [video("aaa"), video("bbb")])
+        self.assertEqual(calls, ["aaa", "bbb"])
+        self.assertEqual([get_video_id(v) for v in done], ["bbb"])
+        self.assertIn("OLD A", self.read("2023-01-01T00:00:00Z-a.md"))
+        self.assertIn("NEW SUMMARY", self.read("2024-02-01T00:00:00Z-b.md"))
+
+    def test_a_degraded_result_does_not_replace_a_good_existing_file(self):
+        good = ("# T\n\nURL: https://www.youtube.com/watch?v=aaa\n\n## Summary\n\nA real summary.\n\n"
+                "## Chapters\n\n00:00:00 Intro\n\n" + "Cleaned text. " * 40 + "\n\n## Raw YouTube Transcript\n\nraw\n")
+        path = os.path.join(self.dir, "2023-01-01T00:00:00Z-a.md")
+        with open(path, "w") as f:
+            f.write(good)
+        transcript = ("word " * 120, "[00:00:00] " + "word " * 120)
+        selected = [("aaa", path)]
+        for summary, cleaned, chapters in (("Summary not available", "cleaned", "00:00:00 Intro"),
+                                           ("New summary", "cleaned", "Chapters not available"),
+                                           ("New summary", None, "00:00:00 Intro")):
+            with mock.patch.object(t.time, "sleep"), \
+                    mock.patch.object(t, "is_short_video", return_value=False), \
+                    mock.patch.object(t, "get_transcript", return_value=transcript), \
+                    mock.patch.object(t, "openai_cleanup", return_value=[summary, cleaned]), \
+                    mock.patch.object(t, "create_chapters", return_value=chapters):
+                done = t.regenerate_transcripts(self.args, selected, [video("aaa")])
+            self.assertEqual(done, [], (summary, cleaned, chapters))
+            self.assertEqual(self.read("2023-01-01T00:00:00Z-a.md"), good)
+
+    def test_main_needs_openai_and_never_touches_files_without_it(self):
+        self.args.limit = 1
+        self.args.regenerate = True
+        with mock.patch.object(t.time, "sleep"), mock.patch.object(t, "openai_key", ""):
+            with self.assertRaises(SystemExit):
+                t.main(self.args)
+        self.assertIn("OLD A", self.read("2023-01-01T00:00:00Z-a.md"))
+
+    def test_regenerated_files_pass_the_duplicate_check(self):
+        self.regenerate([video("aaa", published="2023-01-01T00:00:00Z")], ["aaa"])
+        self.assertEqual(check_duplicates.find_duplicates(self.dir), {})
+
+
+class CommandLineTests(unittest.TestCase):
+    def test_video_ids_accepts_an_id_that_starts_with_a_dash(self):
+        # Real IDs can start with "-" (for example -bxMP9lbHG4); the "=" form keeps argparse from
+        # reading them as an option, which is how the workflow and the README pass them.
+        args = t.build_parser().parse_args(["--regenerate", "--video-ids=-bxMP9lbHG4,abc123DEF_-"])
+        self.assertEqual(args.video_ids, "-bxMP9lbHG4,abc123DEF_-")
+
+    def test_video_ids_with_a_space_before_a_leading_dash_is_rejected(self):
+        # Documents why the "=" form is required.
+        with mock.patch("sys.stderr"), self.assertRaises(SystemExit):
+            t.build_parser().parse_args(["--regenerate", "--video-ids", "-bxMP9lbHG4"])
+
+
+class ValidateArgsTests(unittest.TestCase):
+    def check(self, *argv):
+        parser = t.build_parser()
+        args = parser.parse_args(list(argv))
+        with mock.patch("sys.stderr"):
+            t.validate_args(parser, args)
+
+    def rejected(self, *argv):
+        with self.assertRaises(SystemExit):
+            self.check(*argv)
+
+    def test_valid_regeneration_commands_are_accepted(self):
+        self.check("--regenerate", "--video-ids=-bxMP9lbHG4")
+        self.check("--regenerate", "--limit", "5", "--offset", "5")
+        self.check("--days", "14")
+
+    def test_regenerate_rejects_options_it_would_ignore(self):
+        for extra in (["--days", "14"], ["--start", "2024-01-01T00:00:00Z"], ["--end", "2024-02-01T00:00:00Z"],
+                      ["--channel", "UCother"], ["--playlist", "PLabc"]):
+            self.rejected("--regenerate", "--limit", "5", *extra)
+
+    def test_video_ids_cannot_be_combined_with_limit_or_offset(self):
+        self.rejected("--regenerate", "--video-ids=abc", "--limit", "5")
+        self.rejected("--regenerate", "--video-ids=abc", "--offset", "5")
+
+    def test_negative_or_zero_numbers_are_rejected(self):
+        self.rejected("--regenerate", "--limit", "-1")
+        self.rejected("--regenerate", "--limit", "0")
+        self.rejected("--regenerate", "--limit", "5", "--offset", "-2")
+
+    def test_regenerate_only_options_need_regenerate(self):
+        self.rejected("--video-ids=abc")
+        self.rejected("--offset", "5")
 
 
 class PublicOnlyTests(DirTestCase):
