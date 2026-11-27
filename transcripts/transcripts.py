@@ -11,6 +11,7 @@ import sys
 import time
 import random
 import re
+import transcript_guards
 from datetime import datetime, timedelta, timezone
 
 import captions_api
@@ -311,12 +312,17 @@ YOUTUBE_TITLE_LIMIT = 100
 # capped separately, so the filename always stays well under the 255 byte limit.
 MAX_COMPLETED_TITLE_CHARS = 150
 MAX_SLUG_CHARS = 120
+# Added to a title that is cut at the limit and cannot be completed.
+TRUNCATION_MARK = "\u2026"
+# Videos whose truncated title has already been warned about in this run.
+_warned_truncated_titles = set()
 
 
 def video_title(video):
     """The clean title of a video. YouTube's stored title can be cut at its 100 character limit
     ("...AI Driven Operatio"); when it is, the first line of the description is used if it starts with
-    the title and continues it, otherwise a warning is logged and the title is used as it is."""
+    the title and continues it. Otherwise the title is marked with an ellipsis, so a reader can see it is
+    cut, and a warning is logged once per video (the title is read many times per video)."""
     raw = video['snippet']['title'] or ""
     title = clean_title(raw)
     if len(raw) < YOUTUBE_TITLE_LIMIT:
@@ -325,9 +331,12 @@ def video_title(video):
                        if line.strip()), "")
     if len(first_line) > len(title) and first_line.lower().startswith(title.lower()):
         return truncate_at_word(first_line, MAX_COMPLETED_TITLE_CHARS)
-    print(f"WARNING: the title of video {get_id(video)} is {len(raw)} characters, YouTube's limit, so it is "
-          f"probably truncated: {title}")
-    return title
+    video_id = get_id(video)
+    if video_id not in _warned_truncated_titles:
+        _warned_truncated_titles.add(video_id)
+        print(f"WARNING: the title of video {video_id} is {len(raw)} characters, YouTube's limit, so it is "
+              f"probably truncated and no first line of the description completes it: {title}")
+    return title if title.endswith(TRUNCATION_MARK) else title + TRUNCATION_MARK
 
 
 def truncate_at_word(text, limit):
@@ -388,12 +397,25 @@ OpenTelemetry (OTel), OpAmp, Grafana, Grafana Alloy, Grafana Agent, Grafana Clou
 Loki, Tempo, Mimir, Pyroscope, Beyla, OnCall, k6, Faro, Fleet Management, Prometheus, PromQL,
 LogQL, TraceQL, Grafana Assistant, Grafana Mimir, Kubernetes, eBPF, GrafanaCON, ObservabilityCON,
 Drilldown, Explore Logs, Alertmanager, Grafana Incident, Grafana Machine Learning, LGTM stack.
-"""
+If the transcript has a name that sounds like one of these or one of the names below, or like a person on
+the title or description, use the correct spelling. Product and people names, spelled exactly:
+""" + transcript_guards.known_names_prompt() + "\n"
 
 CONTEXT_RULES = """
-Use the video title and description (given below the instructions) for the show name, date and the
+Use the video title and description (given below the instructions) for the show name, event date and the
 spelling of speaker names. Never guess a spelling that is not in the title or description; if a
 name is uncertain, leave it as it is heard.
+Do not write an email address or a web address unless it appears in the text you were given. If a
+caption has one spelled out in words or run together ("tomgrano.com"), keep it as it is in the captions.
+Ignore song lyrics, music and sound labels such as [Music] or [Applause]; they are not content.
+"""
+
+# The summary must not call a customer talk or a fireside chat a "community call", or invent a date.
+EVENT_TYPE_RULES = """
+Take the type of the event (for example community call, livestream, webinar, customer talk, fireside
+chat, conference session) from the video title and description only. If they do not say what type of
+event it is, do not name one: call it a video or a talk. Never state an event date, a show name or an
+episode number that is not in the title or description; the published date is not the event date.
 """
 
 # Keep each cleanup request well inside the model's output limit.
@@ -451,6 +473,25 @@ def video_context(video):
     )
 
 
+def reference_text(video):
+    """The title and description of a video: the author's own words, which the model's text is checked against."""
+    snippet = video["snippet"]
+    return f"{video_title(video)}\n{snippet.get('description') or ''}"
+
+
+def guard_model_text(text, video, source):
+    """Fix misspelled known names in text the model wrote, and remove any email address or URL that is not in
+    `source` (the captions it was written from) or the title and description."""
+    reference = reference_text(video)
+    text, fixed = transcript_guards.correct_known_names(text, reference)
+    for wrong, right in fixed:
+        print(f"Corrected the name {wrong!r} to {right!r} in the text for video {get_id(video)}.")
+    text, removed = transcript_guards.remove_unsupported(text, source, reference)
+    for item in removed:
+        print(f"Removed {item!r} from the text for video {get_id(video)}: it is not in the captions or description.")
+    return text
+
+
 def chat(client, system, user, temperature):
     response = client.chat.completions.create(
         model=MODEL,
@@ -480,25 +521,25 @@ def openai_cleanup(video, transcript, video_id, clean=True):
     context = video_context(video)
 
     summarize_pls = f"""
-    You will be given the transcript of a Grafana Labs community call, livestream or talk.
-    Write a summary of 3 to 5 sentences that names the show and its date, the speakers with their
-    roles (only where the transcript, title or description gives them), the Grafana and open source
-    projects and features discussed, and the key takeaways. Then add a final line starting with
-    "Topics:" followed by a comma-separated list of the main topics.
+    You will be given the transcript of a Grafana Labs video.
+    Write a summary of 3 to 5 sentences that names the show or event when the title or description
+    does, the speakers with their roles (only where the transcript, title or description gives them),
+    the Grafana and open source projects and features discussed, and the key takeaways. Then add a
+    final line starting with "Topics:" followed by a comma-separated list of the main topics.
+    {EVENT_TYPE_RULES}
     {CONTEXT_RULES}
     {GLOSSARY}
     {context}
     """
 
     print(f"Summarizing transcript for video {video_id}")
-    summary = chat(client, summarize_pls, transcript, temperature=0.3)
+    summary = guard_model_text(chat(client, summarize_pls, transcript, temperature=0.3), video, transcript)
 
     if not clean:
         return [summary, None]
 
     cleanup_transcript_prompt = f"""
-    You will be given part of a messy transcript of a Grafana Labs community call, livestream or
-    talk. It has few sentence breaks, indications of music, and filler words. Clean it up into
+    You will be given part of a messy transcript of a Grafana Labs video. It has few sentence breaks, indications of music, and filler words. Clean it up into
     logical sentences and paragraphs.
 
     Output markdown text; you may use markdown formatting for emphasis, bold, bulleting, and so on.
@@ -523,6 +564,15 @@ def openai_cleanup(video, transcript, video_id, clean=True):
                 print(f"WARNING: cleanup of a chunk of {video_id} is still much shorter than its input; "
                       f"falling back to the raw transcript only.")
                 return [summary, None]
+        reference = reference_text(video)
+        invented = transcript_guards.unsupported_strings(cleaned, chunk, reference)
+        if invented:
+            # The cleanup made up an address (for example tom@grano.com from "tomgrano.com"): keep what was said.
+            print(f"Cleanup of a chunk of {video_id} contains {invented} which is not in the captions; "
+                  f"using the raw text for that chunk.")
+            cleaned = chunk
+        else:
+            cleaned = guard_model_text(cleaned, video, chunk)
         cleaned_chunks.append(cleaned.strip())
 
     return [summary, "\n\n".join(cleaned_chunks)]
@@ -583,6 +633,11 @@ def is_short_video(timestamped):
     return last_marker_seconds(timestamped) < SHORT_VIDEO_SECONDS
 
 
+def chapter_key(title):
+    """Compare chapter titles ignoring case, spacing and punctuation, but keeping letters of any script."""
+    return re.sub(r"[\W_]+", "", title.casefold())
+
+
 def is_generic_title(title):
     return re.sub(r"[^a-z&]", "", title.lower()) in GENERIC_CHAPTER_TITLES
 
@@ -640,7 +695,7 @@ def create_chapters(video, timestamped, video_id):
     count = max(3, round(10 * hours))
 
     chapter_prompt = f"""
-    This is one part of a transcript of a Grafana Labs community call, livestream or talk. It
+    This is one part of a transcript of a Grafana Labs video. It
     contains [HH:MM:SS] markers. Write the title of ONE YouTube chapter for the main topic of this
     part, and the timestamp where that topic starts.
 
@@ -648,6 +703,8 @@ def create_chapters(video, timestamped, video_id):
     - The timestamp must be one of the [HH:MM:SS] markers in this part. Never invent one.
     - The title is a short, searchable sentence-case phrase that says what is being discussed.
     - Never use a generic title such as "Discussion", "Introduction" or "Overview"; name the topic.
+    - Never repeat the title of an earlier chapter; name what is different in this part.
+    - Never name a chapter after song lyrics, music or a sound label such as [Music]; name what the speakers say.
     - Output one line only, in the form: HH:MM:SS Title
     {CONTEXT_RULES}
     {GLOSSARY}
@@ -656,17 +713,27 @@ def create_chapters(video, timestamped, video_id):
 
     print(f"Creating chapters for video {video_id}")
     lines = []
+    used = {}
     first_window_kept = False
+    noise = transcript_guards.noise_words(CAPTION_NOISE.get(video_id, []))
     for index, (first_marker, text) in enumerate(split_windows(timestamped, count)):
         line = None
         for attempt in range(2):
-            candidate = valid_chapters(chat(client, chapter_prompt, text, temperature=0.1), text)
+            prompt = chapter_prompt
+            if used:
+                prompt += "\nTitles of the earlier chapters (do not repeat any): " + "; ".join(used.values())
+            candidate = valid_chapters(chat(client, prompt, text, temperature=0.1), text)
             if candidate:
                 first = candidate.splitlines()[0]
-                if not is_generic_title(first.split(" ", 1)[1]):
+                title = first.split(" ", 1)[1]
+                if transcript_guards.title_only_in_noise(title, noise, text):
+                    print(f"Chapter {title!r} of {video_id} comes from music or lyrics; not using it.")
+                elif not is_generic_title(title) and chapter_key(title) not in used:
                     line = first
+                    used[chapter_key(title)] = title
                     break
-        # No usable title: drop the chapter rather than write "Discussion".
+        # No usable title: drop the chapter rather than write "Discussion" or repeat an earlier title
+        # (the earlier chapter then simply runs on over this part).
         if line is not None:
             lines.append(line)
             if index == 0:
@@ -675,6 +742,10 @@ def create_chapters(video, timestamped, video_id):
         # The first chapter always starts at 00:00:00 for YouTube.
         lines[0] = "00:00:00" + lines[0][8:]
     chapters = valid_chapters("\n".join(lines), timestamped)
+    if chapters:
+        chapters = guard_model_text(chapters, video, timestamped)
+        # Removing an unsupported address can leave a chapter with a timestamp and no title.
+        chapters = valid_chapters(chapters, timestamped)
     return chapters or "Chapters not available"
 
 
@@ -735,6 +806,9 @@ def write_markdown(args, video):
 
     print(f"Successfully wrote transcript for video {video_id} to {filename}")
 
+# The captions dropped from each video's transcript (sound labels and song lyrics), by video ID.
+CAPTION_NOISE = {}
+
 SKIPPED_CAPTION_TEXT = ['[Music]', '[Applause]', '[Laughter]']
 
 
@@ -747,17 +821,20 @@ def entries_to_transcript(transcript, video_id):
         return None, None
 
     # Safely extract and clean text
-    text_parts = []
-    kept_entries = []
+    candidates = []
     for entry in transcript:
         if isinstance(entry, dict) and 'text' in entry:
             text = entry['text']
             if text and isinstance(text, str):
                 text = text.strip()
-                # Filter out common non-content entries
-                if text and text not in SKIPPED_CAPTION_TEXT:
-                    text_parts.append(text)
-                    kept_entries.append({'text': text, 'start': float(entry.get('start', 0))})
+                if text:
+                    candidates.append({'text': text, 'start': float(entry.get('start', 0))})
+
+    # The written transcript and the summary drop only the literal sound labels. Music notes and repeated lyric
+    # hooks are left out of the text chapters are made from only, and remembered for the chapter check.
+    flags = transcript_guards.noise_flags([c['text'] for c in candidates])
+    CAPTION_NOISE[video_id] = [c['text'] for c, is_noise in zip(candidates, flags) if is_noise]
+    text_parts = [c['text'] for c in candidates if c['text'] not in SKIPPED_CAPTION_TEXT]
 
     if not text_parts:
         print(f"No valid text found in transcript for video {video_id}")
@@ -770,7 +847,8 @@ def entries_to_transcript(transcript, video_id):
         print(f"Transcript too short for video {video_id}: {len(full_text)} characters")
         return None, None
 
-    return full_text, build_timestamped_text(kept_entries)
+    chapter_entries = [c for c, is_noise in zip(candidates, flags) if not is_noise]
+    return full_text, build_timestamped_text(chapter_entries)
 
 
 def get_transcript(video_id):

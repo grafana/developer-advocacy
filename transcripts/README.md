@@ -11,7 +11,7 @@ The `transcripts.py` script performs the following operations:
 3. **AI Processing**: Uses OpenAI to:
    - Generate concise summaries of each video
    - Clean up and improve transcript readability (if the cleaned text is still much shorter than the original after a retry, only the raw transcript is written)
-   - Create YouTube-style chapters with timestamps (human-written timestamps in the description are reused; no generic "Discussion" chapters; none for very short videos)
+   - Create YouTube-style chapters with timestamps (human-written timestamps in the description are reused; no generic or repeated chapter titles; none for very short videos)
 4. **Rate Limiting**: Includes built-in delays to respect API limits:
    - 5-15 second random delays between pagination requests
    - 10-30 second random delays between video processing
@@ -201,5 +201,12 @@ If you still encounter rate limiting issues, try reducing the limit or waiting b
 Files are named `<publish time>-<title slug>.md`, so a directory listing is in publish order. When several videos of
 a series are uploaded out of order (for example `02` published before `01`), they sort in the order they were
 published; that is intentional and not rewritten. YouTube cuts titles at 100 characters: a title that long is
-completed from the first line of the description when that line continues it, otherwise a warning is logged.
+completed from the first line of the description when that line continues it, otherwise it is marked with an
+ellipsis (…) and a warning is logged once per video.
 Repeated lines in a description (such as a doubled "Thanks for watching!") are written once.
+
+### Checks on what the model writes
+The prompts ask the model to be careful, and `transcript_guards.py` checks the result as well, so the rules do not depend on the model:
+- **Names.** `known_names.txt` lists product and people names (Beyla, Alloy, Mimir, Loki, Tempo, Pyroscope, the host) and common misspellings of them. A misspelling in the summary, the cleaned text or the chapters is replaced, unless the video's own title or description spells it that way; a plural of a name ("Grafanas") is left as written. Add a line to the file to teach the generator a new name; the format is described at the top of the file. The raw YouTube transcript is never changed.
+- **Music.** The written transcript and the summary drop only the literal `[Music]`, `[Applause]` and `[Laughter]` labels. Chapters are made from a copy that also leaves out captions with music notes and a short fragment repeated at least five times like a song hook (ordinary speech such as "thank you" is never treated as one). A chapter whose title only comes from those captions is not used.
+- **Email addresses and URLs.** An address or URL in the summary, cleaned text or chapters that is not in the captions, title or description is removed. If the cleanup invented one, that part of the text falls back to the raw captions.

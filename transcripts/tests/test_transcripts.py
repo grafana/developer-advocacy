@@ -3,6 +3,7 @@ import contextlib
 import io
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -16,6 +17,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 import audit_public
 import check_duplicates
 import transcripts as t
+import transcript_guards as guards
 
 
 def video(video_id="abc123DEF_-", title="A title", description="Plain description",
@@ -309,6 +311,295 @@ class ChapterTests(unittest.TestCase):
         self.assertFalse(t.is_generic_title("Discussion of Tempo sampling"))
 
 
+class RepeatedChapterTitleTests(unittest.TestCase):
+    STAMPED = "\n".join(f"[00:{m:02d}:00] words" for m in range(0, 30, 3))
+
+    def run_chapters(self, fake_chat):
+        with mock.patch.object(t, "openai_key", "k"), mock.patch.object(t.openai, "OpenAI"), \
+                mock.patch.object(t, "chat", side_effect=fake_chat):
+            return t.create_chapters(video(), self.STAMPED, "vid")
+
+    def titles(self, out):
+        return [line.split(" ", 1)[1] for line in out.splitlines()]
+
+    def test_repeated_title_is_asked_again_with_the_earlier_titles_and_gets_a_specific_one(self):
+        prompts, calls = [], {}
+
+        def fake_chat(client, system, text, temperature):
+            prompts.append(system)
+            first = text.strip().split("]")[0].lstrip("[")
+            calls[first] = calls.get(first, 0) + 1
+            if first == "00:00:00" or calls[first] == 1:
+                return f"{first} Introduction to Grafana Notebooks"  # the first answer repeats chapter one
+            return f"{first} Notebook cells in practice at {first}"
+        titles = self.titles(self.run_chapters(fake_chat))
+        self.assertEqual(len(titles), len({title.lower() for title in titles}))
+        self.assertEqual(titles[0], "Introduction to Grafana Notebooks")
+        self.assertIn("Notebook cells in practice at 00:09:00", titles)
+        self.assertTrue(any("Introduction to Grafana Notebooks" in p and "do not repeat" in p for p in prompts))
+
+    def test_a_title_the_model_keeps_repeating_is_dropped_not_written_twice(self):
+        def fake_chat(client, system, text, temperature):
+            first = text.strip().split("]")[0].lstrip("[")
+            return f"{first} Introduction to Grafana Notebooks"
+        out = self.run_chapters(fake_chat)
+        self.assertEqual(self.titles(out), ["Introduction to Grafana Notebooks"])
+        self.assertTrue(out.startswith("00:00:00 "))
+
+    def test_titles_differing_only_in_case_or_punctuation_count_as_repeats(self):
+        self.assertEqual(t.chapter_key("Intro to Notebooks!"), t.chapter_key("intro to  notebooks"))
+
+    def test_different_non_latin_titles_are_all_kept(self):
+        names = {"00:00:00": "Введение", "00:09:00": "Обзор алертов", "00:15:00": "入门指南", "00:21:00": "告警规则"}
+
+        def fake_chat(client, system, text, temperature):
+            first = text.strip().split("]")[0].lstrip("[")
+            return f"{first} {names[first]}"
+        titles = self.titles(self.run_chapters(fake_chat))
+        self.assertEqual(titles, list(names.values()))
+        self.assertNotEqual(t.chapter_key("Grafana 入门"), t.chapter_key("Grafana 告警"))
+        self.assertEqual(t.chapter_key("Año"), t.chapter_key("año!"))
+
+
+class KnownNameTests(unittest.TestCase):
+    NAMES = [("Beyla", ["Grafana Baa"]), ("Pyroscope", []), ("Vanderhoeven", []),
+             ("Nicole Vanderhoeven", ["Nicole Vanderhovven"])]
+
+    def fix(self, text, reference=""):
+        return guards.correct_known_names(text, reference, names=self.NAMES)[0]
+
+    def test_a_listed_wrong_spelling_is_replaced_ignoring_case(self):
+        self.assertEqual(self.fix("We use Grafana Baa and grafana baa."), "We use Beyla and Beyla.")
+
+    def test_a_close_misspelling_of_a_long_name_is_replaced(self):
+        self.assertEqual(self.fix("Host: Nicole Vanderhovven."), "Host: Nicole Vanderhoeven.")
+        self.assertEqual(self.fix("Thanks, Vanderhoven!"), "Thanks, Vanderhoeven!")
+
+    def test_exact_names_in_addresses_and_files_are_not_rewritten(self):
+        text = "mail tom@grafana.com or run docker grafana/grafana; prometheus.yml"
+        names = self.NAMES + [("Grafana", []), ("Prometheus", [])]
+        self.assertEqual(guards.correct_known_names(text, "", names=names)[0], text)
+
+    def test_ordinary_words_and_other_names_are_left_alone(self):
+        text = "A periscope, a baa from a sheep, Pyroscope and Vanderhoeven are fine."
+        self.assertEqual(self.fix(text), text)
+
+    def test_a_plural_of_a_known_name_is_left_alone(self):
+        names = [("Grafana", []), ("Prometheus", []), ("Pyroscope", [])]
+        text = "Many Grafanas, two Pyroscopes, some prometheuss and Prometheans."
+        self.assertEqual(guards.correct_known_names(text, "", names=names)[0], text)
+        self.assertEqual(guards.correct_known_names("Grafanna and Pyrscope", "", names=names)[0],
+                         "Grafana and Pyroscope")
+
+    def test_a_transposed_spelling_that_ends_in_s_is_still_corrected(self):
+        # "Promethues" ends in "s", so the plural guard skips it; it is listed in known_names.txt instead.
+        names = guards.load_known_names()
+        text = "Promethues and Promethues's alerts, but Grafanas, Prometheans and Pyroscopes stay."
+        self.assertEqual(guards.correct_known_names(text, "", names=names)[0],
+                         "Prometheus and Prometheus's alerts, but Grafanas, Prometheans and Pyroscopes stay.")
+
+    def test_the_authors_own_spelling_in_the_description_is_kept(self):
+        self.assertEqual(self.fix("Grafana Baa is a band.", reference="Live with Grafana Baa"),
+                         "Grafana Baa is a band.")
+
+    def test_changes_are_reported(self):
+        _, changes = guards.correct_known_names("Grafana Baa", "", names=self.NAMES)
+        self.assertEqual(changes, [("Grafana Baa", "Beyla")])
+
+    def test_the_data_file_covers_the_known_cases_and_can_be_extended(self):
+        names = dict(guards.load_known_names())
+        self.assertIn("Grafana Baa", names["Beyla"])
+        self.assertIn("Nicole Vanderhovven", names["Nicole Vanderhoeven"])
+        for product in ("Alloy", "Mimir", "Loki", "Tempo", "Pyroscope"):
+            self.assertIn(product, names)
+        with tempfile.TemporaryDirectory() as directory:
+            path = os.path.join(directory, "names.txt")
+            with open(path, "w") as file:
+                file.write("# comment\n\nFoo | Bar baz; Qux\nQuux\n")
+            self.assertEqual(guards.load_known_names(path), [("Foo", ["Bar baz", "Qux"]), ("Quux", [])])
+
+    def test_the_summary_cleaned_text_and_chapters_are_corrected_but_the_raw_transcript_is_not(self):
+        v = video(title="A show", description="About the show")
+        v["transcript"] = "Grafana Baa is great " + "word " * 20
+        v["timestamped"] = "\n".join(f"[00:{m:02d}:00] Grafana Baa" for m in range(0, 30, 3))
+
+        def fake_chat(client, system, user, temperature):
+            if "Write the title of ONE" in system:
+                first = user.strip().split("]")[0].lstrip("[")
+                return f"{first} Using Grafana Baa {first}"
+            return "Grafana Baa from Nicole Vanderhovven " + "word " * 20
+        with mock.patch.object(t, "openai_key", "k"), mock.patch.object(t.openai, "OpenAI"), \
+                mock.patch.object(t, "chat", side_effect=fake_chat), mock.patch("builtins.print"):
+            summary, cleaned = t.openai_cleanup(v, v["transcript"], "vid")
+            chapters = t.create_chapters(v, v["timestamped"], "vid")
+            args = argparse.Namespace(path=tempfile.mkdtemp())
+            self.addCleanup(lambda: shutil.rmtree(args.path))
+            t.write_markdown(args, v)
+            with open(t.file_for_video(args, v)) as f:
+                written = f.read()
+        self.assertTrue(summary.startswith("Beyla from Nicole Vanderhoeven "))
+        self.assertTrue(cleaned.startswith("Beyla from Nicole Vanderhoeven "))
+        self.assertIn("Using Beyla", chapters)
+        self.assertNotIn("Grafana Baa", chapters)
+        self.assertIn("Grafana Baa is great", written.split("## Raw YouTube Transcript")[1])
+
+
+class ChapterAddressTests(unittest.TestCase):
+    def test_a_chapter_left_with_no_title_after_an_invented_address_is_removed(self):
+        stamped = "\n".join(f"[00:{m:02d}:00] words" for m in range(0, 30, 3))
+
+        def fake_chat(client, system, text, temperature):
+            first = text.strip().split("]")[0].lstrip("[")
+            return f"{first} tom@grano.com" if first == "00:09:00" else f"{first} Topic at {first}"
+        with mock.patch.object(t, "openai_key", "k"), mock.patch.object(t.openai, "OpenAI"), \
+                mock.patch.object(t, "chat", side_effect=fake_chat), mock.patch("builtins.print"):
+            out = t.create_chapters(video(), stamped, "vid")
+        self.assertNotIn("grano", out)
+        self.assertNotIn("00:09:00", out)
+        for line in out.splitlines():
+            self.assertRegex(line, r"^\d\d:\d\d:\d\d \S")
+        self.assertIn("Topic at 00:15:00", out)
+
+
+class MusicCaptionTests(unittest.TestCase):
+    def entries(self, texts):
+        return [{"text": text, "start": float(i * 5)} for i, text in enumerate(texts)]
+
+    SPEECH = ["welcome everyone to the keynote of this conference", "today we will talk about observability"]
+
+    def test_only_literal_labels_leave_the_written_text_and_lyrics_leave_the_chapter_text(self):
+        texts = ["[Music]", "\u266a \u266a", "[Applause]", "heat", "heat", "heat", "heat", "heat"] + self.SPEECH
+        text, stamped = t.entries_to_transcript(self.entries(texts), "keynote")
+        self.assertEqual(text, " ".join(["\u266a \u266a"] + ["heat"] * 5 + self.SPEECH))
+        self.assertNotIn("heat", stamped.lower())
+        self.assertNotIn("\u266a", stamped)
+        self.assertIn("welcome everyone", stamped)
+        self.assertIn("heat", " ".join(t.CAPTION_NOISE["keynote"]))
+
+    def test_ordinary_repeated_speech_is_kept_in_both_texts(self):
+        texts = ["thank you", "so", "thank you", "yes", "thank you"] + self.SPEECH
+        text, stamped = t.entries_to_transcript(self.entries(texts), "qa")
+        self.assertEqual(text, " ".join(texts))
+        for part in texts:
+            self.assertIn(part, stamped)
+
+    def test_a_phrase_repeated_fewer_than_five_times_is_kept(self):
+        texts = ["heat"] * 4 + self.SPEECH
+        _, stamped = t.entries_to_transcript(self.entries(texts), "four")
+        self.assertEqual(stamped.lower().count("heat"), 4)
+
+    def test_a_word_said_once_in_speech_is_kept(self):
+        texts = ["I want some respect for open source", "respect", "and so on today we will be learning more"]
+        text, _ = t.entries_to_transcript(self.entries(texts), "once")
+        self.assertIn("respect", text)
+        self.assertEqual(text.count("respect"), 2)
+
+    def test_a_chapter_named_from_the_music_is_not_written(self):
+        t.CAPTION_NOISE["keynote2"] = ["respect"] * 5 + ["Heat", "heat"]
+        stamped = "\n".join(f"[00:{m:02d}:00] we talk about alerting rules" for m in range(0, 30, 3))
+        calls = {}
+
+        def fake_chat(client, system, text, temperature):
+            first = text.strip().split("]")[0].lstrip("[")
+            calls[first] = calls.get(first, 0) + 1
+            if first == "00:00:00":
+                return f"{first} Respect"
+            return f"{first} Alerting rules at {first}"
+        with mock.patch.object(t, "openai_key", "k"), mock.patch.object(t.openai, "OpenAI"), \
+                mock.patch.object(t, "chat", side_effect=fake_chat), mock.patch("builtins.print"):
+            out = t.create_chapters(video(), stamped, "keynote2")
+        self.assertNotIn("Respect", out)
+        self.assertEqual(calls["00:00:00"], 2)
+        self.assertIn("Alerting rules", out)
+
+    def test_a_title_with_words_that_are_also_spoken_is_not_dropped(self):
+        noise = guards.noise_words(["respect"])
+        self.assertFalse(guards.title_only_in_noise("Respect for maintainers", noise, "we show respect for maintainers"))
+        self.assertTrue(guards.title_only_in_noise("Respect", noise, "we talk about alerting"))
+
+
+class InventedAddressTests(unittest.TestCase):
+    CAPTION = "you can email me at tomgrano.com or see https://grafana.com/docs for more " + "word " * 20
+
+    def test_the_address_the_cleanup_made_up_is_found(self):
+        self.assertEqual(guards.unsupported_strings("write to tom@grano.com", self.CAPTION), ["tom@grano.com"])
+
+    def test_addresses_in_the_captions_title_or_description_are_fine(self):
+        text = "see https://grafana.com/docs. Mail tom@grafana.com or www.example.org/x."
+        self.assertEqual(guards.unsupported_strings(text, self.CAPTION, "tom@grafana.com", "WWW.EXAMPLE.ORG/x"), [])
+
+    def test_removal_leaves_the_rest_of_the_text(self):
+        text, removed = guards.remove_unsupported("Email tom@grano.com today.", self.CAPTION)
+        self.assertEqual((text, removed), ("Email  today.", ["tom@grano.com"]))
+
+    def run_cleanup(self, summary, cleaned, description="Plain description"):
+        v = video(title="Big Tent", description=description)
+
+        def fake_chat(client, system, user, temperature):
+            return summary if "3 to 5 sentences" in system else cleaned
+        with mock.patch.object(t, "openai_key", "k"), mock.patch.object(t.openai, "OpenAI"), \
+                mock.patch.object(t, "chat", side_effect=fake_chat), mock.patch("builtins.print"):
+            return t.openai_cleanup(v, self.CAPTION, "vid")
+
+    def test_cleanup_that_invents_an_email_falls_back_to_the_raw_text_for_that_chunk(self):
+        summary, cleaned = self.run_cleanup("A talk.", "You can email me at tom@grano.com. " + "Word " * 20)
+        self.assertEqual(cleaned, self.CAPTION.strip())
+        self.assertNotIn("tom@grano.com", cleaned)
+
+    def test_the_summary_loses_an_invented_address_but_keeps_one_from_the_description(self):
+        summary, _ = self.run_cleanup("Contact tom@grano.com or tom@grafana.com. Topics: a", "ok " * 100,
+                                      description="Contact tom@grafana.com")
+        self.assertNotIn("tom@grano.com", summary)
+        self.assertIn("tom@grafana.com", summary)
+
+    def test_the_emitted_prompts_tell_the_model_the_same_rules(self):
+        seen = []
+
+        def fake_chat(client, system, user, temperature):
+            seen.append(system)
+            return "text " * 30
+        stamped = "\n".join(f"[00:{m:02d}:00] words" for m in range(0, 30, 3))
+        with mock.patch.object(t, "openai_key", "k"), mock.patch.object(t.openai, "OpenAI"), \
+                mock.patch.object(t, "chat", side_effect=fake_chat), mock.patch("builtins.print"):
+            t.openai_cleanup(video(), self.CAPTION, "vid")
+            t.create_chapters(video(), stamped, "vid")
+        self.assertGreaterEqual(len(seen), 3)
+        for prompt in seen:
+            self.assertIn("Do not write an email address or a web address", prompt)
+            self.assertIn("Ignore song lyrics", prompt)
+            self.assertIn("Beyla", prompt)
+
+
+class EventTypeTests(unittest.TestCase):
+    """The summary must take the event type from the title and description, not assume a community call."""
+
+    def prompts(self, **video_kwargs):
+        seen = []
+
+        def fake_chat(client, system, user, temperature):
+            seen.append(system)
+            return "text " * 20
+        v = video(**video_kwargs)
+        stamped = "\n".join(f"[00:{m:02d}:00] words" for m in range(0, 30, 3))
+        with mock.patch.object(t, "openai_key", "k"), mock.patch.object(t.openai, "OpenAI"), \
+                mock.patch.object(t, "chat", side_effect=fake_chat), mock.patch("builtins.print"):
+            t.openai_cleanup(v, "words " * 50, "vid")
+            t.create_chapters(v, stamped, "vid")
+        return seen
+
+    def test_no_prompt_assumes_a_community_call(self):
+        for prompt in self.prompts(title="How Bayer runs Grafana: a customer presentation",
+                                   description="Bayer talks about their setup."):
+            self.assertNotIn("community call", prompt.replace(t.EVENT_TYPE_RULES, ""))
+
+    def test_summary_prompt_takes_event_type_from_title_and_description_and_gives_both(self):
+        summary = self.prompts(title="Fireside chat with thredd", description="A chat about payments.")[0]
+        self.assertIn("title and description only", summary)
+        self.assertIn("not the event date", summary)
+        self.assertIn("Video title: Fireside chat with thredd", summary)
+        self.assertIn("Description: A chat about payments.", summary)
+
+
 class TitleCleanTests(DirTestCase):
     RAW = "02   Grafana   ObservabilityCON 26   London"
 
@@ -361,12 +652,35 @@ class TruncatedTitleTests(unittest.TestCase):
         v = video(title=raw, description=f"\n{self.FULL} and more words to fill up and beyond\nMore")
         self.assertEqual(t.video_title(v), f"{self.FULL} and more words to fill up and beyond")
 
-    def test_truncated_title_without_matching_description_warns(self):
+    def setUp(self):
+        t._warned_truncated_titles.clear()
+
+    def test_truncated_title_without_matching_description_is_marked_and_warns(self):
         self.assertEqual(len(self.CUT), 100)
         v = video(title=self.CUT, description="[INSERT DESCRIPTION]")
         with mock.patch("builtins.print") as printed:
-            self.assertEqual(t.video_title(v), t.clean_title(self.CUT))
+            self.assertEqual(t.video_title(v), t.clean_title(self.CUT) + "\u2026")
         self.assertTrue(any("probably truncated" in str(c) for c in printed.call_args_list))
+
+    def test_truncated_title_warns_once_per_video_however_often_it_is_read(self):
+        v = video(title=self.CUT, description="[INSERT DESCRIPTION]")
+        with mock.patch("builtins.print") as printed:
+            titles = {t.video_title(v) for _ in range(5)}
+            t.video_title(video(video_id="other_id_11", title=self.CUT, description=""))
+        self.assertEqual(len(titles), 1)
+        self.assertEqual(len([c for c in printed.call_args_list if "probably truncated" in str(c)]), 2)
+
+    def test_marked_title_reaches_the_heading_and_the_marker_is_not_doubled(self):
+        v = video(title=self.CUT, description="[INSERT DESCRIPTION]")
+        v["transcript"], v["timestamped"] = "x " * 100, "[00:00:00] x\n[00:05:00] y"
+        with mock.patch.object(t, "openai_key", ""), mock.patch("builtins.print"):
+            args = argparse.Namespace(path=tempfile.mkdtemp())
+            self.addCleanup(lambda: shutil.rmtree(args.path))
+            t.write_markdown(args, v)
+            with open(t.file_for_video(args, v)) as f:
+                heading = f.readline().rstrip("\n")
+        self.assertTrue(heading.endswith("Operatio\u2026"))
+        self.assertFalse(heading.endswith("\u2026\u2026"))
 
     def test_short_titles_are_untouched_and_silent(self):
         with mock.patch("builtins.print") as printed:
