@@ -11,9 +11,9 @@ This repository is **public**. It holds the Grafana Developer Advocacy team's pr
 | `templates/` | Checklists for shows (`GOH checklist.md`, `A&A checklist.md`) | Yes |
 | `projects/` | One folder per program or tutorial (Office Hours, Café con Grafana, Adobo and Avocados, Loki and OTel community calls, Play, Visualize CSV, Kapa-Summarize, Talks, ...) | Yes |
 | `workshops/`, `code-examples/` | Workshop material and example code | Yes |
-| `transcripts/` | Python tooling plus about 780 generated transcript `.md` files (see below) | Tooling yes; transcripts no |
-| `.github/workflows/` | `refresh-transcripts.yml` (weekly), `check-transcripts.yml` (PR checks) | Yes |
-| `.github/CODEOWNERS` | Owners of `transcripts/` and the refresh workflow | Yes |
+| `transcripts/` | Python tooling plus about 780 generated transcript `.md` files (see below) | Tooling yes; transcripts: regenerate with the script, hand-edit only to remove invented content. Transcripts of non-public videos are deleted, not edited, and PR text and diffs must not quote the removed private text |
+| `.github/workflows/` | `refresh-transcripts.yml` (weekly), `audit-transcripts.yml` (weekly public-video audit), `check-transcripts.yml` (PR checks) | Yes |
+| `.github/CODEOWNERS` | Owners of `transcripts/`, the refresh and audit workflows, and the agent-steering files (`AGENTS.md`, `CLAUDE.md`, `.no-mistakes.yaml`, `.agents/`) | Yes |
 
 Prose areas (`processes/`, `projects/`, `templates/`, `workshops/`) are plain Markdown with no build step. Keep relative links working (many paths contain spaces) and do not add personal data (emails, phone numbers, private links).
 
@@ -23,6 +23,7 @@ Most of the code and most of the review risk live here.
 
 - `transcripts.py` is the generator. It lists channel videos, keeps only **public, finished** videos, fetches captions through `captions_api.py` (official YouTube captions API with OAuth), calls OpenAI for a summary, chapters and cleaned text, and writes `<publish time>-<slug>.md`.
 - `check_duplicates.py` fails if a new transcript is for a video that already has one. Identity is the video ID in the `URL:` line, never the filename or title.
+- `audit_public.py` fails if any transcript's video is not public (run weekly by `audit-transcripts.yml`). Its CI logs show counts only. Run `--details` only locally with a `YOUTUBE_API_KEY`, and never put its output in a PR, issue or log.
 - `recurring_shows_index.py` regenerates `recurring-shows.md` and `community-calls.md`. **Those two files are generated. Never edit them by hand**; re-run the script and commit its output.
 - `categorize.py`, `get_refresh_token.py`, `run.sh`, `env.example`: helpers and setup. Real secrets live in Vault (`ci/repo/grafana/developer-advocacy/`), never in the repo or in GitHub secrets.
 - `tests/` holds the unit tests (`unittest`, Python 3.12 in CI).
@@ -65,7 +66,7 @@ git push no-mistakes             # runs the pipeline, then opens the PR
 
 Agents can run `/no-mistakes <task>` to do a task and gate it in one step. Forks: `no-mistakes init --fork-url <your-fork-url>`.
 
-The repo's review guidance for the pipeline is in `.no-mistakes.yaml` and `.agents/skills/review/SKILL.md`. The pipeline will not edit this file on its own, so changes to `AGENTS.md` are a deliberate human decision.
+The repo's review guidance for the pipeline is in `.no-mistakes.yaml` and `.agents/skills/review/SKILL.md`. Only the copy of `.no-mistakes.yaml` on the default branch is read, so changes to it take effect after merge. Changes to `AGENTS.md` are a deliberate human decision.
 
 ## Reviewing a PR
 

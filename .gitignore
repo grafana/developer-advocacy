@@ -5,3 +5,4 @@ venv
 transcripts/*.csv
 __pycache__
 .hippo
+.claude/
